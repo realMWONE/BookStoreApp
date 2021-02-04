@@ -27,5 +27,3 @@ To store all this information, a detailed database will be required. The current
 The speed and convenience of having all these features in their pocket will allow managers to better maintain their inventory and track sales. The notification feature will help prevent items from getting sold out. The user-friendly interface will help all levels of users find exactly what book they are looking for. To summarize, this app will provide a more usable and modern way of running a bookstore compared to the complex systems that only run on a desktop computer.
  
 If successful, this application will provide swift and easy inventory management on a smartphone. Additionally, success requires an increase in customer satisfaction due to helping them find books that they enjoy. And finally, through better management and customer-friendliness, an increase in sales is expected. 
-
-# Features

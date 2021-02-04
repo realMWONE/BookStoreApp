@@ -7,7 +7,7 @@
 |Kevin, Davis           |           |
 |Harshal, Bhalerao      |           |
 |DUY, THAN              |           |
-|Animesh, Chauhan       |           |
+|Animesh, Chauhan       | 7851532   |
 
 # Bookstore App Vision Statement
 

@@ -15,7 +15,7 @@ The Bookstore App is an inventory management tool for physical bookstores that i
  
 The three levels of users are: management, employees, and customers. Customers have the most basic features that allow finding and viewing book information, like price and genre. They can also reserve a book for in-store pickup. Employees will have the additional ability to see the remaining stock of each book. Managers will have the ability to change prices and order more inventory.
  
-The search feature will work for book titles, author names, and ISBNs. This can also be expanded to include other important information in the future. Once a search is performed, the user can click on a book from the resulting list to see a new page containing all the details of that book.
+The search feature will work for book titles, author names, and ISBNs. This can also be expanded to include other important information in the future. Once a book is found, the user can click on it book from the resulting list to see a new page containing all the details of that book.
  
 A trending page will show the customer all the popular purchases and new releases in the last few weeks. Discounted items will also be shown, helping the customer find an interesting book in the shortest amount of time. Also, when searching, popular search terms will be displayed. The goal of these features is to make the customer’s experience with the app as stress-free as possible.
  

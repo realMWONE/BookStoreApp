@@ -11,7 +11,7 @@
 
 # Bookstore App Vision Statement
 
-The Bookstore App is an inventory management tool that is primarily targeted to bookstore managers. Its main purpose is to offer a modern and easy-to-use version of existing bookstore software that runs completely from a smartphone. This will allow managers and employees to efficiently and conveniently keep track of their inventory. Running on a smartphone allows better managing of inventory through in-app stock counts and notifications for important information.
+The Bookstore App is an inventory management tool for physical bookstores that is primarily targeted to bookstore staff. Its main purpose is to offer a modern and easy-to-use version of existing bookstore software that runs completely from a smartphone. This will allow managers and employees to efficiently and conveniently keep track of their inventory. Running on a smartphone allows better managing of inventory through in-app stock counts and notifications for important information.
  
 The three levels of users are: management, employees, and customers. Customers have the most basic features that allow searching for and viewing book information, like price and genre. They can also reserve a book for in-store pickup. Employees will have the additional ability to see the remaining stock of each book. Managers will have the ability to change prices and order more inventory.
  

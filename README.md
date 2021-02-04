@@ -1,13 +1,13 @@
 # Winter-2021-A03 Group 10
-# Members
+## Members
 |Name                   |UMID       |
 |-------------------    |-------    |
-|Tamunotonye, Dawari    |           |
+|Tamunotonye, Dawari    |7850228    |
 |Matthew, Wong          |7798899    |
 |Kevin, Davis           |           |
 |Harshal, Bhalerao      |           |
 |DUY, THAN              |           |
-|Animesh, Chauhan       | 7851532   |
+|Animesh, Chauhan       |7851532    |
 
 # Bookstore App Vision Statement
 
@@ -28,4 +28,3 @@ The speed and convenience of having all these features in their pocket will allo
  
 If successful, this application will provide swift and easy inventory management on a smartphone. Additionally, success requires an increase in customer satisfaction due to helping them find books that they enjoy. And finally, through better management and customer-friendliness, an increase in sales is expected. 
 
-# Features

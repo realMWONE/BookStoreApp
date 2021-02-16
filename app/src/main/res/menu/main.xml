@@ -2,8 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/logout_button"
+        android:title="@string/logout_button" />
+    <item
+        android:id="@+id/user_settings_button"
+        android:title="@string/user_settings_button" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/login_button"
         app:showAsAction="never" />
 </menu>

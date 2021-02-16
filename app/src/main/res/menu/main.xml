@@ -9,6 +9,7 @@
         android:title="@string/user_settings_button" />
     <item
         android:id="@+id/action_settings"
+        android:onClick="onLoginButtonClicked"
         android:orderInCategory="100"
         android:title="@string/login_button"
         app:showAsAction="never" />

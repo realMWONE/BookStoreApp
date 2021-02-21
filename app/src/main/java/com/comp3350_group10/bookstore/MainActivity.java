@@ -2,11 +2,10 @@ package com.comp3350_group10.bookstore;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.logic.UI_Handler.UIButtonFunctions;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -19,12 +18,14 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity
 {
-
     private AppBarConfiguration mAppBarConfiguration;
+    private DataHandler DataHandler;
+    private UIButtonFunctions UIButtonFunctions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        UIButtonFunctions = new UIButtonFunctions();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -59,6 +60,6 @@ public class MainActivity extends AppCompatActivity
 
     public void onLoginButtonClicked(MenuItem item)
     {
-
+        UIButtonFunctions.LoginButtonPressed();
     }
 }

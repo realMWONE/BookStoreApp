@@ -1,6 +1,6 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
-public class UIButtonFunction implements UIHandler
+public class UIButtonFunctions implements UIHandler
 {
 
     @Override

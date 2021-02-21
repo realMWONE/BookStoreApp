@@ -62,3 +62,4 @@ public class Book {
         this.stockAmount = stockAmount;
     }
 }
+

@@ -25,19 +25,17 @@ public class BookDatabase {
         bookList.add(new Book("6783903121504", "Angels and Demons", "Dan Brown", 30, 5));
     }
 
-<<<<<<< HEAD
     /**
      * findBooks: Finds and returns the book objects based on their book ISBN
      * @param isbn
      * @return
      */
     public static Book findBook(String isbn) {
-=======
-    //findBook method: Finds the books by their respective ISBN
-    public Object findBook(String isbn) {
->>>>>>> 5d2bc91bf2ade755ac1f70927c62329af9ae28c0
 
-    }
+    //findBook method: Finds the books by their respective ISBN
+//    public Object findBook(String isbn) {
+//
+//    }
 }
 
 

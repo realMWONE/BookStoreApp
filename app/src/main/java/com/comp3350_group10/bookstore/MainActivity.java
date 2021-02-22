@@ -3,6 +3,8 @@ package com.comp3350_group10.bookstore;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 import com.comp3350_group10.bookstore.logic.UI_Handler.UIButtonFunctions;
@@ -61,5 +63,16 @@ public class MainActivity extends AppCompatActivity
     public void onLoginButtonClicked(MenuItem item)
     {
         UIButtonFunctions.LoginButtonPressed();
+    }
+
+    public void onLogoutButtonClicked(MenuItem item)
+    {
+        UIButtonFunctions.LogoutButtonPressed();
+    }
+
+    public void searchBook(View v)
+    {
+        EditText Text = (EditText)v;
+        UIButtonFunctions.SearchButtonPressed(Text.getText().toString());
     }
 }

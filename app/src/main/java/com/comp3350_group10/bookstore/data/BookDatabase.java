@@ -38,6 +38,15 @@ public class BookDatabase {
     public static Book findBook(String isbn) {
         return bookList.stream().filter(book -> isbn.equals(book.getBookIsbn())).findFirst().orElse(null);
    }
+
+//   public static List<Book> findBooks(String searchTerm) {
+//       List1 = findByISBN(searchTerm);
+//       List2 = findByAuthor(searchTerm);
+//       List3 = findByTitle(searchTerm);
+//       MasterList = List1 + List2 + List3;
+//       MasterList.removeDuplicates();
+//       return MasterList;
+//   }
 }
 
 

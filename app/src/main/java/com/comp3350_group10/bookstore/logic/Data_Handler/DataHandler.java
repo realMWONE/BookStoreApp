@@ -2,26 +2,69 @@ package com.comp3350_group10.bookstore.logic.Data_Handler;
 
 import com.comp3350_group10.bookstore.data.Book;
 
+import java.util.List;
 
-public interface DataHandler {
+public class DataHandler implements Data{
 
-    //function that will find and return a list of books
-    // based on what user searched(title/author/ISBN)
-    Book[] findBooks(String keyword);
+    private User currentUser;
 
-    //function to increment the stock of a particular book by 1
-    void incrementStock(Book target);
+    public List<Book> findBooks(String keyword){
+        return BookDatabase.findBooks(keyword);
+    }
 
-    //function to decrement the stock of a particular book by 1
-    void decrementStock(Book target);
+    public void setPrice(Book target, float price){
+        //make sure target is initialized
+        if(target!=null){
+            //price cannot be negative
+            if(price>=0){
+                target.setPrice(price);
+            }
+            else{
+                System.out.println("The price cannot be set to negative number");
+            }
+        }
+    }
 
-    //function to change the quantity of stock available for
-    // a particular book
-    void setStock(Book target, int quantity);
+    public void incrementPrice(Book target) {
+        setPrice(target, target.getPrice()+1);
+    }
 
-    //function to check whether the current user is a manager or employee
-    boolean isCurrentUserManager();
+    public void decrementPrice(Book target){
+        setPrice(target, target.getPrice()-1);
+    }
 
-    //function to logout the current user
-    void logOut();
+
+    public void setStock(Book target, int quantity){
+        //make sure target is initialized
+        if(target!=null){
+            //stock cannot be negative
+            if(quantity > 0){
+                target.setStock(quantity);
+            }
+            else{
+                System.out.println("The stock cannot be set to negative number");
+            }
+        }
+    }
+
+
+    public void incrementStock(Book target) {
+        //make sure target is initialized
+        setStock(target, target.getStock()+1);
+        }
+
+    public void decrementStock(Book target){
+        //Make sure target is initialized and do not decrease if stock is less than 0
+        setStock(target, target.getStock()-1);
+    }
+
+    public boolean isCurrentUserManager(){
+        return (currentUser.getUserType() == userType.manager);
+    }
+
+    public void logOut(){
+        if(currentUser!=null)
+            currentUser = null;
+    }
+
 }

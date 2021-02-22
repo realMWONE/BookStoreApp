@@ -6,7 +6,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class BookDatabase {
@@ -14,7 +13,7 @@ public class BookDatabase {
     private static List<Book> bookList;
     //Constructor
     public BookDatabase() {
-        //Calling createDatabase method here so everytime the BookDatabase object is created it would have all the data loaded into it
+        //Calling createDatabase method here so every time the BookDatabase object is created it would have all the data loaded into it
         createDatabase();
     }
 
@@ -22,10 +21,10 @@ public class BookDatabase {
      * createDatabase: Populates the database by adding new book objects with information about the books into the list
      */
     public void createDatabase(){
-        bookList.add(new Book("6783903121501", "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 26, 10));
-        bookList.add(new Book("6783903121502", "Harry Potter and the Chamber of secrets", "J.K. Rowling", 26, 10));
-        bookList.add(new Book("6783903121503", "The Da Vinci Code", "Dan Brown", 30, 20));
-        bookList.add(new Book("6783903121504", "Angels and Demons", "Dan Brown", 30, 5));
+        bookList.add(new Book("6783903121501", "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2630, 10));
+        bookList.add(new Book("6783903121502", "Harry Potter and the Chamber of secrets", "J.K. Rowling", 2650, 10));
+        bookList.add(new Book("6783903121503", "The Da Vinci Code", "Dan Brown", 3000, 20));
+        bookList.add(new Book("6783903121504", "Angels and Demons", "Dan Brown", 3000, 5));
     }
 
 
@@ -36,8 +35,12 @@ public class BookDatabase {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static Book findBook(String isbn) {
+        for(Book i:bookList ) {
+
+        }
         return bookList.stream().filter(book -> isbn.equals(book.getBookIsbn())).findFirst().orElse(null);
-   }
+
+    }
 }
 
 

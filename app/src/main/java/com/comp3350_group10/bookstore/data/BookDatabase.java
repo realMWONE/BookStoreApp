@@ -6,11 +6,12 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BookDatabase {
     //List for our book database which would store the list of Book objects
-    List<Book> bookList;
+    private static List<Book> bookList;
     //Constructor
     public BookDatabase() {
         //Calling createDatabase method here so everytime the BookDatabase object is created it would have all the data loaded into it
@@ -30,13 +31,12 @@ public class BookDatabase {
 
     /**
      * findBooks: Finds and returns the book objects based on their book ISBN
-     * @param booklist
      * @param isbn
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Book findBook(List<Book> booklist, String isbn) {
-        return booklist.stream().filter(book -> isbn.equals(book.getBookIsbn())).findFirst().orElse(null);
+    public static Book findBook(String isbn) {
+        return bookList.stream().filter(book -> isbn.equals(book.getBookIsbn())).findFirst().orElse(null);
    }
 }
 

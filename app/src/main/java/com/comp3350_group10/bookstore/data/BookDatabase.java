@@ -20,7 +20,7 @@ public class BookDatabase {
     /**
      * createDatabase: Populates the database by adding new book objects with information about the books into the list
      */
-    public void createDatabase(){
+    private void createDatabase(){
         bookList.add(new Book("6783903121501", "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2630, 10));
         bookList.add(new Book("6783903121502", "Harry Potter and the Chamber of secrets", "J.K. Rowling", 2650, 10));
         bookList.add(new Book("6783903121503", "The Da Vinci Code", "Dan Brown", 3000, 20));
@@ -35,13 +35,13 @@ public class BookDatabase {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static Book findBook(String isbn) {
-        for(Book i:bookList ) {
-
-        }
+//        for(Book i:bookList ) {
+//
+//        }
         return bookList.stream().filter(book -> isbn.equals(book.getBookIsbn())).findFirst().orElse(null);
     }
 
-   }
+}
 
 //   public static List<Book> findBooks(String searchTerm) {
 //       List1 = findByISBN(searchTerm);
@@ -52,7 +52,6 @@ public class BookDatabase {
 //       return MasterList;
 //   }
 
-}
 
 
 

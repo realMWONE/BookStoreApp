@@ -1,10 +1,14 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
+import android.widget.LinearLayout;
+
+import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
+
 public class UIButtonFunctions implements UIHandler
 {
 
     @Override
-    public void SearchButtonPressed(String keyword)
+    public void SearchButtonPressed(String keyword, LinearLayout linearLayout)
     {
 
     }

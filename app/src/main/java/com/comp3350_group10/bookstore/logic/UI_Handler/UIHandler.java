@@ -1,10 +1,12 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
+import android.widget.LinearLayout;
+
 public interface UIHandler {
 
     //function is called when user hits search button to
     // find a book based on ISBN/author/title
-    void SearchButtonPressed(String keyword);
+    void SearchButtonPressed(String keyword, LinearLayout linearLayout);
 
     //function is called when user logs in with their respective accounts
     void LoginButtonPressed();

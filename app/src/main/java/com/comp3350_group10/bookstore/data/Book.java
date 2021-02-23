@@ -2,7 +2,7 @@
  * Book Class for Book Database
  */
 package com.comp3350_group10.bookstore.data;
-public class Book {
+public class Book implements IBook{
 
     //private variables for Book
     private String isbn;

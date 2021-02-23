@@ -2,11 +2,10 @@
  * Fake Book Database
  */
 package com.comp3350_group10.bookstore.data;
-import com.comp3350_group10.bookstore.data.Book;
 
 import java.util.List;
 
-public class BookDatabase {
+public class BookDatabase implements IBookDatabase{
     //List for our book database which would store the list of Book objects
     private static List<Book> bookList;
     //Constructor
@@ -39,64 +38,89 @@ public class BookDatabase {
 
     /**
      * findBooks: Finds and returns the book objects based on their book ISBN
-     * @param isbn
+     * @param searchTerm
      * @return
      */
-    public static String findBook(String isbn) {
-        String findByISBN = findByISBN(isbn);
-        String findbyAuthor = findByAuthor(isbn);
-        String findByTitle = findByTitle(isbn);
-        String bookInfo = findByISBN + findbyAuthor + findByTitle;
-        return bookInfo;
+    public List<Book> findBook(String searchTerm) {
+
+        //Lists which contains book objects related to specific search terms
+        List<Book> findByISBN = findByISBN(searchTerm);
+        List<Book> findByAuthor = findByAuthor(searchTerm);
+        List<Book> findByTitle = findByTitle(searchTerm);
+
+        //Filtering by removing duplicates and adding them all into a single list which has elements of the search term
+        List<Book> bookResult = null;
+        for(Book book: findByISBN){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
+        }
+        for(Book book: findByAuthor){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
+        }
+        for(Book book: findByTitle){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
+        }
+
+        return bookResult;
     }
 
-    private static String findByISBN(String isbn){
-        //Should find books by ISBN
-        String bookIsbn = null;
+    /**
+     * findByISBN: Finds books from our bookList by ISBN
+     * @param isbn
+     */
+    private static List<Book> findByISBN(String isbn){
+        List<Book> bookIsbn = null;
         if(isbn != null){
+            //Going through all the bookList
             for(Book book: bookList){
-                if(book.getBookIsbn().equals(isbn)){
-                    bookIsbn = book.getBookIsbn();
+                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
+                if(book.getBookIsbn().contains(isbn)){
+                    bookIsbn.add(book);
                 }
             }
         }
         return bookIsbn;
     }
 
-    private static String findByAuthor(String isbn){
-        //Should find books by book author
-        String bookAuthor = null;
-        if(isbn != null){
+    /**
+     * findByAuthor: Finds books from our bookList by author
+     * @param author
+     */
+    private static List<Book> findByAuthor(String author){
+        List<Book> bookAuthor = null;
+        if(author != null){
+            //Going through all the bookList
             for(Book book: bookList){
-                if(book.getBookIsbn().equals(isbn)){
-                    bookAuthor = book.getBookAuthor();
+                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
+                if(book.getBookAuthor().contains(author)){
+                    bookAuthor.add(book);
                 }
             }
         }
         return bookAuthor;
     }
-    private static String findByTitle(String isbn){
-        //Should find books by book title
-        String bookTitle = null;
-        if(isbn != null){
-            for(Book book: bookList){
-                if(book.getBookIsbn().equals(isbn)){
-                    bookTitle = book.getBookName();
+
+    /**
+     * findByTitle: Finds books from our bookList by title
+     * @param title
+     */
+    private static List<Book> findByTitle(String title){
+        List<Book> bookTitle = null;
+        if(title != null){
+            //Going through all the bookList
+            for(Book book: bookList) {
+                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
+                if (book.getBookName().contains(title)) {
+                    bookTitle.add(book);
                 }
             }
         }
         return bookTitle;
-    }
-    public static List<Book> findBooksByAuthor(String author){
-        List<Book> listOfBooks = null;
-        if(author != null){
-            for(Book book: bookList){
-                if(book.getBookAuthor().equals(author)){
-                    listOfBooks.add(book);
-                }
-            }
-        }
-        return listOfBooks;
     }
 }
 

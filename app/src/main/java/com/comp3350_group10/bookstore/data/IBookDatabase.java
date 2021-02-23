@@ -4,6 +4,5 @@ import java.util.List;
 
 public interface IBookDatabase
 {
-    String findBook(String ISBN);
-    List<Book> findBooksByAuthor(String searchTerm);
+    List<Book> findBook(String searchTerm);
 }

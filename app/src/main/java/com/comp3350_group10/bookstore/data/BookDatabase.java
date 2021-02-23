@@ -15,6 +15,10 @@ public class BookDatabase {
         createDatabase();
     }
 
+    public static void setBookList(List<Book> bookList) {
+        BookDatabase.bookList = bookList;
+    }
+
     /**
      * createDatabase: Populates the database by adding new book objects with information about the books into the list
      */

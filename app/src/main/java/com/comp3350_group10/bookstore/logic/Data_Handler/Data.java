@@ -9,10 +9,12 @@ public interface Data {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)
-    public List<Book> findBooks(String keyword);
+
+    //COMMENTED OUT ON 02/23/2021
+    //public List<Book> findBooks(String keyword);
 
     //function to change the price of a particular book
-    void setPrice(Book target, float price);
+    void setPrice(Book target, int price);
 
     //function to increment the price of a particular book by 1
     void incrementPrice(Book target);

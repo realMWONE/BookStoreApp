@@ -61,5 +61,6 @@ public class Book implements IBook{
     public void setStockAmount(int stockAmount){
         this.stockAmount = stockAmount;
     }
+
 }
 

@@ -49,9 +49,11 @@ public class BookDatabase {
     private static String findByISBN(String isbn){
         //Should find books by ISBN
         String bookIsbn = null;
-        for(Book book: bookList){
-            if(book.getBookIsbn().equals(isbn)){
-                bookIsbn = book.getBookIsbn();
+        if(isbn != null){
+            for(Book book: bookList){
+                if(book.getBookIsbn().equals(isbn)){
+                    bookIsbn = book.getBookIsbn();
+                }
             }
         }
         return bookIsbn;
@@ -60,9 +62,11 @@ public class BookDatabase {
     private static String findByAuthor(String isbn){
         //Should find books by book author
         String bookAuthor = null;
-        for(Book book: bookList){
-            if(book.getBookIsbn().equals(isbn)){
-                bookAuthor = book.getBookAuthor();
+        if(isbn != null){
+            for(Book book: bookList){
+                if(book.getBookIsbn().equals(isbn)){
+                    bookAuthor = book.getBookAuthor();
+                }
             }
         }
         return bookAuthor;
@@ -70,12 +74,25 @@ public class BookDatabase {
     private static String findByTitle(String isbn){
         //Should find books by book title
         String bookTitle = null;
-        for(Book book: bookList){
-            if(book.getBookIsbn().equals(isbn)){
-                bookTitle = book.getBookName();
+        if(isbn != null){
+            for(Book book: bookList){
+                if(book.getBookIsbn().equals(isbn)){
+                    bookTitle = book.getBookName();
+                }
             }
         }
         return bookTitle;
+    }
+    public static List<Book> findBooksByAuthor(String author){
+        List<Book> listOfBooks = null;
+        if(author != null){
+            for(Book book: bookList){
+                if(book.getBookAuthor().equals(author)){
+                    listOfBooks.add(book);
+                }
+            }
+        }
+        return listOfBooks;
     }
 }
 

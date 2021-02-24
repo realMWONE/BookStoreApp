@@ -1,6 +1,8 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +10,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.BookDetailsActivity;
+import com.comp3350_group10.bookstore.MainActivity;
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.Data;
@@ -30,7 +34,7 @@ public class UIButtonFunctions implements UIHandler
     }
 
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
         table.removeAllViews();
 
         float scale = context.getResources().getDisplayMetrics().density;
@@ -47,8 +51,14 @@ public class UIButtonFunctions implements UIHandler
                 row.addView(image);
                 row.addView(text);
                 table.addView(row);
+                row.setOnClickListener(v -> OpenBookDetailsActivity(context, book, main));
             }
         }
+    }
+
+    private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
+        Intent intent = new Intent(context, BookDetailsActivity.class);
+        main.startActivity(intent);
     }
 
     private TableRow CreateTableRow(Context context) {
@@ -57,6 +67,7 @@ public class UIButtonFunctions implements UIHandler
         return row;
     }
 
+    @SuppressLint("SetTextI18n")
     private TextView CreateTextView(Context context, IBook book) {
         TextView text = new TextView(context);
 

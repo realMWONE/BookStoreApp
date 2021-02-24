@@ -26,7 +26,6 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
-    private DataHandler DataHandler;
     private UIButtonFunctions uIButtonFunctions;
     private TableLayout bookListTable;
     private EditText searchBar;
@@ -49,10 +48,10 @@ public class MainActivity extends AppCompatActivity
                 .setDrawerLayout(drawer)
                 .build();
 
-        SetSearchListener(getBaseContext());
+        SetSearchListener(getBaseContext(), this);
     }
 
-    private void SetSearchListener(Context context) {
+    private void SetSearchListener(Context context, MainActivity main) {
         searchBar.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //TextView myOutputBox = (TextView) findViewById(R.id.myOutputBox);
                 //myOutputBox.setText(s);
-                uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context);
+                uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main);
             }
         });
     }

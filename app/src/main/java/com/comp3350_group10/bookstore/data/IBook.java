@@ -13,4 +13,5 @@ public interface IBook{
     void setPrice(int price);
     void setStock(int quantity);
     int getStock();
+    int getImage();
 }

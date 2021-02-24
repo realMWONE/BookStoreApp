@@ -72,7 +72,7 @@ public class UIButtonFunctions implements UIHandler
 
     private ImageView CreateImageView(Context context, IBook book, int height) {
         ImageView image = new ImageView(context);
-        image.setImageResource(R.drawable.lotr);
+        image.setImageResource(book.getImage());
         image.setLayoutParams(new TableRow.LayoutParams(height, height));
         return image;
     }

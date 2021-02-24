@@ -1,6 +1,9 @@
 package com.comp3350_group10.bookstore;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -24,16 +27,19 @@ public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
     private DataHandler DataHandler;
-    private UIButtonFunctions UIButtonFunctions;
+    private UIButtonFunctions uIButtonFunctions;
     private TableLayout bookListTable;
+    private EditText searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        UIButtonFunctions = new UIButtonFunctions();
+        uIButtonFunctions = new UIButtonFunctions();
+        uIButtonFunctions.setHeight(120);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        searchBar = findViewById(R.id.searchBar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -42,6 +48,25 @@ public class MainActivity extends AppCompatActivity
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
+
+        SetSearchListener(getBaseContext());
+    }
+
+    private void SetSearchListener(Context context) {
+        searchBar.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //TextView myOutputBox = (TextView) findViewById(R.id.myOutputBox);
+                //myOutputBox.setText(s);
+                uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context);
+            }
+        });
     }
 
     @Override
@@ -54,37 +79,11 @@ public class MainActivity extends AppCompatActivity
 
     public void onLoginButtonClicked(MenuItem item)
     {
-        UIButtonFunctions.LoginButtonPressed();
+        uIButtonFunctions.LoginButtonPressed();
     }
 
     public void onLogoutButtonClicked(MenuItem item)
     {
-        UIButtonFunctions.LogoutButtonPressed();
-    }
-
-    public void searchBooks(View v)
-    {
-        EditText Text = (EditText)v;
-        UIButtonFunctions.SearchButtonPressed(Text.getText().toString(), bookListTable, this.getBaseContext());
-    }
-
-    public void addRow(View v)
-    {
-        float scale = this.getBaseContext().getResources().getDisplayMetrics().density;
-        int pixels = (int) (120 * scale + 0.5f);
-
-        TableRow row = new TableRow(this.getBaseContext());
-        row.setPadding(10,10,10,10);
-        TextView text = new TextView(this.getBaseContext());
-        text.setText("Lord of the Rings: The Fellowship of the Ring\nJ. R. R.Tolkien\n1954\nFantasy\n\n$17.99");
-        text.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView image = new ImageView(this.getBaseContext());
-        image.setImageResource(R.drawable.lotr);
-        image.setLayoutParams(new TableRow.LayoutParams(pixels, pixels));
-
-        row.addView(image);
-        row.addView(text);
-
-        bookListTable.addView(row);
+        uIButtonFunctions.LogoutButtonPressed();
     }
 }

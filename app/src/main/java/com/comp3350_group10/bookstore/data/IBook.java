@@ -10,7 +10,7 @@ public interface IBook{
     String getBookAuthor();
     int getPrice();
     String getBookIsbn();
-    int getStockAmount();
     void setPrice(int price);
-    void setStockAmount(int stockAmount);
+    void setStock(int quantity);
+    int getStock();
 }

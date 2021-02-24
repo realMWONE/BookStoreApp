@@ -10,6 +10,7 @@ public class Book implements IBook{
     private String bookAuthor;
     private int price;
     private int stockAmount;
+    private int imageReference;
 
     /**
      * Book Constructor: Initializes the books
@@ -19,12 +20,13 @@ public class Book implements IBook{
      * @param price
      * @param stockAmount
      */
-    public Book(String isbn, String bookName, String bookAuthor, int price, int stockAmount) {
+    public Book(String isbn, String bookName, String bookAuthor, int price, int stockAmount, int imageReference) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.price = price;
         this.stockAmount = stockAmount;
+        this.imageReference = imageReference;
     }
 
     //getBookName: Returns the Book Name
@@ -48,7 +50,7 @@ public class Book implements IBook{
     }
 
     //getStockAmount: Returns the stock amount
-    public int getStockAmount(){
+    public int getStock(){
         return stockAmount;
     }
 
@@ -58,7 +60,7 @@ public class Book implements IBook{
     }
 
     //setStockAmount: Sets the amount of books in stock to a new stock amount
-    public void setStockAmount(int stockAmount){
+    public void setStock(int stockAmount){
         this.stockAmount = stockAmount;
     }
 }

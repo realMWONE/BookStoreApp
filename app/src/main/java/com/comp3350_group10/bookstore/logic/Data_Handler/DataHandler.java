@@ -1,18 +1,24 @@
 package com.comp3350_group10.bookstore.logic.Data_Handler;
 
-import com.comp3350_group10.bookstore.data.Book;
+import com.comp3350_group10.bookstore.UserType;
+import com.comp3350_group10.bookstore.data.IBook;
+import com.comp3350_group10.bookstore.data.BookDatabase;
+import com.comp3350_group10.bookstore.data.IBookDatabase;
+import com.comp3350_group10.bookstore.data.User;
 
 import java.util.List;
 
 public class DataHandler implements Data{
 
     private User currentUser;
+    private IBookDatabase bookDatabase = new BookDatabase();
 
-    public List<Book> findBooks(String keyword){
-        return BookDatabase.findBooks(keyword);
+    public List<IBook> findBooks(String keyword){
+
+        return bookDatabase.findBook(keyword);
     }
 
-    public void setPrice(Book target, float price){
+    public void setPrice(IBook target, int price){
         //make sure target is initialized
         if(target!=null){
             //price cannot be negative
@@ -25,16 +31,15 @@ public class DataHandler implements Data{
         }
     }
 
-    public void incrementPrice(Book target) {
+    public void incrementPrice(IBook target) {
         setPrice(target, target.getPrice()+1);
     }
 
-    public void decrementPrice(Book target){
+    public void decrementPrice(IBook target){
         setPrice(target, target.getPrice()-1);
     }
 
-
-    public void setStock(Book target, int quantity){
+    public void setStock(IBook target, int quantity){
         //make sure target is initialized
         if(target!=null){
             //stock cannot be negative
@@ -47,19 +52,18 @@ public class DataHandler implements Data{
         }
     }
 
-
-    public void incrementStock(Book target) {
+    public void incrementStock(IBook target) {
         //make sure target is initialized
         setStock(target, target.getStock()+1);
         }
 
-    public void decrementStock(Book target){
+    public void decrementStock(IBook target){
         //Make sure target is initialized and do not decrease if stock is less than 0
         setStock(target, target.getStock()-1);
     }
 
     public boolean isCurrentUserManager(){
-        return (currentUser.getUserType() == userType.manager);
+        return (currentUser.getUserType() == UserType.Manager);
     }
 
     public void logOut(){

@@ -1,10 +1,12 @@
 package com.comp3350_group10.bookstore.data;
 
+import android.os.Parcelable;
+
 /**
  * Interface for Book
  */
 
-public interface IBook{
+public interface IBook {
     //Getters and Setters of Book.java
     String getBookName();
     String getBookAuthor();

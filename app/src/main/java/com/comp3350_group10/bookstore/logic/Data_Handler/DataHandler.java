@@ -12,6 +12,7 @@ public class DataHandler implements Data{
 
     private User currentUser;
     private IBookDatabase bookDatabase = new BookDatabase();
+    public static IBook currentBook;
 
     public List<IBook> findBooks(String keyword){
 

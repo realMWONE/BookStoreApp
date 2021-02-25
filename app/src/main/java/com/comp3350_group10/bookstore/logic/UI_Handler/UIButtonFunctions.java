@@ -17,6 +17,7 @@ import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.Data;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -58,6 +59,7 @@ public class UIButtonFunctions implements UIHandler
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
         Intent intent = new Intent(context, BookDetailsActivity.class);
+        DataHandler.currentBook = book;
         main.startActivity(intent);
     }
 

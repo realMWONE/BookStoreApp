@@ -2,7 +2,13 @@
  * Book Class for Book Database
  */
 package com.comp3350_group10.bookstore.data;
-public class Book implements IBook{
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Book implements IBook, Serializable {
 
     //private variables for Book
     private String isbn;
@@ -65,4 +71,5 @@ public class Book implements IBook{
     }
 
     public int getImage() { return imageReference; }
+
 }

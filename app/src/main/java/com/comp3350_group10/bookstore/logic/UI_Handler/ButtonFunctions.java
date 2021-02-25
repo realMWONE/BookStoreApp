@@ -29,19 +29,24 @@ public class ButtonFunctions implements IButtonFunctions
 
     @Override
     public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
-        table.removeAllViews();
-        List<IBook> results = dataHandler.findBooks(keyword);
+        ClearResults(table);
+        PopulateResults(dataHandler.findBooks(keyword), table, context, main);
+    }
 
+    private void ClearResults(TableLayout table) {
+        table.removeAllViews();
+    }
+
+    private void PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
         if (results != null) {
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
-                TextView text = CreateTextView(context, book);
-                ImageView image = CreateImageView(context, book, ScreenSize.getPixelsFromDP(context,IMAGE_HEIGHT));
 
-                row.addView(image);
-                row.addView(text);
-                table.addView(row);
+                row.addView(CreateTextView(context, book));
+                row.addView(CreateImageView(context, book, ScreenSize.getPixelsFromDP(context, IMAGE_HEIGHT)));
                 row.setOnClickListener(v -> OpenBookDetailsActivity(context, book, main));
+
+                table.addView(row);
             }
         }
     }

@@ -6,11 +6,11 @@ Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
     - 
-[Feature link]()
-[User Stories link]()
-[Merge requests link]()
-[Associated tests link]()
-[Merge commit link]()
+- [Feature link]()
+- [User Stories link]()
+- [Merge requests link]()
+- [Associated tests link]()
+- [Merge commit link]()
 
 TO-DO:
 Tell the story of how one of your features was added to the project.

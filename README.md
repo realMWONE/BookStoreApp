@@ -24,3 +24,7 @@ While the app will not have online purchasing, customers can use the information
 The speed and convenience of having all these features in their pocket will allow managers to better maintain their inventory and track sales. The notification feature will help prevent items from getting sold out. The user-friendly interface will help all levels of users find exactly what book they are looking for. To summarize, this app will provide a more usable and modern way of running a bookstore compared to the complex systems that only run on a desktop computer.
 
 If successful, this application will provide swift and easy inventory management on a smartphone. Additionally, success requires an increase in customer satisfaction due to helping them find books that they enjoy. And finally, through better management and customer-friendliness, an increase in sales is expected.
+
+
+## Architecture 
+- Our planned Architecture [Architecture](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/architecture.md) for our project

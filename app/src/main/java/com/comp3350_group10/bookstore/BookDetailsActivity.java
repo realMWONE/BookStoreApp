@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.ui.ScreenSize;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,6 +26,7 @@ import java.text.DecimalFormat;
 public class BookDetailsActivity extends AppCompatActivity {
 
     private LinearLayout bookDetailsLayout;
+    private final int IMAGE_HEIGHT = 350;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     }
 
     private void ShowImage() {
-        int height = ConvertToPixels(350);
+        int height = ScreenSize.getPixelsFromDP(this, IMAGE_HEIGHT);
 
         ImageView image = new ImageView(this);
         image.setImageResource(DataHandler.currentBook.getImage());

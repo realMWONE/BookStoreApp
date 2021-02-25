@@ -5,7 +5,7 @@ import com.comp3350_group10.bookstore.data.IBook;
 import java.util.List;
 
 
-public interface Data {
+public interface IDataHandler {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)

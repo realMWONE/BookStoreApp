@@ -3,51 +3,40 @@ package com.comp3350_group10.bookstore.logic.UI_Handler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.BookDetailsActivity;
 import com.comp3350_group10.bookstore.MainActivity;
-import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.data.IBook;
-import com.comp3350_group10.bookstore.logic.Data_Handler.Data;
+import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.ui.ScreenSize;
 
-import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class UIButtonFunctions implements UIHandler
+public class ButtonFunctions implements IButtonFunctions
 {
-    private int rowHeightDP;
-    private Data dataHandler;
+    private IDataHandler dataHandler;
+    private final int IMAGE_HEIGHT = 120;
 
-    public UIButtonFunctions() {
+    public ButtonFunctions() {
         dataHandler = new DataHandler();
-    }
-
-    public void setHeight(int height) {
-        rowHeightDP = height;
     }
 
     @Override
     public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
         table.removeAllViews();
-
-        float scale = context.getResources().getDisplayMetrics().density;
-        int height = (int) (rowHeightDP * scale + 0.5f);
-
         List<IBook> results = dataHandler.findBooks(keyword);
 
         if (results != null) {
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
                 TextView text = CreateTextView(context, book);
-                ImageView image = CreateImageView(context, book, height);
+                ImageView image = CreateImageView(context, book, ScreenSize.getPixelsFromDP(context,IMAGE_HEIGHT));
 
                 row.addView(image);
                 row.addView(text);

@@ -4,18 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.logic.UI_Handler.UIButtonFunctions;
+import com.comp3350_group10.bookstore.logic.UI_Handler.ButtonFunctions;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,15 +20,14 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
-    private UIButtonFunctions uIButtonFunctions;
+    private ButtonFunctions uIButtonFunctions;
     private TableLayout bookListTable;
     private EditText searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        uIButtonFunctions = new UIButtonFunctions();
-        uIButtonFunctions.setHeight(120);
+        uIButtonFunctions = new ButtonFunctions();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);

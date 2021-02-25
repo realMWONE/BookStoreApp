@@ -7,7 +7,7 @@ import android.widget.TableRow;
 
 import com.comp3350_group10.bookstore.MainActivity;
 
-public interface UIHandler {
+public interface IButtonFunctions {
 
     //function is called when user hits search button to
     // find a book based on ISBN/author/title

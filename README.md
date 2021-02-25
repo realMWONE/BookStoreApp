@@ -27,4 +27,4 @@ If successful, this application will provide swift and easy inventory management
 
 
 ## Architecture 
-- Our planned Architecture [Architecture](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/architecture.md) for our project
+- Our planned [Architecture](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/architecture.md) for our project

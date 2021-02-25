@@ -1,4 +1,3 @@
-# Winter-2021-A03 Group 10
 ## Members
 |Name                   |UMID       |
 |-------------------    |-------    |

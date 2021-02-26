@@ -6,6 +6,7 @@ import com.comp3350_group10.bookstore.data.BookDatabase;
 import com.comp3350_group10.bookstore.data.IBookDatabase;
 import com.comp3350_group10.bookstore.data.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataHandler implements IDataHandler {
@@ -14,14 +15,20 @@ public class DataHandler implements IDataHandler {
     private IBookDatabase bookDatabase = new BookDatabase();
     public static IBook currentBook;
 
-    //Takes the keyword and search databsse with it
+    //Takes the keyword and search database with it
     //Will separate the keyword by spaces and dots, as well as making the keywords lower case
     /*
     * param keyword
     * return list of found books
     * */
     public List<IBook> findBooks(String keyword){
-        return bookDatabase.findBook(keyword.toLowerCase().split("[-. ,]+"));
+        List<IBook> result = new ArrayList<>();
+        String[] wordList = keyword.toLowerCase().split("[-. ,]+");
+
+        for(String word: wordList){
+            result.addAll(bookDatabase.findBook(word));
+        }
+        return result;
     }
 
 

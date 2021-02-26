@@ -18,9 +18,10 @@ Our project simulates a bookstore system,
 
 # Exceptional code
 
-
-- This exception is handled for the null books. Although, the user can never get to that, but we never know when that's 
-  gonna happen. So we tested for null book objects so that the user is not able to adjust any changed to price and stocks of the books  
+- The "null book tests" in the code was supposed to generate NullPointerExceptions, but the exceptions are  
+  caught in each of the methods and will print out message accordingly.
+- It is not expected for users to cause the exception with the provided interface, but considering future  
+  development, the exceptions were handled gracefully and will not crash the program.
 -[Exception code link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/test/java/com/comp3350_group10/bookstore/data/model/DataHandlerTest.java)
 
 

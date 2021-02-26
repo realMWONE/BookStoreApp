@@ -5,12 +5,13 @@
 Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
-    - More description needed
+    - Kevin made all of the presentation layer for the feature by adding search page, bar and buttons, 
+      Harshal and Dawarit worked on the data layer and added a 'fake' database of the books plus book
+      database management system. Matt and Animesh worked on the logic layer, which included handling 
+      the data passed like book name,ISBN or author between the presentation and data layer 
 - Feature link
-    - [High priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=High+Priority+Features)
-    - [Medium priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Medium+Priority+Features)
-    - [Low priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Low+Priority+Features)
-- [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=User+stories)
+    - [Feature](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/19)
+- [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/17)
 - [Merge requests link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/merge_requests)
 - [Associated tests link]()
 - [Merge commit link]()
@@ -39,8 +40,11 @@ Group 11
     - Secondly, This violates Single-responsibility principle as that class should only have one single responsibility of getter and setter for these local variables.
       These getters and setters should be used to perform other functions like add in other classes. Instead of having them all cramped in one class
 
-Add pictures.
-[SOLID Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/create-server-project/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
+[Screen shot 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot1.PNG)
+
+[Screen shot 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot2.PNG)
+
+[SOLID Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/develop/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
 
 
 # Agile Planning

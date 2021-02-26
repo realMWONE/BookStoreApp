@@ -6,9 +6,12 @@ Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
     - 
-- [Feature link]()
-- [User Stories link]()
-- [Merge requests link]()
+- Feature link
+    - [High priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=High+Priority+Features)
+    - [Medium priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Medium+Priority+Features)
+    - [Low priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Low+Priority+Features)
+- [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=User+stories)
+- [Merge requests link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/merge_requests)
 - [Associated tests link]()
 - [Merge commit link]()
 

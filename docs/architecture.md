@@ -7,7 +7,7 @@
 [Main Activity](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/MainActivity.java)
 - The starting page for the bookstore app, allows user to perform book search.
 
-[Book Details Page]()
+[Book Details Page](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/BookDetailsActivity.java)
 - The page that will display information detail for books. 
 
 
@@ -22,5 +22,5 @@
 [Book Database](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/BookDatabase.java)
 - The class that contains a fake database of books.
 
-[User Database]()
+[User Database](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/UserDatabase.java)
 - The class that contains a fake database of users.

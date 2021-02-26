@@ -28,16 +28,17 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
+    public List<IBook> SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
         ClearResults(table);
-        PopulateResults(dataHandler.findBooks(keyword), table, context, main);
+        List<IBook> results = PopulateResults(dataHandler.findBooks(keyword), table, context, main);
+        return results;
     }
 
     private void ClearResults(TableLayout table) {
         table.removeAllViews();
     }
 
-    private void PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
+    private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
         if (results != null) {
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
@@ -49,6 +50,8 @@ public class ButtonFunctions implements IButtonFunctions
                 table.addView(row);
             }
         }
+
+        return results;
     }
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {

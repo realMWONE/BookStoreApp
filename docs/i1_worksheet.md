@@ -25,9 +25,6 @@ Our project simulates a bookstore system,
 
 -[Exception code link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/LoginDataSource.java)
 
-Provide a link to a test of exceptional code. In a few sentences,
-provide an explanation of why the exception is handled or thrown
-in the code you are testing.
 
 # Branching
 

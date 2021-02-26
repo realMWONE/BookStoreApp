@@ -1,17 +1,17 @@
 package com.comp3350_group10.bookstore;
 
-import com.comp3350_group10.bookstore.data.BookDatabaseTest;
-import com.comp3350_group10.bookstore.data.BookTest;
-import com.comp3350_group10.bookstore.data.UserTest;
+import com.comp3350_group10.bookstore.data.model.BookDatabaseTest;
+import com.comp3350_group10.bookstore.data.model.BookTest;
+import com.comp3350_group10.bookstore.data.model.DataHandlerTest;
 import com.comp3350_group10.bookstore.data.model.LoggedInUserTest;
-import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandlerTest;
+import com.comp3350_group10.bookstore.data.model.UserTest;
 
 public class AllTests {
     //For the class LoggedInUserTest
     public static void main(String[] args){
         //for LoggedInUserTest
-        LoggedInUserTest.testGetUserId();
-        LoggedInUserTest.testGetDisplayName();
+        //LoggedInUserTest.testGetUserId();
+        //LoggedInUserTest.testGetDisplayName();
         //for BookDatabaseTest
         BookDatabaseTest.testSetBookList();
         BookDatabaseTest.testFindBook();

@@ -42,6 +42,7 @@ public class DataHandler implements IDataHandler {
     }
 
 
+    //function to set the target book to the given price
     public void setPrice(IBook target, int price){
         //make sure target is initialized
         try
@@ -61,6 +62,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+    //function to increment the price by 1
     public void incrementPrice(IBook target) {
         try {
             setPrice(target, target.getPrice() + 1);
@@ -69,6 +71,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+    //function to decrement price by 1
     public void decrementPrice(IBook target){
         try{
             setPrice(target, target.getPrice()-1);
@@ -79,6 +82,7 @@ public class DataHandler implements IDataHandler {
 
     }
 
+    //function set the stock for the target book with the given quantity
     public void setStock(IBook target, int quantity){
         //make sure target is initialized
         try{
@@ -96,6 +100,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+    //function to increment the stock by 1
     public void incrementStock(IBook target) {
         //make sure target is initialized
         try {
@@ -104,8 +109,9 @@ public class DataHandler implements IDataHandler {
         catch (NullPointerException e) {
             System.out.println(e + "caught in DataHandler.java method - incrementStock()");
         }
-        }
+    }
 
+    //function to decrement the stock by 1
     public void decrementStock(IBook target){
         //Make sure target is initialized and do not decrease if stock is less than 0
         try {
@@ -116,10 +122,12 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+    //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (currentUser.getUserType() == UserType.Manager);
     }
-
+    
+    //function to logout the current user
     public void logOut(){
         if(currentUser!=null)
             currentUser = null;

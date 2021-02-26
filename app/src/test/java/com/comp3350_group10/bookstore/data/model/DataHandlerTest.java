@@ -27,10 +27,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.setPrice(book_1,0);
         assertEquals(book_1.getPrice(),0);
-        //Book 3
-        Book book_2=null;
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
         handler.setPrice(book_2,0);
-        assertEquals(book_2.getPrice(),0);
     }
 
     public static void testIncrementPrice() {
@@ -43,6 +43,11 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.incrementPrice(book_1);
         assertEquals(book_1.getPrice(),11);
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
+        handler.incrementPrice(book_2);
+
     }
 
     public static void testDecrementPrice() {
@@ -55,6 +60,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.decrementPrice(book_1);
         assertEquals(book_1.getPrice(),9);
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
+        handler.decrementPrice(book_2);
     }
 
     public static void testSetStock() {
@@ -67,6 +76,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.setStock(book_1,20);
         assertEquals(book_1.getStock(),20);
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
+        handler.setStock(book_2,10);
     }
 
     public static void testIncrementStock() {
@@ -79,6 +92,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.incrementStock(book_1);
         assertEquals(book_1.getStock(),4);
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
+        handler.incrementStock(book_2);
     }
 
     public static void testDecrementStock() {
@@ -91,6 +108,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.decrementStock(book_1);
         assertEquals(book_1.getStock(),2);
+        //Book Null (testing for null books/objects)
+        //Test for null pointer exception handled
+        Book book_2 = null;
+        handler.decrementStock(book_2);
     }
 
     //CAN'T TEST THIS SINCE THE USER IS PRIVATE AND NO ACCESSIBILITY TO IT

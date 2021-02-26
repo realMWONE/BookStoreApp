@@ -62,11 +62,21 @@ public class DataHandler implements IDataHandler {
     }
 
     public void incrementPrice(IBook target) {
-        setPrice(target, target.getPrice()+1);
+        try {
+            setPrice(target, target.getPrice() + 1);
+        } catch (NullPointerException e) {
+            System.out.println(e + "caught in DataHandler.java method - incrementPrice()");
+        }
     }
 
     public void decrementPrice(IBook target){
-        setPrice(target, target.getPrice()-1);
+        try{
+            setPrice(target, target.getPrice()-1);
+        }
+        catch (NullPointerException e) {
+            System.out.println(e + "caught in DataHandler.java method - decrementPrice()");
+        }
+
     }
 
     public void setStock(IBook target, int quantity){
@@ -88,12 +98,22 @@ public class DataHandler implements IDataHandler {
 
     public void incrementStock(IBook target) {
         //make sure target is initialized
-        setStock(target, target.getStock()+1);
+        try {
+            setStock(target, target.getStock() + 1);
+        }
+        catch (NullPointerException e) {
+            System.out.println(e + "caught in DataHandler.java method - incrementStock()");
+        }
         }
 
     public void decrementStock(IBook target){
         //Make sure target is initialized and do not decrease if stock is less than 0
-        setStock(target, target.getStock()-1);
+        try {
+            setStock(target, target.getStock() - 1);
+        }
+        catch (NullPointerException e) {
+            System.out.println(e + "caught in DataHandler.java method - decrementStock()");
+        }
     }
 
     public boolean isCurrentUserManager(){

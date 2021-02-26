@@ -8,7 +8,7 @@ Our project simulates a bookstore system,
     - Kevin made all of the presentation layer for the feature by adding search page, bar and buttons, 
       Harshal and Dawarit worked on the data layer and added a 'fake' database of the books plus book
       database management system. Matt and Animesh worked on the logic layer, which included handling 
-      the data passed like book name,ISBN or author between the presentation and data layer 
+      the data passed like book name, ISBN or author between the presentation and data layer. 
 - Links
     - [Feature](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/19)
     - [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/17)

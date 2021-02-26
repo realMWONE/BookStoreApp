@@ -18,40 +18,16 @@ public class User
         this.position = type;
     }
 
-    public String getRealName()
-    {
+    public String getRealName() { return realName; }
 
-        return realName;
-    }
+    public UserType getUserType() { return position; }
 
-    public UserType getUserType()
-    {
+    public String getUserID() { return userID; }
 
-        return position;
-    }
+    public String getPassword() { return password; }
 
-    public String getUserID()
-    {
+    public void setUserID(String userId) { userID = userId; }
 
-        return userID;
-    }
-
-    public String getPassword()
-    {
-
-        return password;
-    }
-
-    public void setUserID(String userId)
-    {
-
-        userID = userId;
-    }
-
-    public void setPassword(String newPassword)
-    {
-
-        password = newPassword;
-    }
+    public void setPassword(String newPassword) { password = newPassword; }
 
 }

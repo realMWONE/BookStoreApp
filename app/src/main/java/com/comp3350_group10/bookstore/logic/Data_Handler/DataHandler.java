@@ -14,10 +14,16 @@ public class DataHandler implements IDataHandler {
     private IBookDatabase bookDatabase = new BookDatabase();
     public static IBook currentBook;
 
+    //Takes the keyword and search databsse with it
+    //Will separate the keyword by spaces and dots, as well as making the keywords lower case
+    /*
+    * param keyword
+    * return list of found books
+    * */
     public List<IBook> findBooks(String keyword){
-
-        return bookDatabase.findBook(keyword);
+        return bookDatabase.findBook(keyword.toLowerCase().split("[-. ,]+"));
     }
+
 
     public void setPrice(IBook target, int price){
         //make sure target is initialized

@@ -5,7 +5,10 @@
 Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
-    - More description needed
+    - Kevin made all of the presentation layer for the feature by adding search page, bar and buttons, 
+      Harshal and Dawarit worked on the data layer and added a 'fake' database of the books plus book
+      database management system. Matt and Animesh worked on the logic layer, which included handling 
+      the data passed like book name,ISBN or author between the presentation and data layer 
 - Feature link
     - [High priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=High+Priority+Features)
     - [Medium priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Medium+Priority+Features)

@@ -18,12 +18,10 @@ Our project simulates a bookstore system,
 
 # Exceptional code
 
-[Exceptional code link]()
-- So far, we didn't have many exceptions being handled in our code becuase we would be dealing with them once we
-  get started on working with the actual databse, which would have an acutal list of users and books. As for this iteration,
-  we did write a code for one exception though, that would handle if a user exists or not. 
 
--[Exception code link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/LoginDataSource.java)
+- This exception is handled for the null books. Although, the user can never get to that, but we never know when that's 
+  gonna happen. So we tested for null book objects so that the user is not able to adjust any changed to price and stocks of the books  
+-[Exception code link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/test/java/com/comp3350_group10/bookstore/data/model/DataHandlerTest.java)
 
 
 # Branching

@@ -10,8 +10,6 @@
 [Book Details Page]()
 - The page that will display information detail for books. 
 
-[Login Activity Page]()
-- The page that allows user to log in with their account that already exist in the database.
 
 ## Logic Layer
 [UI Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/logic/UI_Handler/UIHandler.java)

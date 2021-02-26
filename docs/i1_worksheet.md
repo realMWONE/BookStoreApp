@@ -48,8 +48,21 @@ in the code you are testing.
 
 # Agile Planning
 
-- Did you 'push' any features to iteration 2?(Links)
-    - Yes, we have pushed certain [Features]() to iteration 2
+Did you 'push' any features to iteration 2?(Links)  
+Yes, we have pushed the below features to iteration 2
+- [Sort by any info](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/31)
+- [Stock management](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/14)
+  
+  
+  
 
-- Did you change the description of any Features or User Stories?
-    - Yes, we have changed the description of [Features]() and [User Stories]()  
+Did you change the description of any Features or User Stories?  
+Yes, we have changed the description for the following features and user stories.  
+
+- User Stories (Added related features and changed previous titles to detailed description):
+    - [All](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=User+stories)
+- Features: (Splitted search and sort, and removed technical terms)
+    - [Search by any info](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/19)
+    - [Sort by any info](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/31)
+    - [Login system by management and staffs](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/8)
+    - [Export feature](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/6)

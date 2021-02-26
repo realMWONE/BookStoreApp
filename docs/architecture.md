@@ -17,3 +17,10 @@
 
 [Data Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/logic/Data_Handler/DataHandler.java)
 - The class that the passes the input from presentation layer to data layer to call for operations.
+
+## Database Layer
+[Book Database](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/BookDatabase.java)
+- The class that contains a fake database of books.
+
+[User Database]()
+- The class that contains a fake database of users.

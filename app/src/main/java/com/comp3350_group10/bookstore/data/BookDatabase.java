@@ -11,10 +11,12 @@ public class BookDatabase implements IBookDatabase{
     //Constructor
     public BookDatabase() {
         //Calling createDatabase method here so every time the BookDatabase object is created it would have all the data loaded into it
+
         createDatabase();
     }
 
     public static void setBookList(List<Book> bookList) {
+
         BookDatabase.bookList = bookList;
     }
 

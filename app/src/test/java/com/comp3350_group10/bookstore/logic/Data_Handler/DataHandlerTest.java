@@ -15,7 +15,7 @@ public class DataHandlerTest extends TestCase {
     public void tearDown() throws Exception {
     }
 
-    public void testSetPrice() {
+    public static void testSetPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -27,7 +27,7 @@ public class DataHandlerTest extends TestCase {
         assertEquals(book_1.getPrice(),0);
     }
 
-    public void testIncrementPrice() {
+    public static void testIncrementPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -39,7 +39,7 @@ public class DataHandlerTest extends TestCase {
         assertEquals(book_1.getPrice(),11);
     }
 
-    public void testDecrementPrice() {
+    public static void testDecrementPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -51,7 +51,7 @@ public class DataHandlerTest extends TestCase {
         assertEquals(book_1.getPrice(),9);
     }
 
-    public void testSetStock() {
+    public static void testSetStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -63,7 +63,7 @@ public class DataHandlerTest extends TestCase {
         assertEquals(book_1.getStockAmount(),20);
     }
 
-    public void testIncrementStock() {
+    public static void testIncrementStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -75,7 +75,7 @@ public class DataHandlerTest extends TestCase {
         assertEquals(book_1.getStockAmount(),4);
     }
 
-    public void testDecrementStock() {
+    public static void testDecrementStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2);
         DataHandler handler = new DataHandler();
@@ -88,10 +88,10 @@ public class DataHandlerTest extends TestCase {
     }
 
     //CAN'T TEST THIS SINCE THE USER IS PRIVATE AND NO ACCESSIBILITY TO IT
-    public void testIsCurrentUserManager() {
+    public static void testIsCurrentUserManager() {
 
     }
     //THIS AS WELL
-    public void testLogOut() {
+    public static void testLogOut() {
     }
 }

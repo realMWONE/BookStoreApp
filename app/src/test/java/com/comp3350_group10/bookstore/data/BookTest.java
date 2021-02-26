@@ -12,7 +12,7 @@ public class BookTest extends TestCase {
 
     }
 
-    public void testGetBookName() {
+    public static void testGetBookName() {
         //String isbn[13], String bookName, String bookAuthor, int price, int stockAmount
         //In this test case , I default some fields:
         //isbn = 1111111111111 ; bookAuthor = Dan, price = stock = 15
@@ -23,7 +23,7 @@ public class BookTest extends TestCase {
         }
     }
 
-    public void testGetBookAuthor() {
+    public static void testGetBookAuthor() {
         //String isbn[13], String bookName, String bookAuthor, int price, int stockAmount
         //In this test case , I default some fields:
         //isbn = 1111111111111 ; bookName = Doraemon, price = stock = 15
@@ -34,7 +34,7 @@ public class BookTest extends TestCase {
         }
     }
 
-    public void testGetPrice() {
+    public static void testGetPrice() {
         //String isbn[13], String bookName, String bookAuthor, int price, int stockAmount
         //In this test case , I default some fields:
         //isbn = 1111111111111 ; bookName = Doraemon, bookAuthor = Dan, stock = 15
@@ -45,7 +45,7 @@ public class BookTest extends TestCase {
         }
     }
 
-    public void testGetBookIsbn() {
+    public static void testGetBookIsbn() {
         //String isbn[13], String bookName, String bookAuthor, int price, int stockAmount
         //In this test case , I default some fields:
         //bookName = Doraemon, bookAuthor = Dan, price = stock = 15
@@ -56,7 +56,7 @@ public class BookTest extends TestCase {
         }
     }
 
-    public void testGetStockAmount() {
+    public static void testGetStockAmount() {
         //String isbn[13], String bookName, String bookAuthor, int price, int stockAmount
         //In this test case , I default some fields:
         //isbn = 1111111111111, bookName = Doraemon, bookAuthor = Dan, price  = 15
@@ -67,7 +67,7 @@ public class BookTest extends TestCase {
         }
     }
 
-    public void testSetPrice() {
+    public static void testSetPrice() {
         //defaults all fields except the price
         Book b = new Book("1111111111111","Doraemon","Dan",15,20);
         b.setPrice(30);
@@ -82,7 +82,7 @@ public class BookTest extends TestCase {
         assertEquals(b2.getPrice(),200);
     }
 
-    public void testSetStockAmount() {
+    public static void testSetStockAmount() {
         //defaults all fields except the stock
         Book b = new Book("1111111111111","Doraemon","Dan",15,20);
         b.setStockAmount(30);

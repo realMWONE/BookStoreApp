@@ -13,7 +13,7 @@ public class UserTest extends TestCase {
     public void tearDown() throws Exception {
     }
 
-    public void testGetRealName() {
+    public static void testGetRealName() {
         //In this function, I default these fields:
         //userId= 1, password = 2, UserType=Employee
         String[] names = new String[]{"Dan","Matt","Harshal"};
@@ -23,7 +23,7 @@ public class UserTest extends TestCase {
         }
     }
 
-    public void testGetUserType() {
+    public static void testGetUserType() {
         //In this function, I default these fields:
         //userName = Dan, userId= 1, password = 2
         User u = new User("Dan","1","2", UserType.Employee);
@@ -32,7 +32,7 @@ public class UserTest extends TestCase {
         assertEquals(u1.getUserType(),UserType.Manager);
     }
 
-    public void testGetUserID() {
+    public static void testGetUserID() {
         //In this function, I default these fields:
         //userName = Dan, Mat ; , password = 2,
         String[] userIds = new String[]{"1","2","3"};
@@ -44,7 +44,7 @@ public class UserTest extends TestCase {
         }
     }
 
-    public void testGetPassword() {
+    public static void testGetPassword() {
         //In this function, I default these fields:
         //userName = Dan, Mat ; userId = 1,2
         String[] passwords = new String[]{"123a","456b","abc"};
@@ -56,7 +56,7 @@ public class UserTest extends TestCase {
         }
     }
 
-    public void testSetUserID() {
+    public static void testSetUserID() {
         //only change userId, other fields don't matter
         String[] userIds = new String[]{"1","2","3"};
         User u1 = new User("Dan","a","123456",UserType.Employee);
@@ -72,7 +72,7 @@ public class UserTest extends TestCase {
         assertEquals(u3.getUserID(),userIds[2]);
     }
 
-    public void testSetPassword() {
+    public static void testSetPassword() {
         //only change userPassword, other fields don't matter
         String[] userPasswords = new String[]{"1234","abcd","1a2b3c"};
         User u1 = new User("Dan","1","1a",UserType.Employee);

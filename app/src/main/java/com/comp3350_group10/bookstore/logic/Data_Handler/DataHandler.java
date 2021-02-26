@@ -21,7 +21,8 @@ public class DataHandler implements IDataHandler {
 
     public void setPrice(IBook target, int price){
         //make sure target is initialized
-        if(target!=null){
+        try
+        {
             //price cannot be negative
             if(price>=0){
                 target.setPrice(price);
@@ -29,6 +30,11 @@ public class DataHandler implements IDataHandler {
             else{
                 System.out.println("The price cannot be set to negative number");
             }
+        }
+
+        catch(NullPointerException e)
+        {
+            System.out.println(e+"caught in DataHandler.java method - setPrice()");
         }
     }
 
@@ -42,7 +48,7 @@ public class DataHandler implements IDataHandler {
 
     public void setStock(IBook target, int quantity){
         //make sure target is initialized
-        if(target!=null){
+        try{
             //stock cannot be negative
             if(quantity > 0){
                 target.setStock(quantity);
@@ -50,6 +56,10 @@ public class DataHandler implements IDataHandler {
             else{
                 System.out.println("The stock cannot be set to negative number");
             }
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println(e+"caught in DataHandler.java method - setStock()");
         }
     }
 

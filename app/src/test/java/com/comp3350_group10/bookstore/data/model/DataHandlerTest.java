@@ -27,6 +27,10 @@ public class DataHandlerTest extends TestCase {
         Book book_1 = new Book("12234789121","Doraemon","Fujiko",10,3, R.drawable.lotr);
         handler.setPrice(book_1,0);
         assertEquals(book_1.getPrice(),0);
+        //Book 3
+        Book book_2=null;
+        handler.setPrice(book_2,0);
+        assertEquals(book_2.getPrice(),0);
     }
 
     public static void testIncrementPrice() {

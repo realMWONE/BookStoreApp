@@ -32,7 +32,7 @@ in the code you are testing.
 
 # Branching
 
-- [Branching Strategy](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/BranchingStrategy.md)
+- Our [Branching Strategy](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/BranchingStrategy.md)
 - [Branching Strategy Picture](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/branchingstrategy.png)
 
 # SOLID

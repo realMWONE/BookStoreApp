@@ -15,10 +15,6 @@ Our project simulates a bookstore system,
 - [Associated tests link]()
 - [Merge commit link]()
 
-TO-DO:
-Tell the story of how one of your features was added to the project.
-Provide links to the feature, user stories, and merge requests (if used), associated tests, and merge commit that was used complete the feature.
-Use one or two paragraphs which can have point-form within them.
 
 # Exceptional code
 

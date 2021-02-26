@@ -22,12 +22,22 @@ public class DataHandler implements IDataHandler {
     * return list of found books
     * */
     public List<IBook> findBooks(String keyword){
+        List<IBook> bookList = new ArrayList<>();
         List<IBook> result = new ArrayList<>();
         String[] wordList = keyword.toLowerCase().split("[-. ,]+");
 
         for(String word: wordList){
-            result.addAll(bookDatabase.findBook(word));
+            bookList.addAll(bookDatabase.findBook(word));
         }
+
+        //remove duplicate
+        for (IBook book : bookList) {
+            if (!result.contains(book)) {
+                result.add(book);
+            }
+        }
+
+
         return result;
     }
 

@@ -4,18 +4,18 @@
 ![architecture](architecture.png)
 
 ## Presentation Layer
-[Main Activity]()
-- The file to view the starting screen of the app.
+[Main Activity](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/MainActivity.java)
+- The starting page for the bookstore app, allows user to perform book search.
 
 [Book Details Page]()
-- The file to view the details for each book 
+- The page that will display information detail for books. 
 
 [Login Activity Page]()
-- The file to view the login page for our bookstore app
+- The page that allows user to log in with their account that already exist in the database.
 
 ## Logic Layer
-[UI Handler]()
-- The main class that the presentation layer will call to do stuff with the data
+[UI Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/logic/UI_Handler/UIHandler.java)
+- The class that contains functions corresponding to each of the buttons in UI, and passes the input from presentation layer to DataHandler.
 
-[Data Handler]()
-- The main class that the 
+[Data Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/logic/Data_Handler/DataHandler.java)
+- The class that the passes the input from presentation layer to data layer to call for operations.

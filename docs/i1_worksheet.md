@@ -38,11 +38,11 @@ Group 11
     - Secondly, This violates Single-responsibility principle as that class should only have one single responsibility of getter and setter for these local variables.
       These getters and setters should be used to perform other functions like add in other classes. Instead of having them all cramped in one class
 
-[Screen shot 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot1.PNG)
+- [Screen shot 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot1.PNG) for Group 11's Course.java
 
-[Screen shot 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot2.PNG)
+- [Screen shot 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot2.PNG) for Group 11's Course.java
 
-[SOLID Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/develop/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
+- [SOLID's violation link to Group 11's Course.java](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/develop/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
 
 
 # Agile Planning

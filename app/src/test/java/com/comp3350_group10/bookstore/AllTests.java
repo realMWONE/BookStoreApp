@@ -24,13 +24,7 @@ public class AllTests {
         BookTest.testSetPrice();
         BookTest.testSetStockAmount();
         //for LoginDataSourceTest
-
-
-
         //for LoginReposityTest
-
-
-
         //for UserTest
         UserTest.testGetRealName();
         UserTest.testGetUserType();

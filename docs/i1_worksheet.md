@@ -5,7 +5,7 @@
 Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
-    - 
+    - More description needed
 - Feature link
     - [High priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=High+Priority+Features)
     - [Medium priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Medium+Priority+Features)
@@ -32,7 +32,7 @@ in the code you are testing.
 - [Branching Strategy Picture](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/branchingstrategy.png)
 
 # SOLID
-
+Group 11
 - How? 
     - Course class can be broken down into smaller classes. Like for example, Course.java should have getters and setters within it.
       This coding strategy firstly does not perform object oriented programming
@@ -44,7 +44,7 @@ in the code you are testing.
 
 # Agile Planning
 
-Did you 'push' any features to iteration 2?(Links)  
+Did you 'push' any features to iteration 2? 
 Yes, we have pushed the below features to iteration 2
 - [Sort by any info](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/31)
 - [Stock management](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/14)

@@ -13,7 +13,7 @@ Our project simulates a bookstore system,
     - [Feature](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/19)
 - [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/17)
 - [Test](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/tree/master/app/src/test/java/com/comp3350_group10/bookstore)
-- [Merge commit link]()
+- [Merge commit](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/091bd90748517e9550814dabf8613bacb1c71c3c)
 
 
 # Exceptional code

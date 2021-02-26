@@ -5,26 +5,26 @@
 Our project simulates a bookstore system,
 - Feature: Worked on searching the book by ISBN, title and author name. 
     - We divided the work amongst ourselves by assigning tasks per layer to atmost 2 people in our group.
-    - More description needed
-- Feature link
-    - [High priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=High+Priority+Features)
-    - [Medium priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Medium+Priority+Features)
-    - [Low priority features](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=Low+Priority+Features)
-- [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues?label_name%5B%5D=User+stories)
-- [Merge requests link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/merge_requests)
-- [Associated tests link]()
-- [Merge commit link]()
+    - Kevin made all of the presentation layer for the feature by adding search page, bar and buttons, 
+      Harshal and Dawarit worked on the data layer and added a 'fake' database of the books plus book
+      database management system. Matt and Animesh worked on the logic layer, which included handling 
+      the data passed like book name,ISBN or author between the presentation and data layer 
+- Links
+    - [Feature](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/19)
+    - [User Stories link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/17)
+    - [Test](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/tree/master/app/src/test/java/com/comp3350_group10/bookstore)
+    - [Merge commit](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/091bd90748517e9550814dabf8613bacb1c71c3c)
 
 
 # Exceptional code
 
 [Exceptional code link]()
-- TODO Explanation
+- So far, we didn't have many exceptions being handled in our code becuase we would be dealing with them once we
+  get started on working with the actual databse, which would have an acutal list of users and books. As for this iteration,
+  we did write a code for one exception though, that would handle if a user exists or not. 
 
+-[Exception code link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/LoginDataSource.java)
 
-Provide a link to a test of exceptional code. In a few sentences,
-provide an explanation of why the exception is handled or thrown
-in the code you are testing.
 
 # Branching
 
@@ -39,8 +39,11 @@ Group 11
     - Secondly, This violates Single-responsibility principle as that class should only have one single responsibility of getter and setter for these local variables.
       These getters and setters should be used to perform other functions like add in other classes. Instead of having them all cramped in one class
 
-Add pictures.
-[SOLID Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/create-server-project/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
+[Screen shot 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot1.PNG)
+
+[Screen shot 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/screenshot2.PNG)
+
+[SOLID Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/develop/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
 
 
 # Agile Planning

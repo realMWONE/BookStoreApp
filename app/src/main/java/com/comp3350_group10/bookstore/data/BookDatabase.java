@@ -109,7 +109,7 @@ public class BookDatabase implements IBookDatabase{
             //Going through all the bookList
             for(Book book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookAuthor().contains(author)){
+                if(book.getBookAuthor().toLowerCase().contains(author)){
                     bookAuthor.add(book);
                 }
             }
@@ -127,7 +127,7 @@ public class BookDatabase implements IBookDatabase{
             //Going through all the bookList
             for(Book book: bookList) {
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if (book.getBookName().contains(title)) {
+                if (book.getBookName().toLowerCase().contains(title)) {
                     bookTitle.add(book);
                 }
             }

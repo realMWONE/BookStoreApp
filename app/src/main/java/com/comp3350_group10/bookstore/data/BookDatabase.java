@@ -4,13 +4,15 @@
 package com.comp3350_group10.bookstore.data;
 import java.util.List;
 
-public class BookDatabase {
+public class BookDatabase 
+{
 
     //List for our book database which would store the list of Book objects
     List<Book> bookList;
 
     //Constructor
-    public BookDatabase() {
+    public BookDatabase() 
+    {
         //Calling createDatabase method here so everytime the BookDatabase object is created it would have all the data loaded into it
         createDatabase();
     }
@@ -18,7 +20,8 @@ public class BookDatabase {
     /**
      * createDatabase: Populates the database by adding new book objects with information about the books into the list
      */
-    public void createDatabase(){
+    public void createDatabase()
+    {
         bookList.add(new Book("6783903121501", "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 26, 10));
         bookList.add(new Book("6783903121502", "Harry Potter and the Chamber of secrets", "J.K. Rowling", 26, 10));
         bookList.add(new Book("6783903121503", "The Da Vinci Code", "Dan Brown", 30, 20));

@@ -44,6 +44,8 @@ Group 11
 
 - [SOLID's violation link to Group 11's Course.java](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/blob/develop/logic/ListMyCoursesServer/src/main/java/group11/listmycourses/server/Course.java)
 
+- [Link to Group 11's SOLID issue](https://code.cs.umanitoba.ca/3350-winter-2021-a03/listmycourses-comp3350-a03-group11/-/issues/49)
+
 
 # Agile Planning
 

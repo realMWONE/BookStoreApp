@@ -39,29 +39,10 @@ public class DataHandler implements IDataHandler {
             bookList.addAll(bookDatabase.findBook(word));
         }
 
-        //store books in map with relevancy
-        //relevancy is determined by # of times the book appeared in search result
-        HashMap<IBook,Integer> bookMap = new HashMap<>();
-        for (IBook book : bookList) {
-            if (!bookMap.containsKey(book)) {
-                bookMap.put(book, 1);
-            }
-            else{
-                bookMap.put(book, bookMap.get(book)+1);
-            }
-        }
+        //sort the booklist by relevancy (times it appeared in search result) and remove duplication
+        bookList = sortByRelevancy(bookList);
 
-        //descending sort by relevancy
-        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(bookMap.entrySet());
-        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
-
-        //copies the sorted list to list of books to return
-        List<IBook> result = new ArrayList<>();
-        for(Entry<IBook, Integer> entries: sortedBookList){
-            result.add(entries.getKey());
-        }
-
-        return result;
+        return bookList;
     }
 
 
@@ -156,14 +137,38 @@ public class DataHandler implements IDataHandler {
             currentUser = null;
     }
 
+    //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list
-    private void sortByRelevance(List<IBook> bookList, List<String> wordList){
+    //And gets rid of the duplicated elements
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private List<IBook> sortByRelevancy(List<IBook> bookList){
+        //relevancy is determined by # of times the book appeared in search result
+        //<Key : Value> = <IBook book : Integer relevancy>
+        HashMap<IBook,Integer> map = new HashMap<>();
+        for (IBook book : bookList) {
+            if (!map.containsKey(book)) {
+                map.put(book, 1);
+            }
+            else{
+                map.put(book, map.get(book)+1);
+            }
+        }
 
+        //descending sort by relevancy
+        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
+        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
+
+        //copies the sorted list to list of books to return
+        List<IBook> result = new ArrayList<>();
+        for(Entry<IBook, Integer> entries: sortedBookList){
+            result.add(entries.getKey());
+        }
+
+        return result;
     }
 
 
-    // splits the given string, ignores non-ascii and common words then return as list
-    // Common words includes: of, the, and, a
+    // splits the given string, ignores non-ascii words
     private List<String> splitWords(String words){
         //split input
         String[] split = words.toLowerCase().split("[-. ,:]+");
@@ -173,7 +178,7 @@ public class DataHandler implements IDataHandler {
 
         //ignore non-ascii and common words
         for(String word:split) {
-            if(word.matches("\\A\\p{ASCII}*\\z") && !word.matches("of|the|and|a")){
+            if(word.matches("\\A\\p{ASCII}*\\z")){
                 result.add(word);
             }
         }

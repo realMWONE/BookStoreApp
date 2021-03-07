@@ -1,5 +1,9 @@
 package com.comp3350_group10.bookstore.logic.Data_Handler;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.comp3350_group10.bookstore.UserType;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.data.BookDatabase;
@@ -7,7 +11,10 @@ import com.comp3350_group10.bookstore.data.IBookDatabase;
 import com.comp3350_group10.bookstore.data.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+
 
 public class DataHandler implements IDataHandler {
 
@@ -16,27 +23,43 @@ public class DataHandler implements IDataHandler {
     public static IBook currentBook;
 
     //Takes the keyword and search database with it
-    //Will separate the keyword by spaces and dots, as well as making the keywords lower case
+    //Returns result after removing duplicated results, and sorted by relevance
     /*
-    * param keyword
-    * return list of found books
-    * */
+     * param keyword
+     * return list of found books
+     * */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<IBook> findBooks(String keyword){
-        List<IBook> bookList = new ArrayList<>();
-        List<IBook> result = new ArrayList<>();
-        String[] wordList = keyword.toLowerCase().split("[-. ,]+");
+        List<String> wordList = splitWords(keyword); //splits keywords
 
+        List<IBook> bookList = new ArrayList<>();   //stores search result
+
+        //search database with each keyword and combining the lists
         for(String word: wordList){
             bookList.addAll(bookDatabase.findBook(word));
         }
 
-        //remove duplicate
+        //store books in map with relevancy
+        //relevancy is determined by # of times the book appeared in search result
+        HashMap<IBook,Integer> bookMap = new HashMap<>();
         for (IBook book : bookList) {
-            if (!result.contains(book)) {
-                result.add(book);
+            if (!bookMap.containsKey(book)) {
+                bookMap.put(book, 1);
+            }
+            else{
+                bookMap.put(book, bookMap.get(book)+1);
             }
         }
 
+        //descending sort by relevancy
+        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(bookMap.entrySet());
+        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
+
+        //copies the sorted list to list of books to return
+        List<IBook> result = new ArrayList<>();
+        for(Entry<IBook, Integer> entries: sortedBookList){
+            result.add(entries.getKey());
+        }
 
         return result;
     }
@@ -126,11 +149,36 @@ public class DataHandler implements IDataHandler {
     public boolean isCurrentUserManager(){
         return (currentUser.getUserType() == UserType.Manager);
     }
-    
+
     //function to logout the current user
     public void logOut(){
         if(currentUser!=null)
             currentUser = null;
+    }
+
+    //Sort the given list of books by how many words in its title matches with the given word list
+    private void sortByRelevance(List<IBook> bookList, List<String> wordList){
+
+    }
+
+
+    // splits the given string, ignores non-ascii and common words then return as list
+    // Common words includes: of, the, and, a
+    private List<String> splitWords(String words){
+        //split input
+        String[] split = words.toLowerCase().split("[-. ,:]+");
+
+        //initialize returning list
+        List<String> result = new ArrayList<>();
+
+        //ignore non-ascii and common words
+        for(String word:split) {
+            if(word.matches("\\A\\p{ASCII}*\\z") && !word.matches("of|the|and|a")){
+                result.add(word);
+            }
+        }
+
+        return result;
     }
 
 }

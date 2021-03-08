@@ -47,9 +47,9 @@ class BookDatabase{
 			"isbn VARCHAR(15)"+
 			"quantity integer," +
 			"price integer," + 
-			"yearPublish integer," +
-			"monthPublish integer," +
-			"dayPublish integer," +
+			"yearPublished integer," +
+			"monthPublished VARCHAR(10)," +
+			"dayPublished integer," +
 			"reserveNumber integer," + 
 			"primary key(isbn)" + 
 			");";
@@ -88,17 +88,13 @@ class BookDatabase{
 
 			while(bookLine != null){
 				String[] bookParts = bookLine.split(",");
-				if(){
-					makeBooks();
-				}
+				makeBooks(bookParts[0], bookParts[1], bookParts[2], bookParts[3], bookParts[4], bookParts[5], bookParts[6], bookParts[7]);
 				bookLine = readBooksTXT.readLine();
 			}
 
 			while(bookInfoLine != null){
 				String[] bookInfoParts = bookInfoLine.split(",");
-				if(){
-					makeBookInfo();
-				}
+				makeBookInfo();
 				bookInfoLine = readBookInfoTXT.readLine();
 			}
 			in.close();

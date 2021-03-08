@@ -24,9 +24,9 @@ class BookDatabase{
 
 	public BookDatabase(){
 		try{
-			Class.forName("ord.hsqldb.jdbcDriver");
+			Class.forName("org.hsqldb.jdbcDriver");
 			//creates an in-memory database
-			connection  = DriverManager.getConenction("jdbc:hsqldb:mem:mymemdb", "SA", "");
+			connection  = DriverManager.getConnection("jdbc:hsqldb:mem:mymemdb", "SA", "");
 
 			createTables();
 			readInData();
@@ -52,7 +52,7 @@ class BookDatabase{
 			"dayPublish integer," +
 			"reserveNumber integer," + 
 			"primary key(isbn)" + 
-			")";
+			");";
 
 		String bookInfo = "create table bookInfo ( " + 
 			"isbn VARCHAR(15),"+
@@ -87,13 +87,29 @@ class BookDatabase{
 			String bookInfoLine = readBookInfo.readLine();
 
 			while(bookLine != null){
-				String[] bookParts = line.split(",");
-				if(){}
+				String[] bookParts = bookLine.split(",");
+				if(){
+					makeBooks();
+				}
+				bookLine = readBooksTXT.readLine();
 			}
 
-
+			while(bookInfoLine != null){
+				String[] bookInfoParts = bookInfoLine.split(",");
+				if(){
+					makeBookInfo();
+				}
+				bookInfoLine = readBookInfoTXT.readLine();
+			}
+			in.close();
+			readBookInfoTXT.close();
+			readBooksTXT.close();
 		}
-	
+		catch(IOException e){
+			e.printStackTrace(System.out);
+		}
 	}	
+
+
 }
 

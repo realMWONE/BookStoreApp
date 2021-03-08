@@ -94,7 +94,7 @@ class BookDatabase{
 
 			while(bookInfoLine != null){
 				String[] bookInfoParts = bookInfoLine.split(",");
-				makeBookInfo();
+				makeBookInfo(bookInfoParts[0], bookInfoParts[1], bookInfoParts[2]);
 				bookInfoLine = readBookInfoTXT.readLine();
 			}
 			in.close();

@@ -1,9 +1,9 @@
 .PHONY := build
 
-BookDatabase.class: BookDatabase.java
-	javac BookDatabase.java
+BookDB.class: BookDB.java
+	javac BookDB.java
 
-build: BookDatabase.class
+build: BookDB.class
 
 run: build
-	java -cp .:hsqldb-2.5.1.jar BookDatabase
+	java -cp .:hsqldb.jar BookDB

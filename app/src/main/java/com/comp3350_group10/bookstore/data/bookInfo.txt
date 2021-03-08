@@ -1,0 +1,10 @@
+isbn, genre, author
+3214686513501,Novel,J.K.Rowling
+3214686513501,Children's literature,J.K.Rowling
+3214686513501,Fantasy Fiction,J.K.Rowling
+3214686513501,High Fantasy,J.K.Rowling
+3214686575397,Novel,J.K.Rowling
+3214686575397,Fantasy Fiction,J.K.Rowling
+3214686575397,High Fantasy,J.K.Rowling
+3214686575397,Bildungsroman,J.K.Rowling
+3214686575397,Adventure fiction,J.K.Rowling

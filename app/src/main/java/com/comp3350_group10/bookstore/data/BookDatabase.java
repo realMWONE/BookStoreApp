@@ -91,7 +91,7 @@ public class BookDatabase implements IBookDatabase{
             //Going through all the bookList
             for(Book book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookIsbn().contains(isbn)){
+                if(book.getBookIsbn().startsWith(isbn)){
                     bookIsbn.add(book);
                 }
             }
@@ -105,12 +105,20 @@ public class BookDatabase implements IBookDatabase{
      */
     private List<IBook> findByAuthor(String author){
         List<IBook> bookAuthor = new ArrayList<>();
+        String[] split;
         if(author != null){
             //Going through all the bookList
-            for(Book book: bookList){
-                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookAuthor().toLowerCase().contains(author)){
-                    bookAuthor.add(book);
+            for(Book book: bookList) {
+                //***CHANGED***:
+                // now instead of pulling whole string and try to match with the search term,
+                // we split the term by delimeters and try to match each search term with each data term
+                //e.g. "J. K. Rowling" now becomes "J", "K", "Rowling" so if we search "Rowling" it now matches
+                split = book.getBookAuthor().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book's author name, then add that book to our return list
+                    if (splitTerm.startsWith(author)) {
+                        bookAuthor.add(book);
+                    }
                 }
             }
         }
@@ -123,20 +131,21 @@ public class BookDatabase implements IBookDatabase{
      */
     private List<IBook> findByTitle(String title){
         List<IBook> bookTitle = new ArrayList<>();
+        String[] split;
+
         if(title != null){
             //Going through all the bookList
             for(Book book: bookList) {
-                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if (book.getBookName().toLowerCase().contains(title)) {
-                    bookTitle.add(book);
+                //***CHANGED***: see findByAuthor for detail
+                split = book.getBookName().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book titles, then add the book to our return list
+                    if (splitTerm.startsWith(title)) {
+                        bookTitle.add(book);
+                    }
                 }
             }
         }
         return bookTitle;
     }
 }
-
-
-
-
-

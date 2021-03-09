@@ -1,10 +1,20 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
-public interface UIHandler {
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import com.comp3350_group10.bookstore.MainActivity;
+import com.comp3350_group10.bookstore.data.IBook;
+
+import java.util.List;
+
+public interface IButtonFunctions {
 
     //function is called when user hits search button to
     // find a book based on ISBN/author/title
-    void SearchButtonPressed(String keyword);
+    List<IBook> SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main);
 
     //function is called when user logs in with their respective accounts
     void LoginButtonPressed();

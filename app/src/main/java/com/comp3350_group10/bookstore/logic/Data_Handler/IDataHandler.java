@@ -1,34 +1,34 @@
 package com.comp3350_group10.bookstore.logic.Data_Handler;
 
-import com.comp3350_group10.bookstore.data.Book;
+import com.comp3350_group10.bookstore.data.IBook;
 
 import java.util.List;
 
 
-public interface Data {
+public interface IDataHandler {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)
-    public List<Book> findBooks(String keyword);
+    List<IBook> findBooks(String keyword);
 
     //function to change the price of a particular book
-    void setPrice(Book target, float price);
+    void setPrice(IBook target, int price);
 
     //function to increment the price of a particular book by 1
-    void incrementPrice(Book target);
+    void incrementPrice(IBook target);
 
     //function to decrement the price of a particular book by 1
-    void decrementPrice(Book target);
+    void decrementPrice(IBook target);
 
     //function to increment the stock of a particular book by 1
-    void incrementStock(Book target);
+    void incrementStock(IBook target);
 
     //function to decrement the stock of a particular book by 1
-    void decrementStock(Book target);
+    void decrementStock(IBook target);
 
     //function to change the quantity of stock available for
     // a particular book
-    void setStock(Book target, int quantity);
+    void setStock(IBook target, int quantity);
 
     //function to check whether the current user is a manager or employee
     boolean isCurrentUserManager();

@@ -2,7 +2,13 @@
  * Book Class for Book Database
  */
 package com.comp3350_group10.bookstore.data;
-public class Book implements IBook{
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Book implements IBook, Serializable {
 
     //private variables for Book
     private String isbn;
@@ -50,7 +56,7 @@ public class Book implements IBook{
     }
 
     //getStockAmount: Returns the stock amount
-    public int getStockAmount(){
+    public int getStock(){
         return stockAmount;
     }
 
@@ -60,7 +66,7 @@ public class Book implements IBook{
     }
 
     //setStockAmount: Sets the amount of books in stock to a new stock amount
-    public void setStockAmount(int stockAmount){
+    public void setStock(int stockAmount){
         this.stockAmount = stockAmount;
     }
 
@@ -69,4 +75,3 @@ public class Book implements IBook{
         return imageReference;
     }
 }
-

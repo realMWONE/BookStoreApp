@@ -2,48 +2,39 @@ package com.comp3350_group10.bookstore.data;
 
 import com.comp3350_group10.bookstore.UserType;
 
-public class User {
+public class User 
+{
 
     private String realName;
     private String userID; //email
     private String password;
     private UserType position;
 
-    public User(String name, String userId, String password, UserType type){
+    //contructor that sets the variables with parameters
+    public User(String name, String userId, String password, UserType type)
+    {
         this.realName = name;
         this.userID = userId;
         this.password = password;
         this.position = type;
     }
 
-    public String getRealName(){
+    //returns the real name of this user
+    public String getRealName() { return realName; }
+    
+    //returns the user type of this user
+    public UserType getUserType() { return position; }
 
-        return realName;
-    }
+    //returns the user ID of this user
+    public String getUserID() { return userID; }
 
-    public UserType getUserType(){
+    //returns the password of this user
+    public String getPassword() { return password; }
 
-        return position;
-    }
+    //set the ID of this user with the given input
+    public void setUserID(String userId) { this.userID = userId; }
 
-    public String getUserID(){
-
-        return userID;
-    }
-
-    public String getPassword(){
-
-        return password;
-    }
-
-    public void setUserID(String userId){
-
-        userID = userId;
-    }
-
-    public void setPassword(String newPassword){
-
-        password = newPassword;
-    }
+    //set the password of this user with the given input
+    public void setPassword(String newPassword) { this.password = newPassword; }
 
 }

@@ -70,6 +70,29 @@ class BookDatabase{
 			e.printStackTrace(System.out);
 		}
 	}
+
+
+	//findByTitle method: Finds the book by its title and inserts the results into a list.
+	public void findByTitle(String bookName){
+
+		try{
+			PreparedStatement pstmt = connection.prepareStatement(
+				"" /**TO-DO*/
+			);
+			pstmt.setString(1, bookName);
+
+			ResultSet resultSet = pstmt.executeQuery();
+
+			while(resultSet.next()){
+				String isbn = resultSet.getString("isbn");
+			}
+
+			pstmt.close();
+		}
+		catch(SQLException e){
+			e.printStackTrace(System.out);
+		}
+	}
 	
 	//readInData method: Reads data from the .txt files provided and helps populate the data.
 	private void readInData(){
@@ -106,7 +129,11 @@ class BookDatabase{
 		}
 	}	
 
-	//makeBooks: Searches whether that unique entry exists or not. If it does not then it inserts it into our database.
+	/**
+	 * createBooks method:
+	 * Searches from the input if that specific entry exists in the table or not.
+	 * If it does not exist then we insert it into our table.
+	 */
 	private String createBooks(String bookName, String isbn, String quantity, String price, String yearPublished, String monthPublished, String dayPublished, String reserve){
 		String isbnValue = "";
 		try{
@@ -133,7 +160,7 @@ class BookDatabase{
 					"insert into books (bookName, isbn, quantity, price, yearPublished, monthPublished, dayPublished, reserve) values (?, ?, ?, ?, ?, ?, ?, ?);"
 				);
 				addIsbn.setString(2, isbn);
-				int numUpdated = addIsbn.executeUpdate();
+				int numUpdated = addIsbn.executeUpdate();  //Just to keep a track how any times we have executed this statement as this SQL statement would not return anything
 				addIsbn.close();
 				resultSet.close();
 			}
@@ -146,7 +173,11 @@ class BookDatabase{
 		return isbnValue;
 	}
 
-
+	/**
+	 * createBookInfo method:
+	 * Searches from the input if that specific entry exists in the table or not.
+	 * If it does not exist then we insert it into our table.
+	 */
 	private String createBookInfo(String isbn, String genre, String author){
 		String bookInfoString = "";
 		try{
@@ -173,7 +204,7 @@ class BookDatabase{
 				addBookInfo.setString(1, isbn);
 				addBookInfo.setString(2, genre);
 				addBookInfo.setString(3, author);
-				int numUpdated = addBookInfo.executeUpdate();
+				int numUpdated = addBookInfo.executeUpdate(); //Just to keep a track how any times we have executed this statement as this SQL statement would not return anything
 				addBookInfo.close();
 				resultSet.close();
 			}

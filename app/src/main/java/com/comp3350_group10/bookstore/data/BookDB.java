@@ -73,7 +73,9 @@ class BookDatabase{
 
 
 	//findByTitle method: Finds the book by its title and inserts the results into a list.
-	public void findByTitle(String bookName){
+	public List<IBook> findByTitle(String bookName){
+
+		List<IBook> bookTitle = new ArrayList<>();
 
 		try{
 			PreparedStatement pstmt = connection.prepareStatement(
@@ -92,6 +94,8 @@ class BookDatabase{
 		catch(SQLException e){
 			e.printStackTrace(System.out);
 		}
+
+		return bookTitle;
 	}
 	
 	//readInData method: Reads data from the .txt files provided and helps populate the data.
@@ -148,7 +152,9 @@ class BookDatabase{
 			pstmt.setInt(6, Integer.parseInt(monthPublished));
 			pstmt.setInt(7, Integer.parseInt(dayPublished));
 			pstmt.setInt(8, Integer.parseInt(reserve));
+
 			ResultSet resultSet = pstmt.executeQuery();
+
 			if(resultSet.next()){
 				isbnValue = resultSet.getString("isbn");
 				if(isbnValue == resultSet.getString("isbn")){
@@ -160,7 +166,9 @@ class BookDatabase{
 					"insert into books (bookName, isbn, quantity, price, yearPublished, monthPublished, dayPublished, reserve) values (?, ?, ?, ?, ?, ?, ?, ?);"
 				);
 				addIsbn.setString(2, isbn);
+
 				int numUpdated = addIsbn.executeUpdate();  //Just to keep a track how any times we have executed this statement as this SQL statement would not return anything
+				
 				addIsbn.close();
 				resultSet.close();
 			}
@@ -187,7 +195,9 @@ class BookDatabase{
 			pstmt.setString(1, isbn);
 			pstmt.setString(2, genre);
 			pstmt.setString(3, author);
+
 			ResultSet resultSet = pstmt.executeQuery();
+
 			if(resultSet.next()){
 				if(isbn == resultSet.getString("isbn")){
 					if(genre == resultSet.getString("genre")){
@@ -204,7 +214,9 @@ class BookDatabase{
 				addBookInfo.setString(1, isbn);
 				addBookInfo.setString(2, genre);
 				addBookInfo.setString(3, author);
+
 				int numUpdated = addBookInfo.executeUpdate(); //Just to keep a track how any times we have executed this statement as this SQL statement would not return anything
+				
 				addBookInfo.close();
 				resultSet.close();
 			}

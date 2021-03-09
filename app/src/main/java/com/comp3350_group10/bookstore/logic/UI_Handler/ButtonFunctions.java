@@ -28,10 +28,11 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public List<IBook> SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
         ClearResults(table);
-        List<IBook> results = PopulateResults(dataHandler.findBooks(keyword), table, context, main);
-        return results;
+
+        if (keyword.equals("")) main.FillTrendingTable();
+        else PopulateResults(dataHandler.findBooks(keyword), table, context, main);
     }
 
     private void ClearResults(TableLayout table) {

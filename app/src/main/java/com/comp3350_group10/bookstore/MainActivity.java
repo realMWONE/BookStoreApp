@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         FillTrendingTable();
     }
 
-    private void FillTrendingTable() {
+    public void FillTrendingTable() {
         TrendingPageFuctions.FillTrendingPage(bookListTable, this);
     }
 

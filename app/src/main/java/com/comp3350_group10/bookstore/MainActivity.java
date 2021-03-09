@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 
 import com.comp3350_group10.bookstore.logic.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.logic.UI_Handler.TrendingPageFuctions;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.ui.AppBarConfiguration;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         SetSearchListener(getBaseContext(), this);
+        FillTrendingTable();
+    }
+
+    private void FillTrendingTable() {
+        TrendingPageFuctions.FillTrendingPage(bookListTable, this);
     }
 
     private void SetSearchListener(Context context, MainActivity main) {

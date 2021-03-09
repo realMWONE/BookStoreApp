@@ -43,8 +43,8 @@ public class ButtonFunctions implements IButtonFunctions
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
 
-                row.addView(CreateTextView(context, book));
                 row.addView(CreateImageView(context, book, ScreenSize.getPixelsFromDP(context, IMAGE_HEIGHT)));
+                row.addView(CreateTextView(context, book));
                 row.setOnClickListener(v -> OpenBookDetailsActivity(context, book, main));
 
                 table.addView(row);

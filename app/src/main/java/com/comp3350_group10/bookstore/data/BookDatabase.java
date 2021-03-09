@@ -3,8 +3,6 @@
  */
 package com.comp3350_group10.bookstore.data;
 
-import com.comp3350_group10.bookstore.R;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -20,11 +18,13 @@ import java.io.BufferedReader;
 import java.util.Scanner;
 
 
-public class BookDatabase implements IBookDatabase{
+public class BookDatabase{
 
 	private Connection connection;
 	private final String bookTXT = "books.txt";
 	private final String bookInfoTXT = "bookInfo.txt";
+
+    private List<String> bookList;
 
 	public BookDatabase(){
 		try{
@@ -77,9 +77,9 @@ public class BookDatabase implements IBookDatabase{
 
 
 	//findByTitle method: Finds the book by its title and inserts the results into a list.
-	public List<IBook> findByTitle(String bookName){
+	public List<String> findByTitle(String bookName){
 
-		List<IBook> bookTitle = new ArrayList<>();
+		List<String> bookTitle = new ArrayList<>();
 
 		try{
 			PreparedStatement pstmt = connection.prepareStatement(
@@ -109,13 +109,13 @@ public class BookDatabase implements IBookDatabase{
 		BufferedReader readBookInfoTXT = null;
 
 		try{
-			readBooksTXT = new BufferedReader((new FileReader(booksTXT)));
-			readBookInfo = new BufferedReader((new FileReader(bookInfoTXT)));
+			readBooksTXT = new BufferedReader((new FileReader(bookTXT)));
+			readBookInfoTXT = new BufferedReader((new FileReader(bookInfoTXT)));
 			readBooksTXT.readLine();
-			readBookInfo.readLine();
+			readBookInfoTXT.readLine();
 
 			String bookLine = readBooksTXT.readLine();
-			String bookInfoLine = readBookInfo.readLine();
+			String bookInfoLine = readBookInfoTXT.readLine();
 
 			while(bookLine != null){
 				String[] bookParts = bookLine.split(",");
@@ -128,7 +128,6 @@ public class BookDatabase implements IBookDatabase{
 				createBookInfo(bookInfoParts[0], bookInfoParts[1], bookInfoParts[2]);
 				bookInfoLine = readBookInfoTXT.readLine();
 			}
-			in.close();
 			readBookInfoTXT.close();
 			readBooksTXT.close();
 		}

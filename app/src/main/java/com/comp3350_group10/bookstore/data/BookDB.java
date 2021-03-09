@@ -88,13 +88,13 @@ class BookDatabase{
 
 			while(bookLine != null){
 				String[] bookParts = bookLine.split(",");
-				makeBooks(bookParts[0], bookParts[1], bookParts[2], bookParts[3], bookParts[4], bookParts[5], bookParts[6], bookParts[7]);
+				createBooks(bookParts[0], bookParts[1], bookParts[2], bookParts[3], bookParts[4], bookParts[5], bookParts[6], bookParts[7]);
 				bookLine = readBooksTXT.readLine();
 			}
 
 			while(bookInfoLine != null){
 				String[] bookInfoParts = bookInfoLine.split(",");
-				makeBookInfo(bookInfoParts[0], bookInfoParts[1], bookInfoParts[2]);
+				createBookInfo(bookInfoParts[0], bookInfoParts[1], bookInfoParts[2]);
 				bookInfoLine = readBookInfoTXT.readLine();
 			}
 			in.close();
@@ -106,6 +106,84 @@ class BookDatabase{
 		}
 	}	
 
+	//makeBooks: Searches whether that unique entry exists or not. If it does not then it inserts it into our database.
+	private String createBooks(String bookName, String isbn, String quantity, String price, String yearPublished, String monthPublished, String dayPublished, String reserve){
+		String isbnValue = "";
+		try{
+			PreparedStatement pstmt = connection.prepareStatement(
+				"Select isbn from books where isbn = ?;"
+			);
+			pstmt.setString(1, bookName);
+			pstmt.setString(2, isbn);
+			pstmt.setInt(3, Integer.parseInt(quantity));
+			pstmt.setInt(4, Integer.parseInt(price));
+			pstmt.setInt(5, Integer.parseInt(yearPublished));
+			pstmt.setInt(6, Integer.parseInt(monthPublished));
+			pstmt.setInt(7, Integer.parseInt(dayPublished));
+			pstmt.setInt(8, Integer.parseInt(reserve));
+			ResultSet resultSet = pstmt.executeQuery();
+			if(resultSet.next()){
+				isbnValue = resultSet.getString("isbn");
+				if(isbnValue == resultSet.getString("isbn")){
+					isbnValue = "This already exists";
+				}
+			}
+			else{
+				PreparedStatement addIsbn = connection.prepareStatement(
+					"insert into books (bookName, isbn, quantity, price, yearPublished, monthPublished, dayPublished, reserve) values (?, ?, ?, ?, ?, ?, ?, ?);"
+				);
+				addIsbn.setString(2, isbn);
+				int numUpdated = addIsbn.executeUpdate();
+				addIsbn.close();
+				resultSet.close();
+			}
+			pstmt.close();
+		}
+		catch(SQLException e){
+			System.out.println("Error in " + isbn+ " "+ bookName);
+			e.printStackTrace(System.out);
+		}
+		return isbnValue;
+	}
 
+
+	private String createBookInfo(String isbn, String genre, String author){
+		String bookInfoString = "";
+		try{
+			PreparedStatement pstmt = connection.prepareStatement(
+				"Select isbn, genre, author from bookInfo where isbn = ? and genre = ? and author = ?;"
+			);
+			pstmt.setString(1, isbn);
+			pstmt.setString(2, genre);
+			pstmt.setString(3, author);
+			ResultSet resultSet = pstmt.executeQuery();
+			if(resultSet.next()){
+				if(isbn == resultSet.getString("isbn")){
+					if(genre == resultSet.getString("genre")){
+						if(author == resultSet.getString("author")){
+							bookInfoString  = "This entry already exists";
+						}
+					}
+				}
+			}
+			else{
+				PreparedStatement addBookInfo = connection.prepareStatement(
+					"insert into bookInfo (isbn, genre, author) values (?, ?, ?);"
+				);
+				addBookInfo.setString(1, isbn);
+				addBookInfo.setString(2, genre);
+				addBookInfo.setString(3, author);
+				int numUpdated = addBookInfo.executeUpdate();
+				addBookInfo.close();
+				resultSet.close();
+			}
+			pstmt.close();
+		}
+		catch(SQLException e){
+			System.out.println("Error in "+ isbn + " "+ genre+ " "+ author);
+			e.printStackTrace(System.out);
+		}
+		return bookInfoString;
+	}
 }
 

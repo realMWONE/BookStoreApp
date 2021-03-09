@@ -1,3 +1,3 @@
 bookName, isbn, quantity, price, yearPublished, monthPublished, dayPublished, reserve
-Harry Potter and the Philosopher's Stone,3214686513501,15,2630,1997,June,26,2
-Harry Potter and the Chamber of Secrets,3214686575397,20,2630,1998,July,2,3
+Harry Potter and the Philosopher's Stone,3214686513501,15,2630,1997,06,26,2
+Harry Potter and the Chamber of Secrets,3214686575397,20,2630,1998,07,2,3

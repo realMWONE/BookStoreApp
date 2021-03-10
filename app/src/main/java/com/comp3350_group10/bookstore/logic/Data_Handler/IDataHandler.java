@@ -38,5 +38,5 @@ public interface IDataHandler {
     void logOut();
 
     //function to changePassword for the logged in user
-    void changePassword(User currentUser, String oldPw, String newPw, String confirmNewPw);
+    void changePassword(String oldPw, String newPw, String confirmNewPw);
 }

@@ -187,7 +187,7 @@ public class DataHandler implements IDataHandler {
     }
 
     //function to change password for the current logged in user
-    public void changePassword(User currentUser,String oldPw, String newPw, String confirmNewPw){
+    public void changePassword(String oldPw, String newPw, String confirmNewPw){
         try {
             //check if the current password matches the old password
             if(!currentUser.getPassword().equals(oldPw)){

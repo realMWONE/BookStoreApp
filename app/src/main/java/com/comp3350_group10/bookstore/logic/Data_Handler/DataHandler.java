@@ -186,22 +186,27 @@ public class DataHandler implements IDataHandler {
         return result;
     }
 
+    //function to change password for the current logged in user
     public void changePassword(User currentUser,String oldPw, String newPw, String confirmNewPw){
         try {
+            //check if the current password matches the old password
             if(!currentUser.getPassword().equals(oldPw)){
                 throw new Exception("Current password doesn't match the saved password");
             }
             else {
                 try{
+                    //check if the new password length is at least 8 characters (validation)
                     if(newPw.length()<8) {
                         throw new Exception("Password length too short, should be at least 8 characters");
                     }
                     else {
                         try{
+                            //check if the new password is confirmed or not
                             if(!newPw.equals(confirmNewPw)){
                                 throw new Exception("Different passwords, couldn't confirm!!");
                             }
                             else {
+                                //if everything is correct, then update the password
                                 currentUser.setPassword(newPw);
                             }
                         }

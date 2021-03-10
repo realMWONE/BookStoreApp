@@ -6,4 +6,4 @@ BookDatabase.class: BookDatabase.java
 build: BookDatabase.class
 
 run: build
-	java -cp .:hsqldb.jar BookDatabase
+	java -cp .:hsqldb.jar BookDatabase.class

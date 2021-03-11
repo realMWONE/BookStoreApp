@@ -7,3 +7,4 @@ build: BookDatabase.class
 
 run: build
 	java -cp .:hsqldb.jar BookDatabase
+

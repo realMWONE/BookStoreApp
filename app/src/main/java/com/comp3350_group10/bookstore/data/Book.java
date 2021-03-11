@@ -74,9 +74,4 @@ public class Book implements IBook, Serializable {
     public int getImageReference(){
         return imageReference;
     }
-
-    @Override
-    public int getImage() {
-        return 0;
-    }
 }

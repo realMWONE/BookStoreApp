@@ -20,6 +20,7 @@ import java.util.Scanner;
 
 public class BookDatabase implements IBookDatabase{
 
+
 	private Connection connection;
 	private final String bookTXT = "books.txt";
 	private final String bookInfoTXT = "bookInfo.txt";
@@ -59,10 +60,11 @@ public class BookDatabase implements IBookDatabase{
 			//connection  = DriverManager.getConnection("jdbc:hsqldb:file:nwind", "SA", "");
 			connection  = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/testdb", "SA", "");
 
-			if(connection!=null)
+			if(connection!=null){
 				System.out.println("connect successfully");
-			createTables();
-			readInData();
+				createTables();
+				readInData();
+			}
 		}
 		catch(ClassNotFoundException e){
 			e.printStackTrace(System.out);
@@ -260,11 +262,14 @@ public class BookDatabase implements IBookDatabase{
 		}
 		return bookInfoString;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public List<IBook> findBook(String searchTerm) {
 		return null;
 	}
+=======
+>>>>>>> 7d67c46bc44857cff0bd8938a01ab55443864b04
 }
 
 

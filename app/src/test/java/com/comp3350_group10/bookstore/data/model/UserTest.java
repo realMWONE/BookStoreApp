@@ -2,8 +2,11 @@ package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.UserType;
 import com.comp3350_group10.bookstore.data.User;
+import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 
 import junit.framework.TestCase;
+
+import org.junit.Before;
 
 public class UserTest extends TestCase {
 
@@ -86,4 +89,24 @@ public class UserTest extends TestCase {
         assertEquals(u2.getPassword(),userPasswords[1]);
         assertEquals(u3.getPassword(),userPasswords[2]);
     }
+
+    public static void testChangePassword(){
+        //change password if user is logged in and all the provided information is correct
+        User u1 = new User("Anonymous","1","software",UserType.Manager);
+        User u2 = null;
+        String newPassword= "computer";
+        DataHandler dataHandler = new DataHandler(u1);
+        DataHandler dataHandler1 = new DataHandler(u2);
+
+        dataHandler1.changePassword("software",newPassword,"computer");
+        dataHandler.changePassword("SOFTWARE",newPassword,"computer");
+        dataHandler.changePassword("software","comp","comp");
+        dataHandler.changePassword("software",newPassword,"Computer");
+        dataHandler.changePassword("software",newPassword,"computer");
+
+        assertEquals(newPassword,u1.getPassword());
+
+
+    }
+
 }

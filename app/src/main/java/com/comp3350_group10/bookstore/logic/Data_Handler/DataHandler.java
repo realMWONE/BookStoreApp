@@ -22,6 +22,12 @@ public class DataHandler implements IDataHandler {
     private IBookDatabase bookDatabase = new BookDatabase();
     public static IBook currentBook;
 
+    public DataHandler(){}
+
+    public DataHandler(User currentUser){
+        this.currentUser=currentUser;
+    }
+
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
     /*
@@ -126,6 +132,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (currentUser.getUserType() == UserType.Manager);
@@ -189,39 +196,51 @@ public class DataHandler implements IDataHandler {
     //function to change password for the current logged in user
     public void changePassword(String oldPw, String newPw, String confirmNewPw){
         try {
-            //check if the current password matches the old password
-            if(!currentUser.getPassword().equals(oldPw)){
-                throw new Exception("Current password doesn't match the saved password");
+            //check if the user is logged in or not
+            if(currentUser == null){
+                throw new Exception("User must be logged in");
             }
             else {
-                try{
-                    //check if the new password length is at least 8 characters (validation)
-                    if(newPw.length()<8) {
-                        throw new Exception("Password length too short, should be at least 8 characters");
+                try {
+                    //check if the current password matches the old password
+                    if(!currentUser.getPassword().equals(oldPw)){
+                        throw new Exception("Current password doesn't match the saved password");
                     }
                     else {
                         try{
-                            //check if the new password is confirmed or not
-                            if(!newPw.equals(confirmNewPw)){
-                                throw new Exception("Different passwords, couldn't confirm!!");
+                            //check if the new password length is at least 8 characters (validation)
+                            if(newPw.length()<8) {
+                                throw new Exception("Password length too short, should be at least 8 characters");
                             }
                             else {
-                                //if everything is correct, then update the password
-                                currentUser.setPassword(newPw);
+                                try{
+                                    //check if the new password is confirmed or not
+                                    if(!newPw.equals(confirmNewPw)){
+                                        throw new Exception("Different passwords, couldn't confirm!!");
+                                    }
+                                    else {
+                                        //if everything is correct, then update the password
+                                        currentUser.setPassword(newPw);
+                                    }
+                                }
+                                catch (Exception g){
+                                    System.out.println(g);
+                                }
                             }
                         }
-                        catch (Exception g){
-                            System.out.println(g);
+                        catch (Exception f){
+                            System.out.println(f);
                         }
                     }
                 }
-                catch (Exception f){
-                    System.out.println(f);
+                catch (Exception e){
+                    System.out.println(e);
                 }
+
             }
         }
-        catch (Exception e){
-            System.out.println(e);
+        catch (Exception h){
+            System.out.println(h);
         }
     }
 

@@ -18,7 +18,7 @@ import java.io.BufferedReader;
 import java.util.Scanner;
 
 
-public class BookDatabase{
+public class BookDatabase implements IBookDatabase{
 
 	private Connection connection;
 	private final String bookTXT = "books.txt";
@@ -26,12 +26,41 @@ public class BookDatabase{
 
     private List<String> bookList;
 
+    public static void main(String[] args){
+
+    	/*System.out.println("aa");
+    	IBookDatabase bookDB = new BookDatabase();*/
+		try{
+			//INSERT INTO PERSONS (PERSONID,LASTNAME,FIRSTNAME,ADDRESS,CITY) VALUES (0,"DUY","THAN","Bach Dang","TPHCM")
+
+			//Class.forName("org.hsqldb.jdbc.JDBCDriver");
+			Class.forName("org.hsqldb.jdbc.JDBCDriver");
+			//creates an in-memory database
+			Connection connection1  = DriverManager.getConnection("jdbc:hsqldb:file:nwind", "SA", "");
+			if(connection1!=null)
+				System.out.println("connect successfully");
+			//createTables();
+			//readInData();
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace(System.out);
+		}
+		catch(SQLException e){
+			e.printStackTrace(System.out);
+		}
+	}
 	public BookDatabase(){
 		try{
-			Class.forName("org.hsqldb.jdbcDriver");
-			//creates an in-memory database
-			connection  = DriverManager.getConnection("jdbc:hsqldb:mem:mymemdb", "SA", "");
+			//INSERT INTO PERSONS (PERSONID,LASTNAME,FIRSTNAME,ADDRESS,CITY) VALUES (0,"DUY","THAN","Bach Dang","TPHCM")
 
+			//Class.forName("org.hsqldb.jdbc.JDBCDriver");
+			Class.forName("org.hsqldb.jdbc.JDBCDriver");
+			//creates an in-memory database
+			//connection  = DriverManager.getConnection("jdbc:hsqldb:file:nwind", "SA", "");
+			connection  = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/testdb", "SA", "");
+
+			if(connection!=null)
+				System.out.println("connect successfully");
 			createTables();
 			readInData();
 		}
@@ -230,6 +259,11 @@ public class BookDatabase{
 			e.printStackTrace(System.out);
 		}
 		return bookInfoString;
+	}
+
+	@Override
+	public List<IBook> findBook(String searchTerm) {
+		return null;
 	}
 }
 

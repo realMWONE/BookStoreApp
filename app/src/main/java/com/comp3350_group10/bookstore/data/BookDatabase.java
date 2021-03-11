@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 
 public class BookDatabase implements IBookDatabase{
-    
+
 	private Connection connection;
 	private final String bookTXT = "books.txt";
 	private final String bookInfoTXT = "bookInfo.txt";
@@ -48,7 +48,7 @@ public class BookDatabase implements IBookDatabase{
 		//Creating table for books which would have the following attributes.
 		String books = "create table books ( "+
 			" bookName VARCHAR(200)," +
-			"isbn VARCHAR(15)"+
+			"isbn VARCHAR(15),"+
 			"quantity integer," +
 			"price integer," + 
 			"yearPublished integer," +

@@ -70,6 +70,7 @@ public class Book implements IBook, Serializable {
         this.stockAmount = stockAmount;
     }
 
+
     public int getImage() { return imageReference; }
 
 }

@@ -60,6 +60,11 @@ public class Book implements IBook, Serializable {
         return stockAmount;
     }
 
+    @Override
+    public int getImage() {
+        return 0;
+    }
+
     //setPrice: Sets the price of the book to new price.
     public void setPrice(int price){
         this.price = price;

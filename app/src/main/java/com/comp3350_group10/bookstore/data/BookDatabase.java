@@ -50,12 +50,9 @@ public class BookDatabase implements IBookDatabase{
 	}
 	public BookDatabase(){
 		try{
-			//INSERT INTO PERSONS (PERSONID,LASTNAME,FIRSTNAME,ADDRESS,CITY) VALUES (0,"DUY","THAN","Bach Dang","TPHCM")
 
-			//Class.forName("org.hsqldb.jdbc.JDBCDriver");
 			Class.forName("org.hsqldb.jdbc.JDBCDriver");
 			//creates an in-memory database
-			//connection  = DriverManager.getConnection("jdbc:hsqldb:file:nwind", "SA", "");
 			connection  = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/testdb", "SA", "");
 
 			if(connection!=null){
@@ -105,31 +102,31 @@ public class BookDatabase implements IBookDatabase{
 	}
 
 
-	//findByTitle method: Finds the book by its title and inserts the results into a list.
-	public List<String> findByTitle(String bookName){
-
-		List<String> bookTitle = new ArrayList<>();
-
-		try{
-			PreparedStatement pstmt = connection.prepareStatement(
-				"" /**TO-DO*/
-			);
-			pstmt.setString(1, bookName);
-
-			ResultSet resultSet = pstmt.executeQuery();
-
-			while(resultSet.next()){
-				String isbn = resultSet.getString("isbn");
-			}
-
-			pstmt.close();
-		}
-		catch(SQLException e){
-			e.printStackTrace(System.out);
-		}
-
-		return bookTitle;
-	}
+//	//findByTitle method: Finds the book by its title and inserts the results into a list.
+//	public List<String> findByTitle(String bookName){
+//
+//		List<String> bookTitle = new ArrayList<>();
+//
+//		try{
+//			PreparedStatement pstmt = connection.prepareStatement(
+//				""
+//			);
+//			pstmt.setString(1, bookName);
+//
+//			ResultSet resultSet = pstmt.executeQuery();
+//
+//			while(resultSet.next()){
+//				String isbn = resultSet.getString("isbn");
+//			}
+//
+//			pstmt.close();
+//		}
+//		catch(SQLException e){
+//			e.printStackTrace(System.out);
+//		}
+//
+//		return bookTitle;
+//	}
 	
 	//readInData method: Reads data from the .txt files provided and helps populate the data.
 	private void readInData(){

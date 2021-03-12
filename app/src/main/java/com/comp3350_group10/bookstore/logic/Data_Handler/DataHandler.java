@@ -133,4 +133,6 @@ public class DataHandler implements IDataHandler {
             currentUser = null;
     }
 
+    public void changePassword(String oldPw, String newPw, String confirmNewPw){}
+
 }

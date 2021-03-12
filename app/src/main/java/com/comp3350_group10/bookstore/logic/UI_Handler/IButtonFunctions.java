@@ -22,8 +22,8 @@ public interface IButtonFunctions {
     //function is called when user wants to logout
     void LogoutButtonPressed();
 
-    //function is called when a user hits settings button to change settings
-    void UserSettingsButtonPressed();
+    //function is called when a user hits change password button in setting page
+    void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);
 
     //function is called when user hits the increment stock by 1 button
     void IncrementStock();

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.BookDetailsActivity;
 import com.comp3350_group10.bookstore.MainActivity;
+import com.comp3350_group10.bookstore.UserSettingActivity;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
@@ -97,13 +98,19 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void LogoutButtonPressed()
     {
-
+        dataHandler.logOut();
     }
 
-    @Override
-    public void UserSettingsButtonPressed()
-    {
 
+    @Override
+    public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    {
+        dataHandler.changePassword(oldPw, newPw, confirmNewPw);
+    }
+
+    private void OpenUserSettingActivity(Context context, MainActivity main) {
+        Intent intent = new Intent(context, UserSettingActivity.class);
+        main.startActivity(intent);
     }
 
     @Override

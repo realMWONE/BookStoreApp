@@ -35,4 +35,6 @@ public interface IDataHandler {
 
     //function to logout the current user
     void logOut();
+
+    void changePassword(String oldPw, String newPw, String confirmNewPw);
 }

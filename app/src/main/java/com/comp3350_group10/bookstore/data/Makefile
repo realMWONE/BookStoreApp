@@ -1,10 +1,10 @@
 .PHONY := build
 
-BookDatabase.class: BookDatabase.java
-	javac BookDatabase.java
+ConnectDatabase.class: ConnectDatabase.java
+	javac ConnectDatabase.java
 
-build: BookDatabase.class
+build: ConnectDatabase.class
 
 run: build
-	java -cp .:hsqldb.jar BookDatabase
+	java -cp .:hsqldb.jar ConnectDatabase
 

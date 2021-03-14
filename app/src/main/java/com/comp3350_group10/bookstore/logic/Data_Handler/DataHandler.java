@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataHandler implements IDataHandler {
 
-    private static User currentUser = null;
+    public static User currentUser = null;
     private IBookDatabase bookDatabase = new BookDatabase();
     public static IBook currentBook;
 

@@ -109,7 +109,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void UserSettingPressed(Context context, MainActivity main) {
+    public void UserSettingButtonPressed(Context context, MainActivity main) {
         Intent intent = new Intent(context, UserSettingActivity.class);
         main.startActivity(intent);
     }

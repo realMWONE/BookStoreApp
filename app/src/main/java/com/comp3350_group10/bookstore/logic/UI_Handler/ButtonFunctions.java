@@ -3,6 +3,7 @@ package com.comp3350_group10.bookstore.logic.UI_Handler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -115,15 +116,21 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void IncrementStock()
+    public void IncrementStock(TextView text)
     {
+        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
 
+        dataHandler.incrementStock(DataHandler.currentBook);
+        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override
-    public void DecrementStock()
+    public void DecrementStock(TextView text)
     {
+        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
 
+        dataHandler.decrementStock(DataHandler.currentBook);
+        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override

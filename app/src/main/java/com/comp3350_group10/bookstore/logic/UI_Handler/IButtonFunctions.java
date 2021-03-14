@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.MainActivity;
 import com.comp3350_group10.bookstore.data.IBook;
@@ -29,10 +30,10 @@ public interface IButtonFunctions {
     void UserSettingButtonPressed(Context context, MainActivity main);
 
     //function is called when user hits the increment stock by 1 button
-    void IncrementStock();
+    void IncrementStock(TextView text);
 
     //function is called when user hits the decrement stock by 1 button
-    void DecrementStock();
+    void DecrementStock(TextView text);
 
     //function is called when user presses the restock button
     // to change the quantity of stock available

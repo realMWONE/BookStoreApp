@@ -84,4 +84,6 @@ public class MainActivity extends AppCompatActivity
     {
         uIButtonFunctions.LogoutButtonPressed();
     }
+
+    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.UserSettingPressed(getBaseContext(), this); }
 }

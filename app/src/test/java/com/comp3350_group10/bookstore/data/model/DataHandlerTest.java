@@ -121,4 +121,11 @@ public class DataHandlerTest extends TestCase {
     //THIS AS WELL
     public static void testLogOut() {
     }
+
+    public static void testChangePassword(){
+        User currentUser = new User("Tom", "email@gmail.com","12345678", UserType.Manager);
+        DataHandler handler = new DataHandler();
+
+        handler.changePassword("12345678","","");
+    }
 }

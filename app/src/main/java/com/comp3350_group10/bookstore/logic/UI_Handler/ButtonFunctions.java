@@ -108,7 +108,8 @@ public class ButtonFunctions implements IButtonFunctions
         dataHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
-    private void OpenUserSettingActivity(Context context, MainActivity main) {
+    @Override
+    public void UserSettingPressed(Context context, MainActivity main) {
         Intent intent = new Intent(context, UserSettingActivity.class);
         main.startActivity(intent);
     }

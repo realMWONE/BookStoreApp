@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataHandler implements IDataHandler {
 
-    private User currentUser;
+    private static User currentUser = null;
     private IBookDatabase bookDatabase = new BookDatabase();
     public static IBook currentBook;
 
@@ -62,6 +62,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to increment the price by 1
     public void incrementPrice(IBook target) {
         try {
@@ -82,6 +83,7 @@ public class DataHandler implements IDataHandler {
 
     }
 
+
     //function set the stock for the target book with the given quantity
     public void setStock(IBook target, int quantity){
         //make sure target is initialized
@@ -100,6 +102,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to increment the stock by 1
     public void incrementStock(IBook target) {
         //make sure target is initialized
@@ -110,6 +113,7 @@ public class DataHandler implements IDataHandler {
             System.out.println(e + "caught in DataHandler.java method - incrementStock()");
         }
     }
+
 
     //function to decrement the stock by 1
     public void decrementStock(IBook target){
@@ -122,16 +126,19 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (currentUser.getUserType() == UserType.Manager);
     }
-    
+
+
     //function to logout the current user
     public void logOut(){
         if(currentUser!=null)
             currentUser = null;
     }
+
 
     public void changePassword(String oldPw, String newPw, String confirmNewPw){}
 

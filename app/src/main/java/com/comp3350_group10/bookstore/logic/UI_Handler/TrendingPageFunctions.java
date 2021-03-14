@@ -2,8 +2,10 @@ package com.comp3350_group10.bookstore.logic.UI_Handler;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 
+import com.comp3350_group10.bookstore.BookDetailsActivity;
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
@@ -22,7 +25,7 @@ import com.comp3350_group10.bookstore.ui.ScreenSize;
 
 import java.util.List;
 
-public class TrendingPageFuctions {
+public class TrendingPageFunctions {
     private static int imageHeight = 0;
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
@@ -94,9 +97,20 @@ public class TrendingPageFuctions {
 
         for (IBook book : books) {
             ImageView image = new ImageView(context);
+            image.setClickable(true);
             image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
             image.setImageResource(book.getImage());
             layout.addView(image);
+
+            image.setOnClickListener(v -> {
+                DataHandler.currentBook = book;
+                SwitchToBookDetailsActivity(context);
+            });
         }
+    }
+
+    private static void SwitchToBookDetailsActivity(Context context) {
+        Intent intent = new Intent(context, BookDetailsActivity.class);
+        context.startActivity(intent);
     }
 }

@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.UserDatabase;
 import com.comp3350_group10.bookstore.UserType;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.data.BookDatabase;
@@ -20,6 +21,7 @@ public class DataHandler implements IDataHandler {
 
     private User currentUser;
     private IBookDatabase bookDatabase = new BookDatabase();
+    private IUserDatabase userDatabase = new UserDatabase();
     public static IBook currentBook;
 
     public DataHandler(){}
@@ -136,6 +138,37 @@ public class DataHandler implements IDataHandler {
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (currentUser.getUserType() == UserType.Manager);
+    }
+
+    //function to login the current user
+    public void logIn(String email, String password){
+
+        User tempUser = userDatabase.searchUser(email);
+
+        try{
+            //check if the user is in the database or not
+            if(tempUser == null) {
+                throw new Exception("Password length too short, should be at least 8 characters");
+            }
+            else {
+                try{
+                    //check if the given password matches the tempUser's password
+                    if(!tempUser.getPassword().equals(password)){
+                        throw new Exception("Different passwords, couldn't confirm!!");
+                    }
+                    else {
+                        //if password matches, then update the currentUser
+                        currentUser = tempUser;
+                    }
+                }
+                catch (Exception g){
+                    System.out.println(g);
+                }
+            }
+        }
+        catch (Exception f){
+            System.out.println(f);
+        }
     }
 
     //function to logout the current user

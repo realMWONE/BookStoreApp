@@ -2,7 +2,8 @@
  * Interface for BookDatabase
  */
 
-package com.comp3350_group10.bookstore.persistence;
+package com.comp3350_group10.bookstore.persistence.Book;
+
 import java.util.List;
 
 public interface IBookDatabase

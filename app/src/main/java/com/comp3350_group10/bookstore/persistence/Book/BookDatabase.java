@@ -1,8 +1,9 @@
- /**
+/**
  * HSQLDB Book Database
  */
 
- package com.comp3350_group10.bookstore.persistence;
+package com.comp3350_group10.bookstore.persistence.Book;
+import com.comp3350_group10.bookstore.persistence.PersistenceException;
 
 import java.util.ArrayList;
 import java.sql.Connection;

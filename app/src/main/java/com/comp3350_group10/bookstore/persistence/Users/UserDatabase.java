@@ -1,6 +1,5 @@
-package com.comp3350_group10.bookstore.persistence;
+package com.comp3350_group10.bookstore.persistence.Users;
 
-import com.comp3350_group10.bookstore.data.User;
 
 public class UserDatabase {
 

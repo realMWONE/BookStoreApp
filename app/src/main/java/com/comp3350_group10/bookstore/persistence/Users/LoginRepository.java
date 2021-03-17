@@ -1,5 +1,4 @@
-package com.comp3350_group10.bookstore.persistence;
-import com.comp3350_group10.bookstore.data.model.LoggedInUser;
+package com.comp3350_group10.bookstore.persistence.Users;
 
 /**
  * Class that requests authentication and user information from the remote data source and

@@ -100,7 +100,7 @@ public class BookDatabase implements IBookDatabase {
 	 * @param author
 	 */
 	private List<IBook> findByAuthor(String author){
-		List<IBook> bookAuthor = new ArrayList<>();
+		List<IBook> bookAuthor = getBooks();
 		String[] split;
 		if(author != null){
 			//Going through all the bookList
@@ -126,7 +126,7 @@ public class BookDatabase implements IBookDatabase {
 	 * @param title
 	 */
 	private List<IBook> findByTitle(String title){
-		List<IBook> bookTitle = new ArrayList<>();
+		List<IBook> bookTitle = getBooks();
 		String[] split;
 
 		if(title != null){

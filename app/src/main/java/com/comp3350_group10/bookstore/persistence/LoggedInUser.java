@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.data.model;
+package com.comp3350_group10.bookstore.persistence;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

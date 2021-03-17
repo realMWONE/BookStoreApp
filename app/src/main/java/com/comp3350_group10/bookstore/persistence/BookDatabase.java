@@ -35,8 +35,9 @@ public class BookDatabase implements IBookDatabase {
 		final String author = rs.getString("author");
 		final String genre = rs.getString("genre");
 		final int reserve = rs.getInt("reserve");
+		final int imageReference = rs.getInt("image");
 
-		return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, 0);
+		return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
 	}
 
 	@Override
@@ -74,6 +75,7 @@ public class BookDatabase implements IBookDatabase {
 			pstmt.setString(6, book.getBookAuthor());
 			pstmt.setString(7, book.getGenre());
 			pstmt.setInt(8, book.getReserve());
+			pstmt.setInt(9, book.getImage());
 			pstmt.executeUpdate();
 
 			return book;

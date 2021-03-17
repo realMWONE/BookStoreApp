@@ -1,5 +1,4 @@
-package com.comp3350_group10.bookstore.data;
-
+package com.comp3350_group10.bookstore.persistence;
 import com.comp3350_group10.bookstore.data.model.LoggedInUser;
 
 /**

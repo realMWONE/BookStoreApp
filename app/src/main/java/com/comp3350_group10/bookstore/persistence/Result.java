@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.data;
+package com.comp3350_group10.bookstore.persistence;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

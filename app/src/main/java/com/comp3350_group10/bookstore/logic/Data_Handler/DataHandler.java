@@ -3,13 +3,9 @@ package com.comp3350_group10.bookstore.logic.Data_Handler;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-
-import com.comp3350_group10.bookstore.UserDatabase;
-import com.comp3350_group10.bookstore.UserType;
-import com.comp3350_group10.bookstore.data.IBook;
-import com.comp3350_group10.bookstore.data.BookDatabase;
-import com.comp3350_group10.bookstore.data.IBookDatabase;
-import com.comp3350_group10.bookstore.data.User;
+import com.comp3350_group10.bookstore.persistence.BookDatabase;
+import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;

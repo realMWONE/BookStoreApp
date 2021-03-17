@@ -17,6 +17,8 @@ public interface IButtonFunctions {
     // find a book based on ISBN/author/title
     void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main);
 
+    void SwitchToLoginActivity(MainActivity main, Context context);
+
     //function is called when user logs in with their respective accounts
     void LoginButtonPressed();
 

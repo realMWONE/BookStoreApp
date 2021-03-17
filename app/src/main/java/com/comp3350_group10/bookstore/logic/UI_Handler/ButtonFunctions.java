@@ -16,6 +16,7 @@ import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 import com.comp3350_group10.bookstore.ui.ScreenSize;
+import com.comp3350_group10.bookstore.ui.login.LoginActivity;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -97,6 +98,13 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
+    public void SwitchToLoginActivity(MainActivity main, Context context)
+    {
+        Intent intent = new Intent(context, LoginActivity.class);
+        main.startActivity(intent);
+    }
+
+    @Override
     public void LogoutButtonPressed()
     {
         dataHandler.logOut();
@@ -138,4 +146,6 @@ public class ButtonFunctions implements IButtonFunctions
     {
 
     }
+
+
 }

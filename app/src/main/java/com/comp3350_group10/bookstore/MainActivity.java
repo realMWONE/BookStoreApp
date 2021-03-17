@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 
 import com.comp3350_group10.bookstore.logic.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.logic.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.logic.UI_Handler.TrendingPageFunctions;
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity
 {
     private AppBarConfiguration mAppBarConfiguration;
-    private ButtonFunctions uIButtonFunctions;
+    private IButtonFunctions uIButtonFunctions;
     private TableLayout bookListTable;
     private EditText searchBar;
 
@@ -52,24 +53,16 @@ public class MainActivity extends AppCompatActivity
 
     private void SetSearchListener(Context context, MainActivity main) {
         searchBar.addTextChangedListener(new TextWatcher() {
-
-            public void afterTextChanged(Editable s) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
+            public void afterTextChanged(Editable s) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //TextView myOutputBox = (TextView) findViewById(R.id.myOutputBox);
-                //myOutputBox.setText(s);
                 uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main);
             }
         });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -77,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onLoginButtonClicked(MenuItem item)
     {
-        uIButtonFunctions.LoginButtonPressed();
+        uIButtonFunctions.SwitchToLoginActivity(this, getBaseContext());
     }
 
     public void onLogoutButtonClicked(MenuItem item)

@@ -1,1 +1,0 @@
-CREATE TABLE books (bookName VARCHAR(200), isbn VARCHAR(13), quantity integer, price integer, yearPublished integer, monthPublished integer, dayPublished integer, reserveNumber integer, primary key(isbn));

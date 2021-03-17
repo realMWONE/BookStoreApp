@@ -1,10 +1,8 @@
-package com.comp3350_group10.bookstore.persistence; /**
+ /**
  * Book Class for Book Database
  */
 
-
-import android.os.Parcel;
-import android.os.Parcelable;
+ package com.comp3350_group10.bookstore.persistence;
 
 import java.io.Serializable;
 
@@ -84,18 +82,8 @@ public class Book implements IBook, Serializable {
         return genre;
     }
 
-    //setPrice: Sets the price of the book to new price.
-    public void setPrice(int price){
-        this.price = price;
-    }
-
-    //setStockAmount: Sets the amount of books in stock to a new stock amount
-    public void setStock(int stockAmount){
-        this.stockAmount = stockAmount;
-    }
-
     //imageReference: Gets the image reference
-    public int getImageReference(){
+    public int getImage(){
         return imageReference;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.BookDetailsActivity;
 import com.comp3350_group10.bookstore.MainActivity;
+import com.comp3350_group10.bookstore.UserSettingActivity;
 import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
@@ -28,10 +29,11 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public List<IBook> SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
         ClearResults(table);
-        List<IBook> results = PopulateResults(dataHandler.findBooks(keyword), table, context, main);
-        return results;
+
+        if (keyword.equals("")) main.FillTrendingTable();
+        else PopulateResults(dataHandler.findBooks(keyword), table, context, main);
     }
 
     private void ClearResults(TableLayout table) {
@@ -43,8 +45,8 @@ public class ButtonFunctions implements IButtonFunctions
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
 
-                row.addView(CreateTextView(context, book));
                 row.addView(CreateImageView(context, book, ScreenSize.getPixelsFromDP(context, IMAGE_HEIGHT)));
+                row.addView(CreateTextView(context, book));
                 row.setOnClickListener(v -> OpenBookDetailsActivity(context, book, main));
 
                 table.addView(row);
@@ -96,13 +98,20 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void LogoutButtonPressed()
     {
+        dataHandler.logOut();
+    }
 
+
+    @Override
+    public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    {
+        dataHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
     @Override
-    public void UserSettingsButtonPressed()
-    {
-
+    public void UserSettingButtonPressed(Context context, MainActivity main) {
+        Intent intent = new Intent(context, UserSettingActivity.class);
+        main.startActivity(intent);
     }
 
     @Override

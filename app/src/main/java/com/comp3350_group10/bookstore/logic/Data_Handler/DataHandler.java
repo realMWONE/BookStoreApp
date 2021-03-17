@@ -19,7 +19,7 @@ import java.util.Map.Entry;
 
 public class DataHandler implements IDataHandler {
 
-    private User currentUser;
+    public static User currentUser = null;
     private IBookDatabase bookDatabase = new BookDatabase();
     private IUserDatabase userDatabase = new UserDatabase();
     public static IBook currentBook;
@@ -74,6 +74,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to increment the price by 1
     public void incrementPrice(IBook target) {
         try {
@@ -94,6 +95,7 @@ public class DataHandler implements IDataHandler {
 
     }
 
+
     //function set the stock for the target book with the given quantity
     public void setStock(IBook target, int quantity){
         //make sure target is initialized
@@ -112,6 +114,7 @@ public class DataHandler implements IDataHandler {
         }
     }
 
+
     //function to increment the stock by 1
     public void incrementStock(IBook target) {
         //make sure target is initialized
@@ -122,6 +125,7 @@ public class DataHandler implements IDataHandler {
             System.out.println(e + "caught in DataHandler.java method - incrementStock()");
         }
     }
+
 
     //function to decrement the stock by 1
     public void decrementStock(IBook target){
@@ -140,6 +144,7 @@ public class DataHandler implements IDataHandler {
         return (currentUser.getUserType() == UserType.Manager);
     }
 
+<<<<<<< HEAD
     //function to login the current user
     public void logIn(String email, String password){
 
@@ -170,6 +175,8 @@ public class DataHandler implements IDataHandler {
             System.out.println(f);
         }
     }
+=======
+>>>>>>> c9d6e0208dec5e6929048b82145d663bf8248a87
 
     //function to logout the current user
     public void logOut(){
@@ -177,6 +184,7 @@ public class DataHandler implements IDataHandler {
             currentUser = null;
     }
 
+<<<<<<< HEAD
     //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list
     //And gets rid of the duplicated elements
@@ -276,5 +284,9 @@ public class DataHandler implements IDataHandler {
             System.out.println(h);
         }
     }
+=======
+
+    public void changePassword(String oldPw, String newPw, String confirmNewPw){}
+>>>>>>> c9d6e0208dec5e6929048b82145d663bf8248a87
 
 }

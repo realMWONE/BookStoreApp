@@ -15,4 +15,8 @@ public interface IBook {
     int getImage();
     int getReserve();
     String getGenre();
+    void setPrice(int price);
+    void setStock(int stockAmount);
+
+
 }

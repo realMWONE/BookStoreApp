@@ -3,11 +3,14 @@ package com.comp3350_group10.bookstore.business.Data_Handler;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +22,7 @@ public class DataHandler implements IDataHandler {
 
     public static User currentUser = null;
     private IBookDatabase bookDatabase = new BookDatabase();    //TODO: constructor expecting path
-    private IUserDatabase userDatabase = new UserDatabase();
+    private UserDatabase userDatabase = new UserDatabase();
     public static IBook currentBook;
 
     public DataHandler(){}
@@ -63,6 +66,7 @@ public class DataHandler implements IDataHandler {
             else{
                 System.out.println("The price cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
 
         catch(NullPointerException e)
@@ -98,12 +102,13 @@ public class DataHandler implements IDataHandler {
         //make sure target is initialized
         try{
             //stock cannot be negative
-            if(quantity > 0){
+            if(quantity >= 0){
                 target.setStock(quantity);
             }
             else{
                 System.out.println("The stock cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
         catch(NullPointerException e)
         {
@@ -138,8 +143,7 @@ public class DataHandler implements IDataHandler {
 
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
-        //TODO: potential bug if referenced object was different. Make sure to check
-        return (currentUser.getUserType() == UserType.Manager);
+        return (UserType.Manager == currentUser.getUserType());
     }
 
     //function to login the current user
@@ -277,6 +281,37 @@ public class DataHandler implements IDataHandler {
         }
         catch (Exception h){
             System.out.println(h);
+        }
+    }
+
+    //function to login the current user
+    public void logIn(String email, String password){
+
+        User tempUser = userDatabase.searchUser(email);
+
+        try{
+            //check if the user is in the database or not
+            if(tempUser == null) {
+                throw new Exception("Password length too short, should be at least 8 characters");
+            }
+            else {
+                try{
+                    //check if the given password matches the tempUser's password
+                    if(!tempUser.getPassword().equals(password)){
+                        throw new Exception("Different passwords, couldn't confirm!!");
+                    }
+                    else {
+                        //if password matches, then update the currentUser
+                        currentUser = tempUser;
+                    }
+                }
+                catch (Exception g){
+                    System.out.println(g);
+                }
+            }
+        }
+        catch (Exception f){
+            System.out.println(f);
         }
     }
 

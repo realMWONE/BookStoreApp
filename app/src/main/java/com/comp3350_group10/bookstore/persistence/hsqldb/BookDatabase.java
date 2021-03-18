@@ -200,10 +200,11 @@ public class BookDatabase implements IBookDatabase {
 	public void updateBook(IBook book){
 
 		try (final Connection conn = connection()){
-			final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=?");
+			final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=? WHERE isbn = ?");
 			pstmt.setInt(1, book.getStock());
 			pstmt.setInt(2, book.getPrice());
 			pstmt.setInt(3, book.getReserve());
+			pstmt.setString(4, book.getBookIsbn());
 		}
 		catch(final SQLException e){
 			throw new PersistenceException(e);

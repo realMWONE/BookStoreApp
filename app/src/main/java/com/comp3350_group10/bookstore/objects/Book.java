@@ -87,4 +87,6 @@ public class Book implements IBook, Serializable {
     public int getImage(){
         return imageReference;
     }
+
+    //
 }

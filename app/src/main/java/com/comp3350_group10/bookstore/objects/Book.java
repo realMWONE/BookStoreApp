@@ -89,7 +89,7 @@ public class Book implements IBook, Serializable {
     }
 
     //setStockAmount: Updates the stock amount for our books
-    public void setStockAmount(int stockAmount){
+    public void setStock(int stockAmount){
         this.stockAmount = stockAmount;
     }
 

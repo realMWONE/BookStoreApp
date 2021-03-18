@@ -2,10 +2,7 @@ package com.comp3350_group10.bookstore.business.UI_Handler;
 
 import android.content.Context;
 import android.widget.TableLayout;
-<<<<<<< HEAD:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/IButtonFunctions.java
 import android.widget.TextView;
-=======
->>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8:app/src/main/java/com/comp3350_group10/bookstore/logic/UI_Handler/IButtonFunctions.java
 
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 

@@ -8,21 +8,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
+import com.comp3350_group10.bookstore.presentation.ScreenSize;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
-<<<<<<< HEAD:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/ButtonFunctions.java
-import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.presentation.ScreenSize;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
-=======
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.presentation.ScreenSize;
->>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8:app/src/main/java/com/comp3350_group10/bookstore/logic/UI_Handler/ButtonFunctions.java
 
 import java.text.DecimalFormat;
 import java.util.List;

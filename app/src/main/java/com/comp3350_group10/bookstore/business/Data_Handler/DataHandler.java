@@ -1,46 +1,58 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
-import com.comp3350_group10.bookstore.UserType;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
+import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.object.User;
+import com.comp3350_group10.bookstore.objects.User;
+import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
+
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+
 
 public class DataHandler implements IDataHandler {
 
     public static User currentUser = null;
-    private IBookDatabase bookDatabase = new BookDatabase();
+    private IBookDatabase bookDatabase = new BookDatabase("");    //TODO: constructor expecting path
+    private UserDatabase userDatabase = new UserDatabase();
     public static IBook currentBook;
 
-    //Takes the keyword and search database with it
-    //Will separate the keyword by spaces and dots, as well as making the keywords lower case
-    /*
-    * param keyword
-    * return list of found books
-    * */
-    public List<IBook> findBooks(String keyword){
-        List<IBook> bookList = new ArrayList<>();
-        List<IBook> result = new ArrayList<>();
-        String[] wordList = keyword.toLowerCase().split("[-. ,]+");
+    public DataHandler(){}
 
+    public DataHandler(User currentUser){
+        this.currentUser=currentUser;
+    }
+
+    //Takes the keyword and search database with it
+    //Returns result after removing duplicated results, and sorted by relevance
+    /*
+     * param keyword
+     * return list of found books
+     * */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<IBook> findBooks(String keyword){
+        List<String> wordList = splitWords(keyword); //splits keywords
+
+        List<IBook> bookList = new ArrayList<>();   //stores search result
+
+        //search database with each keyword and combining the lists
         for(String word: wordList){
             bookList.addAll(bookDatabase.findBook(word));
         }
 
-        //remove duplicate
-        for (IBook book : bookList) {
-            if (!result.contains(book)) {
-                result.add(book);
-            }
-        }
+        //sort the booklist by relevancy (times it appeared in search result) and remove duplication
+        bookList = sortByRelevancy(bookList);
 
-
-        return result;
+        return bookList;
     }
-
 
     //function to set the target book to the given price
     public void setPrice(IBook target, int price){
@@ -54,6 +66,7 @@ public class DataHandler implements IDataHandler {
             else{
                 System.out.println("The price cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
 
         catch(NullPointerException e)
@@ -89,12 +102,13 @@ public class DataHandler implements IDataHandler {
         //make sure target is initialized
         try{
             //stock cannot be negative
-            if(quantity > 0){
+            if(quantity >= 0){
                 target.setStock(quantity);
             }
             else{
                 System.out.println("The stock cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
         catch(NullPointerException e)
         {
@@ -129,9 +143,39 @@ public class DataHandler implements IDataHandler {
 
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
-        return (currentUser.getUserType() == UserType.Manager);
+        return (UserType.Manager == currentUser.getUserType());
     }
 
+    //function to login the current user
+    public void logIn(String email, String password){
+//
+//        User tempUser = userDatabase.searchUser(email);
+//
+//        try{
+//            //check if the user is in the database or not
+//            if(tempUser == null) {
+//                throw new Exception("Password length too short, should be at least 8 characters");
+//            }
+//            else {
+//                try{
+//                    //check if the given password matches the tempUser's password
+//                    if(!tempUser.getPassword().equals(password)){
+//                        throw new Exception("Different passwords, couldn't confirm!!");
+//                    }
+//                    else {
+//                        //if password matches, then update the currentUser
+//                        currentUser = tempUser;
+//                    }
+//                }
+//                catch (Exception g){
+//                    System.out.println(g);
+//                }
+//            }
+//        }
+//        catch (Exception f){
+//            System.out.println(f);
+//        }
+    }
 
     //function to logout the current user
     public void logOut(){
@@ -139,7 +183,107 @@ public class DataHandler implements IDataHandler {
             currentUser = null;
     }
 
+    //Takes a list of books with duplication, the more duplicated the book the
+    //Sort the given list of books by how many words in its title matches with the given word list
+    //And gets rid of the duplicated elements
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private List<IBook> sortByRelevancy(List<IBook> bookList){
+        //relevancy is determined by # of times the book appeared in search result
+        //<Key : Value> = <IBook book : Integer relevancy>
+        HashMap<IBook,Integer> map = new HashMap<>();
+        for (IBook book : bookList) {
+            if (!map.containsKey(book)) {
+                map.put(book, 1);
+            }
+            else{
+                map.put(book, map.get(book)+1);
+                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'
+            }
+        }
 
-    public void changePassword(String oldPw, String newPw, String confirmNewPw){}
+        //descending sort by relevancy
+        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
+        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
 
+        //copies the sorted list to list of books to return
+        List<IBook> result = new ArrayList<>();
+        for(Entry<IBook, Integer> entries: sortedBookList){
+            result.add(entries.getKey());
+        }
+
+        return result;
+    }
+
+
+    // splits the given string, ignores non-ascii words
+    private List<String> splitWords(String words){
+        //split input
+        String[] split = words.toLowerCase().split("[-. ,:]+");
+
+        //initialize returning list
+        List<String> result = new ArrayList<>();
+
+        //ignore non-ascii and common words
+        for(String word:split) {
+            if(word.matches("\\A\\p{ASCII}*\\z")){
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+
+    //function to change password for the current logged in user
+    public void changePassword(String oldPw, String newPw, String confirmNewPw){
+        try {
+            //check if the user is logged in or not
+            if(currentUser == null){
+                throw new Exception("User must be logged in");
+            }
+            else {
+                try {
+                    //check if the current password matches the old password
+                    if(!currentUser.getPassword().equals(oldPw)){
+                        throw new Exception("Current password doesn't match the saved password");
+                    }
+                    else {
+                        try{
+                            //check if the new password length is at least 8 characters (validation)
+                            if(newPw.length()<8) {
+                                throw new Exception("Password length too short, should be at least 8 characters");
+                            }
+                            else {
+                                try{
+                                    //check if the new password is confirmed or not
+                                    if(!newPw.equals(confirmNewPw)){
+                                        throw new Exception("Different passwords, couldn't confirm!!");
+                                    }
+                                    else {
+                                        //if everything is correct, then update the password
+                                        currentUser.setPassword(newPw);
+                                    }
+                                }
+                                catch (Exception g){
+                                    System.out.println(g);
+                                }
+                            }
+                        }
+                        catch (Exception f){
+                            System.out.println(f);
+                        }
+                    }
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        }
+        catch (Exception h){
+            System.out.println(h);
+        }
+    }
+
+
+    // TODO: Take care of IUserDatabase bugs after it's implemented
 }

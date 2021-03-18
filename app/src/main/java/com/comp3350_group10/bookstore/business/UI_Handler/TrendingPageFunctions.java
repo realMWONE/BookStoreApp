@@ -1,10 +1,7 @@
 package com.comp3350_group10.bookstore.business.UI_Handler;
 
 import android.content.Context;
-<<<<<<< HEAD:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFunctions.java
 import android.content.Intent;
-=======
->>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFuctions.java
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,19 +9,11 @@ import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-<<<<<<< HEAD:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFunctions.java
+import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
-import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
-=======
-import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
->>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8:app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFuctions.java
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.util.List;

@@ -1,52 +1,48 @@
 /**
- * Fake Book Database
+ * HSQLDB Book Database
  */
-package com.comp3350_group10.bookstore.persistence.hsqldb;
 
-import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.object.Book;
+package com.comp3350_group10.bookstore.persistence.hsqldb;
+import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.List;
 
-public class BookDatabase implements IBookDatabase {
-    //List for our book database which would store the list of Book objects
-    private List<Book> bookList;
 
-    //Constructor
-    public BookDatabase() {
-        //Calling createDatabase method here so every time the BookDatabase object is created it would have all the data loaded into it
-        createDatabase();
+public class BookDatabase implements IBookDatabase {
+
+    private List<IBook> bookList;
+
+    private final String dbPath;
+
+    public BookDatabase(final String dbPath){
+        this.dbPath = dbPath;
     }
 
-    /**
-     * createDatabase: Populates the database by adding new book objects with information about the books into the list
-     */
-    private void createDatabase(){
-        bookList = new ArrayList<>();
-        bookList.add(new Book("3214686513501", "Harry Potter and the Philosopher's Stone", "J.K. Rowling", 2630, 2, R.drawable.philosophers_stone));
-        bookList.add(new Book("1100303121502", "Harry Potter and the Chamber of secrets", "J.K. Rowling", 2650, 19, R.drawable.harry_potter_and_the_chamber_of_secrets));
-        bookList.add(new Book("9260783121503", "The Da Vinci Code", "Dan Brown", 3000, 20, R.drawable.the_da_vinci_code));
-        bookList.add(new Book("4458860121504", "Angels and Demons", "Dan Brown", 3000, 5, R.drawable.angels_demons));
-        bookList.add(new Book("1288903121505", "Diary of Wimpy Kid:The Getaway", "Jeff Kinney", 2500, 15, R.drawable.diary_of_wimpy_kid_the_getaway));
-        bookList.add(new Book("6481103121506", "Diary of Wimpy Kid: Double Down", "Jeff Kinney", 2500, 13, R.drawable.diary_of_wimpy_kid_double_down));
-        bookList.add(new Book("6003255121507", "Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 2630, 11, R.drawable.prisoner_of_azkaban));
-        bookList.add(new Book("6783908521508", "Harry Potter and the Goblet of Fire", "J.K. Rowling", 2630, 10, R.drawable.harry_potter_and_the_goblet_fire));
-        bookList.add(new Book("6588503121509", "Harry Potter and the Order of Phoenix", "J.K. Rowling", 2630, 8, R.drawable.harry_potter_and_the_order_of_the_phoenix));
-        bookList.add(new Book("6654684858510", "Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2630, 6, R.drawable.harry_potter_and_the_half_blood_prince));
-        bookList.add(new Book("6874684025221", "Harry Potter and the Deathly Hallows", "J.K. Rowling", 2630, 6, R.drawable.harry_potter_and_the_deathly_hallows));
-        bookList.add(new Book("5354684656848", "Harry Potter and the Cursed Child", "J.K.Rowling",2730, 7, R.drawable.harry_potter_and_the_cursed_child));
-        bookList.add(new Book("2510323255565", "Twilight", "Stephenie Meyer", 2030, 12, R.drawable.twilight));
-        bookList.add(new Book("2551819816185", "Eclipse", "Stephenie Meyer", 2230, 14, R.drawable.eclipse));
-        bookList.add(new Book("2516511685000", "New Moon", "Stephenie Meyer", 2130, 8, R.drawable.new_moon));
-        bookList.add(new Book("2051512546452", "Breaking Dawn", "Stephenie Meyer", 2230, 7, R.drawable.breaking_dawn));
-        bookList.add(new Book("2510018982862", "Midnight Sun", "Stephenie Meyer", 2230, 3, R.drawable.midnightsun));
-        bookList.add(new Book("2500186257772", "The Lord of The Rings, The Fellowship of the Ring", "J. R. R. Tolkien", 2030, 5, R.drawable.lotr));
-        bookList.add(new Book("2500114562233", "The Lord of The Rings, The Two Towers", "J. R. R. Tolkien", 2030, 12, R.drawable.the_two_towers));
-        bookList.add(new Book("2500885265433", "The Book of Lost Tales", "J. R. R. Tolkien", 2030, 13, R.drawable.the_book_of_lost_tails));
-        bookList.add(new Book("2369852102742", "The Children of Húrin", "J. R. R. Tolkien", 2030, 2, R.drawable.the_children_of_hurin));
+    private Connection connection() throws SQLException{
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
+    }
+
+    private Book createBook(final ResultSet rs) throws SQLException{
+        final String bookName = rs.getString("bookName");
+        final String isbn = rs.getString("isbn");
+        final int quantity = rs.getInt("quantity");
+        final int price = rs.getInt("price");
+        final String date = rs.getString("date");
+        final String author = rs.getString("author");
+        final String genre = rs.getString("genre");
+        final int reserve = rs.getInt("reserve");
+        final int imageReference = rs.getInt("image");
+
+        return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
     }
 
 
@@ -89,12 +85,12 @@ public class BookDatabase implements IBookDatabase {
      * @param isbn
      */
     private List<IBook> findByISBN(String isbn){
-        List<IBook> bookIsbn = new ArrayList<>();
+        List<IBook> bookIsbn = getBooks();
         if(isbn != null){
             //Going through all the bookList
-            for(Book book: bookList){
+            for(IBook book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookIsbn().contains(isbn)){
+                if(book.getBookIsbn().startsWith(isbn)){
                     bookIsbn.add(book);
                 }
             }
@@ -107,13 +103,21 @@ public class BookDatabase implements IBookDatabase {
      * @param author
      */
     private List<IBook> findByAuthor(String author){
-        List<IBook> bookAuthor = new ArrayList<>();
+        List<IBook> bookAuthor = getBooks();
+        String[] split;
         if(author != null){
             //Going through all the bookList
-            for(Book book: bookList){
-                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookAuthor().toLowerCase().contains(author)){
-                    bookAuthor.add(book);
+            for(IBook book: bookList) {
+                //***CHANGED***:
+                // now instead of pulling whole string and try to match with the search term,
+                // we split the term by delimeters and try to match each search term with each data term
+                //e.g. "J. K. Rowling" now becomes "J", "K", "Rowling" so if we search "Rowling" it now matches
+                split = book.getBookAuthor().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book's author name, then add that book to our return list
+                    if (splitTerm.startsWith(author)) {
+                        bookAuthor.add(book);
+                    }
                 }
             }
         }
@@ -125,21 +129,97 @@ public class BookDatabase implements IBookDatabase {
      * @param title
      */
     private List<IBook> findByTitle(String title){
-        List<IBook> bookTitle = new ArrayList<>();
+        List<IBook> bookTitle = getBooks();
+        String[] split;
+
         if(title != null){
             //Going through all the bookList
-            for(Book book: bookList) {
-                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if (book.getBookName().toLowerCase().contains(title)) {
-                    bookTitle.add(book);
+            for(IBook book: bookList) {
+                //***CHANGED***: see findByAuthor for detail
+                split = book.getBookName().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book titles, then add the book to our return list
+                    if (splitTerm.startsWith(title)) {
+                        bookTitle.add(book);
+                    }
                 }
             }
         }
         return bookTitle;
     }
+
+
+    @Override
+    public List<IBook> getBooks(){
+        final List<IBook> books = new ArrayList<>();
+
+        try (final Connection conn = connection()){
+            final Statement stmt = conn.createStatement();
+            final ResultSet rtst = stmt.executeQuery("SELECT * FROM BOOKS");
+
+            while(rtst.next()){
+                final Book book = createBook(rtst);
+            }
+
+            rtst.close();
+            stmt.close();
+        }
+
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+        return books;
+    }
+
+
+
+    @Override
+    public IBook insertBook(IBook book) {
+
+        try(final Connection conn = connection()) {
+            final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO BOOKS VALUES(?,?,?,?,?,?,?,?)");
+            pstmt.setString(1, book.getBookName());
+            pstmt.setString(2, book.getBookIsbn());
+            pstmt.setInt(3, book.getStock());
+            pstmt.setInt(4, book.getPrice());
+            pstmt.setString(5, book.getDate());
+            pstmt.setString(6, book.getBookAuthor());
+            pstmt.setString(7, book.getGenre());
+            pstmt.setInt(8, book.getReserve());
+            pstmt.setInt(9, book.getImage());
+            pstmt.executeUpdate();
+
+            return book;
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void updateBook(IBook book){
+
+        try (final Connection conn = connection()){
+            final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+            pstmt.setInt(1, book.getStock());
+            pstmt.setInt(2, book.getPrice());
+            pstmt.setInt(3, book.getReserve());
+            pstmt.setString(4, book.getBookIsbn());
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+    }
+
+    @Override
+    public void deleteBook(IBook book){
+        try(final Connection conn = connection()){
+            final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM BOOKS WHERE isbn=?");
+            pstmt.setString(1, book.getBookIsbn());
+            pstmt.executeUpdate();
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+    }
 }
-
-
-
-
-

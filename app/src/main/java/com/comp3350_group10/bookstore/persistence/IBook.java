@@ -16,7 +16,7 @@ public interface IBook {
     int getReserve();
     String getGenre();
     void setPrice(int price);
-    void setStockAmount(int stockAmount);
+    void setStock(int stockAmount);
     void setReserve(int reserve);
 
 }

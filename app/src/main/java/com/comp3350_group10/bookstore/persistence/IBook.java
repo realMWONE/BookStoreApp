@@ -15,4 +15,8 @@ public interface IBook {
     int getImage();
     int getReserve();
     String getGenre();
+    //ADDED BY DUY, 2021/03/17
+    void setStock(int quantity);
+    void setPrice(int price);
+
 }

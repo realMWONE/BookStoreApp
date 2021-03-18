@@ -3,6 +3,10 @@ package com.comp3350_group10.bookstore.business.Data_Handler;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+
+import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.persistence.IUserDatabase;
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -18,8 +22,8 @@ import java.util.Map.Entry;
 public class DataHandler implements IDataHandler {
 
     public static User currentUser = null;
-    private IBookDatabase bookDatabase = new BookDatabase();    //TODO: constructor expecting path
-    private IUserDatabase userDatabase = new UserDatabase();
+    private IBookDatabase bookDatabase = new BookDatabase(Main.getDBPath());    //TODO: constructor expecting path
+    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
     public static IBook currentBook;
 
     public DataHandler(){}
@@ -145,8 +149,10 @@ public class DataHandler implements IDataHandler {
     //function to login the current user
     public void logIn(String email, String password){
 
-        User tempUser = userDatabase.searchUser(email);
-
+        //MODIFIED BY DUY, 2021/03/17,
+        //original : User tempUser = userDatabase.searchUser(email);
+        User tempUser = (User)userDatabase.findUser(email);
+        ///////////////////////////////////////
         try{
             //check if the user is in the database or not
             if(tempUser == null) {

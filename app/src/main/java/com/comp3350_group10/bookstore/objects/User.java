@@ -1,9 +1,13 @@
 package com.comp3350_group10.bookstore.objects;
 
 
-import com.comp3350_group10.bookstore.persistence.fakeDB.UserType;
+import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.persistence.IUserDatabase;
+import com.comp3350_group10.bookstore.persistence.UserType;
 
-public class User
+import java.io.Serializable;
+
+public class User implements IUser, Serializable
 {
 
     private String realName;

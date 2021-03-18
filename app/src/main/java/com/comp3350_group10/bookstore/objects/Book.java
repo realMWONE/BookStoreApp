@@ -83,6 +83,18 @@ public class Book implements IBook, Serializable {
         return genre;
     }
 
+
+    //ADDED BY DUY, 2021/03/17
+    @Override
+    public void setStock(int quantity) {
+        this.stockAmount = quantity;
+    }
+
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     //imageReference: Gets the image reference
     public int getImage(){
         return imageReference;

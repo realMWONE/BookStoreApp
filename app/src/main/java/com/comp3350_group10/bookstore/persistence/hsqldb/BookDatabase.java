@@ -159,6 +159,7 @@ public class BookDatabase implements IBookDatabase {
 
 			while(rtst.next()){
 				final Book book = createBook(rtst);
+				//ADDED TO BOOKS ???
 			}
 
 			rtst.close();
@@ -204,6 +205,7 @@ public class BookDatabase implements IBookDatabase {
 			pstmt.setInt(1, book.getStock());
 			pstmt.setInt(2, book.getPrice());
 			pstmt.setInt(3, book.getReserve());
+
 		}
 		catch(final SQLException e){
 			throw new PersistenceException(e);

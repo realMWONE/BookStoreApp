@@ -1,10 +1,10 @@
 package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.UserType;
-import com.comp3350_group10.bookstore.data.Book;
-import com.comp3350_group10.bookstore.data.User;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
+import com.comp3350_group10.bookstore.objects.Book;
+import com.comp3350_group10.bookstore.objects.User;
 
 import junit.framework.TestCase;
 
@@ -20,7 +20,7 @@ public class DataHandlerTest extends TestCase {
     public static void testSetPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.setPrice(book,50);
         assertEquals(book.getPrice(),50);
         //Book 2
@@ -36,7 +36,7 @@ public class DataHandlerTest extends TestCase {
     public static void testIncrementPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.incrementPrice(book);
         assertEquals(book.getPrice(),26);
         //Book 2
@@ -53,7 +53,7 @@ public class DataHandlerTest extends TestCase {
     public static void testDecrementPrice() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.decrementPrice(book);
         assertEquals(book.getPrice(),24);
         //Book 2
@@ -69,7 +69,7 @@ public class DataHandlerTest extends TestCase {
     public static void testSetStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.setStock(book,10);
         assertEquals(book.getStock(),10);
         //Book 2
@@ -85,7 +85,7 @@ public class DataHandlerTest extends TestCase {
     public static void testIncrementStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.incrementStock(book);
         assertEquals(book.getStock(),3);
         //Book 2
@@ -101,7 +101,7 @@ public class DataHandlerTest extends TestCase {
     public static void testDecrementStock() {
         //Book 1
         Book book = new Book("1234567891111","Harry Potter","J.K",25,2, R.drawable.lotr);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
         handler.decrementStock(book);
         assertEquals(book.getStock(),1);
         //Book 2
@@ -119,8 +119,8 @@ public class DataHandlerTest extends TestCase {
         User u1 = new User("Anonymous","1","software",UserType.Manager);
         User u2 = null;
         String newPassword= "computer";
-        DataHandler dataHandler = new DataHandler(u1);
-        DataHandler dataHandler1 = new DataHandler(u2);
+        BookDataHandler dataHandler = new BookDataHandler(u1);
+        BookDataHandler dataHandler1 = new BookDataHandler(u2);
 
         dataHandler1.changePassword("software",newPassword,"computer");
         dataHandler.changePassword("SOFTWARE",newPassword,"computer");
@@ -143,7 +143,7 @@ public class DataHandlerTest extends TestCase {
 
     public static void testChangePassword(){
         User currentUser = new User("Tom", "email@gmail.com","12345678", UserType.Manager);
-        DataHandler handler = new DataHandler();
+        BookDataHandler handler = new BookDataHandler();
 
         handler.changePassword("12345678","","");
     }

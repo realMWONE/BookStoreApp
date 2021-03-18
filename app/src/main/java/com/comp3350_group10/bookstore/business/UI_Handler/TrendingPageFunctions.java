@@ -1,6 +1,7 @@
 package com.comp3350_group10.bookstore.business.UI_Handler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,16 +9,16 @@ import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.util.List;
 
-public class TrendingPageFuctions {
+public class TrendingPageFunctions {
     private static int imageHeight = 0;
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
@@ -85,14 +86,25 @@ public class TrendingPageFuctions {
     }
 
     private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
-        IDataHandler dataHandler = new DataHandler();
+        IBookDataHandler dataHandler = new BookDataHandler();
         List<IBook> books = dataHandler.findBooks(searchTerm);
 
         for (IBook book : books) {
             ImageView image = new ImageView(context);
+            image.setClickable(true);
             image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
             image.setImageResource(book.getImage());
             layout.addView(image);
+
+            image.setOnClickListener(v -> {
+                BookDataHandler.currentBook = book;
+                SwitchToBookDetailsActivity(context);
+            });
         }
+    }
+
+    private static void SwitchToBookDetailsActivity(Context context) {
+        Intent intent = new Intent(context, BookDetailsActivity.class);
+        context.startActivity(intent);
     }
 }

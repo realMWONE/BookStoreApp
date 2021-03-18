@@ -8,32 +8,35 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
+import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
-import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
+import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
+import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
 {
-    private IDataHandler dataHandler;
+    private IBookDataHandler bookHandler;
+    private IUserDataHandler userHandler;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions() {
-        dataHandler = new DataHandler();
+        bookHandler = new BookDataHandler();
     }
 
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();
-        else PopulateResults(dataHandler.findBooks(keyword), table, context, main);
+        else PopulateResults(bookHandler.findBooks(keyword), table, context, main);
     }
 
     private void ClearResults(TableLayout table) {
@@ -58,7 +61,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
         Intent intent = new Intent(context, BookDetailsActivity.class);
-        DataHandler.currentBook = book;
+        BookDataHandler.currentBook = book;
         main.startActivity(intent);
     }
 
@@ -96,16 +99,23 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
+    public void SwitchToLoginActivity(MainActivity main, Context context)
+    {
+        Intent intent = new Intent(context, LoginActivity.class);
+        main.startActivity(intent);
+    }
+
+    @Override
     public void LogoutButtonPressed()
     {
-        dataHandler.logOut();
+        userHandler.logOut();
     }
 
 
     @Override
     public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
-        dataHandler.changePassword(oldPw, newPw, confirmNewPw);
+        userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
     @Override
@@ -115,15 +125,21 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void IncrementStock()
+    public void IncrementStock(TextView text)
     {
+        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
 
+        bookHandler.incrementStock(BookDataHandler.currentBook);
+        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override
-    public void DecrementStock()
+    public void DecrementStock(TextView text)
     {
+        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
 
+        bookHandler.decrementStock(BookDataHandler.currentBook);
+        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override
@@ -131,4 +147,6 @@ public class ButtonFunctions implements IButtonFunctions
     {
 
     }
+
+
 }

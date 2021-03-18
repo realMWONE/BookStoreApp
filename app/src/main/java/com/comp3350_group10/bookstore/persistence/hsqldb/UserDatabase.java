@@ -1,9 +1,5 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
-
-
-import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
@@ -34,7 +30,7 @@ public class UserDatabase implements IUserDatabase {
         final String userId = rs.getString("userId");
         final String password = rs.getString("password");
         final String position = rs.getString("position");
-        return new User(name,userId,password,position==MANAGER?UserType.Manager:UserType.Employee);
+        return new User(name,userId,password,position==MANAGER? UserType.Manager:UserType.Employee);
     }
 
     public UserDatabase(final String dbPath){

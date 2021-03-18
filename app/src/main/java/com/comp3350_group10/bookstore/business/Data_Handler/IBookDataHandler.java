@@ -5,7 +5,7 @@ import com.comp3350_group10.bookstore.persistence.IBook;
 import java.util.List;
 
 
-public interface IDataHandler {
+public interface IBookDataHandler {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)
@@ -30,12 +30,4 @@ public interface IDataHandler {
     // a particular book
     void setStock(IBook target, int quantity);
 
-    //function to check whether the current user is a manager or employee
-    boolean isCurrentUserManager();
-
-    //function to logout the current user
-    void logOut();
-
-    //function to changePassword for the logged in user
-    void changePassword(String oldPw, String newPw, String confirmNewPw);
 }

@@ -4,14 +4,15 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
-import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,18 +20,12 @@ import java.util.List;
 import java.util.Map.Entry;
 
 
-public class DataHandler implements IDataHandler {
-
-    public static User currentUser = null;
-    private IBookDatabase bookDatabase = new BookDatabase(Main.getDBPath());    //TODO: constructor expecting path
+public class BookDataHandler implements IBookDataHandler {
     private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
+    private IBookDatabase bookDatabase = new BookDatabase(Main.getDBPath());    //TODO: constructor expecting path
     public static IBook currentBook;
 
-    public DataHandler(){}
-
-    public DataHandler(User currentUser){
-        this.currentUser=currentUser;
-    }
+    public BookDataHandler(){}
 
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
@@ -67,11 +62,12 @@ public class DataHandler implements IDataHandler {
             else{
                 System.out.println("The price cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
 
         catch(NullPointerException e)
         {
-            System.out.println(e+"caught in DataHandler.java method - setPrice()");
+            System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
         }
     }
 
@@ -81,7 +77,7 @@ public class DataHandler implements IDataHandler {
         try {
             setPrice(target, target.getPrice() + 1);
         } catch (NullPointerException e) {
-            System.out.println(e + "caught in DataHandler.java method - incrementPrice()");
+            System.out.println(e + "caught in UserDataHandler.java method - incrementPrice()");
         }
     }
 
@@ -91,7 +87,7 @@ public class DataHandler implements IDataHandler {
             setPrice(target, target.getPrice()-1);
         }
         catch (NullPointerException e) {
-            System.out.println(e + "caught in DataHandler.java method - decrementPrice()");
+            System.out.println(e + "caught in UserDataHandler.java method - decrementPrice()");
         }
 
     }
@@ -102,16 +98,17 @@ public class DataHandler implements IDataHandler {
         //make sure target is initialized
         try{
             //stock cannot be negative
-            if(quantity > 0){
+            if(quantity >= 0){
                 target.setStock(quantity);
             }
             else{
                 System.out.println("The stock cannot be set to negative number");
             }
+            bookDatabase.updateBook(target);
         }
         catch(NullPointerException e)
         {
-            System.out.println(e+"caught in DataHandler.java method - setStock()");
+            System.out.println(e+"caught in UserDataHandler.java method - setStock()");
         }
     }
 
@@ -123,7 +120,7 @@ public class DataHandler implements IDataHandler {
             setStock(target, target.getStock() + 1);
         }
         catch (NullPointerException e) {
-            System.out.println(e + "caught in DataHandler.java method - incrementStock()");
+            System.out.println(e + "caught in UserDataHandler.java method - incrementStock()");
         }
     }
 
@@ -143,7 +140,9 @@ public class DataHandler implements IDataHandler {
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         //TODO: potential bug if referenced object was different. Make sure to check
-        return (currentUser.getUserType() == UserType.Manager);
+        ////COMMENT OUT BY DUY, 2013/03/18
+        //return (currentUser.getUserType() == UserType.Manager);
+        return false;
     }
 
     //function to login the current user
@@ -165,8 +164,8 @@ public class DataHandler implements IDataHandler {
                         throw new Exception("Different passwords, couldn't confirm!!");
                     }
                     else {
-                        //if password matches, then update the currentUser
-                        currentUser = tempUser;
+                        //COMMENT OUT BY DUY, 2013/03/18
+                        //currentUser = tempUser;
                     }
                 }
                 catch (Exception g){
@@ -176,14 +175,10 @@ public class DataHandler implements IDataHandler {
         }
         catch (Exception f){
             System.out.println(f);
+            System.out.println(f + "caught in UserDataHandler.java method - decrementStock()");
         }
     }
 
-    //function to logout the current user
-    public void logOut(){
-        if(currentUser!=null)
-            currentUser = null;
-    }
 
     //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list
@@ -235,56 +230,8 @@ public class DataHandler implements IDataHandler {
         return result;
     }
 
-    //function to change password for the current logged in user
-    public void changePassword(String oldPw, String newPw, String confirmNewPw){
-        try {
-            //check if the user is logged in or not
-            if(currentUser == null){
-                throw new Exception("User must be logged in");
-            }
-            else {
-                try {
-                    //check if the current password matches the old password
-                    if(!currentUser.getPassword().equals(oldPw)){
-                        throw new Exception("Current password doesn't match the saved password");
-                    }
-                    else {
-                        try{
-                            //check if the new password length is at least 8 characters (validation)
-                            if(newPw.length()<8) {
-                                throw new Exception("Password length too short, should be at least 8 characters");
-                            }
-                            else {
-                                try{
-                                    //check if the new password is confirmed or not
-                                    if(!newPw.equals(confirmNewPw)){
-                                        throw new Exception("Different passwords, couldn't confirm!!");
-                                    }
-                                    else {
-                                        //if everything is correct, then update the password
-                                        currentUser.setPassword(newPw);
-                                    }
-                                }
-                                catch (Exception g){
-                                    System.out.println(g);
-                                }
-                            }
-                        }
-                        catch (Exception f){
-                            System.out.println(f);
-                        }
-                    }
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
 
-            }
-        }
-        catch (Exception h){
-            System.out.println(h);
-        }
-    }
+
 
     // TODO: Take care of IUserDatabase bugs after it's implemented
 }

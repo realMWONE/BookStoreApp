@@ -1,7 +1,5 @@
 package com.comp3350_group10.bookstore.data.model;
 
-import com.comp3350_group10.bookstore.data.model.LoggedInUser;
-
 import junit.framework.TestCase;
 
 public class LoginDataSourceTest extends TestCase {

@@ -1,8 +1,8 @@
 package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.data.Book;
-import com.comp3350_group10.bookstore.data.IBook;
+import com.comp3350_group10.bookstore.object.Book;
+import com.comp3350_group10.bookstore.persistence.IBook;
 
 import junit.framework.TestCase;
 

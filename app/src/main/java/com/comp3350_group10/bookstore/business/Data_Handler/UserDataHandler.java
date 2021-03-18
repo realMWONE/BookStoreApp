@@ -2,6 +2,7 @@ package com.comp3350_group10.bookstore.business.Data_Handler;
 
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.User;
+import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
@@ -11,8 +12,8 @@ import java.util.List;
 
 public class UserDataHandler implements IUserDataHandler {
 
-    public static User currentUser = null;
-    //private UserDatabase userDatabase = new UserDatabase(Main.getDBPath());
+    public static IUser currentUser = null;
+    private UserDatabase userDatabase = new UserDatabase(Main.getDBPath());
 
     public UserDataHandler(){}
 
@@ -27,34 +28,34 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password){
-//
-//        User tempUser = userDatabase.searchUser(email);
-//
-//        try{
-//            //check if the user is in the database or not
-//            if(tempUser == null) {
-//                throw new Exception("Password length too short, should be at least 8 characters");
-//            }
-//            else {
-//                try{
-//                    //check if the given password matches the tempUser's password
-//                    if(!tempUser.getPassword().equals(password)){
-//                        throw new Exception("Different passwords, couldn't confirm!!");
-//                    }
-//                    else {
-//                        //if password matches, then update the currentUser
-//                        currentUser = tempUser;
-//                    }
-//                }
-//                catch (Exception g){
-//                    System.out.println(g);
-//                }
-//            }
-//        }
-//        catch (Exception f){
-//            System.out.println(f);
-//        }
+    public void logIn(String email, String password) throws ClassNotFoundException {
+
+        IUser tempUser = userDatabase.findUser(email);
+
+        try{
+            //check if the user is in the database or not
+            if(tempUser == null) {
+                throw new Exception("Password length too short, should be at least 8 characters");
+            }
+            else {
+                try{
+                    //check if the given password matches the tempUser's password
+                    if(!tempUser.getPassword().equals(password)){
+                        throw new Exception("Different passwords, couldn't confirm!!");
+                    }
+                    else {
+                        //if password matches, then update the currentUser
+                        currentUser = tempUser;
+                    }
+                }
+                catch (Exception g){
+                    System.out.println(g);
+                }
+            }
+        }
+        catch (Exception f){
+            System.out.println(f);
+        }
     }
 
     //function to logout the current user

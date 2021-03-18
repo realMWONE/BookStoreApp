@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         SetSearchListener(getBaseContext(), this);
-        FillTrendingTable();
+        try {
+            FillTrendingTable();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         FillDropdownList();
     }
 
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         dropdown.setAdapter(adapter);
     }
 
-    public void FillTrendingTable() {
+    public void FillTrendingTable() throws ClassNotFoundException {
         TrendingPageFunctions.FillTrendingPage(bookListTable, this);
     }
 
@@ -63,7 +67,11 @@ public class MainActivity extends AppCompatActivity
             public void afterTextChanged(Editable s) { }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
+                try {
+                    uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

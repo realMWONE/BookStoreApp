@@ -34,7 +34,7 @@ public class BookDataHandler implements IBookDataHandler {
      * return list of found books
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<IBook> findBooks(String keyword){
+    public List<IBook> findBooks(String keyword) throws ClassNotFoundException {
         List<String> wordList = splitWords(keyword); //splits keywords
 
         List<IBook> bookList = new ArrayList<>();   //stores search result
@@ -65,7 +65,7 @@ public class BookDataHandler implements IBookDataHandler {
             bookDatabase.updateBook(target);
         }
 
-        catch(NullPointerException e)
+        catch(NullPointerException | ClassNotFoundException e)
         {
             System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
         }
@@ -94,7 +94,7 @@ public class BookDataHandler implements IBookDataHandler {
 
 
     //function set the stock for the target book with the given quantity
-    public void setStock(IBook target, int quantity){
+    public void setStock(IBook target, int quantity) throws ClassNotFoundException {
         //make sure target is initialized
         try{
             //stock cannot be negative
@@ -119,7 +119,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() + 1);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException | ClassNotFoundException e) {
             System.out.println(e + "caught in UserDataHandler.java method - incrementStock()");
         }
     }
@@ -131,7 +131,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() - 1);
         }
-        catch (NullPointerException e) {
+        catch (NullPointerException | ClassNotFoundException e) {
             System.out.println(e + "caught in DataHandler.java method - decrementStock()");
         }
     }
@@ -146,7 +146,7 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password){
+    public void logIn(String email, String password) throws ClassNotFoundException {
 
         //MODIFIED BY DUY, 2021/03/17,
         //original : User tempUser = userDatabase.searchUser(email);

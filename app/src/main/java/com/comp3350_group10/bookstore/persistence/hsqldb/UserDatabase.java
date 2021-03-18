@@ -21,6 +21,7 @@ public class UserDatabase implements IUserDatabase {
 
     private List<IUser> userList;
 
+
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
     }
@@ -38,7 +39,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser findUser(String userId) {
+    public IUser findUser(String userId) throws ClassNotFoundException {
         //retrieve getUsers first
         userList = getUsers();
         if(userList.size()==0)
@@ -50,8 +51,9 @@ public class UserDatabase implements IUserDatabase {
         return null;
     }
 
-    private List<IUser> getUsers() {
+    private List<IUser> getUsers() throws ClassNotFoundException {
         final List<IUser> usersInfo = new ArrayList<>();
+        Class.forName("org.hsqldb.jdbcDriver");
 
         try (final Connection conn = connection()){
             final Statement stmt = conn.createStatement();
@@ -72,7 +74,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser createUser(IUser user) {
+    public IUser createUser(IUser user) throws ClassNotFoundException {
+        Class.forName("org.hsqldb.jdbcDriver");
+
         try(final Connection conn = connection()) {
             final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO USERS VALUES(?,?,?,?)");
             pstmt.setString(1, user.getRealName());
@@ -89,7 +93,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void updateUser(IUser user) {
+    public void updateUser(IUser user) throws ClassNotFoundException {
+        Class.forName("org.hsqldb.jdbcDriver");
+
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("UPDATE USERS SET Name=?,password=?, position=? WHERE userId=?");
@@ -105,7 +111,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void deleteUser(IUser user) {
+    public void deleteUser(IUser user) throws ClassNotFoundException {
+        Class.forName("org.hsqldb.jdbcDriver");
+
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("DELETE FROM USER WHERE userId=?");

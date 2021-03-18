@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
@@ -29,10 +30,11 @@ public class ButtonFunctions implements IButtonFunctions
 
     public ButtonFunctions() {
         bookHandler = new BookDataHandler();
+        userHandler = new UserDataHandler();
     }
 
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException {
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();

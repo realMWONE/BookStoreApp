@@ -23,7 +23,7 @@ public class TrendingPageFunctions {
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
 
-    public static void FillTrendingPage(TableLayout table, Context context) {
+    public static void FillTrendingPage(TableLayout table, Context context) throws ClassNotFoundException {
         setHeights(context);
         AddSpacer(context, table);
         AddTrendingRow(table, context, "By Stephanie Meyer", "Stephenie Meyer");
@@ -39,7 +39,7 @@ public class TrendingPageFunctions {
         dividerHeight = ScreenSize.getPixelsFromDP(context, 3);
     }
 
-    private static void AddTrendingRow(TableLayout table, Context context, String categoryName, String searchTerm) {
+    private static void AddTrendingRow(TableLayout table, Context context, String categoryName, String searchTerm) throws ClassNotFoundException {
         AddCategoryName(table, context, categoryName);
         AddSpacer(context, table);
         AddRowContent(table, context, searchTerm);
@@ -71,7 +71,7 @@ public class TrendingPageFunctions {
         table.addView(row);
     }
 
-    private static void AddRowContent(TableLayout table, Context context, String searchTerm) {
+    private static void AddRowContent(TableLayout table, Context context, String searchTerm) throws ClassNotFoundException {
         TableRow row = new TableRow(context);
         HorizontalScrollView scrollView = new HorizontalScrollView(context);
         LinearLayout layout = new LinearLayout(context);
@@ -85,9 +85,9 @@ public class TrendingPageFunctions {
         scrollView.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
     }
 
-    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
-        IBookDataHandler dataHandler = new BookDataHandler();
-        List<IBook> books = dataHandler.findBooks(searchTerm);
+    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) throws ClassNotFoundException {
+        IBookDataHandler bookHandler = new BookDataHandler();
+        List<IBook> books = bookHandler.findBooks(searchTerm);
 
         for (IBook book : books) {
             ImageView image = new ImageView(context);

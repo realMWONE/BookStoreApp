@@ -1,6 +1,8 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
 import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.business.UI_Handler.ErrorHandler;
+import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
@@ -87,6 +89,7 @@ public class UserDataHandler implements IUserDataHandler {
         try {
             //check if the user is logged in or not
             if(currentUser == null){
+                IErrorHandler.ShowLoginErrorMessage("There is no currently logged in user");
                 throw new Exception("User must be logged in");
             }
             else {

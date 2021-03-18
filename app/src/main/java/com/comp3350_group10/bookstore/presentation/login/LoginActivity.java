@@ -11,11 +11,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.R;
 
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
+import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity
     private EditText password;
     private EditText email;
     private Button loginButton;
+    public static TextView errorMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -35,7 +38,7 @@ public class LoginActivity extends AppCompatActivity
                 .get(LoginViewModel.class);
 
         dataHandler = new UserDataHandler();
-
+        errorMessage = findViewById(R.id.loginErrorMessage);
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);
         loginButton = findViewById(R.id.loginButton);
@@ -62,6 +65,10 @@ public class LoginActivity extends AppCompatActivity
     }
 
     public void LoginOnClick(View v) {
-        //Check if user exists
+        IErrorHandler.ShowLoginErrorMessage("That is not a valid email address");
+    }
+
+    public TextView getErrorMessageTextView() {
+        return errorMessage;
     }
 }

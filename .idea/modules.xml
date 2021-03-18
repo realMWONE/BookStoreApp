@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BookStore.iml" filepath="$PROJECT_DIR$/.idea/modules/BookStore.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/winter-2021-a03-group-10.BookStore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/winter-2021-a03-group-10.BookStore.app.iml" />
     </modules>
   </component>
 </project>

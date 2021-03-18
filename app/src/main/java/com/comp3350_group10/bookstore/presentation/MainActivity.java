@@ -16,6 +16,8 @@ import com.comp3350_group10.bookstore.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.TrendingPageFunctions;
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Main.setDBPath("./assets/db/book.script");
+        Service.setupBookDatabase();
         uIButtonFunctions = new ButtonFunctions();
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);

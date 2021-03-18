@@ -86,4 +86,6 @@ public class UserTest extends TestCase {
         assertEquals(u2.getPassword(),userPasswords[1]);
         assertEquals(u3.getPassword(),userPasswords[2]);
     }
+
+
 }

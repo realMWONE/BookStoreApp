@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import com.comp3350_group10.bookstore.persistence.fakeDB.LoginDataSource;
 import com.comp3350_group10.bookstore.persistence.fakeDB.LoginRepository;
-
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor

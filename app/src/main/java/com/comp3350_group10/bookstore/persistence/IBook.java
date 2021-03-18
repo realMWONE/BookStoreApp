@@ -1,7 +1,5 @@
 package com.comp3350_group10.bookstore.persistence;
 
-import android.os.Parcelable;
-
 /**
  * Interface for Book
  */
@@ -10,10 +8,15 @@ public interface IBook {
     //Getters and Setters of Book.java
     String getBookName();
     String getBookAuthor();
+    String getDate();
     int getPrice();
     String getBookIsbn();
-    void setPrice(int price);
-    void setStock(int quantity);
     int getStock();
     int getImage();
+    int getReserve();
+    String getGenre();
+    void setPrice(int price);
+    void setStockAmount(int stockAmount);
+    void setReserve(int reserve);
+
 }

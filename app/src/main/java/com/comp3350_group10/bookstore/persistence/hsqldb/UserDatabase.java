@@ -1,7 +1,5 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 
-import com.comp3350_group10.bookstore.object.User;
-
 public class UserDatabase {
 
     private static User[] userList;

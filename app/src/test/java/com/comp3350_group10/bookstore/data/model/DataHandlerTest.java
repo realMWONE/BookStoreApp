@@ -2,8 +2,13 @@ package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.UserType;
+<<<<<<< HEAD
 import com.comp3350_group10.bookstore.object.Book;
 import com.comp3350_group10.bookstore.object.User;
+=======
+import com.comp3350_group10.bookstore.data.Book;
+import com.comp3350_group10.bookstore.data.User;
+>>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8
 import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
 
 import junit.framework.TestCase;
@@ -112,6 +117,25 @@ public class DataHandlerTest extends TestCase {
         //Test for null pointer exception handled
         Book book_2 = null;
         handler.decrementStock(book_2);
+    }
+
+    public static void testChangePassword(){
+        //change password if user is logged in and all the provided information is correct
+        User u1 = new User("Anonymous","1","software",UserType.Manager);
+        User u2 = null;
+        String newPassword= "computer";
+        DataHandler dataHandler = new DataHandler(u1);
+        DataHandler dataHandler1 = new DataHandler(u2);
+
+        dataHandler1.changePassword("software",newPassword,"computer");
+        dataHandler.changePassword("SOFTWARE",newPassword,"computer");
+        dataHandler.changePassword("software","comp","comp");
+        dataHandler.changePassword("software",newPassword,"Computer");
+        dataHandler.changePassword("software",newPassword,"computer");
+
+        assertEquals(newPassword,u1.getPassword());
+
+
     }
 
     //CAN'T TEST THIS SINCE THE USER IS PRIVATE AND NO ACCESSIBILITY TO IT

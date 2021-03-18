@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.R;
 
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity
     private EditText password;
     private EditText email;
     private Button loginButton;
+    public static TextView errorMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity
                 .get(LoginViewModel.class);
 
         buttonFunctions = new ButtonFunctions();
-
+        errorMessage = findViewById(R.id.loginErrorMessage);
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);
         loginButton = findViewById(R.id.loginButton);

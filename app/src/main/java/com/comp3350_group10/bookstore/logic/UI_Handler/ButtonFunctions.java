@@ -31,7 +31,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();

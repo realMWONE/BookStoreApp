@@ -15,7 +15,7 @@ public interface IButtonFunctions {
 
     //function is called when user hits search button to
     // find a book based on ISBN/author/title
-    void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main);
+    void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy);
 
     void SwitchToLoginActivity(MainActivity main, Context context);
 

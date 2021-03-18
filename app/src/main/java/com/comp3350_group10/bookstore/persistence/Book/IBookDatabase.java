@@ -11,6 +11,6 @@ public interface IBookDatabase
     List<IBook> findBook(String searchTerm);
     List<IBook> getBooks();
     IBook insertBook(IBook book);
-    IBook updateBook(IBook book);
+    void updateBook(IBook book);
     void deleteBook(IBook book);
 }

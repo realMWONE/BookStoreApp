@@ -195,15 +195,13 @@ public class BookDatabase implements IBookDatabase {
 	}
 
 	@Override
-	public IBook updateBook(IBook book){
+	public void updateBook(IBook book){
 
 		try (final Connection conn = connection()){
 			final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=?");
 			pstmt.setInt(1, book.getStock());
 			pstmt.setInt(2, book.getPrice());
 			pstmt.setInt(3, book.getReserve());
-
-			return book;
 		}
 		catch(final SQLException e){
 			throw new PersistenceException(e);

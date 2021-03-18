@@ -8,9 +8,6 @@ import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class UserDataHandler implements IUserDataHandler {
 
@@ -66,24 +63,6 @@ public class UserDataHandler implements IUserDataHandler {
             currentUser = null;
     }
 
-    // splits the given string, ignores non-ascii words
-    private List<String> splitWords(String words){
-        //split input
-        String[] split = words.toLowerCase().split("[-. ,:]+");
-
-        //initialize returning list
-        List<String> result = new ArrayList<>();
-
-        //ignore non-ascii and common words
-        for(String word:split) {
-            if(word.matches("\\A\\p{ASCII}*\\z")){
-                result.add(word);
-            }
-        }
-
-        return result;
-    }
-
     //function to change password for the current logged in user
     public void changePassword(String oldPw, String newPw, String confirmNewPw){
         try {
@@ -113,6 +92,7 @@ public class UserDataHandler implements IUserDataHandler {
                                     else {
                                         //if everything is correct, then update the password
                                         currentUser.setPassword(newPw);
+                                        userDatabase.updateUser(currentUser);
                                     }
                                 }
                                 catch (Exception g){

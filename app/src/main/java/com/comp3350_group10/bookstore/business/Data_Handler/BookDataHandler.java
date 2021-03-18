@@ -137,48 +137,6 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-    //function to check whether the current user is a manager or employee
-    public boolean isCurrentUserManager(){
-        //TODO: potential bug if referenced object was different. Make sure to check
-        ////COMMENT OUT BY DUY, 2013/03/18
-        //return (currentUser.getUserType() == UserType.Manager);
-        return false;
-    }
-
-    //function to login the current user
-    public void logIn(String email, String password) throws ClassNotFoundException {
-
-        //MODIFIED BY DUY, 2021/03/17,
-        //original : User tempUser = userDatabase.searchUser(email);
-        User tempUser = (User)userDatabase.findUser(email);
-        ///////////////////////////////////////
-        try{
-            //check if the user is in the database or not
-            if(tempUser == null) {
-                throw new Exception("Password length too short, should be at least 8 characters");
-            }
-            else {
-                try{
-                    //check if the given password matches the tempUser's password
-                    if(!tempUser.getPassword().equals(password)){
-                        throw new Exception("Different passwords, couldn't confirm!!");
-                    }
-                    else {
-                        //COMMENT OUT BY DUY, 2013/03/18
-                        //currentUser = tempUser;
-                    }
-                }
-                catch (Exception g){
-                    System.out.println(g);
-                }
-            }
-        }
-        catch (Exception f){
-            System.out.println(f);
-            System.out.println(f + "caught in UserDataHandler.java method - decrementStock()");
-        }
-    }
-
 
     //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list

@@ -28,7 +28,8 @@ public class ButtonFunctions implements IButtonFunctions
     private IUserDataHandler userHandler;
     private final int IMAGE_HEIGHT = 120;
 
-    public ButtonFunctions() {
+    public ButtonFunctions()
+    {
         bookHandler = new BookDataHandler();
         userHandler = new UserDataHandler();
     }
@@ -95,9 +96,8 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void LoginButtonPressed()
-    {
-
+    public void LoginButtonPressed(String email, String password) throws ClassNotFoundException {
+        userHandler.logIn(email, password);
     }
 
     @Override

@@ -11,23 +11,22 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.R;
 
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
-import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
+import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 
 public class LoginActivity extends AppCompatActivity
 {
-    IUserDataHandler dataHandler;
+    IButtonFunctions buttonFunctions;
 
     private LoginViewModel loginViewModel;
     private EditText password;
     private EditText email;
     private Button loginButton;
-    public static TextView errorMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -37,8 +36,8 @@ public class LoginActivity extends AppCompatActivity
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        dataHandler = new UserDataHandler();
-        errorMessage = findViewById(R.id.loginErrorMessage);
+        buttonFunctions = new ButtonFunctions();
+
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);
         loginButton = findViewById(R.id.loginButton);
@@ -64,11 +63,8 @@ public class LoginActivity extends AppCompatActivity
         loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals(""));
     }
 
-    public void LoginOnClick(View v) {
-        IErrorHandler.ShowLoginErrorMessage("That is not a valid email address");
-    }
-
-    public TextView getErrorMessageTextView() {
-        return errorMessage;
+    public void LoginOnClick(View v) throws ClassNotFoundException
+    {
+        buttonFunctions.LoginButtonPressed(this.email.toString(), this.password.toString());
     }
 }

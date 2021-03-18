@@ -1,7 +1,7 @@
 package com.comp3350_group10.bookstore.application;
 
 public class Main {
-    private static String dbName="WS";
+    private static String dbName="book";
 
     public static void setDBPath(final String name) {
         try {

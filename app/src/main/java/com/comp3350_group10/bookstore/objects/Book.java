@@ -88,5 +88,18 @@ public class Book implements IBook, Serializable {
         return imageReference;
     }
 
-    //
+    //setStockAmount: Updates the stock amount for our books
+    public void setStockAmount(){
+        this.stockAmount = stockAmount;
+    }
+
+    //setPrice: Updates the price
+    public void setPrice(){
+        this.price = price;
+    }
+
+    //setReserve: Updates the reserved book amount
+    public void setReserve(){
+        this.reserve = reserve;
+    }
 }

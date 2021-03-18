@@ -13,12 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+
+import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
 
 public class LoginActivity extends AppCompatActivity
 {
-    IDataHandler dataHandler;
+    IUserDataHandler dataHandler;
 
     private LoginViewModel loginViewModel;
     private EditText password;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        dataHandler = new DataHandler();
+        dataHandler = new UserDataHandler();
 
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);

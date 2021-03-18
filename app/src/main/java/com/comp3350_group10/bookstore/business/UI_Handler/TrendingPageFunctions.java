@@ -10,8 +10,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
@@ -86,7 +86,7 @@ public class TrendingPageFunctions {
     }
 
     private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
-        IDataHandler dataHandler = new DataHandler();
+        IBookDataHandler dataHandler = new BookDataHandler();
         List<IBook> books = dataHandler.findBooks(searchTerm);
 
         for (IBook book : books) {
@@ -97,7 +97,7 @@ public class TrendingPageFunctions {
             layout.addView(image);
 
             image.setOnClickListener(v -> {
-                DataHandler.currentBook = book;
+                BookDataHandler.currentBook = book;
                 SwitchToBookDetailsActivity(context);
             });
         }

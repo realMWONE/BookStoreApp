@@ -1,7 +1,7 @@
 /**
  * Book Class for Book Database
  */
-package com.comp3350_group10.bookstore.data;
+package com.comp3350_group10.bookstore.object;
 
 import com.comp3350_group10.bookstore.persistence.IBook;
 

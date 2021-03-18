@@ -4,7 +4,7 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.data.Book;
+import com.comp3350_group10.bookstore.object.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 

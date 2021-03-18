@@ -4,7 +4,7 @@ import com.comp3350_group10.bookstore.UserType;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.data.User;
+import com.comp3350_group10.bookstore.object.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.persistence.Users;
+package com.comp3350_group10.bookstore.persistence.fakeDB;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

@@ -2,7 +2,9 @@
  * Book Class for Book Database
  */
 
-package com.comp3350_group10.bookstore.persistence.Book;
+package com.comp3350_group10.bookstore.objects;
+import com.comp3350_group10.bookstore.persistence.IBook;
+
 import java.io.Serializable;
 
 public class Book implements IBook, Serializable {

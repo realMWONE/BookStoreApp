@@ -2,11 +2,8 @@ package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.UserType;
 import com.comp3350_group10.bookstore.data.User;
-import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 
 import junit.framework.TestCase;
-
-import org.junit.Before;
 
 public class UserTest extends TestCase {
 

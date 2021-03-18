@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.logic.UI_Handler;
+package com.comp3350_group10.bookstore.business.UI_Handler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,13 +8,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.BookDetailsActivity;
-import com.comp3350_group10.bookstore.MainActivity;
-import com.comp3350_group10.bookstore.UserSettingActivity;
-import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
-import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.persistence.Book.IBook;
-import com.comp3350_group10.bookstore.ui.ScreenSize;
+import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
+import com.comp3350_group10.bookstore.presentation.MainActivity;
+import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
+import com.comp3350_group10.bookstore.business.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.text.DecimalFormat;
 import java.util.List;

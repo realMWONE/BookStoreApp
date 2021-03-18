@@ -1,5 +1,7 @@
-package com.comp3350_group10.bookstore.persistence.Users;
+package com.comp3350_group10.bookstore.persistence.hsqldb;
 
+
+import com.comp3350_group10.bookstore.objects.User;
 
 public class UserDatabase {
 

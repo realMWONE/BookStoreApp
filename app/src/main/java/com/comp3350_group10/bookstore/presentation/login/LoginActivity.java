@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.ui.login;
+package com.comp3350_group10.bookstore.presentation.login;
 
 import android.app.Activity;
 
@@ -23,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.ui.login.LoginViewModel;
-import com.comp3350_group10.bookstore.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity
 {

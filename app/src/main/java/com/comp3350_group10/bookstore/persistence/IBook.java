@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.persistence.Book;
+package com.comp3350_group10.bookstore.persistence;
 
 /**
  * Interface for Book

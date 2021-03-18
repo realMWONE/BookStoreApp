@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.ui.login;
+package com.comp3350_group10.bookstore.presentation.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.comp3350_group10.bookstore.persistence.Users.LoginRepository;
-import com.comp3350_group10.bookstore.persistence.Users.Result;
-import com.comp3350_group10.bookstore.persistence.Users.LoggedInUser;
+import com.comp3350_group10.bookstore.persistence.fakeDB.LoginRepository;
+import com.comp3350_group10.bookstore.persistence.fakeDB.Result;
+import com.comp3350_group10.bookstore.persistence.fakeDB.LoggedInUser;
 import com.comp3350_group10.bookstore.R;
 
 public class LoginViewModel extends ViewModel

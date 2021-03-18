@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.ui;
+package com.comp3350_group10.bookstore.presentation;
 
 import android.content.Context;
 

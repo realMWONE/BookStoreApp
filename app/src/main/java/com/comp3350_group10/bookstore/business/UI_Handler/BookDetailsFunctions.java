@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.logic.UI_Handler;
+package com.comp3350_group10.bookstore.business.UI_Handler;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
-import com.comp3350_group10.bookstore.persistence.Book.IBook;
-import com.comp3350_group10.bookstore.ui.ScreenSize;
+import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.text.DecimalFormat;
 

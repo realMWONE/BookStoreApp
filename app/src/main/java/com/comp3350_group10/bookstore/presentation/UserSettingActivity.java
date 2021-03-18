@@ -1,15 +1,14 @@
-package com.comp3350_group10.bookstore;
+package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceFragmentCompat;
 
-import com.comp3350_group10.bookstore.logic.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.logic.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 
 public class UserSettingActivity extends AppCompatActivity {
     private EditText oldPassword;

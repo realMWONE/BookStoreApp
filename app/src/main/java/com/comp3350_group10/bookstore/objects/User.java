@@ -1,5 +1,7 @@
-package com.comp3350_group10.bookstore.persistence.Users;
+package com.comp3350_group10.bookstore.objects;
 
+
+import com.comp3350_group10.bookstore.persistence.fakeDB.UserType;
 
 public class User
 {

@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore;
+package com.comp3350_group10.bookstore.presentation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,8 +9,9 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.TableLayout;
 
-import com.comp3350_group10.bookstore.logic.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.logic.UI_Handler.TrendingPageFuctions;
+import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.TrendingPageFuctions;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.ui.AppBarConfiguration;

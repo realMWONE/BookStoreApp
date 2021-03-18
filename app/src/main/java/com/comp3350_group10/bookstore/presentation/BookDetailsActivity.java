@@ -1,8 +1,10 @@
-package com.comp3350_group10.bookstore;
+package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
-import com.comp3350_group10.bookstore.logic.UI_Handler.BookDetailsFunctions;
-import com.comp3350_group10.bookstore.logic.UI_Handler.IBookDetailsFunctions;
+
+import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.UI_Handler.BookDetailsFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IBookDetailsFunctions;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.LinearLayout;

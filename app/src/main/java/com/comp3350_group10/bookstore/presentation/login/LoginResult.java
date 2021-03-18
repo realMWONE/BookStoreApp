@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.ui.login;
+package com.comp3350_group10.bookstore.presentation.login;
 
 import androidx.annotation.Nullable;
 

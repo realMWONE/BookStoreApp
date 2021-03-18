@@ -1,7 +1,6 @@
-package com.comp3350_group10.bookstore.logic.Data_Handler;
+package com.comp3350_group10.bookstore.business.Data_Handler;
 
-import com.comp3350_group10.bookstore.persistence.Book.IBook;
-import com.comp3350_group10.bookstore.persistence.Users.User;
+import com.comp3350_group10.bookstore.persistence.IBook;
 
 import java.util.List;
 

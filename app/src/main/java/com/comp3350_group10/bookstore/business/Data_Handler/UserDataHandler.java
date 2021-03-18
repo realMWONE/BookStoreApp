@@ -1,6 +1,8 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
+import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.User;
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.List;
 public class UserDataHandler implements IUserDataHandler {
 
     public static User currentUser = null;
-    private UserDatabase userDatabase = new UserDatabase();
+    //private UserDatabase userDatabase = new UserDatabase(Main.getDBPath());
 
     public UserDataHandler(){}
 

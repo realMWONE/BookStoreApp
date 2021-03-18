@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.comp3350_group10.bookstore.data.LoginRepository;
-import com.comp3350_group10.bookstore.data.Result;
-import com.comp3350_group10.bookstore.data.model.LoggedInUser;
+import com.comp3350_group10.bookstore.persistence.Users.LoginRepository;
+import com.comp3350_group10.bookstore.persistence.Users.Result;
+import com.comp3350_group10.bookstore.persistence.Users.LoggedInUser;
 import com.comp3350_group10.bookstore.R;
 
 public class LoginViewModel extends ViewModel

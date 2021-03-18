@@ -1,9 +1,6 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.graphics.Color;
-import android.media.Image;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,12 +9,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
 import com.comp3350_group10.bookstore.logic.Data_Handler.IDataHandler;
+import com.comp3350_group10.bookstore.persistence.Book.IBook;
 import com.comp3350_group10.bookstore.ui.ScreenSize;
 
 import java.util.List;
@@ -53,6 +48,7 @@ public class TrendingPageFuctions {
     private static void AddSpacer(Context context, TableLayout table) {
         Space space = new Space(context);
         space.setLayoutParams(new LinearLayout.LayoutParams(spacerHeight, spacerHeight));
+        //TODO: Warning:(50, 61) 'spacerHeight' should probably not be passed as parameter 'width'
         table.addView(space);
     }
 

@@ -3,9 +3,11 @@ package com.comp3350_group10.bookstore.logic.Data_Handler;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-import com.comp3350_group10.bookstore.persistence.BookDatabase;
-import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.persistence.IBookDatabase;
+import com.comp3350_group10.bookstore.persistence.Book.BookDatabase;
+import com.comp3350_group10.bookstore.persistence.Book.IBook;
+import com.comp3350_group10.bookstore.persistence.Book.IBookDatabase;
+import com.comp3350_group10.bookstore.persistence.Users.User;
+import com.comp3350_group10.bookstore.persistence.Users.UserDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +18,7 @@ import java.util.Map.Entry;
 public class DataHandler implements IDataHandler {
 
     public static User currentUser = null;
-    private IBookDatabase bookDatabase = new BookDatabase();
+    private IBookDatabase bookDatabase = new BookDatabase();    //TODO: constructor expecting path
     private IUserDatabase userDatabase = new UserDatabase();
     public static IBook currentBook;
 
@@ -48,7 +50,6 @@ public class DataHandler implements IDataHandler {
 
         return bookList;
     }
-
 
     //function to set the target book to the given price
     public void setPrice(IBook target, int price){
@@ -137,10 +138,10 @@ public class DataHandler implements IDataHandler {
 
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
+        //TODO: potential bug if referenced object was different. Make sure to check
         return (currentUser.getUserType() == UserType.Manager);
     }
 
-<<<<<<< HEAD
     //function to login the current user
     public void logIn(String email, String password){
 
@@ -171,8 +172,6 @@ public class DataHandler implements IDataHandler {
             System.out.println(f);
         }
     }
-=======
->>>>>>> c9d6e0208dec5e6929048b82145d663bf8248a87
 
     //function to logout the current user
     public void logOut(){
@@ -180,7 +179,6 @@ public class DataHandler implements IDataHandler {
             currentUser = null;
     }
 
-<<<<<<< HEAD
     //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list
     //And gets rid of the duplicated elements
@@ -195,6 +193,7 @@ public class DataHandler implements IDataHandler {
             }
             else{
                 map.put(book, map.get(book)+1);
+                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'
             }
         }
 
@@ -280,9 +279,6 @@ public class DataHandler implements IDataHandler {
             System.out.println(h);
         }
     }
-=======
 
-    public void changePassword(String oldPw, String newPw, String confirmNewPw){}
->>>>>>> c9d6e0208dec5e6929048b82145d663bf8248a87
-
+    // TODO: Take care of IUserDatabase bugs after it's implemented
 }

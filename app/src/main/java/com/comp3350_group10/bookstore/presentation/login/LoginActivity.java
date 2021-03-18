@@ -16,10 +16,12 @@ import com.comp3350_group10.bookstore.R;
 
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
+import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 
 public class LoginActivity extends AppCompatActivity
 {
-    IUserDataHandler dataHandler;
+    IButtonFunctions buttonFunctions;
 
     private LoginViewModel loginViewModel;
     private EditText password;
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        dataHandler = new UserDataHandler();
+        buttonFunctions = new ButtonFunctions();
 
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);
@@ -61,7 +63,8 @@ public class LoginActivity extends AppCompatActivity
         loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals(""));
     }
 
-    public void LoginOnClick(View v) {
-        //Check if user exists
+    public void LoginOnClick(View v) throws ClassNotFoundException
+    {
+        buttonFunctions.LoginButtonPressed(this.email.toString(), this.password.toString());
     }
 }

@@ -15,7 +15,7 @@ public interface IButtonFunctions {
     void SwitchToLoginActivity(MainActivity main, Context context);
 
     //function is called when user logs in with their respective accounts
-    void LoginButtonPressed();
+    void LoginButtonPressed(String email, String password) throws ClassNotFoundException;
 
     //function is called when user wants to logout
     void LogoutButtonPressed();

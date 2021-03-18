@@ -1,14 +1,9 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
 import android.content.Context;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import com.comp3350_group10.bookstore.MainActivity;
-import com.comp3350_group10.bookstore.data.IBook;
-
-import java.util.List;
 
 public interface IButtonFunctions {
 

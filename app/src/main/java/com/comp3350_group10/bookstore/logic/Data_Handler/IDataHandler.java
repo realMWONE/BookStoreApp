@@ -1,7 +1,7 @@
 package com.comp3350_group10.bookstore.logic.Data_Handler;
 
-import com.comp3350_group10.bookstore.data.IBook;
-import com.comp3350_group10.bookstore.data.User;
+import com.comp3350_group10.bookstore.persistence.Book.IBook;
+import com.comp3350_group10.bookstore.persistence.Users.User;
 
 import java.util.List;
 
@@ -37,9 +37,6 @@ public interface IDataHandler {
     //function to logout the current user
     void logOut();
 
-<<<<<<< HEAD
     //function to changePassword for the logged in user
-=======
->>>>>>> c9d6e0208dec5e6929048b82145d663bf8248a87
     void changePassword(String oldPw, String newPw, String confirmNewPw);
 }

@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.comp3350_group10.bookstore.data.LoginDataSource;
-import com.comp3350_group10.bookstore.data.LoginRepository;
+import com.comp3350_group10.bookstore.persistence.Users.LoginDataSource;
+import com.comp3350_group10.bookstore.persistence.Users.LoginRepository;
+
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

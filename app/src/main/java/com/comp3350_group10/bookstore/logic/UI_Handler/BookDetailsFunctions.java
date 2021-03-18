@@ -1,14 +1,13 @@
 package com.comp3350_group10.bookstore.logic.UI_Handler;
 
 import android.content.Context;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.data.IBook;
 import com.comp3350_group10.bookstore.logic.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.persistence.Book.IBook;
 import com.comp3350_group10.bookstore.ui.ScreenSize;
 
 import java.text.DecimalFormat;
@@ -26,6 +25,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
         ImageView image = new ImageView(context);
         image.setImageResource(DataHandler.currentBook.getImage());
         image.setLayoutParams(new LinearLayout.LayoutParams(height, height));
+        //TODO: height, height?
         layout.addView(image);
     }
 
@@ -33,6 +33,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
         int height = ScreenSize.getPixelsFromDP(context,25);
         Space space = new Space(context);
         space.setLayoutParams(new LinearLayout.LayoutParams(height, height));
+        //TODO: height, height?
         layout.addView(space);
     }
 
@@ -40,6 +41,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
         IBook b = DataHandler.currentBook;
         TextView text = new TextView(context);
         text.setText(b.getBookName() + '\n');
+        //TODO: Warning:(41, 22) Do not concatenate text displayed with `setText`. Use resource string with placeholders.
         text.append(b.getBookAuthor() + '\n');
         text.append(b.getBookIsbn() + '\n');
         text.append(b.getStock() + " copies remaining\n");

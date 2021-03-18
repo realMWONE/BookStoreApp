@@ -1,15 +1,12 @@
 package com.comp3350_group10.bookstore.data.model;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.UserType;
-<<<<<<< HEAD
-import com.comp3350_group10.bookstore.object.Book;
-import com.comp3350_group10.bookstore.object.User;
-=======
-import com.comp3350_group10.bookstore.data.Book;
-import com.comp3350_group10.bookstore.data.User;
->>>>>>> 022f4f1b6a297a18a55ac4136faa911b12c701c8
+
+import com.comp3350_group10.bookstore.objects.Book;
+import com.comp3350_group10.bookstore.objects.User;
+
 import com.comp3350_group10.bookstore.business.Data_Handler.DataHandler;
+import com.comp3350_group10.bookstore.persistence.UserType;
 
 import junit.framework.TestCase;
 

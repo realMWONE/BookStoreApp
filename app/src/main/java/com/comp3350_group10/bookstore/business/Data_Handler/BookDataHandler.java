@@ -4,16 +4,11 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.persistence.IUserDatabase;
-import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
-
+import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
+import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +17,7 @@ import java.util.Map.Entry;
 
 
 public class BookDataHandler implements IBookDataHandler {
-    private IBookDatabase bookDatabase;    //TODO: constructor expecting path
+    private final IBookDatabase bookDatabase;
     public static IBook currentBook;
 
     public BookDataHandler(){

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FakeUserDatabase implements IUserDatabase {
-    private List<IUser> userList;
+    private final List<IUser> userList;
 
     public FakeUserDatabase(){
         userList = new ArrayList<>();

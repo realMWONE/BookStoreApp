@@ -1,20 +1,17 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.business.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 
 public class UserDataHandler implements IUserDataHandler {
 
     public static IUser currentUser;
-    private IUserDatabase userDatabase;
+    private final IUserDatabase userDatabase;
 
     ////////////////////////CONSTRUCTORS/////////////////////////////////////////////
     //regular

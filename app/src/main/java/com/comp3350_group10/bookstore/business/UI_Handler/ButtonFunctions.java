@@ -24,9 +24,9 @@ import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
 {
-    private IBookDataHandler bookHandler;
-    private IUserDataHandler userHandler;
-    private IBookDetailsFunctions bookDetailsFunctions;
+    private final IBookDataHandler bookHandler;
+    private final IUserDataHandler userHandler;
+    private final IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()

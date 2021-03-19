@@ -12,10 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import com.comp3350_group10.bookstore.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;

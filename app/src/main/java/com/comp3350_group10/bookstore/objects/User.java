@@ -4,16 +4,15 @@ package com.comp3350_group10.bookstore.objects;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
 
-
 import java.io.Serializable;
 
 public class User implements IUser, Serializable
 {
 
-    private String realName;
+    private final String realName;
     private String userID; //email
     private String password;
-    private UserType position;
+    private final UserType position;
 
     //contructor that sets the variables with parameters
     public User(String name, String userId, String password, UserType type)

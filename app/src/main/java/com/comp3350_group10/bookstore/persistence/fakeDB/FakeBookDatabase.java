@@ -3,8 +3,6 @@
  */
 package com.comp3350_group10.bookstore.persistence.fakeDB;
 
-import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 

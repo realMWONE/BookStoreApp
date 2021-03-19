@@ -5,7 +5,7 @@ package com.comp3350_group10.bookstore.presentation.login;
  */
 class LoggedInUserView
 {
-    private String displayName;
+    private final String displayName;
     //... other data fields that may be accessible to the UI
 
     LoggedInUserView(String displayName)

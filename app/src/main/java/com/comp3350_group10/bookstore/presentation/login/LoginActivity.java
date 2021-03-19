@@ -1,11 +1,6 @@
 package com.comp3350_group10.bookstore.presentation.login;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,10 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
+import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 

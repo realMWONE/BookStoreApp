@@ -1,0 +1,3 @@
+bookName, isbn, quantity, price, date, author, genre, reserve, image
+Harry Potter and the Philosopher's Stone,5648304756357,12,2630,26 June 1997,J.K.Rowling,Novel,2,R.drawable.philosophers_stone
+Harry Potter and the Chamber of Secrets,3820484736373,14,2640,21 April 1998,J.K.Rowling,Novel,5,R.drawable.harry_potter_and_the_chamber_of_secrets

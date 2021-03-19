@@ -29,7 +29,7 @@ Group 10 from A01
 
 During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
 
-[Link to discord channels](docs/Capture_4.JPG)
+[Link to discord channels](/docs/Capture_4_.JPG)
 
 In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
 

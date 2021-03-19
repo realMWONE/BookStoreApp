@@ -29,13 +29,16 @@ Group 10 from A01
 
 During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
 
+We also split the workload more evenly, with two people working in each layer.
+
 [Link to discord channels](/docs/Capture_4_.JPG)
 
 In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
 
-[Link to commits]
+[Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Capture_5_.JPG)
+[Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Capture_6_.JPG)
 
-We also split the workload more evenly, with two people working in each layer.
+
 
 
 # Design Patterns 
@@ -46,12 +49,3 @@ This opens the Book Details Activity, which show more details about the selected
 
 
 # Iteration 1 feedback fixes 
-
-Issue: BUG - Search is showing books out of scope
-
-
-(Link to the issue)[https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/45]
-
-We rewrote most of the search code to fix this problem.
-
-(Link to commit)[https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/81e9a722510870cb40a1794c164b2105c54062da]

@@ -1,115 +1,223 @@
-package com.comp3350_group10.bookstore.persistence.hsqldb;
+/**
+ * HSQLDB Book Database
+ */
 
+package com.comp3350_group10.bookstore.persistence.hsqldb;
+import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.List;
 
-public class BookDatabase implements IBookDatabase
-{
-    Connection connection;
 
-    public BookDatabase()
-    {
-        CreateConnection();
-        AddTable();
-        AddBook("Harry Potter", "J. K. Rowling", "123456789");
-        AddBook("Harry Potter", "J. K. Rowling", "23456789");
-        AddBook("Harry Potter", "J. K. Rowling", "13456789");
-        AddBook("Harry Potter", "J. K. Rowling", "12456789");
-        AddBook("Harry Potter", "J. K. Rowling", "12356789");
-        AddBook("Harry Potter", "J. K. Rowling", "12346789");
-        Print();
+public class BookDatabase implements IBookDatabase {
+
+
+    private List<IBook> bookList;
+
+    private final String dbPath;
+
+    public BookDatabase(final String dbPath){
+        this.dbPath = dbPath;
     }
 
-    private void CreateConnection()
-    {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:file:hsqldb/demodb", "SA", "");
+    private Connection connection() throws SQLException{
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath +";shutdown=true", "SA", "");
+    }
 
-            if (connection == null) System.out.println("Database failed");
-            else System.out.println("Database connected!");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+    private Book createBook(final ResultSet rs) throws SQLException{
+        final String bookName = rs.getString("bookName");
+        final String isbn = rs.getString("isbn");
+        final int quantity = rs.getInt("quantity");
+        final int price = rs.getInt("price");
+        final String date = rs.getString("date");
+        final String author = rs.getString("author");
+        final String genre = rs.getString("genre");
+        final int reserve = rs.getInt("reserve");
+        final int imageReference = rs.getInt("image");
+
+        return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
+    }
+
+
+    /**
+     * findBooks: Finds and returns the book objects based on their book ISBN
+     * @param searchTerm
+     * @return
+     */
+    public List<IBook> findBook(String searchTerm) {
+
+        //Lists which contains book objects related to specific search terms
+        List<IBook> findByISBN = findByISBN(searchTerm);
+        List<IBook> findByAuthor = findByAuthor(searchTerm);
+        List<IBook> findByTitle = findByTitle(searchTerm);
+
+        //Filtering by removing duplicates and adding them all into a single list which has elements of the search term
+        List<IBook> bookResult = new ArrayList<>();
+
+        for(IBook book: findByISBN){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
         }
-    }
-
-    private void AddTable()
-    {
-        String books = "create table books (" +
-                "title varchar(20)," +
-                "author varchar(20), " +
-                "isbn varchar(13)," +
-                "primary key(isbn));";
-
-        try {
-            connection.createStatement().executeUpdate(books);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        for(IBook book: findByAuthor){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
         }
-    }
-
-    private void AddBook(String title, String author, String isbn)
-    {
-        String book = "insert into books (title, author, isbn) values ('" + title + "', '" + author + "', '" + isbn + "');";
-
-        try {
-            connection.createStatement().executeUpdate(book);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        for(IBook book: findByTitle){
+            if(!bookResult.contains(book)){
+                bookResult.add(book);
+            }
         }
+
+        return bookResult;
     }
 
-    public void Print()
-    {
-        PreparedStatement p = null;
+    /**
+     * findByISBN: Finds books from our bookList by ISBN
+     * @param isbn
+     */
+    private List<IBook> findByISBN(String isbn){
+        List<IBook> bookIsbn = getBooks();
+        List<IBook> books = new ArrayList<>();
+        if(isbn != null){
+            //Going through all the bookList
+            for(IBook book: bookIsbn){
+                //If the string inputted matches any of the strings in the our bookList, then add that to our local list
+                if(book.getBookIsbn().startsWith(isbn)){
+                    books.add(book);
+                }
+            }
+        }
+        return books;
+    }
 
-        try {
-            p = connection.prepareStatement("select * from books;");
-            ResultSet resultSet = p.executeQuery();
+    /**
+     * findByAuthor: Finds books from our bookList by author
+     * @param author
+     */
+    private List<IBook> findByAuthor(String author) {
+        List<IBook> bookAuthor = getBooks();
+        List<IBook> books = new ArrayList<>();
+        String[] split;
+        if(author != null){
+            //Going through all the bookList
+            for(IBook book: bookAuthor) {
+                split = book.getBookAuthor().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book's author name, then add that book to our return list
+                    if (splitTerm.startsWith(author)) {
+                        books.add(book);
+                    }
+                }
+            }
+        }
+        return books;
+    }
 
-            while (resultSet.next()) {
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String isbn = resultSet.getString("isbn");
+    /**
+     * findByTitle: Finds books from our bookList by title
+     * @param title
+     */
+    private List<IBook> findByTitle(String title) {
+        List<IBook> bookTitle = getBooks();
+        List<IBook> books = new ArrayList<>();
+        String[] split;
 
-                System.out.println(title + " written by " + author + " with an ISBN of " + isbn);
+        if(title != null){
+            //Going through all the bookList
+            for(IBook book: bookTitle) {
+                split = book.getBookName().toLowerCase().split("[-. ,:]+");
+                for(String splitTerm: split){
+                    //If the string inputted matches any of the terms in the book titles, then add the book to our return list
+                    if (splitTerm.startsWith(title)) {
+                        books.add(book);
+                    }
+                }
+            }
+        }
+        return books;
+    }
+
+
+    @Override
+    public List<IBook> getBooks()  {
+        final List<IBook> books = new ArrayList<>();
+        try (final Connection conn = connection()){
+            final Statement stmt = conn.createStatement();
+            final ResultSet rtst = stmt.executeQuery("SELECT * FROM BOOKS");
+
+            while(rtst.next()){
+                final Book book = createBook(rtst);
+                books.add(book);
             }
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            rtst.close();
+            stmt.close();
+        }
+
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
+        return books;
+    }
+
+
+
+    @Override
+    public IBook insertBook(IBook book) {
+        try(final Connection conn = connection()) {
+            final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO BOOKS VALUES(?,?,?,?,?,?,?,?)");
+            pstmt.setString(1, book.getBookName());
+            pstmt.setString(2, book.getBookIsbn());
+            pstmt.setInt(3, book.getStock());
+            pstmt.setInt(4, book.getPrice());
+            pstmt.setString(5, book.getDate());
+            pstmt.setString(6, book.getBookAuthor());
+            pstmt.setString(7, book.getGenre());
+            pstmt.setInt(8, book.getReserve());
+            pstmt.setInt(9, book.getImage());
+            pstmt.executeUpdate();
+
+            return book;
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
         }
     }
 
-
     @Override
-    public List<IBook> findBook(String searchTerm) throws ClassNotFoundException {
-        return null;
+    public void updateBook(IBook book) {
+        try (final Connection conn = connection()){
+            final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+            pstmt.setInt(1, book.getStock());
+            pstmt.setInt(2, book.getPrice());
+            pstmt.setInt(3, book.getReserve());
+            pstmt.setString(4, book.getBookIsbn());
+            pstmt.executeUpdate();
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
-    public List<IBook> getBooks() throws ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public IBook insertBook(IBook book) throws ClassNotFoundException {
-        return null;
-    }
-
-    @Override
-    public void updateBook(IBook book) throws ClassNotFoundException {
-
-    }
-
-    @Override
-    public void deleteBook(IBook book) throws ClassNotFoundException {
-
+    public void deleteBook(IBook book) {
+        try(final Connection conn = connection()){
+            final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM BOOKS WHERE isbn=?");
+            pstmt.setString(1, book.getBookIsbn());
+            pstmt.executeUpdate();
+        }
+        catch(final SQLException e){
+            throw new PersistenceException(e);
+        }
     }
 }

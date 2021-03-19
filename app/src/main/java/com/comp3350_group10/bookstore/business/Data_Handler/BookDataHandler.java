@@ -5,6 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 
+import com.comp3350_group10.bookstore.application.Services;
+import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
@@ -14,17 +16,27 @@ import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
 
 public class BookDataHandler implements IBookDataHandler {
-//    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
-    private IBookDatabase bookDatabase = new BookDatabase();    //TODO: constructor expecting path
     public static IBook currentBook;
+    private IBookDatabase bookDatabase;
+    private List<IBook> books;
 
     public BookDataHandler(){
+        bookDatabase = Services.getBookPersistance();
+        currentBook = null;
+        books = null;
+    }
+
+    public BookDataHandler(IBookDatabase accessingBooks){
+        this();
+        this.bookDatabase = accessingBooks;
     }
 
     //Takes the keyword and search database with it
@@ -35,19 +47,9 @@ public class BookDataHandler implements IBookDataHandler {
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<IBook> findBooks(String keyword) throws ClassNotFoundException {
-        List<String> wordList = splitWords(keyword); //splits keywords
 
-        List<IBook> bookList = new ArrayList<>();   //stores search result
-
-        //search database with each keyword and combining the lists
-        for(String word: wordList){
-            bookList.addAll(bookDatabase.findBook(word));
-        }
-
-        //sort the booklist by relevancy (times it appeared in search result) and remove duplication
-        bookList = sortByRelevancy(bookList);
-
-        return bookList;
+        books = bookDatabase.findBook(keyword);
+        return (List<IBook>) Collections.unmodifiableCollection(books);
     }
 
     //function to set the target book to the given price
@@ -137,39 +139,6 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-
-    //Takes a list of books with duplication, the more duplicated the book the
-    //Sort the given list of books by how many words in its title matches with the given word list
-    //And gets rid of the duplicated elements
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private List<IBook> sortByRelevancy(List<IBook> bookList){
-        //relevancy is determined by # of times the book appeared in search result
-        //<Key : Value> = <IBook book : Integer relevancy>
-        HashMap<IBook,Integer> map = new HashMap<>();
-        for (IBook book : bookList) {
-            if (!map.containsKey(book)) {
-                map.put(book, 1);
-            }
-            else{
-                map.put(book, map.get(book)+1);
-                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'
-            }
-        }
-
-        //descending sort by relevancy
-        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
-        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
-
-        //copies the sorted list to list of books to return
-        List<IBook> result = new ArrayList<>();
-        for(Entry<IBook, Integer> entries: sortedBookList){
-            result.add(entries.getKey());
-        }
-
-        return result;
-    }
-
-
     // splits the given string, ignores non-ascii words
     private List<String> splitWords(String words){
         //split input
@@ -187,9 +156,4 @@ public class BookDataHandler implements IBookDataHandler {
 
         return result;
     }
-
-
-
-
-    // TODO: Take care of IUserDatabase bugs after it's implemented
 }

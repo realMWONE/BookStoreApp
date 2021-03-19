@@ -1,0 +1,7 @@
+name, userId, password, position
+Kevin,Kevin@gmail.com,1,Manager
+Harshal,Harshall@umanitoba.ca,22,Manager
+Matt,Matt@yahoo.com,333,Employee
+Daniel,duy.than@gihot.com,4444,Employee
+Animesh,Animesh@outlook.com,55555,Employee
+Darwait,Darwait@gmail.com,666666,Employee

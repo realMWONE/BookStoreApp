@@ -21,12 +21,16 @@ import java.util.Map.Entry;
 
 
 public class BookDataHandler implements IBookDataHandler {
-    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
-    private IBookDatabase bookDatabase = new BookDatabase(Main.getDBPath());    //TODO: constructor expecting path
+    private IBookDatabase bookDatabase;    //TODO: constructor expecting path
     public static IBook currentBook;
 
-    public BookDataHandler(){}
+    public BookDataHandler(){
+        bookDatabase = new BookDatabase(Main.getDBPath());
+    }
 
+    public BookDataHandler(List<IBook> b){
+//        this.bookDatabase = new
+    }
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
     /*
@@ -60,14 +64,14 @@ public class BookDataHandler implements IBookDataHandler {
                 target.setPrice(price);
             }
             else{
-                System.out.println("The price cannot be set to negative number");
+                throw new Exception("The price cannot be set to negative number");
             }
             bookDatabase.updateBook(target);
         }
 
-        catch(NullPointerException | ClassNotFoundException e)
+        catch(Exception e)
         {
-            System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
+            System.out.println(e.toString());
         }
     }
 
@@ -76,8 +80,8 @@ public class BookDataHandler implements IBookDataHandler {
     public void incrementPrice(IBook target) {
         try {
             setPrice(target, target.getPrice() + 1);
-        } catch (NullPointerException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - incrementPrice()");
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -86,8 +90,8 @@ public class BookDataHandler implements IBookDataHandler {
         try{
             setPrice(target, target.getPrice()-1);
         }
-        catch (NullPointerException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - decrementPrice()");
+        catch (Exception e) {
+            System.out.println(e.toString());
         }
 
     }
@@ -102,13 +106,13 @@ public class BookDataHandler implements IBookDataHandler {
                 target.setStock(quantity);
             }
             else{
-                System.out.println("The stock cannot be set to negative number");
+                throw new Exception("The stock cannot be set to negative number");
             }
             bookDatabase.updateBook(target);
         }
-        catch(NullPointerException e)
+        catch(Exception e)
         {
-            System.out.println(e+"caught in UserDataHandler.java method - setStock()");
+            System.out.println(e.toString());
         }
     }
 
@@ -119,8 +123,8 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() + 1);
         }
-        catch (NullPointerException | ClassNotFoundException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - incrementStock()");
+        catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -131,8 +135,8 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() - 1);
         }
-        catch (NullPointerException | ClassNotFoundException e) {
-            System.out.println(e + "caught in DataHandler.java method - decrementStock()");
+        catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 
@@ -151,8 +155,11 @@ public class BookDataHandler implements IBookDataHandler {
                 map.put(book, 1);
             }
             else{
-                map.put(book, map.get(book)+1);
-                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'
+                try{
+                    map.put(book, map.get(book)+1);
+                }catch(Exception e){
+                    System.out.println(e.toString());
+                }
             }
         }
 

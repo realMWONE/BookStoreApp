@@ -1,10 +1,12 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
 import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.business.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
@@ -12,12 +14,14 @@ import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 public class UserDataHandler implements IUserDataHandler {
 
     public static IUser currentUser = null;
-    private UserDatabase userDatabase = new UserDatabase(Main.getDBPath());
+    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
 
-    public UserDataHandler(){}
+    public UserDataHandler(){
+        userDatabase = Service.setupUserDatabase();
+    }
 
     public UserDataHandler(User currentUser){
-        this.currentUser=currentUser;
+        UserDataHandler.currentUser =currentUser;
     }
 
 

@@ -1,7 +1,8 @@
 package com.comp3350_group10.bookstore.data.model;
 
-import com.comp3350_group10.bookstore.UserType;
-import com.comp3350_group10.bookstore.object.User;
+import com.comp3350_group10.bookstore.persistence.UserType;
+//import com.comp3350_group10.bookstore.object.User;
+import com.comp3350_group10.bookstore.objects.User;
 
 import junit.framework.TestCase;
 

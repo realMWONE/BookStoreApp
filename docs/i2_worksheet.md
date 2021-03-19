@@ -27,7 +27,7 @@ Group 10 from A01
 
 We used the observer pattern. Since our app is a virtual bookshelf, we needed all the books to be clickable. So every book cover image has an onClickListener that waits for a click.
 This opens the Book Details Activity, which show more details about the selected book. The onClickListeners are added in code, as the whole shelf is populated dynamically through database queries.
-[Observer pattern](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/Daniel/app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFunctions.java#L99)
+[Observer pattern link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/Daniel/app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFunctions.java#L99)
 
 
 # Iteration 1 feedback fixes 

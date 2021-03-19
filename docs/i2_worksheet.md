@@ -28,7 +28,6 @@ Group 10 from A01
 # Restrospective 
 
 During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
-
 We also split the workload more evenly, with two people working in each layer.
 
 [Link to discord channels](/docs/Capture_4_.JPG)
@@ -36,6 +35,7 @@ We also split the workload more evenly, with two people working in each layer.
 In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
 
 [Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Capture_5_.JPG)
+
 [Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Capture_6_.JPG)
 
 

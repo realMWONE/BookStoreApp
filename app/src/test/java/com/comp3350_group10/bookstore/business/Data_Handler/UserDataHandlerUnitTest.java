@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 import static org.junit.Assert.assertNotEquals;
 
-public class UserDataHandlerTest extends TestCase {
+public class UserDataHandlerUnitTest extends TestCase {
     UserDataHandler handler;
     IUser normalUser, nullUser, matt, karen;
     FakeUserDatabase userDB;

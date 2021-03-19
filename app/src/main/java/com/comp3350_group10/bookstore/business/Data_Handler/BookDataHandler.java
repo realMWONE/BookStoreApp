@@ -130,8 +130,7 @@ public class BookDataHandler implements IBookDataHandler {
         //Make sure target is initialized and do not decrease if stock is less than 0
         try {
             setStock(target, target.getStock() - 1);
-        }
-        catch (Exception e) {
+        } catch (ClassNotFoundException e) {
             System.out.println(e.toString());
         }
     }

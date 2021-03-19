@@ -9,14 +9,16 @@ import junit.framework.TestCase;
 
 import java.util.List;
 
-public class BookDataHandlerTest extends TestCase {
+public class BookDataHandlerUnitTest extends TestCase {
     BookDataHandler handler;
-    Book normalBook, zeroBook, nullBook, dunnoDBBook, appNotWorkingBook, book2012, unitTestingBook;
+    Book normalBook, normalBook2, normalBook3, zeroBook, nullBook, dunnoDBBook, appNotWorkingBook, book2012, unitTestingBook;
     FakeBookDatabase bookDB;
 
     public void setUp() throws Exception {
         super.setUp();
         normalBook = new Book("Harry Potter and the Philosopher's Stone", "5648304756357", 12, 2630, "26 June 1997", "J.K.Rowling", "Novel", 2, R.drawable.philosophers_stone);
+        normalBook2 = new Book("Harry Potter and the Chamber of secrets", "5648304756357", 12, 2630, "26 June 1997", "J.K.Rowling", "Novel", 2, R.drawable.philosophers_stone);
+        normalBook3 = new Book("Harry Potter and the Goblet of Fire", "5648304756357", 12, 2630, "26 June 1997", "J.K.Rowling", "Novel", 2, R.drawable.philosophers_stone);
         zeroBook = new Book("Legend of Zero", "0", 0, 0, "", "Zero", "Novel", 0, R.drawable.harry_potter_and_the_chamber_of_secrets);
         nullBook = null;
         appNotWorkingBook = new Book("Why is the Database Not Working With Logic", "67890123", 123, 5000, "19 March 2021", "Group Ten", "Documentary", 10, R.drawable.harry_potter_and_the_chamber_of_secrets);
@@ -32,6 +34,8 @@ public class BookDataHandlerTest extends TestCase {
         bookDB.insertBook(unitTestingBook);
         bookDB.insertBook(normalBook);
         bookDB.insertBook(zeroBook);
+        bookDB.insertBook(normalBook2);
+        bookDB.insertBook(normalBook3);
 
         handler = new BookDataHandler(bookDB);
     }
@@ -171,11 +175,14 @@ public class BookDataHandlerTest extends TestCase {
 
         //relevancy test
         result = handler.findBooks("Database edition sad");
-        //result should be the following
+        //result should be the following order
         assertSame(result.get(0), dunnoDBBook);   //3 words match:Database & Sad & edition
         assertSame(result.get(1), book2012);  //2 words: Database & Edition
         assertSame(result.get(2), appNotWorkingBook); //1 word: database
 
+        //test search scope with prefix
+        result = handler.findBooks("Datab Row");
+        assertEquals(result.size(),6);  //3 books have "database" 3 have "row"
 
         //capital and delimiter split test
         result = handler.findBooks("LEGEND...   ....oF,,  .,,,,.  ,.,.,..::::::ZErO");

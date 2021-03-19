@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        buttonFunctions = new ButtonFunctions();
+        buttonFunctions = new ButtonFunctions(getBaseContext());
         errorMessage = findViewById(R.id.loginErrorMessage);
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);

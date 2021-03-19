@@ -36,7 +36,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         bookImage = findViewById(R.id.bookDetailsImage);
         details = findViewById(R.id.bookDetailsText);
 
-        buttonFunctions = new ButtonFunctions();
+        buttonFunctions = new ButtonFunctions(getBaseContext());
         bookDetailsFunctions = new BookDetailsFunctions();
         //bookDetailsFunctions.DrawScreen(this, 120, bookDetailsLayout);
         bookDetailsFunctions.LoadBookInfo(bookTitle, bookImage, details);

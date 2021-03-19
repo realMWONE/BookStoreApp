@@ -12,14 +12,19 @@ import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
+import com.comp3350_group10.bookstore.objects.Book;
+import com.comp3350_group10.bookstore.persistence.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
@@ -28,9 +33,13 @@ public class ButtonFunctions implements IButtonFunctions
     private IUserDataHandler userHandler;
     private final int IMAGE_HEIGHT = 120;
 
-    public ButtonFunctions()
+    public ButtonFunctions(Context context)
     {
-        bookHandler = new BookDataHandler();
+        try {
+            bookHandler = new BookDataHandler(context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         userHandler = new UserDataHandler();
     }
 
@@ -90,7 +99,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     private ImageView CreateImageView(Context context, IBook book, int height) {
         ImageView image = new ImageView(context);
-        image.setImageResource(book.getImage());
+        image.setImageResource(Integer.parseInt(book.getImage()));
         image.setLayoutParams(new TableRow.LayoutParams(height, height));
         return image;
     }

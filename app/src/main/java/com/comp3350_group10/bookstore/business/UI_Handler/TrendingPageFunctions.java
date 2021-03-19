@@ -16,6 +16,7 @@ import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
+import java.io.IOException;
 import java.util.List;
 
 public class TrendingPageFunctions {
@@ -85,21 +86,26 @@ public class TrendingPageFunctions {
         scrollView.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
     }
 
-    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) throws ClassNotFoundException {
-        IBookDataHandler bookHandler = new BookDataHandler();
-        List<IBook> books = bookHandler.findBooks(searchTerm);
+    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
+        try {
+            IBookDataHandler bookHandler = new BookDataHandler(context);
 
-        for (IBook book : books) {
-            ImageView image = new ImageView(context);
-            image.setClickable(true);
-            image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
-            image.setImageResource(book.getImage());
-            layout.addView(image);
+            List<IBook> books = bookHandler.findBooks(searchTerm);
+            System.out.println(books.size());
+            for (IBook book : books) {
+                ImageView image = new ImageView(context);
+                image.setClickable(true);
+                image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
+                image.setImageResource(Integer.parseInt(book.getImage()));
+                layout.addView(image);
 
-            image.setOnClickListener(v -> {
-                BookDataHandler.currentBook = book;
-                SwitchToBookDetailsActivity(context);
-            });
+                image.setOnClickListener(v -> {
+                    BookDataHandler.currentBook = book;
+                    SwitchToBookDetailsActivity(context);
+                });
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

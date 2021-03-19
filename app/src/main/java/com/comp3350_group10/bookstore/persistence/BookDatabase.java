@@ -3,28 +3,34 @@
  */
 
  package com.comp3350_group10.bookstore.persistence;
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.hsqldb.PersistenceException;
 
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.PreparedStatement;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
-public class BookDatabase{
-	private static Connection connection;
-	private final String bookTXT = "books.txt";
+ public class BookDatabase{
+	public static Connection connection;
+	private List<String> sqlCommands = new ArrayList<>();
 
-	public BookDatabase(){
+	public BookDatabase(Context context) {
+		GetContents(context);
+
+
 		try{
 			Class.forName("org.hsqldb.jdbcDriver");
 			//creates an in-memory database
@@ -37,6 +43,25 @@ public class BookDatabase{
 		}
 		catch(SQLException e){
 			e.printStackTrace(System.out);
+		}
+	}
+
+	private void GetContents(Context context) {
+		AssetManager assetManager = context.getAssets();
+		InputStream stream = null;
+
+		try {
+			stream = assetManager.open("books.txt");
+			Scanner scanner = new Scanner(stream);
+
+			scanner.nextLine();
+
+			while (scanner.hasNextLine())
+				sqlCommands.add(scanner.nextLine());
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -246,24 +271,30 @@ public class BookDatabase{
 	
 	//readInData method: Reads data from the .txt files provided and helps populate the data.
 	private void readInData(){
+//
+//		BufferedReader readBookTXT = null;
+//
+//		try{
+//			readBookTXT = new BufferedReader((new FileReader(bookTXT)));
+//			readBookTXT.readLine();
+//
+//			String bookLine = readBookTXT.readLine();
+//
+//			while(bookLine != null){
+//				String[] bookParts = bookLine.trim().split(",");
+//				fillBooks(bookParts[0].trim(), bookParts[1].trim(), bookParts[2].trim(), bookParts[3].trim(), bookParts[4].trim(), bookParts[5].trim(), bookParts[6].trim(), bookParts[7].trim(), bookParts[8].trim());
+//				bookLine = readBookTXT.readLine();
+//			}
+//			readBookTXT.close();
+//		}
+//		catch(IOException e){
+//			e.printStackTrace(System.out);
+//		}
 
-		BufferedReader readBookTXT = null;
-
-		try{
-			readBookTXT = new BufferedReader((new FileReader(bookTXT)));
-			readBookTXT.readLine();
-
-			String bookLine = readBookTXT.readLine();
-
-			while(bookLine != null){
-				String[] bookParts = bookLine.trim().split(",");
-				fillBooks(bookParts[0].trim(), bookParts[1].trim(), bookParts[2].trim(), bookParts[3].trim(), bookParts[4].trim(), bookParts[5].trim(), bookParts[6].trim(), bookParts[7].trim(), bookParts[8].trim());
-				bookLine = readBookTXT.readLine();
-			}
-			readBookTXT.close();
-		}
-		catch(IOException e){
-			e.printStackTrace(System.out);
+		for (int i = 0; i < sqlCommands.size(); i++)
+		{
+			String[] bookParts = sqlCommands.get(i).trim().split(",");
+			fillBooks(bookParts[0].trim(), bookParts[1].trim(), bookParts[2].trim(), bookParts[3].trim(), bookParts[4].trim(), bookParts[5].trim(), bookParts[6].trim(), bookParts[7].trim(), bookParts[8].trim());
 		}
 	}
 
@@ -281,6 +312,7 @@ public class BookDatabase{
 			);
 			addIsbn.setString(1, bookName);
 			addIsbn.setString(2, isbn);
+			System.out.println(quantity);
 			addIsbn.setInt(3, Integer.parseInt(quantity));
 			addIsbn.setInt(4, Integer.parseInt(price));
 			addIsbn.setString(5, date);

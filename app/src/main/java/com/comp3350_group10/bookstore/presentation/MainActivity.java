@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        uIButtonFunctions = new ButtonFunctions();
+        uIButtonFunctions = new ButtonFunctions(getBaseContext());
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);
         dropdown = findViewById(R.id.dropdown);

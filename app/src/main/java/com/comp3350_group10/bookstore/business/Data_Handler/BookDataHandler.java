@@ -1,20 +1,20 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
+import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-
-import com.comp3350_group10.bookstore.application.Services;
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
+import com.comp3350_group10.bookstore.persistence.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -25,18 +25,20 @@ import java.util.Map.Entry;
 
 public class BookDataHandler implements IBookDataHandler {
     public static IBook currentBook;
-    private IBookDatabase bookDatabase;
+    private static BookDatabase bookDatabase;
     private List<IBook> books;
+//
+//    public BookDataHandler(){
+//        bookDatabase = Services.getBookPersistance();
+//        currentBook = null;
+//        books = null;
+//    }
+//
+    public BookDataHandler(Context context) throws IOException {
+        if (bookDatabase == null) {
 
-    public BookDataHandler(){
-        bookDatabase = Services.getBookPersistance();
-        currentBook = null;
-        books = null;
-    }
-
-    public BookDataHandler(IBookDatabase accessingBooks){
-        this();
-        this.bookDatabase = accessingBooks;
+            bookDatabase = new BookDatabase(context);
+        }
     }
 
     //Takes the keyword and search database with it
@@ -49,7 +51,7 @@ public class BookDataHandler implements IBookDataHandler {
     public List<IBook> findBooks(String keyword) throws ClassNotFoundException {
 
         books = bookDatabase.findBook(keyword);
-        return (List<IBook>) Collections.unmodifiableCollection(books);
+        return books;
     }
 
     //function to set the target book to the given price
@@ -67,7 +69,7 @@ public class BookDataHandler implements IBookDataHandler {
             bookDatabase.updateBook(target);
         }
 
-        catch(NullPointerException | ClassNotFoundException e)
+        catch(NullPointerException e)
         {
             System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
         }

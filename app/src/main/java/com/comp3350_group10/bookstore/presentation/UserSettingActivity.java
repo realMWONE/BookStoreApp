@@ -20,7 +20,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        logic = new ButtonFunctions();
+        logic = new ButtonFunctions(getBaseContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 

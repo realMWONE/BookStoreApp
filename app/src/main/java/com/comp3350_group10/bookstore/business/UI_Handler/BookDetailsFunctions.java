@@ -13,7 +13,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
     @Override
     public void LoadBookInfo(TextView title, ImageView cover, TextView details) {
         title.setText(BookDataHandler.currentBook.getBookName());
-        cover.setImageResource(BookDataHandler.currentBook.getImage());
+        cover.setImageResource(Integer.parseInt(BookDataHandler.currentBook.getImage()));
         details.setText(FormatBookDetails());
     }
 

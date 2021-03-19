@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
+import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -28,9 +29,9 @@ public class BookDataHandler implements IBookDataHandler {
         bookDatabase = new BookDatabase(Main.getDBPath());
     }
 
-    public BookDataHandler(List<IBook> b){
-//        this.bookDatabase = new
-    }
+    //fake db implementation for testing
+    public BookDataHandler(FakeBookDatabase db){this.bookDatabase = db;}
+
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
     /*

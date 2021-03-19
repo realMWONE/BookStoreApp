@@ -168,7 +168,7 @@ import java.io.BufferedReader;
 			"author VARCHAR(100),"+
 			"genre VARCHAR(100),"+
 			"reserve integer," + 
-			"image integer,"+
+			"image VARCHAR(200),"+
 			"primary key(isbn)" + 
 			");";
 		
@@ -211,7 +211,7 @@ import java.io.BufferedReader;
 	 * Searches from the input if that specific entry exists in the table or not.
 	 * If it does not exist then we insert it into our table.
 	 */
-	private String createBooks(String bookName, String isbn, String quantity, String price, String date, String reserve, String genre, String author, String image){
+	private String createBooks(String bookName, String isbn, String quantity, String price, String date, String author, String genre, String reserve, String image){
 		String isbnValue = "";
 		int result;
 		try{
@@ -225,10 +225,8 @@ import java.io.BufferedReader;
 			addIsbn.setString(5, date);
 			addIsbn.setString(6, author);
 			addIsbn.setString(7, genre);
-			System.out.println(reserve);
 			addIsbn.setInt(8, Integer.parseInt(reserve));
-			System.out.println(image);
-			addIsbn.setInt(9, Integer.parseInt(image));
+			addIsbn.setString(9, image);
 
 			result = addIsbn.executeUpdate(); 
 

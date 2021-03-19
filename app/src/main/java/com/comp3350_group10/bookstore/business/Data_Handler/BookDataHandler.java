@@ -67,7 +67,7 @@ public class BookDataHandler implements IBookDataHandler {
 
         catch(Exception e)
         {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setPrice(target, target.getPrice() + 1);
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class BookDataHandler implements IBookDataHandler {
             setPrice(target, target.getPrice()-1);
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
 
     }
@@ -108,7 +108,7 @@ public class BookDataHandler implements IBookDataHandler {
         }
         catch(Exception e)
         {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -120,7 +120,7 @@ public class BookDataHandler implements IBookDataHandler {
             setStock(target, target.getStock() + 1);
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() - 1);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -153,7 +153,7 @@ public class BookDataHandler implements IBookDataHandler {
                 try{
                     map.put(book, map.get(book)+1);
                 }catch(Exception e){
-                    System.out.println(e.toString());
+                    System.out.println(e.getMessage());
                 }
             }
         }

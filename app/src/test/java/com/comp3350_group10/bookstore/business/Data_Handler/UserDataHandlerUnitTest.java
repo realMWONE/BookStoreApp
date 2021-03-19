@@ -111,7 +111,7 @@ public class UserDataHandlerUnitTest extends TestCase {
         try {
             handler.changePassword("0000000", "11111111", "11111111");
         } catch (Exception e) {
-            fail("Could not catch " + e.toString());
+            fail("Could not catch " + e.getMessage());
         }
     }
 

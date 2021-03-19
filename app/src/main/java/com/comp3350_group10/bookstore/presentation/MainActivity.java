@@ -19,8 +19,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.TrendingPageFunctions;
-import com.comp3350_group10.bookstore.objects.Book;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 
 public class MainActivity extends AppCompatActivity
 {

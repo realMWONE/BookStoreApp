@@ -19,9 +19,6 @@ import java.util.List;
 
 public class BookDatabase implements IBookDatabase {
 
-
-    private List<IBook> bookList;
-
     private final String dbPath;
 
     public BookDatabase(final String dbPath){

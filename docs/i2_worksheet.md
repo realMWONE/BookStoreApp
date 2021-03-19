@@ -37,12 +37,12 @@ Group 10 from A01
 
 # Restrospective 
 
-During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
-We also split the workload more evenly, with two people working in each layer.
+- During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
+  We also split the workload more evenly, with two people working in each layer.
 
 [Link to discord channels](/docs/Capture_4_.JPG)
 
-In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
+- In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
 
 [Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Capture_5_.JPG)
 
@@ -50,18 +50,17 @@ In iteration 1 we didn't get much work done in the first week. We decided to sta
 
 # Design Patterns 
 
-We used the observer pattern. Since our app is a virtual bookshelf, we needed all the books to be clickable. So every book cover image has an onClickListener that waits for a click.
-This opens the Book Details Activity, which show more details about the selected book. The onClickListeners are added in code, as the whole shelf is populated dynamically through database queries.
+- We used the observer pattern. Since our app is a virtual bookshelf, we needed all the books to be clickable. So every book cover image has an onClickListener that waits for a click.
+  This opens the Book Details Activity, which show more details about the selected book. The onClickListeners are added in code, as the whole shelf is populated dynamically through database queries.
 [Observer pattern link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/Daniel/app/src/main/java/com/comp3350_group10/bookstore/business/UI_Handler/TrendingPageFunctions.java#L99)
 
 # Iteration 1 feedback fixes 
 
-Issue: BUG - Search is showing books out of scope
-
-The search feature was working incorrectly. It was spliting the the search term on spaces and search for books that matches any of the terms. This caused more specific searches to yield more books that were seemingly not related to the search.
+- Issue: BUG - Search is showing books out of scope
+  The search feature was working incorrectly. It was spliting the the search term on spaces and search for books that matches any of the terms. This caused more specific searches to yield more books that were seemingly not related to the search.
 
 [Link to the issue](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/45)
 
-We rewrote most of the search code to fix this problem. It now searches for books that match all the terms.
+- We rewrote most of the search code to fix this problem. It now searches for books that match all the terms.
 
 [Link to commit](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/81e9a722510870cb40a1794c164b2105c54062da)

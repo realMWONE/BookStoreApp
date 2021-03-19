@@ -29,8 +29,9 @@ import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
 {
-    private IBookDataHandler bookHandler;
-    private IUserDataHandler userHandler;
+    private final IBookDataHandler bookHandler;
+    private final IUserDataHandler userHandler;
+    private final IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions(Context context)
@@ -41,6 +42,8 @@ public class ButtonFunctions implements IButtonFunctions
             e.printStackTrace();
         }
         userHandler = new UserDataHandler();
+        bookDetailsFunctions = new BookDetailsFunctions();
+
     }
 
     @Override
@@ -138,8 +141,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void IncrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.incrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }
@@ -147,8 +148,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void DecrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.decrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }

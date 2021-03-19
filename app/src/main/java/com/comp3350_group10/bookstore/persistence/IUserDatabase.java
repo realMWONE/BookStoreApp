@@ -1,7 +1,5 @@
 package com.comp3350_group10.bookstore.persistence;
 
-import java.util.List;
-
 public interface IUserDatabase {
     IUser findUser(String userId) throws ClassNotFoundException;
     /*we don't need this, we only need to findUser. And findUser beforehand

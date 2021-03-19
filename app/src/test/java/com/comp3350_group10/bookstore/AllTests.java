@@ -1,40 +1,29 @@
 package com.comp3350_group10.bookstore;
 
-import com.comp3350_group10.bookstore.data.model.BookDatabaseTest;
-import com.comp3350_group10.bookstore.data.model.BookTest;
-import com.comp3350_group10.bookstore.data.model.DataHandlerTest;
-import com.comp3350_group10.bookstore.data.model.LoggedInUserTest;
-import com.comp3350_group10.bookstore.data.model.UserTest;
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandlerIntegrationTest;
+import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandlerUnitTest;
+import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandlerUnitTest;
+import com.comp3350_group10.bookstore.objects.BookTest;
+import com.comp3350_group10.bookstore.objects.UserTest;
 
 public class AllTests {
-    //For the class LoggedInUserTest
-    public static void main(String[] args){
-        BookDatabaseTest.testSetBookList();
-        BookDatabaseTest.testFindBook();
+    public static void main(String[] args) throws Exception {
+        BookDataHandlerUnitTest bookHandlerTest = new BookDataHandlerUnitTest();
+        UserDataHandlerUnitTest userHandlerTest = new UserDataHandlerUnitTest();
+        BookTest bookTest = new BookTest();
+        UserTest userTest = new UserTest();
+        //BookDataHandlerIntegrationTest bookHandler_ITest = new BookDataHandlerIntegrationTest();  //TODO: uncomment when database works
 
-        BookTest.testGetBookName();
-        BookTest.testGetBookAuthor();
-        BookTest.testGetPrice();
-        BookTest.testGetBookIsbn();
-        BookTest.testGetStockAmount();
-        BookTest.testSetPrice();
-        BookTest.testSetStockAmount();
+        userHandlerTest.testAll();
 
-        UserTest.testGetRealName();
-        UserTest.testGetUserType();
-        UserTest.testGetUserID();
-        UserTest.testGetPassword();
-        UserTest.testSetUserID();
-        UserTest.testSetPassword();
+        bookHandlerTest.testAll();
 
-        DataHandlerTest.testSetPrice();
-        DataHandlerTest.testIncrementPrice();
-        DataHandlerTest.testDecrementPrice();
-        DataHandlerTest.testSetStock();
-        DataHandlerTest.testIncrementStock();
-        DataHandlerTest.testDecrementStock();
-        DataHandlerTest.testIsCurrentUserManager();
-        DataHandlerTest.testIsCurrentUserManager();
+        bookTest.testAll();
+
+        userTest.testAll();
+
+//        bookHandler_ITest.testAll();
     }
+
 
 }

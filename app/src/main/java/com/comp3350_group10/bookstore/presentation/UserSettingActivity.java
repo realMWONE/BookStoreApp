@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 

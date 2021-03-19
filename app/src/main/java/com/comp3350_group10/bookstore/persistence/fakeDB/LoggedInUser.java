@@ -6,8 +6,8 @@ package com.comp3350_group10.bookstore.persistence.fakeDB;
 public class LoggedInUser
 {
 
-    private String userId;
-    private String displayName;
+    private final String userId;
+    private final String displayName;
 
     public LoggedInUser(String userId, String displayName)
     {

@@ -1,20 +1,18 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
-import com.comp3350_group10.bookstore.business.UI_Handler.BookDetailsFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IBookDetailsFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
-import com.comp3350_group10.bookstore.R;
-
-
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.UI_Handler.BookDetailsFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IBookDetailsFunctions;
+import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
 
 public class BookDetailsActivity extends AppCompatActivity {
 

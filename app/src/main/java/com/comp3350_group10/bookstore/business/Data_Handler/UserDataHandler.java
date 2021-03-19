@@ -1,8 +1,8 @@
 package com.comp3350_group10.bookstore.business.Data_Handler;
 
+import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.business.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
@@ -11,21 +11,34 @@ import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 public class UserDataHandler implements IUserDataHandler {
 
-    public static IUser currentUser = null;
-    private IUserDatabase userDatabase = new UserDatabase("");
+    public static IUser currentUser;
+    private final IUserDatabase userDatabase;
 
+    ////////////////////////CONSTRUCTORS/////////////////////////////////////////////
+    //regular
     public UserDataHandler(){
-
+         currentUser = null;
+         userDatabase = new UserDatabase(Main.getDBPath());
     }
 
-    public UserDataHandler(User currentUser){
-        UserDataHandler.currentUser =currentUser;
+    //for testing (fake database injection)
+    public UserDataHandler(IUserDatabase db, IUser user){
+        this.userDatabase = db;
+        currentUser = user;
     }
 
 
+    /////////////////////////FUNCTIONS////////////////////////////////////////
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
-        return (UserType.Manager == currentUser.getUserType());
+        boolean result = false;
+        try{
+         result = (UserType.Manager == currentUser.getUserType());
+        }
+        catch(NullPointerException e){
+            System.out.println("not logged in");
+        }
+        return result;
     }
 
     //function to login the current user
@@ -36,7 +49,7 @@ public class UserDataHandler implements IUserDataHandler {
         try{
             //check if the user is in the database or not
             if(tempUser == null) {
-                throw new Exception("Password length too short, should be at least 8 characters");
+                throw new Exception("User does not exist");
             }
             else {
                 try{

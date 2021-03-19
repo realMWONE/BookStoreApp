@@ -1,8 +1,8 @@
 package com.comp3350_group10.bookstore.presentation.login;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
 
 import com.comp3350_group10.bookstore.persistence.fakeDB.LoginDataSource;
 import com.comp3350_group10.bookstore.persistence.fakeDB.LoginRepository;

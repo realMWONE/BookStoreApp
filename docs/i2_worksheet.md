@@ -27,7 +27,15 @@ Group 10 from A01
 
 # Restrospective 
 
+During our iteration 1 retrospective we discussed ways to better manage our time and stay organized.
 
+[Link to discord channels]
+
+In iteration 1 we didn't get much work done in the first week. We decided to start work earlier this time around.
+
+[Link to commits]
+
+We also split the workload more evenly, with two people working in each layer.
 
 
 # Design Patterns 

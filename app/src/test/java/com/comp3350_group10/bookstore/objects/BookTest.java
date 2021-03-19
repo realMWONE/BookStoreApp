@@ -11,7 +11,7 @@ public class BookTest extends TestCase {
         super.setUp();
     }
 
-    public void tearDown() throws Exception {
+    public void tearDown()  {
 
     }
 
@@ -123,5 +123,20 @@ public class BookTest extends TestCase {
         IBook b = new Book("This Is A Book Name", "1111111111111", 15, 15, "19 March 2021", "Dan", "Documentary", 0, R.drawable.lotr);
         b.setReserve(100);
         assertEquals(b.getReserve(), 100);
+    }
+
+    public void testAll() throws Exception {
+        testGetBookAuthor();
+        testGetBookIsbn();
+        testGetBookName();
+        testGetDate();
+        testGetGenre();
+        testGetImage();
+        testGetPrice();
+        testGetReserve();
+        testGetStockAmount();
+        testSetPrice();
+        testSetReserve();
+        testSetStockAmount();
     }
 }

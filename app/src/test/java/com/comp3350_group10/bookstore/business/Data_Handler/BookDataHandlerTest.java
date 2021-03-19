@@ -36,7 +36,7 @@ public class BookDataHandlerTest extends TestCase {
         handler = new BookDataHandler(bookDB);
     }
 
-    public void tearDown() throws Exception {
+    public void tearDown()  {
     }
 
     public void testSetPrice() throws Exception {
@@ -172,9 +172,9 @@ public class BookDataHandlerTest extends TestCase {
         //relevancy test
         result = handler.findBooks("Database edition sad");
         //result should be the following
-        assertTrue(result.get(0) == dunnoDBBook);   //3 words match:Database & Sad & edition
-        assertTrue(result.get(1) == book2012);  //2 words: Database & Edition
-        assertTrue(result.get(2) == appNotWorkingBook); //1 word: database
+        assertSame(result.get(0), dunnoDBBook);   //3 words match:Database & Sad & edition
+        assertSame(result.get(1), book2012);  //2 words: Database & Edition
+        assertSame(result.get(2), appNotWorkingBook); //1 word: database
 
 
         //capital and delimiter split test
@@ -192,5 +192,15 @@ public class BookDataHandlerTest extends TestCase {
         //author search
         result = handler.findBooks("Matt Wong");
         assertTrue(result.contains(dunnoDBBook));
+    }
+
+    public void testAll() throws Exception {
+        testDecrementPrice();
+        testDecrementStock();
+        testFindBooks();
+        testIncrementPrice();
+        testIncrementStock();
+        testSetPrice();
+        testSetStock();
     }
 }

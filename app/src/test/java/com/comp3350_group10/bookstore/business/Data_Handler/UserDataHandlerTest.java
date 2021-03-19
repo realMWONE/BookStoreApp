@@ -7,6 +7,8 @@ import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
 
 import junit.framework.TestCase;
 
+import static org.junit.Assert.assertNotEquals;
+
 public class UserDataHandlerTest extends TestCase {
     UserDataHandler handler;
     IUser normalUser, nullUser, matt, karen;
@@ -29,7 +31,7 @@ public class UserDataHandlerTest extends TestCase {
         //handler will be initialized later as tests need different cases
     }
 
-    public void tearDown() throws Exception {
+    public void tearDown()  {
     }
 
     public void testIsCurrentUserManager() throws Exception {
@@ -92,15 +94,15 @@ public class UserDataHandlerTest extends TestCase {
 
         //wrong old pw
         handler.changePassword("SOFTWARE", newPassword, "computer");
-        assertFalse(newPassword.equals(normalUser.getPassword()));
+        assertNotEquals(newPassword, normalUser.getPassword());
 
         //new pw too short
         handler.changePassword("software", "comp", "comp");
-        assertFalse(newPassword.equals(normalUser.getPassword()));
+        assertNotEquals(newPassword, normalUser.getPassword());
 
         //normal case
         handler.changePassword("software", newPassword, "computer");
-        assertTrue(newPassword.equals(normalUser.getPassword()));
+        assertEquals(newPassword, normalUser.getPassword());
 
         assertEquals(newPassword, normalUser.getPassword());
 
@@ -111,6 +113,12 @@ public class UserDataHandlerTest extends TestCase {
         } catch (Exception e) {
             fail("Could not catch " + e.toString());
         }
+    }
 
+    public void testAll() throws Exception {
+        testChangePassword();
+        testIsCurrentUserManager();
+        testLogIn();
+        testLogOut();
     }
 }

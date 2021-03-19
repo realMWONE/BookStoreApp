@@ -10,16 +10,16 @@ public class UserTest extends TestCase {
         super.setUp();
     }
 
-    public void tearDown() throws Exception {
+    public void tearDown()  {
     }
 
     public void testGetRealName() {
         //In this function, I default these fields:
         //userId= 1, password = 2, UserType=Employee
         String[] names = new String[]{"Dan", "Matt", "Harshal"};
-        for (int i = 0; i < names.length; i++) {
-            User u = new User(names[i], "1", "2", UserType.Employee);
-            assertEquals(u.getRealName(), names[i]);
+        for (String name : names) {
+            User u = new User(name, "1", "2", UserType.Employee);
+            assertEquals(u.getRealName(), name);
         }
     }
 
@@ -36,11 +36,11 @@ public class UserTest extends TestCase {
         //In this function, I default these fields:
         //userName = Dan, Mat ; , password = 2,
         String[] userIds = new String[]{"1", "2", "3"};
-        for (int i = 0; i < userIds.length; i++) {
-            User u = new User("Dan", userIds[i], "2", UserType.Employee);
-            assertEquals(u.getUserID(), userIds[i]);
-            User u1 = new User("Mat", userIds[i], "3", UserType.Manager);
-            assertEquals(u1.getUserID(), userIds[i]);
+        for (String userId : userIds) {
+            User u = new User("Dan", userId, "2", UserType.Employee);
+            assertEquals(u.getUserID(), userId);
+            User u1 = new User("Mat", userId, "3", UserType.Manager);
+            assertEquals(u1.getUserID(), userId);
         }
     }
 
@@ -48,11 +48,11 @@ public class UserTest extends TestCase {
         //In this function, I default these fields:
         //userName = Dan, Mat ; userId = 1,2
         String[] passwords = new String[]{"123a", "456b", "abc"};
-        for (int i = 0; i < passwords.length; i++) {
-            User u = new User("Dan", "1", passwords[i], UserType.Employee);
-            assertEquals(u.getPassword(), passwords[i]);
-            User u1 = new User("Mat", "2", passwords[i], UserType.Manager);
-            assertEquals(u1.getPassword(), passwords[i]);
+        for (String password : passwords) {
+            User u = new User("Dan", "1", password, UserType.Employee);
+            assertEquals(u.getPassword(), password);
+            User u1 = new User("Mat", "2", password, UserType.Manager);
+            assertEquals(u1.getPassword(), password);
         }
     }
 
@@ -84,6 +84,15 @@ public class UserTest extends TestCase {
         assertEquals(u1.getPassword(), userPasswords[0]);
         assertEquals(u2.getPassword(), userPasswords[1]);
         assertEquals(u3.getPassword(), userPasswords[2]);
+    }
+
+    public void testAll(){
+        testGetPassword();
+        testGetRealName();
+        testGetUserID();
+        testGetUserType();
+        testSetPassword();
+        testSetUserID();
     }
 
 

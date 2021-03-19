@@ -12,7 +12,7 @@ public interface IBook {
     int getPrice();
     String getBookIsbn();
     int getStock();
-    int getImage();
+    String getImage();
     int getReserve();
     String getGenre();
     void setPrice(int price);

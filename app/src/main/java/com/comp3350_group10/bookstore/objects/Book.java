@@ -15,7 +15,7 @@ public class Book implements IBook, Serializable {
     private String author;
     private int price;
     private int stockAmount;
-    private int imageReference;
+    private String imageReference;
     private String date;
     private String genre;
     private int reserve;
@@ -31,7 +31,7 @@ public class Book implements IBook, Serializable {
      * @param genre
      * @param reserve
      */
-    public Book(String bookName, String isbn, int stockAmount, int price, String date, String author, String genre, int reserve, int imageReference) {
+    public Book(String bookName, String isbn, int stockAmount, int price, String date, String author, String genre, int reserve, String imageReference) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.author = author;
@@ -84,7 +84,7 @@ public class Book implements IBook, Serializable {
     }
 
     //imageReference: Gets the image reference
-    public int getImage(){
+    public String getImage(){
         return imageReference;
     }
 

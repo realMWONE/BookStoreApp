@@ -53,6 +53,7 @@ This opens the Book Details Activity, which show more details about the selected
 # Iteration 1 feedback fixes 
 
 Issue: BUG - Search is showing books out of scope
+
 The search feature was working incorrectly. It was spliting the the search term on soaces and search for books that matches any of the terms. This caused more specific searches to yield more books that were seemingly not related to the search.
 
 (Link to the issue)[https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/issues/45]

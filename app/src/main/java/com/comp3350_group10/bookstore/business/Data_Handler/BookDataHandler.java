@@ -23,7 +23,7 @@ import java.util.Map.Entry;
 
 public class BookDataHandler implements IBookDataHandler {
 //    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
-    private IBookDatabase bookDatabase = new BookDatabase(Main.getDBPath());    //TODO: constructor expecting path
+    private IBookDatabase bookDatabase;    //TODO: constructor expecting path
     public static IBook currentBook;
 
     public BookDataHandler(){

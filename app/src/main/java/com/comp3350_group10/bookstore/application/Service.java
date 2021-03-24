@@ -15,7 +15,7 @@ public class Service {
     public static synchronized IBookDatabase setupBookDatabase(){
         //if not activated the database, we will instantiate that
         if(bookHsqlActivated==false){
-            bookPersistance = new BookDatabase(Main.getDBPath());
+            bookPersistance = new BookDatabase();
             bookHsqlActivated=true;
         }
         return bookPersistance;

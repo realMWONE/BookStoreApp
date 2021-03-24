@@ -5,7 +5,7 @@ public class Main {
 
     public static void setDBPath(final String name) {
         try {
-            Class.forName("org.hsqldb.jdbc.JDBCDriver").newInstance();
+            Class.forName("org.hsqldb.JDBCDriver").newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

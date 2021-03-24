@@ -22,14 +22,8 @@ public class BookDatabase implements IBookDatabase {
 
     private List<IBook> bookList;
 
-    private final String dbPath;
-
-    public BookDatabase(final String dbPath){
-        this.dbPath = dbPath;
-    }
-
     private Connection connection() throws SQLException{
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
+        return DriverManager.getConnection("jdbc:hsqldb:file:BS.script;shutdown=true", "SA", "");
     }
 
     private Book createBook(final ResultSet rs) throws SQLException{
@@ -52,12 +46,12 @@ public class BookDatabase implements IBookDatabase {
      * @param searchTerm
      * @return
      */
-    public List<IBook> findBook(String searchTerm) throws ClassNotFoundException {
+    public List<IBook> findBook(String searchTerm) {
 
         //Lists which contains book objects related to specific search terms
-        List<IBook> findByISBN = findByISBN(searchTerm);
-        List<IBook> findByAuthor = findByAuthor(searchTerm);
-        List<IBook> findByTitle = findByTitle(searchTerm);
+        List<IBook> findByISBN  = findByISBN(searchTerm);
+        List<IBook> findByAuthor = new ArrayList<>();// = findByAuthor(searchTerm);
+        List<IBook> findByTitle = new ArrayList<>();// = findByTitle(searchTerm);
 
         //Filtering by removing duplicates and adding them all into a single list which has elements of the search term
         List<IBook> bookResult = new ArrayList<>();
@@ -85,7 +79,7 @@ public class BookDatabase implements IBookDatabase {
      * findByISBN: Finds books from our bookList by ISBN
      * @param isbn
      */
-    private List<IBook> findByISBN(String isbn) throws ClassNotFoundException {
+    private List<IBook> findByISBN(String isbn) {
         List<IBook> bookIsbn = getBooks();
         if(isbn != null){
             //Going through all the bookList
@@ -103,7 +97,7 @@ public class BookDatabase implements IBookDatabase {
      * findByAuthor: Finds books from our bookList by author
      * @param author
      */
-    private List<IBook> findByAuthor(String author) throws ClassNotFoundException {
+    private List<IBook> findByAuthor(String author) {
         List<IBook> bookAuthor = getBooks();
         String[] split;
         if(author != null){
@@ -129,7 +123,7 @@ public class BookDatabase implements IBookDatabase {
      * findByTitle: Finds books from our bookList by title
      * @param title
      */
-    private List<IBook> findByTitle(String title) throws ClassNotFoundException {
+    private List<IBook> findByTitle(String title) {
         List<IBook> bookTitle = getBooks();
         String[] split;
 
@@ -151,11 +145,10 @@ public class BookDatabase implements IBookDatabase {
 
 
     @Override
-    public List<IBook> getBooks() throws ClassNotFoundException {
+    public List<IBook> getBooks() {
         final List<IBook> books = new ArrayList<>();
-        Class.forName("org.hsqldb.jdbcDriver");
 
-        try (final Connection conn = connection()){
+        try (final Connection conn = connection()) {
             final Statement stmt = conn.createStatement();
             final ResultSet rtst = stmt.executeQuery("SELECT * FROM BOOKS");
 
@@ -177,8 +170,7 @@ public class BookDatabase implements IBookDatabase {
 
 
     @Override
-    public IBook insertBook(IBook book) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
+    public IBook insertBook(IBook book) {
 
         try(final Connection conn = connection()) {
             final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO BOOKS VALUES(?,?,?,?,?,?,?,?)");
@@ -201,8 +193,7 @@ public class BookDatabase implements IBookDatabase {
     }
 
     @Override
-    public void updateBook(IBook book) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
+    public void updateBook(IBook book) {
 
         try (final Connection conn = connection()){
             final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=? WHERE isbn = ?");
@@ -218,8 +209,7 @@ public class BookDatabase implements IBookDatabase {
     }
 
     @Override
-    public void deleteBook(IBook book) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
+    public void deleteBook(IBook book) {
 
         try(final Connection conn = connection()){
             final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM BOOKS WHERE isbn=?");

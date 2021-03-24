@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Main.setDBPath("./assets/db/book.script");
-        Service.setupBookDatabase();
+//        Main.setDBPath("./assets/db/book.script");
+//        Service.setupBookDatabase();
         uIButtonFunctions = new ButtonFunctions();
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);

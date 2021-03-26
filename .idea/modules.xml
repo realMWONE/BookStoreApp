@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BookStore.iml" filepath="$PROJECT_DIR$/.idea/modules/BookStore.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hsqldb/BookStore.hsqldb.iml" filepath="$PROJECT_DIR$/.idea/modules/hsqldb/BookStore.hsqldb.iml" />
     </modules>
   </component>
 </project>

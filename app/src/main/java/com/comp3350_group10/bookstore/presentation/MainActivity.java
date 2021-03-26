@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 //        Main.setDBPath("./assets/db/book.script");
 //        Service.setupBookDatabase();
+        setDBPath();
+
         uIButtonFunctions = new ButtonFunctions();
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);
@@ -53,6 +55,13 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
         FillDropdownList();
+    }
+
+    private void setDBPath(){
+        Context context = getApplicationContext();
+        String dbPath = context.getDir("db", Context.MODE_PRIVATE).toString();
+        Main.setDBPath(dbPath+"/"+Main.getDBPath());
+
     }
 
     private void FillDropdownList() {

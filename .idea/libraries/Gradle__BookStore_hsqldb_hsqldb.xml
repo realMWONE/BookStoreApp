@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="Gradle: ./app/libs/hsqldb.jar">
+  <library name="Gradle: BookStore.hsqldb.hsqldb">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/hsqldb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hsqldb/hsqldb.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

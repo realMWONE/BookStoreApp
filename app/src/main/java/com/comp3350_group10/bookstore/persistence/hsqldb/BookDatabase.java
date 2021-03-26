@@ -3,6 +3,9 @@
  */
 
 package com.comp3350_group10.bookstore.persistence.hsqldb;
+import android.content.Context;
+
+import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -23,7 +26,8 @@ public class BookDatabase implements IBookDatabase {
     private List<IBook> bookList;
 
     private Connection connection() throws SQLException{
-        return DriverManager.getConnection("jdbc:hsqldb:file:BS.script;shutdown=true", "SA", "");
+
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+ Main.getDBPath()+";shutdown=true", "SA", "");
     }
 
     private Book createBook(final ResultSet rs) throws SQLException{

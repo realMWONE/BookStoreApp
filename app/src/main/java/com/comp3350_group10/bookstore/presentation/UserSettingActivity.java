@@ -34,7 +34,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
     public void changePwOnClick(View v){
         logic.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString());
-        System.out.println("Change pw clicked: "+ oldPassword.getText().toString() +" " + newPassword.getText().toString() +" " + confirmNewPassword.getText().toString());
+//        System.out.println("Change pw clicked: "+ oldPassword.getText().toString() +" " + newPassword.getText().toString() +" " + confirmNewPassword.getText().toString());
     }
 
 

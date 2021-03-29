@@ -26,12 +26,15 @@ public class ButtonFunctions implements IButtonFunctions
 {
     private IBookDataHandler bookHandler;
     private IUserDataHandler userHandler;
+    private IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()
     {
         bookHandler = new BookDataHandler();
         userHandler = new UserDataHandler();
+        bookDetailsFunctions = new BookDetailsFunctions();
+
     }
 
     @Override
@@ -110,6 +113,7 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void LogoutButtonPressed()
     {
+        //TODO: maybe add popup notification
         userHandler.logOut();
     }
 
@@ -117,6 +121,7 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
+        //TODO: maybe add popup confirmation
         userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
@@ -129,8 +134,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void IncrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.incrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }
@@ -138,8 +141,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void DecrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.decrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }
@@ -149,6 +150,4 @@ public class ButtonFunctions implements IButtonFunctions
     {
 
     }
-
-
 }

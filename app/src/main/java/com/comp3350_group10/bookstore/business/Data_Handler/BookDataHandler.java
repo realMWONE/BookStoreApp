@@ -4,16 +4,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-
-import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.persistence.IUserDatabase;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
-
+import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +19,10 @@ public class BookDataHandler implements IBookDataHandler {
     private IBookDatabase bookDatabase;    //TODO: constructor expecting path
     public static IBook currentBook;
 
-    public BookDataHandler(){
-        bookDatabase = Service.setupBookDatabase();
+    public BookDataHandler()
+    {
+//        bookDatabase = Service.setupBookDatabase();
+        bookDatabase = new FakeBookDatabase();
     }
 
     //Takes the keyword and search database with it

@@ -3,9 +3,7 @@
  */
 
 package com.comp3350_group10.bookstore.persistence.hsqldb;
-import android.content.Context;
 
-import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -22,12 +20,15 @@ import java.util.List;
 
 public class BookDatabase implements IBookDatabase {
 
+    private final String dbPath;
 
-    private List<IBook> bookList;
+    public BookDatabase(final String dbPath){
+        this.dbPath = dbPath;
+    }
 
     private Connection connection() throws SQLException{
 
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+ Main.getDBPath()+";shutdown=true", "SA", "");
+        return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+";shutdown=true", "SA", "");
     }
 
     private Book createBook(final ResultSet rs) throws SQLException{
@@ -54,8 +55,8 @@ public class BookDatabase implements IBookDatabase {
 
         //Lists which contains book objects related to specific search terms
         List<IBook> findByISBN  = findByISBN(searchTerm);
-        List<IBook> findByAuthor = new ArrayList<>();// = findByAuthor(searchTerm);
-        List<IBook> findByTitle = new ArrayList<>();// = findByTitle(searchTerm);
+        List<IBook> findByAuthor = findByAuthor(searchTerm);
+        List<IBook> findByTitle = findByTitle(searchTerm);
 
         //Filtering by removing duplicates and adding them all into a single list which has elements of the search term
         List<IBook> bookResult = new ArrayList<>();
@@ -84,7 +85,8 @@ public class BookDatabase implements IBookDatabase {
      * @param isbn
      */
     private List<IBook> findByISBN(String isbn) {
-        List<IBook> bookIsbn = getBooks();
+        List<IBook> bookList = getBooks();
+        List<IBook> bookIsbn = new ArrayList<>();
         if(isbn != null){
             //Going through all the bookList
             for(IBook book: bookList){
@@ -102,7 +104,8 @@ public class BookDatabase implements IBookDatabase {
      * @param author
      */
     private List<IBook> findByAuthor(String author) {
-        List<IBook> bookAuthor = getBooks();
+        List<IBook> bookList = getBooks();
+        List<IBook> bookAuthor = new ArrayList<>();
         String[] split;
         if(author != null){
             //Going through all the bookList
@@ -128,7 +131,8 @@ public class BookDatabase implements IBookDatabase {
      * @param title
      */
     private List<IBook> findByTitle(String title) {
-        List<IBook> bookTitle = getBooks();
+        List<IBook> bookList = getBooks();
+        List<IBook> bookTitle = new ArrayList<>();
         String[] split;
 
         if(title != null){
@@ -154,7 +158,7 @@ public class BookDatabase implements IBookDatabase {
 
         try (final Connection conn = connection()) {
             final Statement stmt = conn.createStatement();
-            final ResultSet rtst = stmt.executeQuery("SELECT * FROM BOOKS");
+            final ResultSet rtst = stmt.executeQuery("SELECT * FROM books");
 
             while(rtst.next()){
                 final Book book = createBook(rtst);
@@ -177,7 +181,7 @@ public class BookDatabase implements IBookDatabase {
     public IBook insertBook(IBook book) {
 
         try(final Connection conn = connection()) {
-            final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO BOOKS VALUES(?,?,?,?,?,?,?,?)");
+            final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
             pstmt.setString(1, book.getBookName());
             pstmt.setString(2, book.getBookIsbn());
             pstmt.setInt(3, book.getStock());
@@ -200,7 +204,7 @@ public class BookDatabase implements IBookDatabase {
     public void updateBook(IBook book) {
 
         try (final Connection conn = connection()){
-            final PreparedStatement pstmt = conn.prepareStatement("UPDATE BOOKS SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+            final PreparedStatement pstmt = conn.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
             pstmt.setInt(1, book.getStock());
             pstmt.setInt(2, book.getPrice());
             pstmt.setInt(3, book.getReserve());
@@ -216,7 +220,7 @@ public class BookDatabase implements IBookDatabase {
     public void deleteBook(IBook book) {
 
         try(final Connection conn = connection()){
-            final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM BOOKS WHERE isbn=?");
+            final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE isbn=?");
             pstmt.setString(1, book.getBookIsbn());
             pstmt.executeUpdate();
         }

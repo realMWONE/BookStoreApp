@@ -1,5 +1,5 @@
 CREATE SCHEMA PUBLIC AUTHORIZATION DBA
-CREATE MEMORY TABLE PUBLIC.BOOKS(bookName character varying, isbn VARCHAR(15) NOT NULL PRIMARY KEY, quantity integer, price integer, date VARCHAR(150), author VARCHAR(100), genre VARCHAR(100), reserve integer, image integer)
+CREATE MEMORY TABLE PUBLIC.BOOKS(bookName VARCHAR(200), isbn VARCHAR(15) NOT NULL PRIMARY KEY, quantity integer, price integer, date VARCHAR(150), author VARCHAR(100), genre VARCHAR(100), reserve integer, image integer)
 CREATE USER SA PASSWORD DIGEST 'd41d8cd98f00b204e9800998ecf8427e'
 ALTER USER SA SET LOCAL TRUE
 CREATE SCHEMA PUBLIC AUTHORIZATION DBA
@@ -8,10 +8,10 @@ GRANT DBA TO SA
 SET WRITE_DELAY 20
 SET FILES SCALE 32
 SET SCHEMA PUBLIC
-INSERT INTO BOOKS("Harry Potter and the Philosopher's Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,R.drawable.philosophers_stone)
-INSERT INTO BOOKS("Harry Potter and the Chamber of Secrets","3820484736373",14,2640,"21 April 1998","J.K.Rowling","Novel",5,R.drawable.harry_potter_and_the_chamber_of_secrets)
-INSERT INTO BOOKS("The Da Vinci Code","0218574629654",10,2780,"21 October 2007,"Dan Brown","Mystery",3,R.drawable.the_da_vinci_code)
-INSERT INTO BOOKS("Angels and Demons","2865926595295",11,2780,"15 June 2009","Dan Brown","Mystery",5,R.drawable.angels_demons)
+INSERT INTO BOOKS("Harry Potter and the Philosopher's Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,"R.drawable.philosophers_stone")
+INSERT INTO BOOKS("Harry Potter and the Chamber of Secrets","3820484736373",14,2640,"21 April 1998","J.K.Rowling","Novel",5,"R.drawable.harry_potter_and_the_chamber_of_secrets")
+INSERT INTO BOOKS("The Da Vinci Code","0218574629654",10,2780,"21 October 2007,"Dan Brown","Mystery",3,"R.drawable.the_da_vinci_code")
+INSERT INTO BOOKS("Angels and Demons","2865926595295",11,2780,"15 June 2009","Dan Brown","Mystery",5,"R.drawable.angels_demons")
 INSERT INTO BOOKS("Diary of Wimpy Kid: The Getaway","5987450215825",13,1250,"16 January 2005","Jeff Kinney","Comedy",4, R.drawable.diary_of_wimpy_kid_the_getaway)
 INSERT INTO BOOKS("Diary of Wimpy Kid: Double Down","4578932145250",12,1280,"21 February 2006","Jeff Kinney","Comedy",3,R.drawable.diary_of_wimpy_kid_double_down)
 INSERT INTO BOOKS("Harry Potter and the Prisoner of Azkaban","6003255121507",14,2680,"22 March 1999","J.K.Rowling","Novel",2,R.drawable.prisoner_of_azkaban)

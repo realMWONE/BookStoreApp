@@ -6,27 +6,21 @@ import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 public class Service {
-    private static boolean bookHsqlActivated = false;
-    private static boolean userHsqlActivated = false;
-
-    private static IBookDatabase bookPersistance = null;
-    private static IUserDatabase userPersistance = null;
+    private static IBookDatabase bookPersistence = null;
+    private static IUserDatabase userPersistence = null;
 
     public static synchronized IBookDatabase setupBookDatabase(){
-        //if not activated the database, we will instantiate that
-        if(bookHsqlActivated==false){
-            bookPersistance = new BookDatabase();
-            bookHsqlActivated=true;
+        if(bookPersistence == null){
+            bookPersistence = new BookDatabase(Main.getDBPath());
         }
-        return bookPersistance;
+        return bookPersistence;
     }
 
     public static synchronized IUserDatabase setupUserDatabase(){
-        if(userHsqlActivated==false){
-            userPersistance = new UserDatabase(Main.getDBPath());
-            userHsqlActivated=true;
+        if(userPersistence == null){
+            userPersistence = new UserDatabase(Main.getDBPath());
         }
-        return userPersistance;
+        return userPersistence;
     }
 
 

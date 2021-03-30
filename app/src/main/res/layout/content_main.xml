@@ -44,7 +44,7 @@
         <TableLayout
             android:id="@+id/bookListTable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:divider="@drawable/side_nav_bar"
             android:showDividers="middle|beginning|end"
             android:stretchColumns="1" />

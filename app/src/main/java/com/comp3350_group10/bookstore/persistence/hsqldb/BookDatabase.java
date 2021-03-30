@@ -4,6 +4,7 @@
 
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 
+import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -33,6 +34,9 @@ public class BookDatabase implements IBookDatabase {
 
     private Book createBook(final ResultSet rs) throws SQLException{
         final String bookName = rs.getString("bookName");
+        System.out.println(bookName);
+
+
         final String isbn = rs.getString("isbn");
         final int quantity = rs.getInt("quantity");
         final int price = rs.getInt("price");
@@ -40,8 +44,7 @@ public class BookDatabase implements IBookDatabase {
         final String author = rs.getString("author");
         final String genre = rs.getString("genre");
         final int reserve = rs.getInt("reserve");
-        final int imageReference = Integer.parseInt(rs.getString("image"));
-
+        final int imageReference = rs.getInt("image");
         return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
     }
 
@@ -86,12 +89,15 @@ public class BookDatabase implements IBookDatabase {
      */
     private List<IBook> findByISBN(String isbn) {
         List<IBook> bookList = getBooks();
+
+        System.out.println(bookList.size());
+
         List<IBook> bookIsbn = new ArrayList<>();
-        if(isbn != null){
+        if(isbn != null && bookList != null){
             //Going through all the bookList
             for(IBook book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookIsbn().startsWith(isbn)){
+                if(book != null && book.getBookIsbn().startsWith(isbn)){
                     bookIsbn.add(book);
                 }
             }
@@ -162,6 +168,7 @@ public class BookDatabase implements IBookDatabase {
 
             while(rtst.next()){
                 final Book book = createBook(rtst);
+                System.out.println(book.getBookName());
                 books.add(book);
             }
 

@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_weight="45"
             android:onClick="OnSaleClick"
-            android:text="Sale" />
+            android:text="@string/sale_button" />
 
         <Space
             android:layout_width="20dp"

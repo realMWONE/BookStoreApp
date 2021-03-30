@@ -21,29 +21,28 @@ import java.util.List;
 
 public class BookDatabase implements IBookDatabase {
 
-    private final String dbPath;
+    //private  String dbPath;
+    private static Connection connection;
 
-    public BookDatabase(final String dbPath){
-        this.dbPath = dbPath;
+    public BookDatabase( String dbPath) {
+        //this.dbPath = dbPath;
+        try {
+            connection = DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+";shutdown=true", "SA", "");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    private Connection connection() throws SQLException{
-
-        return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+";shutdown=true", "SA", "");
-    }
-
-    private Book createBook(final ResultSet rs) throws SQLException{
-        final String bookName = rs.getString("BOOKNAME");
-        System.out.println(bookName);
-
-        final String isbn = rs.getString("isbn");
-        final int quantity = rs.getInt("quantity");
-        final int price = rs.getInt("price");
-        final String date = rs.getString("date");
-        final String author = rs.getString("author");
-        final String genre = rs.getString("genre");
-        final int reserve = rs.getInt("reserve");
-        final int imageReference = rs.getInt("image");
+    private Book createBook( ResultSet rs) throws SQLException{
+         String bookName = rs.getString("BOOKNAME");
+         String isbn = rs.getString("isbn");
+         int quantity = rs.getInt("quantity");
+         int price = rs.getInt("price");
+         String date = rs.getString("date");
+         String author = rs.getString("author");
+         String genre = rs.getString("genre");
+         int reserve = rs.getInt("reserve");
+         int imageReference = rs.getInt("image");
         return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
     }
 
@@ -156,24 +155,25 @@ public class BookDatabase implements IBookDatabase {
 
     @Override
     public List<IBook> getBooks() {
-        final List<IBook> books = new ArrayList<>();
+         List<IBook> books = new ArrayList<>();
 
-        try (final Connection conn = connection()) {
-            final Statement stmt = conn.createStatement();
-            final ResultSet rtst = stmt.executeQuery("SELECT * FROM books");
+        Statement stmt = null;
+        try {
+            stmt = connection.createStatement();
+            ResultSet rtst = stmt.executeQuery("SELECT * FROM books");
 
             while(rtst.next()){
-                final Book book = createBook(rtst);
+                Book book = createBook(rtst);
                 books.add(book);
             }
 
             rtst.close();
             stmt.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
-        catch(final SQLException e){
-            throw new PersistenceException(e);
-        }
         return books;
     }
 
@@ -181,9 +181,9 @@ public class BookDatabase implements IBookDatabase {
 
     @Override
     public IBook insertBook(IBook book) {
-
-        try(final Connection conn = connection()) {
-            final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
             pstmt.setString(1, book.getBookName());
             pstmt.setString(2, book.getBookIsbn());
             pstmt.setInt(3, book.getStock());
@@ -194,26 +194,25 @@ public class BookDatabase implements IBookDatabase {
             pstmt.setInt(8, book.getReserve());
             pstmt.setInt(9, book.getImage());
             pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-            return book;
-        }
-        catch(final SQLException e){
-            throw new PersistenceException(e);
-        }
+        return book;
     }
 
     @Override
     public void updateBook(IBook book) {
 
-        try (final Connection conn = connection()){
-            final PreparedStatement pstmt = conn.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+        try ( Connection conn = connection){
+             PreparedStatement pstmt = conn.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
             pstmt.setInt(1, book.getStock());
             pstmt.setInt(2, book.getPrice());
             pstmt.setInt(3, book.getReserve());
             pstmt.setString(4, book.getBookIsbn());
             pstmt.executeUpdate();
         }
-        catch(final SQLException e){
+        catch( SQLException e){
             throw new PersistenceException(e);
         }
     }
@@ -221,12 +220,12 @@ public class BookDatabase implements IBookDatabase {
     @Override
     public void deleteBook(IBook book) {
 
-        try(final Connection conn = connection()){
-            final PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE isbn=?");
+        try( Connection conn = connection){
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE isbn=?");
             pstmt.setString(1, book.getBookIsbn());
             pstmt.executeUpdate();
         }
-        catch(final SQLException e){
+        catch( SQLException e){
             throw new PersistenceException(e);
         }
     }

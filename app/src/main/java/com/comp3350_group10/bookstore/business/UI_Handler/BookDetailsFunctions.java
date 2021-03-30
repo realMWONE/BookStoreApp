@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 
 import java.text.DecimalFormat;
 
@@ -13,7 +14,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
     @Override
     public void LoadBookInfo(TextView title, ImageView cover, TextView details) {
         title.setText(BookDataHandler.currentBook.getBookName());
-        cover.setImageResource(BookDataHandler.currentBook.getImage());
+        cover.setImageResource(ImageReferences.Get(BookDataHandler.currentBook.getImage()));
         details.setText(FormatBookDetails());
     }
 

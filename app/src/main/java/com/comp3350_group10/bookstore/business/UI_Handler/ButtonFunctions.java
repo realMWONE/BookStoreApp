@@ -13,6 +13,7 @@ import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
@@ -90,7 +91,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     private ImageView CreateImageView(Context context, IBook book, int height) {
         ImageView image = new ImageView(context);
-        image.setImageResource(book.getImage());
+        image.setImageResource(ImageReferences.Get(book.getImage()));
         image.setLayoutParams(new TableRow.LayoutParams(height, height));
         return image;
     }

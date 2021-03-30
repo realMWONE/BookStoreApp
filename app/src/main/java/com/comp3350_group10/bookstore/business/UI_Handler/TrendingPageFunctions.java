@@ -1,7 +1,9 @@
 package com.comp3350_group10.bookstore.business.UI_Handler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,11 +11,18 @@ import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
+
 import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
 import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
+import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.util.List;
@@ -85,6 +94,7 @@ public class TrendingPageFunctions {
         scrollView.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
     }
 
+    @SuppressLint("ResourceType")
     private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) throws ClassNotFoundException {
         IBookDataHandler bookHandler = new BookDataHandler();
         List<IBook> books = bookHandler.findBooks(searchTerm);
@@ -93,14 +103,23 @@ public class TrendingPageFunctions {
             ImageView image = new ImageView(context);
             image.setClickable(true);
             image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
-            image.setImageResource(book.getImage());
-            layout.addView(image);
 
+            ImageReferences.FillDictionary();
+            System.out.println(book.getImage());
+            image.setImageResource(ImageReferences.Get(book.getImage()));
+
+            layout.addView(image);
             image.setOnClickListener(v -> {
                 BookDataHandler.currentBook = book;
                 SwitchToBookDetailsActivity(context);
             });
         }
+    }
+
+    @DrawableRes
+    private static int GetID(IBook book)
+    {
+        return book.getImage();
     }
 
     private static void SwitchToBookDetailsActivity(Context context) {

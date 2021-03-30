@@ -164,9 +164,7 @@ public class BookDatabase implements IBookDatabase {
 
             while(rtst.next()){
                 final Book book = createBook(rtst);
-                //System.out.println(book.getBookName());
                 books.add(book);
-                R.drawable.
             }
 
             rtst.close();

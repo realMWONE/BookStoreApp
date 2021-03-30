@@ -40,7 +40,7 @@ public class BookDatabase implements IBookDatabase {
         final String author = rs.getString("author");
         final String genre = rs.getString("genre");
         final int reserve = rs.getInt("reserve");
-        final int imageReference = rs.getInt("image");
+        final int imageReference = Integer.parseInt(rs.getString("image"));
 
         return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
     }

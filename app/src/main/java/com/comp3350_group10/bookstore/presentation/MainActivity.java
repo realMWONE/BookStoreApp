@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
                 out.write(buffer, 0, count);
                 count = in.read(buffer);
             }
-
             out.close();
             in.close();
         }

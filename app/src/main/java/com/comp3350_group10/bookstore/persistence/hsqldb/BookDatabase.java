@@ -33,9 +33,8 @@ public class BookDatabase implements IBookDatabase {
     }
 
     private Book createBook(final ResultSet rs) throws SQLException{
-        final String bookName = rs.getString("bookName");
+        final String bookName = rs.getString("BOOKNAME");
         System.out.println(bookName);
-
 
         final String isbn = rs.getString("isbn");
         final int quantity = rs.getInt("quantity");
@@ -89,15 +88,12 @@ public class BookDatabase implements IBookDatabase {
      */
     private List<IBook> findByISBN(String isbn) {
         List<IBook> bookList = getBooks();
-
-        System.out.println(bookList.size());
-
         List<IBook> bookIsbn = new ArrayList<>();
         if(isbn != null && bookList != null){
             //Going through all the bookList
             for(IBook book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book != null && book.getBookIsbn().startsWith(isbn)){
+                if(book.getBookIsbn().startsWith(isbn)){
                     bookIsbn.add(book);
                 }
             }
@@ -168,8 +164,9 @@ public class BookDatabase implements IBookDatabase {
 
             while(rtst.next()){
                 final Book book = createBook(rtst);
-                System.out.println(book.getBookName());
+                //System.out.println(book.getBookName());
                 books.add(book);
+                R.drawable.
             }
 
             rtst.close();

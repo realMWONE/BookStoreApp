@@ -22,9 +22,11 @@ import java.util.List;
 public class BookDatabase implements IBookDatabase {
 
     private final String dbPath;
+    private List<IBook> bookList;
 
     public BookDatabase(final String dbPath) {
         this.dbPath = dbPath;
+        bookList = getBooks();
     }
 
     private Connection connection() throws SQLException {
@@ -85,7 +87,6 @@ public class BookDatabase implements IBookDatabase {
      * @param isbn
      */
     private List<IBook> findByISBN(String isbn) {
-        List<IBook> bookList = getBooks();
         List<IBook> bookIsbn = new ArrayList<>();
         if(isbn != null && bookList != null){
             //Going through all the bookList
@@ -104,7 +105,6 @@ public class BookDatabase implements IBookDatabase {
      * @param author
      */
     private List<IBook> findByAuthor(String author) {
-        List<IBook> bookList = getBooks();
         List<IBook> bookAuthor = new ArrayList<>();
         String[] split;
         if(author != null){
@@ -131,8 +131,6 @@ public class BookDatabase implements IBookDatabase {
      * @param title
      */
     private List<IBook> findByTitle(String title) {
-
-        List<IBook> bookList = getBooks();
         List<IBook> bookTitle = new ArrayList<>();
         String[] split;
 

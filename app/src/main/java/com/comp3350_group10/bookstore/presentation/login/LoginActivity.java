@@ -15,10 +15,10 @@ import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.R;
 
-import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.business.IUserDataHandler;
+import com.comp3350_group10.bookstore.business.UserDataHandler;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 
 public class LoginActivity extends AppCompatActivity
 {

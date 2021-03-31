@@ -1,10 +1,10 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
-import com.comp3350_group10.bookstore.business.UI_Handler.BookDetailsFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IBookDetailsFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.R;
 
 

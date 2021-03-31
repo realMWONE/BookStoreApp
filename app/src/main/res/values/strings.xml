@@ -12,6 +12,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="sale_button">Sale</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -51,4 +52,6 @@
     <string name="enter_new_password">Enter New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="logout">Logout</string>
+    <string name="fatalError">fatal</string>
+    <string name="warning">warning</string>
 </resources>

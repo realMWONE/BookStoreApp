@@ -18,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.TrendingPageFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;
 
 import java.io.File;
 import java.io.FileWriter;

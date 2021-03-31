@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.comp3350_group10.bookstore.R;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 
 public class UserSettingActivity extends AppCompatActivity {
     private EditText oldPassword;

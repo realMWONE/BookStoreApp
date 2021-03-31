@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.business.Data_Handler;
+package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.persistence.IBook;
 

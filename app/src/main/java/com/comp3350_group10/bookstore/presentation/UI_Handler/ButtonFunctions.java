@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.business.UI_Handler;
+package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,10 +8,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IUserDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.UserDataHandler;
+import com.comp3350_group10.bookstore.business.BookDataHandler;
+import com.comp3350_group10.bookstore.business.IBookDataHandler;
+import com.comp3350_group10.bookstore.business.IUserDataHandler;
+import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;

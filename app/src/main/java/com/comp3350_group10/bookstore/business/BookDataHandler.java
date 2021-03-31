@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.business.Data_Handler;
+package com.comp3350_group10.bookstore.business;
 
 import android.os.Build;
 
@@ -22,8 +22,7 @@ import java.util.Map.Entry;
 
 
 public class BookDataHandler implements IBookDataHandler {
-//    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
-    private IBookDatabase bookDatabase;    //TODO: constructor expecting path
+    private IBookDatabase bookDatabase;
     public static IBook currentBook;
 
     public BookDataHandler(){

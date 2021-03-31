@@ -1,9 +1,8 @@
-package com.comp3350_group10.bookstore.business.Data_Handler;
+package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.business.UI_Handler.ErrorHandler;
-import com.comp3350_group10.bookstore.business.UI_Handler.IErrorHandler;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
@@ -16,11 +15,12 @@ public class UserDataHandler implements IUserDataHandler {
     public static IUser currentUser = null;
     private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
 
-    public UserDataHandler(){
+    //Default constructor that calls on Service method to connect to database
+    public UserDataHandler() {
         userDatabase = Service.setupUserDatabase();
     }
 
-    public UserDataHandler(User currentUser){
+    public UserDataHandler(User currentUser) throws ClassNotFoundException {
         UserDataHandler.currentUser =currentUser;
     }
 

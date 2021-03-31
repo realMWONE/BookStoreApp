@@ -3,15 +3,19 @@ package com.comp3350_group10.bookstore.presentation.UI_Handler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
+import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
@@ -21,6 +25,9 @@ import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
 import java.text.DecimalFormat;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
@@ -35,6 +42,7 @@ public class ButtonFunctions implements IButtonFunctions
         userHandler = new UserDataHandler();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException {
         ClearResults(table);
@@ -47,7 +55,10 @@ public class ButtonFunctions implements IButtonFunctions
         table.removeAllViews();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
+        SortResults(results, main);
+
         if (results != null) {
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);
@@ -61,6 +72,19 @@ public class ButtonFunctions implements IButtonFunctions
         }
 
         return results;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void SortResults(List<IBook> results, MainActivity main) {
+        String sortBy = main.getSortBy();
+        if (sortBy.contains("Title"))
+            results.sort(Comparator.comparing(IBook::getBookName));
+        else if (sortBy.contains("Author"))
+            results.sort(Comparator.comparing(IBook::getBookAuthor));
+        else results.sort(Comparator.comparing(IBook::getGenre));
+
+        if (main.getOrderString().toLowerCase().equals("desc"))
+            Collections.reverse(results);
     }
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {

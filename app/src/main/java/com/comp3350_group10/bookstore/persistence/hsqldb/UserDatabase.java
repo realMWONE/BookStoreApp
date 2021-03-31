@@ -21,6 +21,9 @@ public class UserDatabase implements IUserDatabase {
 
     private List<IUser> userList;
 
+    public UserDatabase(final String dbPath){
+        this.dbPath = dbPath;
+    }
 
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
@@ -34,16 +37,13 @@ public class UserDatabase implements IUserDatabase {
         return new User(name,userId,password,position==MANAGER? UserType.Manager:UserType.Employee);
     }
 
-    public UserDatabase(final String dbPath){
-        this.dbPath = dbPath;
-    }
-
     @Override
-    public IUser findUser(String userId) throws ClassNotFoundException {
+    public IUser findUser(String userId){
         //retrieve getUsers first
         userList = getUsers();
-        if(userList.size()==0)
+        if(userList.size()==0) {
             return null;
+        }
         for(int i=0;i<userList.size();i++){
             if(userList.get(i).getUserID().equals(userId))
                 return userList.get(i);
@@ -51,19 +51,15 @@ public class UserDatabase implements IUserDatabase {
         return null;
     }
 
-    private List<IUser> getUsers() throws ClassNotFoundException {
+    public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();
-        Class.forName("org.hsqldb.jdbcDriver");
-
         try (final Connection conn = connection()){
             final Statement stmt = conn.createStatement();
             final ResultSet rtst = stmt.executeQuery("SELECT * FROM USERS");
-
             while(rtst.next()){
                 final User user = createUser(rtst);
                 usersInfo.add(user);
             }
-
             rtst.close();
             stmt.close();
         }
@@ -74,9 +70,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser createUser(IUser user) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
-
+    public IUser createUser(IUser user) {
         try(final Connection conn = connection()) {
             final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO USERS VALUES(?,?,?,?)");
             pstmt.setString(1, user.getRealName());
@@ -93,9 +87,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void updateUser(IUser user) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
-
+    public IUser updateUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("UPDATE USERS SET Name=?,password=?, position=? WHERE userId=?");
@@ -104,6 +96,7 @@ public class UserDatabase implements IUserDatabase {
             String position = user.getUserType()==UserType.Employee?EMPLOYEE:MANAGER;
             pstmt.setString(3, position);
             pstmt.executeUpdate();
+            return user;
         }
         catch(final SQLException e){
             throw new PersistenceException(e);
@@ -111,9 +104,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void deleteUser(IUser user) throws ClassNotFoundException {
-        Class.forName("org.hsqldb.jdbcDriver");
-
+    public void deleteUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("DELETE FROM USER WHERE userId=?");
@@ -124,22 +115,4 @@ public class UserDatabase implements IUserDatabase {
             throw new PersistenceException(e);
         }
     }
-
-
-
-    /*static void addUser(User newUser){
-
-        User[] newArray = new User[userList.length + 1];
-
-        for(int i = 0; i < userList.length; i++){
-            if(userList[i] == null){
-                newArray[i] = newUser;
-            }else{
-                newArray[i] = userList[i];
-            }
-        }
-        newArray[newArray.length-1] = newUser;
-    }*/
-
-
 }

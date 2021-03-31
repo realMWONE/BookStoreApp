@@ -9,6 +9,6 @@ public interface IUserDatabase {
     List<IUser> getUsers();
      */
     IUser createUser(IUser user) throws ClassNotFoundException;
-    void updateUser(IUser user) throws ClassNotFoundException;
+    IUser updateUser(IUser user) throws ClassNotFoundException;
     void deleteUser(IUser user) throws ClassNotFoundException;
 }

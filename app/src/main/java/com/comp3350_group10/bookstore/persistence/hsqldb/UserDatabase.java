@@ -46,28 +46,26 @@ public class UserDatabase implements IUserDatabase {
     public IUser findUser(String userId) {
         //retrieve getUsers first
         userList = getUsers();
-        if(userList.size()==0)
+        if(userList.size()==0) {
             return null;
+        }
         for(int i=0;i<userList.size();i++){
             if(userList.get(i).getUserID().equals(userId))
                 return userList.get(i);
         }
         return null;
     }
-
     //return every user in the database
-    private List<IUser> getUsers() {
+    public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();
 
         try (final Connection conn = connection()){
             final Statement stmt = conn.createStatement();
             final ResultSet rtst = stmt.executeQuery("SELECT * FROM USERS");
-
             while(rtst.next()){
                 final User user = createUser(rtst);
                 usersInfo.add(user);
             }
-
             rtst.close();
             stmt.close();
         }
@@ -95,7 +93,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void updateUser(IUser user) {
+    public IUser updateUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("UPDATE USERS SET Name=?,password=?, position=? WHERE userId=?");
@@ -104,6 +102,7 @@ public class UserDatabase implements IUserDatabase {
             String position = user.getUserType()==UserType.Employee?EMPLOYEE:MANAGER;
             pstmt.setString(3, position);
             pstmt.executeUpdate();
+            return user;
         }
         catch(final SQLException e){
             throw new PersistenceException(e);
@@ -111,7 +110,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void deleteUser(IUser user) {
+    public void deleteUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
                     conn.prepareStatement("DELETE FROM USER WHERE userId=?");

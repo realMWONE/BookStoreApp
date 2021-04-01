@@ -8,9 +8,11 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import com.comp3350_group10.bookstore.R;
@@ -18,9 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.business.UI_Handler.ButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.IButtonFunctions;
-import com.comp3350_group10.bookstore.business.UI_Handler.TrendingPageFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private EditText searchBar;
     private Spinner dropdown;
     private Button sortButton;
+    private LinearLayout sortingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,14 +48,19 @@ public class MainActivity extends AppCompatActivity
         uIButtonFunctions = new ButtonFunctions();
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);
-        dropdown = findViewById(R.id.dropdown);
+        dropdown = findViewById(R.id.sortingDropdown);
         sortButton = findViewById(R.id.sortingButton);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
+        sortingLayout = findViewById(R.id.sortingLayout);
+        sortingLayout.setVisibility(LinearLayout.GONE);
         setSupportActionBar(toolbar);
 
+        //Performs search each time a character is entered
         SetSearchListener(getBaseContext(), this);
+        SetDropdownListener(getBaseContext(), this);
+
         try {
+            //Populate the trending table with categories
             FillTrendingTable();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -114,7 +122,6 @@ public class MainActivity extends AppCompatActivity
     }
 }
 
-
     private void FillDropdownList() {
         String[] items = new String[] {"By Title", "By Author", "By Genre"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);
@@ -132,11 +139,35 @@ public class MainActivity extends AppCompatActivity
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
                     uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
+                    int visibility = s.length() == 0 ? LinearLayout.GONE : LinearLayout.VISIBLE;
+                    sortingLayout.setVisibility(visibility);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private void SetDropdownListener(Context context, MainActivity main) {
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem()); }
+                catch (ClassNotFoundException e) { e.printStackTrace(); }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+    }
+
+    public String getSortBy() {
+        return dropdown.getSelectedItem().toString();
+    }
+
+    public String getOrderString() {
+        return sortButton.getText().toString();
     }
 
     @Override
@@ -162,5 +193,8 @@ public class MainActivity extends AppCompatActivity
         if (b.getText().toString().equals("DESC"))
             b.setText("ASC");
         else b.setText("DESC");
+
+        try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());}
+        catch (ClassNotFoundException e) { e.printStackTrace(); }
     }
 }

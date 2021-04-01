@@ -21,13 +21,12 @@ public class UserDatabase implements IUserDatabase {
 
     private List<IUser> userList;
 
-    public UserDatabase(final String dbPath){
-        this.dbPath = dbPath;
-    }
 
+    //establish connection with the database
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
     }
+
 
     private User createUser(final ResultSet rs) throws SQLException{
         final String name = rs.getString("name");
@@ -37,8 +36,14 @@ public class UserDatabase implements IUserDatabase {
         return new User(name,userId,password,position==MANAGER? UserType.Manager:UserType.Employee);
     }
 
+    //constructor that takes dbPath as parameter
+    public UserDatabase(final String dbPath){
+        this.dbPath = dbPath;
+    }
+
     @Override
-    public IUser findUser(String userId){
+    //searches user from the database with the given ID
+    public IUser findUser(String userId) {
         //retrieve getUsers first
         userList = getUsers();
         if(userList.size()==0) {
@@ -50,9 +55,10 @@ public class UserDatabase implements IUserDatabase {
         }
         return null;
     }
-
+    //return every user in the database
     public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();
+
         try (final Connection conn = connection()){
             final Statement stmt = conn.createStatement();
             final ResultSet rtst = stmt.executeQuery("SELECT * FROM USERS");

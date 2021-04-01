@@ -1,9 +1,8 @@
-package com.comp3350_group10.bookstore.business.UI_Handler;
+package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,16 +12,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
-import androidx.core.content.ContextCompat;
 
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.business.Data_Handler.BookDataHandler;
-import com.comp3350_group10.bookstore.business.Data_Handler.IBookDataHandler;
+import com.comp3350_group10.bookstore.business.BookDataHandler;
+import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
-import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.util.List;

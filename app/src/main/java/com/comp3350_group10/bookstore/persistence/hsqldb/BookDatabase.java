@@ -172,7 +172,7 @@ public class BookDatabase implements IBookDatabase {
     }
 
     @Override
-    public IBook insertBook(IBook book) {
+    public void insertBook(IBook book) {
         try(final Connection c = connection()) {
             final PreparedStatement pstmt = c.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
             pstmt.setString(1, book.getBookName());
@@ -185,15 +185,13 @@ public class BookDatabase implements IBookDatabase {
             pstmt.setInt(8, book.getReserve());
             pstmt.setInt(9, book.getImage());
             pstmt.executeUpdate();
-            return book;
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
     }
 
     @Override
-    public IBook updateBook(IBook book) {
-
+    public void updateBook(IBook book) {
         try (final Connection c = connection()){
             final PreparedStatement pstmt = c.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
             pstmt.setInt(1, book.getStock());
@@ -201,7 +199,6 @@ public class BookDatabase implements IBookDatabase {
             pstmt.setInt(3, book.getReserve());
             pstmt.setString(4, book.getBookIsbn());
             pstmt.executeUpdate();
-            return book;
         }
         catch(final SQLException e){
             throw new PersistenceException(e);

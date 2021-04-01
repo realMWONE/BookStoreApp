@@ -5,6 +5,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.presentation.MainActivity;
+import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 
 public interface IButtonFunctions {
 
@@ -35,4 +36,8 @@ public interface IButtonFunctions {
     //function is called when user presses the restock button
     // to change the quantity of stock available
     void SetStock();
+
+    //function is called when manager pressed the Add Employee function
+    //navigates to the create new user page
+    void AddEmployeeButtonPressed(Context context, UserSettingActivity activity);
 }

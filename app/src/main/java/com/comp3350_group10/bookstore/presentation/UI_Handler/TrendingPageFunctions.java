@@ -101,7 +101,8 @@ public class TrendingPageFunctions {
             image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
 
             ImageReferences.FillDictionary();
-            System.out.println(book.getImage());
+            System.out.println("BookName"+book.getBookName()+"ImageID"+book.getImage());
+
             image.setImageResource(ImageReferences.Get(book.getImage()));
 
             layout.addView(image);

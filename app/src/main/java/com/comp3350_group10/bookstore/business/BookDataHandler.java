@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
@@ -20,8 +21,8 @@ public class BookDataHandler implements IBookDataHandler {
 
     public BookDataHandler()
     {
-//        bookDatabase = Service.setupBookDatabase();
-        bookDatabase = new FakeBookDatabase();
+        bookDatabase = Service.setupBookDatabase();
+//        bookDatabase = new FakeBookDatabase();
     }
 
     //Takes the keyword and search database with it

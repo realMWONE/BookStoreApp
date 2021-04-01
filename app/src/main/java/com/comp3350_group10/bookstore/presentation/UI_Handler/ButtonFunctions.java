@@ -15,8 +15,12 @@ import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
+import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
@@ -150,5 +154,11 @@ public class ButtonFunctions implements IButtonFunctions
     public void SetStock()
     {
 
+    }
+
+    @Override
+    public void AddEmployeeButtonPressed(Context context, UserSettingActivity activity) {
+        Intent intent = new Intent(context, CreateUserActivity.class);
+        activity.startActivity(intent);
     }
 }

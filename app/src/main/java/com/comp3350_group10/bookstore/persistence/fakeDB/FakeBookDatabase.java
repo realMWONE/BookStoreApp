@@ -91,12 +91,11 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-    public IBook insertBook(IBook book) throws ClassNotFoundException {
+    public void insertBook(IBook book) throws ClassNotFoundException {
         if(!bookList.contains(book))
         {
             bookList.add(book);
         }
-        return book;
     }
 
     @Override

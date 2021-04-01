@@ -35,6 +35,6 @@ public class ImageReferences {
 
     public static int Get(int key)
     {
-        return coverImages.get(key);
+            return coverImages.get(key);
     }
 }

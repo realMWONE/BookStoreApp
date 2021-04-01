@@ -55,8 +55,9 @@ public class UserDatabase implements IUserDatabase {
         }
         return null;
     }
+
     //return every user in the database
-    public List<IUser> getUsers() {
+    private List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();
 
         try (final Connection conn = connection()){

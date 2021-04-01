@@ -39,11 +39,14 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void updateUser(IUser user) throws ClassNotFoundException {
+    public IUser updateUser(IUser user) throws ClassNotFoundException {
         for(IUser u:userList){
-            if(u.getUserID().equals(user.getUserID()))
+            if(u.getUserID().equals(user.getUserID())) {
                 u = user;
+                return u;
+            }
         }
+        return null;
     }
 
     @Override

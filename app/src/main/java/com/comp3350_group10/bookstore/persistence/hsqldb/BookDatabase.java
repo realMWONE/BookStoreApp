@@ -28,6 +28,19 @@ public class BookDatabase implements IBookDatabase {
         bookList = getBooks();
     }
 
+    /*public BookDatabase(){
+        IBook book1 = new Book("Diary of Wimpy Kid: The Getaway","5987450215825",13,1250,"16 January 2005","Jeff Kinney","Comedy",4, 700031);
+        IBook book2 = new Book("Diary of Wimpy Kid: Double Down","4578932145250",12,1280,"21 February 2006","Jeff Kinney","Comedy",3,700003);
+        List<IBook> list = new ArrayList<IBook>();
+        list.add(book1);
+        list.add(book2);
+        this.bookList=list;
+        for(int i=0;i<this.bookList.size();i++){
+            System.out.println("name = "+bookList.get(i).getBookName());
+        }
+        this.dbPath="";
+    }*/
+
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
@@ -91,7 +104,7 @@ public class BookDatabase implements IBookDatabase {
             //Going through all the bookList
             for(IBook book: bookList){
                 //If the string inputted matches any of the strings in the our bookList, then add that to our local list
-                if(book.getBookIsbn().startsWith(isbn)){
+                if(book.getBookIsbn().startsWith(isbn)||book.getBookIsbn().equals(isbn)){
                     bookIsbn.add(book);
                 }
             }
@@ -104,6 +117,7 @@ public class BookDatabase implements IBookDatabase {
      * @param author
      */
     private List<IBook> findByAuthor(String author) {
+        System.out.println("Author = "+author);
         List<IBook> bookAuthor = new ArrayList<>();
         String[] split;
         if(author != null){
@@ -116,7 +130,7 @@ public class BookDatabase implements IBookDatabase {
                 split = book.getBookAuthor().toLowerCase().split("[-. ,:]+");
                 for(String splitTerm: split){
                     //If the string inputted matches any of the terms in the book's author name, then add that book to our return list
-                    if (splitTerm.startsWith(author)) {
+                    if (splitTerm.startsWith(author)||splitTerm.equals(author.toLowerCase())) {
                         bookAuthor.add(book);
                     }
                 }
@@ -140,7 +154,7 @@ public class BookDatabase implements IBookDatabase {
                 split = book.getBookName().toLowerCase().split("[-. ,:]+");
                 for(String splitTerm: split){
                     //If the string inputted matches any of the terms in the book titles, then add the book to our return list
-                    if (splitTerm.startsWith(title)) {
+                    if (splitTerm.startsWith(title)||splitTerm.equals(title.toLowerCase())) {
                         bookTitle.add(book);
                     }
                 }
@@ -174,7 +188,7 @@ public class BookDatabase implements IBookDatabase {
     @Override
     public IBook insertBook(IBook book) {
         try(Connection c = connection()) {
-            PreparedStatement pstmt = c.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = c.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, book.getBookName());
             pstmt.setString(2, book.getBookIsbn());
             pstmt.setInt(3, book.getStock());
@@ -185,6 +199,9 @@ public class BookDatabase implements IBookDatabase {
             pstmt.setInt(8, book.getReserve());
             pstmt.setInt(9, book.getImage());
             pstmt.executeUpdate();
+
+            //have to update the bookList
+            this.bookList =getBooks();
             return book;
         } catch (SQLException e) {
             throw new PersistenceException(e);
@@ -195,12 +212,14 @@ public class BookDatabase implements IBookDatabase {
     public IBook updateBook(IBook book) {
 
         try (Connection c = connection()){
-            PreparedStatement pstmt = c.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+            PreparedStatement pstmt = c.prepareStatement("UPDATE books SET quantity=?,price=?,reserve=? WHERE isbn = ?");
             pstmt.setInt(1, book.getStock());
             pstmt.setInt(2, book.getPrice());
             pstmt.setInt(3, book.getReserve());
             pstmt.setString(4, book.getBookIsbn());
             pstmt.executeUpdate();
+            //update the bookList
+            this.bookList=getBooks();
             return book;
         }
         catch(SQLException e){
@@ -213,6 +232,8 @@ public class BookDatabase implements IBookDatabase {
         try( Connection c = connection()){
             PreparedStatement pstmt = c.prepareStatement("DELETE FROM books WHERE isbn=?");
             pstmt.setString(1, book.getBookIsbn());
+            //update the bookList
+            this.bookList = getBooks();
             pstmt.executeUpdate();
         }
         catch(SQLException e){

@@ -31,6 +31,11 @@ public class BookDataHandler implements IBookDataHandler {
         bookDatabase = Service.setupBookDatabase();
     }
 
+    //Added by DUY for testing this class
+    public BookDataHandler(IBookDatabase bookDatabase){
+        this.bookDatabase = bookDatabase;
+    }
+
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
     /*
@@ -57,8 +62,8 @@ public class BookDataHandler implements IBookDataHandler {
     //function to set the target book to the given price
     public void setPrice(IBook target, int price){
         //make sure target is initialized
-        try
-        {
+        //try
+        //{
             //price cannot be negative
             if(price>=0){
                 target.setPrice(price);
@@ -67,12 +72,12 @@ public class BookDataHandler implements IBookDataHandler {
                 System.out.println("The price cannot be set to negative number");
             }
             bookDatabase.updateBook(target);
-        }
+        //}
 
-        catch(NullPointerException | ClassNotFoundException e)
-        {
-            System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
-        }
+        //catch(NullException |ClassNotFoundException e)
+        //{
+        //    System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
+        //}
     }
 
 

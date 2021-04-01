@@ -1,6 +1,9 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
+
+import com.comp3350_group10.bookstore.business.BookDataHandler;
+import com.comp3350_group10.bookstore.business.Notify;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
@@ -24,10 +27,12 @@ public class BookDetailsActivity extends AppCompatActivity {
     private TextView bookTitle;
     private ImageView bookImage;
     private TextView details;
+    Notify notify= new Notify();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notify.checkAndroidVersion(BookDetailsActivity.this);
         setContentView(R.layout.activity_book_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,6 +49,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     public void OnSaleClick(View v) {
         buttonFunctions.DecrementStock(details);
+        //only called/notified when stock is low
+        if(BookDataHandler.currentBook.getStock()<10)
+            notify.lowStockNotification(BookDetailsActivity.this);
     }
 
     public void OnReturnClick(View v) {

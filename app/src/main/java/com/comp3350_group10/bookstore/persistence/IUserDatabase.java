@@ -8,7 +8,7 @@ public interface IUserDatabase {
     will execute the getUsers
     List<IUser> getUsers();
      */
-    IUser createUser(IUser user) throws ClassNotFoundException;
+    IUser insertUser(IUser user) throws ClassNotFoundException;
     IUser updateUser(IUser user) throws ClassNotFoundException;
     void deleteUser(IUser user) throws ClassNotFoundException;
 }

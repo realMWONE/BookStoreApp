@@ -77,7 +77,7 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser createUser(IUser user) {
+    public IUser insertUser(IUser user) {
         try(final Connection conn = connection()) {
             final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO USERS VALUES(?,?,?,?)");
             pstmt.setString(1, user.getRealName());

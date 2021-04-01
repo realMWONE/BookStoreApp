@@ -10,6 +10,8 @@ import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -186,6 +188,71 @@ public class BookDataHandler implements IBookDataHandler {
         return result;
     }
 
+
+    private void sortTitleAscHelper() throws ClassNotFoundException {
+
+        List<IBook> bookList = bookDatabase.getBooks();
+
+        Collections.sort(bookList, new Comparator<IBook>() {
+            @Override
+            public int compare(IBook o1, IBook o2) {
+                return o1.getBookName().compareTo(o2.getBookName());
+            }
+        });
+
+    }
+
+    private void sortTitleDescHelper() throws ClassNotFoundException {
+
+        List<IBook> bookList = bookDatabase.getBooks();
+
+        Collections.sort(bookList, new Comparator<IBook>() {
+            @Override
+            public int compare(IBook o1, IBook o2) {
+                return o2.getBookName().compareTo(o1.getBookName());
+            }
+        });
+
+    }
+
+    private void sortAuthorAscHelper() throws ClassNotFoundException {
+
+        List<IBook> bookList = bookDatabase.getBooks();
+
+        Collections.sort(bookList, new Comparator<IBook>() {
+            @Override
+            public int compare(IBook o1, IBook o2) {
+                return o1.getBookAuthor().compareTo(o2.getBookAuthor());
+            }
+        });
+
+    }
+
+    private void sortAuthorDescHelper() throws ClassNotFoundException {
+
+        List<IBook> bookList = bookDatabase.getBooks();
+
+        Collections.sort(bookList, new Comparator<IBook>() {
+            @Override
+            public int compare(IBook o1, IBook o2) {
+                return o2.getBookAuthor().compareTo(o1.getBookAuthor());
+            }
+        });
+
+    }
+
+    private void sortGenreHelper() throws ClassNotFoundException {
+
+        List<IBook> bookList = bookDatabase.getBooks();
+
+        Collections.sort(bookList, new Comparator<IBook>() {
+            @Override
+            public int compare(IBook o1, IBook o2) {
+                return o1.getGenre().compareTo(o2.getGenre());
+            }
+        });
+
+    }
 
 
 

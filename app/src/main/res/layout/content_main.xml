@@ -7,39 +7,45 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <Spinner
-        android:id="@+id/dropdown"
-        android:layout_width="314dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+    <LinearLayout
+        android:id="@+id/sortingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:visibility="gone">
 
+        <Spinner
+            android:id="@+id/sortingDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="100dp"
+            android:layout_weight="1"
+            tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/sortingButton"
-        android:layout_width="93dp"
-        android:layout_height="45dp"
-        android:onClick="onSortButtonClicked"
-        android:text="Asc"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dropdown"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/sortingButton"
+            android:layout_width="97dp"
+            android:layout_height="45dp"
+            android:layout_weight="0"
+            android:onClick="onSortButtonClicked"
+            android:text="Asc"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="408dp"
-        android:layout_height="584dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="406dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/sortingLayout">
 
         <TableLayout
             android:id="@+id/bookListTable"

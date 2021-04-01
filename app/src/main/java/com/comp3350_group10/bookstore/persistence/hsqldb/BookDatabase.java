@@ -23,7 +23,7 @@ public class BookDatabase implements IBookDatabase {
     private final String dbPath;
     private List<IBook> bookList;
 
-    public BookDatabase(final String dbPath) {
+    public BookDatabase(String dbPath) {
         this.dbPath = dbPath;
         bookList = getBooks();
     }
@@ -33,16 +33,16 @@ public class BookDatabase implements IBookDatabase {
     }
 
 
-    private Book createBook(final ResultSet rs) throws SQLException{
-         final String bookName = rs.getString("bookName");
-         final String isbn = rs.getString("isbn");
-         final int quantity = rs.getInt("quantity");
-         final int price = rs.getInt("price");
-         final String date = rs.getString("date");
-         final String author = rs.getString("author");
-         final String genre = rs.getString("genre");
-         final int reserve = rs.getInt("reserve");
-         final int imageReference = rs.getInt("image");
+    private Book createBook(ResultSet rs) throws SQLException{
+         String bookName = rs.getString("bookName");
+         String isbn = rs.getString("isbn");
+         int quantity = rs.getInt("quantity");
+         int price = rs.getInt("price");
+         String date = rs.getString("date");
+         String author = rs.getString("author");
+         String genre = rs.getString("genre");
+         int reserve = rs.getInt("reserve");
+         int imageReference = rs.getInt("image");
         return new Book(bookName, isbn, quantity, price, date, author, genre, reserve, imageReference);
     }
 
@@ -154,9 +154,9 @@ public class BookDatabase implements IBookDatabase {
     public List<IBook> getBooks() {
 
         List<IBook> books = new ArrayList<>();
-        try(final Connection c = connection()) {
-            final Statement stmt = c.createStatement();
-            final ResultSet rtst = stmt.executeQuery("SELECT * FROM books");
+        try(Connection c = connection()) {
+            Statement stmt = c.createStatement();
+            ResultSet rtst = stmt.executeQuery("SELECT * FROM books");
 
             while(rtst.next()){
                 Book book = createBook(rtst);
@@ -172,9 +172,9 @@ public class BookDatabase implements IBookDatabase {
     }
 
     @Override
-    public void insertBook(IBook book) {
-        try(final Connection c = connection()) {
-            final PreparedStatement pstmt = c.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
+    public IBook insertBook(IBook book) {
+        try(Connection c = connection()) {
+            PreparedStatement pstmt = c.prepareStatement("INSERT INTO books VALUES(?,?,?,?,?,?,?,?)");
             pstmt.setString(1, book.getBookName());
             pstmt.setString(2, book.getBookIsbn());
             pstmt.setInt(3, book.getStock());
@@ -185,22 +185,25 @@ public class BookDatabase implements IBookDatabase {
             pstmt.setInt(8, book.getReserve());
             pstmt.setInt(9, book.getImage());
             pstmt.executeUpdate();
-        } catch (final SQLException e) {
+            return book;
+        } catch (SQLException e) {
             throw new PersistenceException(e);
         }
     }
 
     @Override
-    public void updateBook(IBook book) {
-        try (final Connection c = connection()){
-            final PreparedStatement pstmt = c.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
+    public IBook updateBook(IBook book) {
+
+        try (Connection c = connection()){
+            PreparedStatement pstmt = c.prepareStatement("UPDATE books SET quantity=?,price=?, reserve=? WHERE isbn = ?");
             pstmt.setInt(1, book.getStock());
             pstmt.setInt(2, book.getPrice());
             pstmt.setInt(3, book.getReserve());
             pstmt.setString(4, book.getBookIsbn());
             pstmt.executeUpdate();
+            return book;
         }
-        catch(final SQLException e){
+        catch(SQLException e){
             throw new PersistenceException(e);
         }
     }
@@ -208,11 +211,11 @@ public class BookDatabase implements IBookDatabase {
     @Override
     public void deleteBook(IBook book) {
         try( Connection c = connection()){
-            final PreparedStatement pstmt = c.prepareStatement("DELETE FROM books WHERE isbn=?");
+            PreparedStatement pstmt = c.prepareStatement("DELETE FROM books WHERE isbn=?");
             pstmt.setString(1, book.getBookIsbn());
             pstmt.executeUpdate();
         }
-        catch(final SQLException e){
+        catch(SQLException e){
             throw new PersistenceException(e);
         }
     }

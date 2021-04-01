@@ -1,0 +1,77 @@
+package com.comp3350_group10.bookstore.persistence.hsqldb;
+
+import com.comp3350_group10.bookstore.objects.Book;
+import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.IBookDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookDatabaseStub implements IBookDatabase {
+    private List<IBook> list;
+    public BookDatabaseStub(){
+        list=new ArrayList<>();
+        list.add(new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling"
+        ,"Novel",2,700132));
+        list.add(new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132));
+        list.add(new Book("The Da Vinci Code","0218574629654",10,2780,"21 October 2007","Dan Brown","Mystery",3,700104));
+        list.add(new Book("Angels and Demons","2865926595295",11,2780,"15 June 2009","Dan Brown","Mystery",5,700153));
+        list.add(new Book("Diary of Wimpy Kid: The Getaway","5987450215825",13,1250,"16 January 2005","Jeff Kinney","Comedy",4, 700031));
+        list.add(new Book("Diary of Wimpy Kid: Double Down","4578932145250",12,1280,"21 February 2006","Jeff Kinney","Comedy",3,700003));
+        list.add(new Book("Twilight","2510323255565",3,2730,"22 March 2005","Stephenie Meyer","Romance",4,700141));
+        list.add(new Book("Eclipse","2551819816185",2,2780,"07 April 2008","Stephenie Meyer","Romance",3,700116));
+        list.add(new Book("New Moon","2516511685000",4,2780,"23 February 2010","Stephenie Meyer","Romance",3,700056));
+    }
+    @Override
+    public List<IBook> findBook(String searchTerm) {
+        List<IBook> result = new ArrayList<>();
+        IBook currentBook = null;
+        for(int i=0;i<list.size();i++){
+            currentBook = list.get(i);
+            if(currentBook.getBookName().toLowerCase().startsWith(searchTerm.toLowerCase())
+                    ||currentBook.getBookName().toLowerCase().equals(searchTerm.toLowerCase())){
+                result.add(currentBook);
+            }
+            else if(currentBook.getBookIsbn().startsWith(searchTerm)
+                    ||currentBook.getBookIsbn().equals(searchTerm))
+                result.add(currentBook);
+            else if(currentBook.getBookAuthor().toLowerCase().startsWith(searchTerm.toLowerCase())
+                    ||currentBook.getBookAuthor().toLowerCase().equals(searchTerm.toLowerCase()))
+                result.add(currentBook);
+            else if(currentBook.getGenre().toLowerCase().startsWith(searchTerm.toLowerCase())
+                    ||currentBook.getGenre().toLowerCase().equals(searchTerm.toLowerCase()))
+                result.add(currentBook);
+        }
+        return result;
+    }
+
+    @Override
+    public List<IBook> getBooks() {
+        return list;
+    }
+
+    @Override
+    public IBook insertBook(IBook book) {
+        list.add(book);
+        return book;
+    }
+
+    @Override
+    public IBook updateBook(IBook book) {
+        IBook currentBook = null;
+        for(int i=0;i<list.size();i++){
+            currentBook = list.get(i);
+            if(currentBook.getBookIsbn().equals(book.getBookIsbn())){
+                currentBook.setStock(book.getStock());
+                currentBook.setPrice(book.getPrice());
+                currentBook.setReserve(book.getReserve());
+            }
+        }
+        return currentBook;
+    }
+
+    @Override
+    public void deleteBook(IBook book) {
+        list.remove(book);
+    }
+}

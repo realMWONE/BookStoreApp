@@ -17,4 +17,8 @@ public interface IUser {
 
     //set the password of this user with the given input
     void setPassword(String newPassword);
+
+    void setPosition(UserType type);
+
+    void setName(String name);
 }

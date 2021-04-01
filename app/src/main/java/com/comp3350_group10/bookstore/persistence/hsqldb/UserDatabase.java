@@ -21,6 +21,10 @@ public class UserDatabase implements IUserDatabase {
 
     private List<IUser> userList;
 
+    //constructor that takes dbPath as parameter
+    public UserDatabase(final String dbPath){
+        this.dbPath = dbPath;
+    }
 
     //establish connection with the database
     private Connection connection() throws SQLException {
@@ -36,10 +40,6 @@ public class UserDatabase implements IUserDatabase {
         return new User(name,userId,password,position==MANAGER? UserType.Manager:UserType.Employee);
     }
 
-    //constructor that takes dbPath as parameter
-    public UserDatabase(final String dbPath){
-        this.dbPath = dbPath;
-    }
 
     @Override
     //searches user from the database with the given ID
@@ -55,6 +55,8 @@ public class UserDatabase implements IUserDatabase {
         }
         return null;
     }
+
+
     //return every user in the database
     public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();

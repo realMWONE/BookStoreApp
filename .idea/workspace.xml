@@ -35,33 +35,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_27_2021_9_07_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_27_2021_9_07_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_29_2021_7_46_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_29_2021_7_46_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_29_21_8_18_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_29_21_8_18_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_30_21_7_21_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_30_21_7_21_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2021_7_46_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_29_2021_7_46_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/BookDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/BookDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/db/BS.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/db/BS.script" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/UserDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/UserDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_2_API_28]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -267,25 +252,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="541" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067806587" />
-    <state width="593" height="130" key="GridCell.Tab.0.bottom" timestamp="1617157124912">
+    <state width="1220" height="-4" key="GridCell.Tab.0.bottom" timestamp="1617236379345">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="593" height="130" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
+    <state width="1220" height="-4" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1617236379345" />
     <state width="1877" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="593" height="130" key="GridCell.Tab.0.center" timestamp="1617157124912">
+    <state width="1220" height="-4" key="GridCell.Tab.0.center" timestamp="1617236379345">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="593" height="130" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
+    <state width="1220" height="-4" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1617236379345" />
     <state width="1877" height="273" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="593" height="130" key="GridCell.Tab.0.left" timestamp="1617157124911">
+    <state width="1220" height="-4" key="GridCell.Tab.0.left" timestamp="1617236379344">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="593" height="130" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1617157124911" />
+    <state width="1220" height="-4" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1617236379344" />
     <state width="1877" height="273" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="593" height="130" key="GridCell.Tab.0.right" timestamp="1617157124912">
+    <state width="1220" height="-4" key="GridCell.Tab.0.right" timestamp="1617236379345">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="593" height="130" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
+    <state width="1220" height="-4" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1617236379345" />
     <state width="1877" height="273" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
     <state width="1877" height="722" key="GridCell.Tab.1.bottom" timestamp="1616562852454">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -307,6 +292,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065196345" />
+    <state x="282" y="106" key="MultipleFileMergeDialog" timestamp="1617236517902">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="282" y="106" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236517902" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1617067814658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -315,14 +304,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction/0.0.1920.1040@0.0.1920.1040" timestamp="1617131153808" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617067743903">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="513" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617236502905">
+      <screen x="0" y="0" width="1280" height="689" />
     </state>
+    <state x="513" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1617236502905" />
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067743903" />
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1617065188557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065188557" />
+    <state x="262" y="133" key="git4idea.merge.GitPullDialog" timestamp="1617236431877">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="262" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236431877" />
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension" timestamp="1616545510528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

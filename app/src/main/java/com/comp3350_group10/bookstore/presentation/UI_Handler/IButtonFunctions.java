@@ -25,7 +25,7 @@ public interface IButtonFunctions {
     void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);
 
     //function that brings the user to the user setting page
-    void UserSettingButtonPressed(Context context, MainActivity main);
+    void SwitchToUserSettingActivity(Context context, MainActivity main);
 
     //function is called when user hits the increment stock by 1 button
     void IncrementStock(TextView text);
@@ -37,6 +37,7 @@ public interface IButtonFunctions {
     // to change the quantity of stock available
     void SetStock();
 
-    void AddEmployeeButtonPressed(Context context, UserSettingActivity activity);
+    void SwitchToCreateUserActivity(Context context, UserSettingActivity activity);
 
-    }
+    void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+}

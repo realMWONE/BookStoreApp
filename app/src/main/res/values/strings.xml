@@ -55,4 +55,9 @@
     <string name="fatalError">fatal</string>
     <string name="warning">warning</string>
     <string name="add_employee_button">Add employee</string>
+    <string name="new_employee_name">Enter name for new employee</string>
+    <string name="new_employee_email">Enter email for new employee</string>
+    <string name="new_employee_password">Enter password for new employee</string>
+    <string name="create_user_button">Create User</string>
+    <string name="new_employee_manager">Is new employee a manager?</string>
 </resources>

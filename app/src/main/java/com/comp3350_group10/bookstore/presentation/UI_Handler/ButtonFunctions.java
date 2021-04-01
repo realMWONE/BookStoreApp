@@ -155,7 +155,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void UserSettingButtonPressed(Context context, MainActivity main) {
+    public void SwitchToUserSettingActivity(Context context, MainActivity main) {
         Intent intent = new Intent(context, UserSettingActivity.class);
         main.startActivity(intent);
     }
@@ -181,8 +181,20 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void AddEmployeeButtonPressed(Context context, UserSettingActivity activity) {
+    public void SwitchToCreateUserActivity(Context context, UserSettingActivity activity) {
         Intent intent = new Intent(context, CreateUserActivity.class);
         activity.startActivity(intent);
+    }
+
+    @Override
+    //TODO: popup saying user creation successful or failed
+    public void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
+        if(userHandler.createNewUser(name, email, password, isManager)!=null) {
+            //popup saying successful
+            //prompt return homescreen or create another user
+        } else
+        {
+            //popup saying unsuccessful
+        }
     }
 }

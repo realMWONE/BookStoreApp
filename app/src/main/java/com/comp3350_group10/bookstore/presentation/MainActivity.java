@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity
         uIButtonFunctions.LogoutButtonPressed();
     }
 
-    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.UserSettingButtonPressed(getBaseContext(), this); }
+    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.SwitchToUserSettingActivity(getBaseContext(), this); }
 
     public void onSortButtonClicked(View v) {
         Button b = (Button)v;

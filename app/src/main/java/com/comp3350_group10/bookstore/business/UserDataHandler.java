@@ -2,6 +2,7 @@ package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
+import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
@@ -17,7 +18,8 @@ public class UserDataHandler implements IUserDataHandler {
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
-        userDatabase = Service.setupUserDatabase();
+//        userDatabase = Service.setupUserDatabase();
+        userDatabase = new FakeUserDatabase();
     }
 
     public UserDataHandler(User currentUser) throws ClassNotFoundException {
@@ -120,6 +122,44 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
+    //creates a user and insert it into the database
+    public IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
+        IUser newUser = null;
+        UserType userType;
 
-    // TODO: Take care of IUserDatabase bugs after it's implemented
+        //Check if input were valid
+        //Add corresponding error message to print at the end
+        String errorMessage = "";
+        if(name.isEmpty())
+            errorMessage += "Name cannot be empty\n";
+        if(email.isEmpty())
+            errorMessage += "Email cannot be empty\n";
+        if(!validEmail(email))
+            errorMessage += "Email is not valid\n";
+        if(password.isEmpty())
+            errorMessage += "Password cannot be empty\n";
+        if(password.length() < 8)
+            errorMessage += "Password cannot be shorter than 8 characters\n";
+
+        //perform the insert if input was correct
+        if(errorMessage.isEmpty())
+        {
+            userType = isManager ? UserType.Manager:UserType.Employee;
+
+            newUser = new User(name, email, password, userType);
+            userDatabase.insertUser(newUser);
+        }
+
+        //TODO: popup displaying the message
+
+        return newUser;
+    }
+
+    //Email validating method copied online
+    private boolean validEmail(String email){
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
 }

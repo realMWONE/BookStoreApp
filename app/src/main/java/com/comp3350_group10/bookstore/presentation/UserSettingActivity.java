@@ -49,7 +49,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
     public void addEmployeeOnClick(View v)
     {
-        uiButtonFunctions.AddEmployeeButtonPressed(getBaseContext(),this);
+        uiButtonFunctions.SwitchToCreateUserActivity(getBaseContext(),this);
     }
 
 }

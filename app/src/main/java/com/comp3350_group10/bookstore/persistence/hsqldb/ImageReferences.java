@@ -31,6 +31,12 @@ public class ImageReferences {
         coverImages.put(700141, R.drawable.twilight);
         coverImages.put(700116, R.drawable.eclipse);
         coverImages.put(700056, R.drawable.new_moon);
+        coverImages.put(700033,R.drawable.breaking_dawn);
+        coverImages.put(700062,R.drawable.midnightsun);
+        coverImages.put(700077,R.drawable.lotr);
+        coverImages.put(700079,R.drawable.the_two_towers);
+        coverImages.put(700130,R.drawable.the_book_of_lost_tails);
+        coverImages.put(700127,R.drawable.the_children_of_hurin);
     }
 
     public static int Get(int key)

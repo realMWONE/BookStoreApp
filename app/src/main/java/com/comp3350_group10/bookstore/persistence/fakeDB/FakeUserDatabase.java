@@ -33,7 +33,7 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser createUser(IUser user) throws ClassNotFoundException {
+    public IUser insertUser(IUser user) throws ClassNotFoundException {
         userList.add(user);
         return user;
     }

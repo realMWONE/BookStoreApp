@@ -1,9 +1,11 @@
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 
@@ -39,5 +41,11 @@ public interface IButtonFunctions {
 
     void SwitchToCreateUserActivity(Context context, UserSettingActivity activity);
 
-    void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+    //Creates the user with given parameters
+    //Show popup and return to main activity if successful
+    //Show popup and return to createUser activity if failed
+    IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+
+    //return to main activity
+    void SwitchToMainActivity(Context context, Activity activity);
 }

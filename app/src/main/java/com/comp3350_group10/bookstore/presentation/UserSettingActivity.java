@@ -37,6 +37,7 @@ public class UserSettingActivity extends AppCompatActivity {
     public void changePwOnClick(View v){
         uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString());
         //TODO: pop up to say change was successful, then go back to main activity
+        finish();
 //        System.out.println("Change pw clicked: "+ oldPassword.getText().toString() +" " + newPassword.getText().toString() +" " + confirmNewPassword.getText().toString());
     }
 

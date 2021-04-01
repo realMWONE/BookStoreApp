@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 
@@ -36,6 +37,20 @@ public class CreateUserActivity extends AppCompatActivity {
 
     //Onclick method for the create user button
     public void createUserOnClick(View v) throws ClassNotFoundException {
-        uiButtonFunctions.CreateUserButtonPressed(name.getText().toString(), email.getText().toString(),password.getText().toString(), isManager.isChecked());
+        IUser createdUser = uiButtonFunctions.CreateUserButtonPressed(name.getText().toString(), email.getText().toString(),password.getText().toString(), isManager.isChecked());
+        if(createdUser!=null)   //success
+        {
+            //popup saying successful
+
+            //return to home page
+            uiButtonFunctions.SwitchToMainActivity(getBaseContext(),this);
+        }
+        else{
+            //popup saying unsuccessful
+
+            //reload
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

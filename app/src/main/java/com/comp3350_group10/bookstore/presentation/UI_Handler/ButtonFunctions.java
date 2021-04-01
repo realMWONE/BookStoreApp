@@ -1,6 +1,7 @@
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -15,16 +16,14 @@ import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
-import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
@@ -33,6 +32,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class ButtonFunctions implements IButtonFunctions
 {
@@ -188,13 +191,23 @@ public class ButtonFunctions implements IButtonFunctions
 
     @Override
     //TODO: popup saying user creation successful or failed
-    public void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
-        if(userHandler.createNewUser(name, email, password, isManager)!=null) {
+    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
+        IUser createdUser = userHandler.createNewUser(name, email, password, isManager);
+        if(createdUser!=null) {
             //popup saying successful
             //prompt return homescreen or create another user
         } else
         {
             //popup saying unsuccessful
         }
+        return createdUser;
+    }
+
+    @Override
+    public void SwitchToMainActivity(Context context, Activity activity) {
+        Intent rtnMain = new Intent(context,
+                MainActivity.class);
+
+        activity.startActivity(rtnMain);
     }
 }

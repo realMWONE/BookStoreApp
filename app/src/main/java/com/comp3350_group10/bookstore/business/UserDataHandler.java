@@ -26,10 +26,13 @@ public class UserDataHandler implements IUserDataHandler {
         UserDataHandler.currentUser =currentUser;
     }
 
-
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (UserType.Manager == currentUser.getUserType());
+    }
+
+    public IUser getCurrentUser() {
+        return currentUser;
     }
 
     //function to login the current user

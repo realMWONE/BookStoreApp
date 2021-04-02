@@ -20,4 +20,6 @@ public interface IUserDataHandler {
     void changePassword(String oldPw, String newPw, String confirmNewPw);
 
     IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+
+    IUser getCurrentUser();
 }

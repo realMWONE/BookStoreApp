@@ -35,16 +35,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/persistence/hsqldb/UserDatabaseStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/persistence/hsqldb/UserDatabaseStub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/BookTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,9 +351,10 @@
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state x="100" y="100" width="1464" height="869" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1617263492300" />
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1616550733116">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="510" y="103" key="#com.intellij.ide.util.MemberChooser" timestamp="1617331570162">
+      <screen x="0" y="0" width="1280" height="689" />
     </state>
+    <state x="510" y="103" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1617331570162" />
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1616550733116" />
     <state x="355" y="294" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1617202426883">
       <screen x="0" y="0" width="1664" height="1069" />

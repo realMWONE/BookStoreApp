@@ -14,6 +14,10 @@ public class UserTest extends TestCase {
     public void tearDown() throws Exception {
     }
 
+    /**
+     * testGetRealName method: We enter a new user and check if the user is null or not.
+     * If not
+     */
     public void testGetRealName() {
         IUser user = new User("Daniel","duy.than@gihot.com"
                 ,"111", UserType.Employee);

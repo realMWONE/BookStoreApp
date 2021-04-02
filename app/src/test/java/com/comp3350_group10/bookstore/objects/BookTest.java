@@ -26,7 +26,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals("Stephenie Meyer",book.getBookAuthor());
     }
 
@@ -35,7 +34,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals("23 February 2010",book.getDate());
     }
 
@@ -44,7 +42,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals(2780,book.getPrice());
     }
 
@@ -53,7 +50,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals("2516511685000",book.getBookIsbn());
     }
 
@@ -62,7 +58,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals(4,book.getStock());
     }
 
@@ -71,7 +66,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals(3,book.getReserve());
     }
 
@@ -80,7 +74,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals("Romance",book.getGenre());
     }
 
@@ -89,7 +82,6 @@ public class BookTest extends TestCase {
                 ,4,2780,"23 February 2010"
                 ,"Stephenie Meyer","Romance",3,700056);
         assertNotNull(book);
-
         assertEquals(700056,book.getImage());
     }
 

@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.R;
 
-import com.comp3350_group10.bookstore.business.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
+import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ISwitchActivity;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -68,5 +69,6 @@ public class LoginActivity extends AppCompatActivity
     public void LoginOnClick(View v) throws ClassNotFoundException
     {
         buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
+        if (UserDataHandler.currentUser != null) ISwitchActivity.SwitchTo(MainActivity.class, this);
     }
 }

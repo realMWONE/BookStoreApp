@@ -12,7 +12,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="sale_button">Sale</string>
+    <string name="sale_button">-</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -60,4 +60,11 @@
     <string name="new_employee_password">Enter password for new employee</string>
     <string name="create_user_button">Create User</string>
     <string name="new_employee_manager">Is new employee a manager?</string>
+    <string name="textview">TextView</string>
+    <string name="book_cover_image">Book Cover Image</string>
+    <string name="change_book_price">Change book price</string>
+    <string name="change_stock_amount">Change stock amount</string>
+    <string name="set">Set</string>
+    <string name="plus_sign">+</string>
+    <string name="stock_amount">Stock Amount</string>
 </resources>

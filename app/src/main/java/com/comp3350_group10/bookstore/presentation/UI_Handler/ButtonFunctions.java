@@ -19,8 +19,12 @@ import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
+import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
@@ -34,12 +38,15 @@ public class ButtonFunctions implements IButtonFunctions
 {
     private IBookDataHandler bookHandler;
     private IUserDataHandler userHandler;
+    private IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()
     {
         bookHandler = new BookDataHandler();
         userHandler = new UserDataHandler();
+        bookDetailsFunctions = new BookDetailsFunctions();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -135,6 +142,7 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void LogoutButtonPressed()
     {
+        //TODO: maybe add popup notification
         userHandler.logOut();
     }
 
@@ -142,6 +150,7 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
+        //TODO: maybe add popup confirmation
         userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
@@ -154,8 +163,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void IncrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.incrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }
@@ -163,8 +170,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void DecrementStock(TextView text)
     {
-        IBookDetailsFunctions bookDetailsFunctions = new BookDetailsFunctions();
-
         bookHandler.decrementStock(BookDataHandler.currentBook);
         bookDetailsFunctions.UpdateBookDetails(text);
     }
@@ -175,5 +180,9 @@ public class ButtonFunctions implements IButtonFunctions
 
     }
 
-
+    @Override
+    public void AddEmployeeButtonPressed(Context context, UserSettingActivity activity) {
+        Intent intent = new Intent(context, CreateUserActivity.class);
+        activity.startActivity(intent);
+    }
 }

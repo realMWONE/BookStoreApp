@@ -262,8 +262,4 @@ public class BookDataHandler implements IBookDataHandler {
         });
 
     }
-
-
-
-    // TODO: Take care of IUserDatabase bugs after it's implemented
 }

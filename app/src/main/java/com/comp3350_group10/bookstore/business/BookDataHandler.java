@@ -43,7 +43,7 @@ public class BookDataHandler implements IBookDataHandler {
      * return list of found books
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<IBook> findBooks(String keyword) throws ClassNotFoundException {
+    public List<IBook> findBooks(String keyword) throws ClassNotFoundException{
         List<String> wordList = splitWords(keyword); //splits keywords
 
         List<IBook> bookList = new ArrayList<>();   //stores search result
@@ -61,23 +61,13 @@ public class BookDataHandler implements IBookDataHandler {
 
     //function to set the target book to the given price
     public void setPrice(IBook target, int price){
-        //make sure target is initialized
-        //try
-        //{
-            //price cannot be negative
-            if(price>=0){
-                target.setPrice(price);
-            }
-            else{
-                System.out.println("The price cannot be set to negative number");
-            }
-            bookDatabase.updateBook(target);
-        //}
-
-        //catch(NullException |ClassNotFoundException e)
-        //{
-        //    System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
-        //}
+        if(price>=0){
+            target.setPrice(price);
+        }
+        else{
+            System.out.println("The price cannot be set to negative number");
+        }
+        bookDatabase.updateBook(target);
     }
 
 

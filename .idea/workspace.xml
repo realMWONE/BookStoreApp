@@ -36,6 +36,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/persistence/hsqldb/BookDatabaseStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/persistence/hsqldb/BookDatabaseStub.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +92,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../U of M/COMP 3350/sampleProj/sample-project" />
+    <property name="last_opened_file_path" value="$USER_HOME$/U of M/COMP 3350/sampleProj/sample-project" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.20530452" />
@@ -454,34 +455,34 @@
     <state x="495" y="236" width="672" height="678" key="search.everywhere.popup/0.0.1664.1069@0.0.1664.1069" timestamp="1617263269585" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testUpdateBook.ic" NAME="BookDatabaseTest.testUpdateBook Coverage Results" MODIFIED="1617286894594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testGetBooks.ic" NAME="BookDatabaseTest.testGetBooks Coverage Results" MODIFIED="1617285469711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testInsertBook.ic" NAME="BookDatabaseTest.testInsertBook Coverage Results" MODIFIED="1617287622169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testSetPrice.ic" NAME="BookDataHandlerTest.testSetPrice Coverage Results" MODIFIED="1617266203521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testIncrementPrice.ic" NAME="BookDataHandlerTest.testIncrementPrice Coverage Results" MODIFIED="1617266389796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testFindBook.ic" NAME="BookDatabaseTest.testFindBook Coverage Results" MODIFIED="1617285452510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testDeleteBook.ic" NAME="BookDatabaseTest.testDeleteBook Coverage Results" MODIFIED="1617285325027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest.ic" NAME="BookDatabaseTest Coverage Results" MODIFIED="1617286913012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testFindBooks.ic" NAME="BookDataHandlerTest.testFindBooks Coverage Results" MODIFIED="1617265117532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testIncrementStock.ic" NAME="BookDataHandlerTest.testIncrementStock Coverage Results" MODIFIED="1617266529494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testDeleteBook.ic" NAME="BookDatabaseTest.testDeleteBook Coverage Results" MODIFIED="1617285325027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testGetBooks.ic" NAME="BookDatabaseTest.testGetBooks Coverage Results" MODIFIED="1617285469711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testFindBook.ic" NAME="BookDatabaseTest.testFindBook Coverage Results" MODIFIED="1617285452510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testInsertBook.ic" NAME="BookDatabaseTest.testInsertBook Coverage Results" MODIFIED="1617287622169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testUpdateBook.ic" NAME="BookDatabaseTest.testUpdateBook Coverage Results" MODIFIED="1617286894594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest.ic" NAME="BookDatabaseTest Coverage Results" MODIFIED="1617286913012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testSetPrice.ic" NAME="BookDataHandlerTest.testSetPrice Coverage Results" MODIFIED="1617266203521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
     </SUITE>
   </component>

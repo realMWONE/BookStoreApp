@@ -12,7 +12,7 @@ public class FakeUserDatabase implements IUserDatabase {
     private final List<IUser> userList = new ArrayList<>();
 
     public FakeUserDatabase(){
-        userList.add(new User("Kevin","Kevin@gmail.com","12345678", UserType.Manager));
+        userList.add(new User("Kevin","Kevin@yahoo.com","12345678", UserType.Manager));
         userList.add(new User("Harshal","Harshall@umanitoba.ca","12345678",UserType.Manager));
         userList.add(new User("Matt","Matt@yahoo.com","12345678",UserType.Employee));
         userList.add(new User("Daniel","duy.than@gihot.com","12345678",UserType.Employee));
@@ -23,12 +23,14 @@ public class FakeUserDatabase implements IUserDatabase {
     @Override
     public IUser findUser(String userId) throws ClassNotFoundException {
         IUser user = null;
+
         if(userList.size()>0){
             for(int i=0;i<userList.size();i++){
-                if(userList.get(i).getUserID().toLowerCase().equals(userId))
+                if(userList.get(i).getUserID().toLowerCase().equals(userId.toLowerCase()))
                     user = userList.get(i);
             }
         }
+
         return user;
     }
 

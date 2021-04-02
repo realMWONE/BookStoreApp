@@ -67,6 +67,6 @@ public class LoginActivity extends AppCompatActivity
 
     public void LoginOnClick(View v) throws ClassNotFoundException
     {
-        buttonFunctions.LoginButtonPressed(this.email.toString(), this.password.toString());
+        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
     }
 }

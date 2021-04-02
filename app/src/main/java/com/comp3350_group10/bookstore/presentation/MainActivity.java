@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.business.IUserDataHandler;
+import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private Spinner dropdown;
     private Button sortButton;
     private LinearLayout sortingLayout;
+    private IUserDataHandler userDataHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         sortingLayout = findViewById(R.id.sortingLayout);
         sortingLayout.setVisibility(LinearLayout.GONE);
         setSupportActionBar(toolbar);
+        userDataHandler = new UserDataHandler();
 
         //Performs search each time a character is entered
         SetSearchListener(getBaseContext(), this);
@@ -174,6 +178,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        //Hide Logout if the user is not logged in
+        menu.getItem(0).setVisible(userDataHandler.getCurrentUser() != null);
+        //Hide User Settings if the user is not logged in
+        menu.getItem(1).setVisible(userDataHandler.getCurrentUser() != null);
+        //Hide Login if the users is logged in
+        menu.getItem(2).setVisible(userDataHandler.getCurrentUser() == null);
+
         return true;
     }
 

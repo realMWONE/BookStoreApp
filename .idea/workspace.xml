@@ -34,10 +34,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
+    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/BookTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/db/BS.script" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/db/BS.script" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

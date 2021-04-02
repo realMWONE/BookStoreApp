@@ -28,19 +28,6 @@ public class BookDatabase implements IBookDatabase {
         bookList = getBooks();
     }
 
-    /*public BookDatabase(){
-        IBook book1 = new Book("Diary of Wimpy Kid: The Getaway","5987450215825",13,1250,"16 January 2005","Jeff Kinney","Comedy",4, 700031);
-        IBook book2 = new Book("Diary of Wimpy Kid: Double Down","4578932145250",12,1280,"21 February 2006","Jeff Kinney","Comedy",3,700003);
-        List<IBook> list = new ArrayList<IBook>();
-        list.add(book1);
-        list.add(book2);
-        this.bookList=list;
-        for(int i=0;i<this.bookList.size();i++){
-            System.out.println("name = "+bookList.get(i).getBookName());
-        }
-        this.dbPath="";
-    }*/
-
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }

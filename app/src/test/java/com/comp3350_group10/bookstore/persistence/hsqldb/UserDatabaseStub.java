@@ -6,6 +6,7 @@ import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDatabaseStub implements IUserDatabase {
@@ -14,6 +15,7 @@ public class UserDatabaseStub implements IUserDatabase {
 
     public UserDatabaseStub(){
         this.userList = new ArrayList<>();
+
         userList.add(new User("Daniel","duy.than@gihot.com","111", UserType.Employee));
         userList.add(new User("Keven","Kevin@gmail.com","222", UserType.Manager));
         userList.add(new User("Harshal","Harshal@myumanitoba.ca","333", UserType.Manager));
@@ -23,6 +25,10 @@ public class UserDatabaseStub implements IUserDatabase {
     }
 
     @Override
+    /**
+     * findUser test method: Iterates through the entire userList and gets the user whose userId is equal to the one we want
+     * then we return it. In case the user is not found then we return null.
+     */
     public IUser findUser(String userId){
         for(int i = 0;i < userList.size(); i++){
             if(userList.get(i).getUserID().equals(userId)) {
@@ -33,11 +39,26 @@ public class UserDatabaseStub implements IUserDatabase {
     }
 
     @Override
+    public List<IUser> getUsers(){
+        return Collections.unmodifiableList(userList);
+    }
+
+    /**
+     * insertUser test method: Adds user to the userList
+     * @param user
+     * @return
+     */
+    @Override
     public IUser insertUser(IUser user){
         userList.add(user);
         return user;
     }
 
+    /**
+     * updateUser test method: Finds the user which needs to be updated, sets the user and returns user.
+     * @param user
+     * @return
+     */
     @Override
     public IUser updateUser(IUser user){
         int index;
@@ -46,21 +67,19 @@ public class UserDatabaseStub implements IUserDatabase {
         if(index >= 0){
             userList.set(index, user);
         }
-
+        return user;
     }
 
+    /**
+     * deleteUser test method: Finds the user to be deleted and removes them from the list
+     * @param user
+     */
     @Override
-    public void deleteUser(IUser user){
-        IUser delete=null;
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).getUserID().equals(user.getUserID())){
-                delete=list.get(i);
-                break;
-            }
+    public void deleteUser(IUser user) {
+        int index;
+        index = userList.indexOf(user);
+        if(index >= 0){
+            userList.remove(user);
         }
-        //if nothing to delete
-        if(delete==null)
-            return;
-        list.remove(delete);
     }
 }

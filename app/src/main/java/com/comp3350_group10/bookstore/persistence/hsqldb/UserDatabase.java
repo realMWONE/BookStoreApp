@@ -21,12 +21,19 @@ public class UserDatabase implements IUserDatabase {
 
     private List<IUser> userList;
 
-    //constructor that takes dbPath as parameter
+    /**
+     * UserDatabase: constructor that takes dbPath as parameter
+     */
+
     public UserDatabase(final String dbPath){
         this.dbPath = dbPath;
     }
 
-    //establish connection with the database
+    /**
+     * conenction method: Establish connection with the database
+     * @return
+     * @throws SQLException
+     */
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
     }
@@ -56,7 +63,7 @@ public class UserDatabase implements IUserDatabase {
         return null;
     }
 
-
+    @Override
     //return every user in the database
     public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();

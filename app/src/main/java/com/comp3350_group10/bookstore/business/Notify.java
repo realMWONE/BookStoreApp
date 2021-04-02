@@ -8,13 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Notify extends AppCompatActivity {
     private final List<IBook> lowStockNotified = new ArrayList<>();
+
+    public List<IBook> getLowStockNotified() {
+        return lowStockNotified;
+    }
 
     //have to create notification channel for devices with Oreo version or higher,
     // can be ignored for versions lower than Oreo
@@ -56,6 +59,14 @@ public class Notify extends AppCompatActivity {
     private void displayNotification(Context context, NotificationCompat.Builder builder){
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(1,builder.build());
+    }
+
+    //remove from the low stock books list,
+    // once the available stock is more than 10
+    public void removeFromLowStockList(IBook book){
+        if(lowStockNotified.contains(book) && book.getStock()>10){
+            lowStockNotified.remove(book);
+        }
     }
 
 }

@@ -56,5 +56,8 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     public void OnReturnClick(View v) {
         buttonFunctions.IncrementStock(details);
+        //only call/remove from list when stock is high
+        if(BookDataHandler.currentBook.getStock()>10)
+            notify.removeFromLowStockList(BookDataHandler.currentBook);
     }
 }

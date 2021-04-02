@@ -35,7 +35,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/BookTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/AllTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/AllTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +103,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/comp3350_group10/bookstore/objects" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../U of M/COMP 3350/sampleProj/sample-project" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -98,6 +111,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.comp3350_group10.bookstore.objects" />
       <recent name="com.comp3350_group10.bookstore.business" />
       <recent name="com.comp3350_group10.bookstore.persistence.hsqldb" />
     </key>
@@ -108,57 +122,7 @@
       <recent name="C:\Users\zorks\AndroidStudioProjects\winter-2021-a03-group-10\app\src\main\java\com\comp3350_group10\bookstore\persistence\hsqldb" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
-    <configuration name="BookDatabaseTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BookStore.app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.comp3350_group10.bookstore.persistence.hsqldb.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb" />
-      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BookDatabaseTest.testFindBook" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BookStore.app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.comp3350_group10.bookstore.persistence.hsqldb.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb" />
-      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseTest" />
-      <option name="METHOD_NAME" value="testFindBook" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BookDatabaseTest.testGetBooks" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BookStore.app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.comp3350_group10.bookstore.persistence.hsqldb.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb" />
-      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseTest" />
-      <option name="METHOD_NAME" value="testGetBooks" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Android JUnit.UserTest">
     <configuration name="BookDatabaseTest.testInsertBook" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStore.app" />
       <extension name="coverage">
@@ -176,18 +140,67 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookDatabaseTest.testUpdateBook" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="BookStore.app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.comp3350_group10.bookstore.persistence.hsqldb.*" />
+          <option name="PATTERN" value="com.comp3350_group10.bookstore.objects.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb" />
-      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseTest" />
-      <option name="METHOD_NAME" value="testUpdateBook" />
+      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.objects" />
+      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.objects.BookTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookTest.testGetBookAuthor" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStore.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.comp3350_group10.bookstore.objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.objects" />
+      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.objects.BookTest" />
+      <option name="METHOD_NAME" value="testGetBookAuthor" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookTest.testGetBookName" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStore.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.comp3350_group10.bookstore.objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.objects" />
+      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.objects.BookTest" />
+      <option name="METHOD_NAME" value="testGetBookName" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BookStore.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.comp3350_group10.bookstore.objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.comp3350_group10.bookstore.objects" />
+      <option name="MAIN_CLASS_NAME" value="com.comp3350_group10.bookstore.objects.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
@@ -259,11 +272,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.UserTest" />
+        <item itemvalue="Android JUnit.BookTest" />
+        <item itemvalue="Android JUnit.BookTest.testGetBookAuthor" />
+        <item itemvalue="Android JUnit.BookTest.testGetBookName" />
         <item itemvalue="Android JUnit.BookDatabaseTest.testInsertBook" />
-        <item itemvalue="Android JUnit.BookDatabaseTest" />
-        <item itemvalue="Android JUnit.BookDatabaseTest.testUpdateBook" />
-        <item itemvalue="Android JUnit.BookDatabaseTest.testGetBooks" />
-        <item itemvalue="Android JUnit.BookDatabaseTest.testFindBook" />
       </list>
     </recent_temporary>
   </component>
@@ -372,33 +385,33 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="541" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067806587" />
-    <state x="613" y="290" key="FileChooserDialogImpl" timestamp="1617246549019">
+    <state x="613" y="290" key="FileChooserDialogImpl" timestamp="1617325452902">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state x="613" y="290" key="FileChooserDialogImpl/0.0.1664.1069@0.0.1664.1069" timestamp="1617246549019" />
-    <state width="1604" height="347" key="GridCell.Tab.0.bottom" timestamp="1617288636016">
+    <state x="613" y="290" key="FileChooserDialogImpl/0.0.1664.1069@0.0.1664.1069" timestamp="1617325452902" />
+    <state width="1604" height="347" key="GridCell.Tab.0.bottom" timestamp="1617326405889">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state width="593" height="130" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
-    <state width="1604" height="347" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1617288636016" />
+    <state width="1604" height="347" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1617326405889" />
     <state width="1877" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="1604" height="347" key="GridCell.Tab.0.center" timestamp="1617288636016">
+    <state width="1604" height="347" key="GridCell.Tab.0.center" timestamp="1617326405888">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state width="593" height="130" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
-    <state width="1604" height="347" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1617288636016" />
+    <state width="1604" height="347" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1617326405888" />
     <state width="1877" height="273" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="1604" height="347" key="GridCell.Tab.0.left" timestamp="1617288636016">
+    <state width="1604" height="347" key="GridCell.Tab.0.left" timestamp="1617326405888">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state width="593" height="130" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1617157124911" />
-    <state width="1604" height="347" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1617288636016" />
+    <state width="1604" height="347" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1617326405888" />
     <state width="1877" height="273" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
-    <state width="1604" height="347" key="GridCell.Tab.0.right" timestamp="1617288636016">
+    <state width="1604" height="347" key="GridCell.Tab.0.right" timestamp="1617326405888">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state width="593" height="130" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1617157124912" />
-    <state width="1604" height="347" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1617288636016" />
+    <state width="1604" height="347" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1617326405888" />
     <state width="1877" height="273" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
     <state width="1877" height="722" key="GridCell.Tab.1.bottom" timestamp="1616562852454">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -424,10 +437,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067814658" />
-    <state x="644" y="313" key="chooseDestDirectoryDialog" timestamp="1617264561619">
+    <state x="644" y="313" key="chooseDestDirectoryDialog" timestamp="1617326114634">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state x="644" y="313" key="chooseDestDirectoryDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1617264561619" />
+    <state x="644" y="313" key="chooseDestDirectoryDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1617326114634" />
     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction" timestamp="1617131153808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -436,10 +449,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067743903" />
-    <state x="599" y="36" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1617264561658">
+    <state x="599" y="36" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1617326114643">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state x="599" y="36" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1617264561658" />
+    <state x="599" y="36" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1617326114643" />
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1617065188557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -463,17 +476,26 @@
     <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testInsertBook.ic" NAME="BookDatabaseTest.testInsertBook Coverage Results" MODIFIED="1617287622169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testSetPrice.ic" NAME="BookDataHandlerTest.testSetPrice Coverage Results" MODIFIED="1617266203521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testIncrementPrice.ic" NAME="BookDataHandlerTest.testIncrementPrice Coverage Results" MODIFIED="1617266389796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testFindBook.ic" NAME="BookDatabaseTest.testFindBook Coverage Results" MODIFIED="1617285452510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest_testDeleteBook.ic" NAME="BookDatabaseTest.testDeleteBook Coverage Results" MODIFIED="1617285325027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookTest_testGetBookAuthor.ic" NAME="BookTest.testGetBookAuthor Coverage Results" MODIFIED="1617325678916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.objects.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookTest.ic" NAME="BookTest Coverage Results" MODIFIED="1617326088179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.objects.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1617326405828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.objects.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testSetPrice.ic" NAME="BookDataHandlerTest.testSetPrice Coverage Results" MODIFIED="1617266203521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/BookStore$BookDataHandlerTest_testIncrementPrice.ic" NAME="BookDataHandlerTest.testIncrementPrice Coverage Results" MODIFIED="1617266389796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.comp3350_group10.bookstore.business.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/BookStore$BookDatabaseTest.ic" NAME="BookDatabaseTest Coverage Results" MODIFIED="1617286913012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.comp3350_group10.bookstore.persistence.hsqldb.*</FILTER>

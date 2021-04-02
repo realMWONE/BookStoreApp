@@ -208,4 +208,5 @@ public class MainActivity extends AppCompatActivity
         try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());}
         catch (ClassNotFoundException e) { e.printStackTrace(); }
     }
+
 }

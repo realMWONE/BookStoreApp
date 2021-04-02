@@ -23,10 +23,14 @@ public class FakeUserDatabase implements IUserDatabase {
     @Override
     public IUser findUser(String userId) throws ClassNotFoundException {
         IUser user = null;
+        System.out.println("Searching for " + userId);
         if(userList.size()>0){
             for(int i=0;i<userList.size();i++){
-                if(userList.get(i).getUserID().toLowerCase().equals(userId))
+                System.out.println(userList.get(i).getUserID());
+                if(userList.get(i).getUserID().toLowerCase().equals(userId.toLowerCase())) {
                     user = userList.get(i);
+                    System.out.println("found user: "+userList.get(i).getUserID());
+                }
             }
         }
         return user;

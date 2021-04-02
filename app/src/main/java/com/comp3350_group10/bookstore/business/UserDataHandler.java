@@ -40,7 +40,7 @@ public class UserDataHandler implements IUserDataHandler {
         try{
             //check if the user is in the database or not
             if(tempUser == null) {
-                throw new Exception("Password length too short, should be at least 8 characters");
+                throw new Exception("No such user");
             }
             else {
                 try{

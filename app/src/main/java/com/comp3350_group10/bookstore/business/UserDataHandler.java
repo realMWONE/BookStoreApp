@@ -22,10 +22,6 @@ public class UserDataHandler implements IUserDataHandler {
         userDatabase = new FakeUserDatabase();
     }
 
-    public UserDataHandler(User currentUser) throws ClassNotFoundException {
-        UserDataHandler.currentUser =currentUser;
-    }
-
 
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
@@ -40,7 +36,7 @@ public class UserDataHandler implements IUserDataHandler {
         try{
             //check if the user is in the database or not
             if(tempUser == null) {
-                throw new Exception("Password length too short, should be at least 8 characters");
+                throw new Exception("User doesn't exist");
             }
             else {
                 try{

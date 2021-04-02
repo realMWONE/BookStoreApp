@@ -86,12 +86,12 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-    public List<IBook> getBooks() throws ClassNotFoundException {
+    public List<IBook> getBooks(){
         return bookList;
     }
 
     @Override
-    public IBook insertBook(IBook book) throws ClassNotFoundException {
+    public IBook insertBook(IBook book){
         if(!bookList.contains(book))
         {
             bookList.add(book);
@@ -100,7 +100,7 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-    public IBook updateBook(IBook book) throws ClassNotFoundException {
+    public IBook updateBook(IBook book){
         if (bookList.contains(book)) {
             bookList.add(bookList.indexOf(book), book);
         }
@@ -108,7 +108,7 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-    public void deleteBook(IBook book) throws ClassNotFoundException {
+    public void deleteBook(IBook book){
         bookList.remove(book);
     }
 

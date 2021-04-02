@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface IUserDatabase {
     IUser findUser(String userId);
-    List<IUser> getUsers();
     IUser insertUser(IUser user);
     IUser updateUser(IUser user);
     void deleteUser(IUser user);

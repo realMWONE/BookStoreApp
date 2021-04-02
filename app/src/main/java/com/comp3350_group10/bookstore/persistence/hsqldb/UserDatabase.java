@@ -63,7 +63,6 @@ public class UserDatabase implements IUserDatabase {
         return null;
     }
 
-    @Override
     //return every user in the database
     public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();

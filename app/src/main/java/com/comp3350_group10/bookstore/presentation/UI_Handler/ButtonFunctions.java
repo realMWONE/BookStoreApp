@@ -176,9 +176,13 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void SetStock()
-    {
+    public void SetStock(int newStock) throws ClassNotFoundException {
+        bookHandler.setStock(BookDataHandler.currentBook, newStock);
+    }
 
+    @Override
+    public void SetPrice(int newPrice) throws ClassNotFoundException {
+        bookHandler.setPrice(BookDataHandler.currentBook, newPrice);
     }
 
     @Override

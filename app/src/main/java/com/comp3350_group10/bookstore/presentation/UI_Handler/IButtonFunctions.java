@@ -37,7 +37,9 @@ public interface IButtonFunctions {
 
     //function is called when user presses the restock button
     // to change the quantity of stock available
-    void SetStock();
+    void SetStock(int newStock) throws ClassNotFoundException;
+
+    void SetPrice(int newPrice) throws ClassNotFoundException;
 
     void SwitchToCreateUserActivity(Context context, UserSettingActivity activity);
 

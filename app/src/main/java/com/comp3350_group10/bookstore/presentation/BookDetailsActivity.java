@@ -25,6 +25,9 @@ public class BookDetailsActivity extends AppCompatActivity {
     private ImageView bookImage;
     private TextView details;
 
+    private TextView changePrice;
+    private TextView changeStock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,8 @@ public class BookDetailsActivity extends AppCompatActivity {
         bookTitle = findViewById(R.id.bookDetailsTitle);
         bookImage = findViewById(R.id.bookDetailsImage);
         details = findViewById(R.id.bookDetailsText);
+        changePrice = findViewById(R.id.change_price_text);
+        changeStock = findViewById(R.id.change_stock_text);
 
         buttonFunctions = new ButtonFunctions();
         bookDetailsFunctions = new BookDetailsFunctions();
@@ -48,5 +53,38 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     public void OnReturnClick(View v) {
         buttonFunctions.IncrementStock(details);
+    }
+
+    public void SetStockOnClick(View v) throws ClassNotFoundException {
+        int value = validateNumber(changeStock.getText().toString());
+        if(value > 0) {
+            buttonFunctions.SetStock(value);
+            System.out.println("Stock was changed");
+            bookDetailsFunctions.UpdateBookDetails(details);
+
+        }
+        else {
+            System.out.println("not a valid number");   //change to alert
+        }
+    }
+
+    public void SetPriceOnClick(View v) throws ClassNotFoundException {
+        int value = validateNumber(changePrice.getText().toString());
+        if(value > 0) {
+            buttonFunctions.SetPrice(value);
+            System.out.println("price was changed");
+            bookDetailsFunctions.UpdateBookDetails(details);
+
+        }
+        else {
+            System.out.println("not a valid number");   //change to alert
+        }
+    }
+
+    private int validateNumber(String input) {
+        int n = -1;                        //inititalize to invalid data as input should not be -'ve
+        if(input.matches("\\d+"))   //check if only digits. Could also be text.matches("[0-9]+")
+            n = Integer.parseInt(input);
+        return n;
     }
 }

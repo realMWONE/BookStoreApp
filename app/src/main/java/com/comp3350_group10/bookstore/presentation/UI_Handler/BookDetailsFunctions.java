@@ -33,4 +33,8 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
     public void UpdateBookDetails(TextView details) {
         details.setText(FormatBookDetails());
     }
+
+    public void UpdateStock(TextView stock){stock.setText(BookDataHandler.currentBook.getStock());    }
+    public void UpdatePrice(TextView price){price.setText(BookDataHandler.currentBook.getPrice());    }
+
 }

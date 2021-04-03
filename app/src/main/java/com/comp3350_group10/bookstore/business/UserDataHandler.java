@@ -18,13 +18,13 @@ public class UserDataHandler implements IUserDataHandler {
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
-//        userDatabase = Service.setupUserDatabase();
-        userDatabase = new FakeUserDatabase();
+        userDatabase = Service.setupUserDatabase();
+//        userDatabase = new FakeUserDatabase();
 
     }
 
     public UserDataHandler(User currentUser) throws ClassNotFoundException {
-        UserDataHandler.currentUser =currentUser;
+        UserDataHandler.currentUser = currentUser;
     }
 
     //function to check whether the current user is a manager or employee

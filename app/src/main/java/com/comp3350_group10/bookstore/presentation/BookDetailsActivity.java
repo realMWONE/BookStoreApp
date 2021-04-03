@@ -1,6 +1,9 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
+
+import com.comp3350_group10.bookstore.business.UserDataHandler;
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
@@ -14,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BookDetailsActivity extends AppCompatActivity {
@@ -27,6 +31,8 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     private TextView changePrice;
     private TextView changeStock;
+
+    private LinearLayout managementLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,10 @@ public class BookDetailsActivity extends AppCompatActivity {
         bookDetailsFunctions = new BookDetailsFunctions();
         //bookDetailsFunctions.DrawScreen(this, 120, bookDetailsLayout);
         bookDetailsFunctions.LoadBookInfo(bookTitle, bookImage, details);
+
+        managementLayout = findViewById(R.id.management_layout);
+        if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType()!=UserType.Manager)
+            managementLayout.setVisibility(View.GONE);
     }
 
     public void OnSaleClick(View v) {

@@ -50,7 +50,7 @@ public class UserDatabase implements IUserDatabase {
             return null;
         }
         for(int i=0;i<userList.size();i++){
-            if(userList.get(i).getUserID().equals(userId))
+            if(userList.get(i).getUserID().toLowerCase().equals(userId.toLowerCase()))
                 return userList.get(i);
         }
         return null;

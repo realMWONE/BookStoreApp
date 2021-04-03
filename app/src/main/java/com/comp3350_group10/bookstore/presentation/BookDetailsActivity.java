@@ -52,6 +52,11 @@ public class BookDetailsActivity extends AppCompatActivity {
         //bookDetailsFunctions.DrawScreen(this, 120, bookDetailsLayout);
         bookDetailsFunctions.LoadBookInfo(bookTitle, bookImage, details);
 
+        if(UserDataHandler.currentUser != null)
+            System.out.println(UserDataHandler.currentUser.getRealName() + ","+UserDataHandler.currentUser.getUserType());
+        else
+            System.out.println("Null");
+
         managementLayout = findViewById(R.id.management_layout);
         if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType()!=UserType.Manager)
             managementLayout.setVisibility(View.GONE);

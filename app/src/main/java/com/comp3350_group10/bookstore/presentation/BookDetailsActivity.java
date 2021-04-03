@@ -61,7 +61,6 @@ public class BookDetailsActivity extends AppCompatActivity {
             buttonFunctions.SetStock(value);
             System.out.println("Stock was changed");
             bookDetailsFunctions.UpdateBookDetails(details);
-
         }
         else {
             System.out.println("not a valid number");   //change to alert

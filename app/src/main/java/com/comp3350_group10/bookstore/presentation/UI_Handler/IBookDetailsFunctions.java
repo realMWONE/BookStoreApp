@@ -8,6 +8,5 @@ import com.comp3350_group10.bookstore.business.BookDataHandler;
 public interface IBookDetailsFunctions {
     void LoadBookInfo(TextView title, ImageView cover, TextView details);
     void UpdateBookDetails(TextView details);
-    void UpdateStock(TextView stock);
-    void UpdatePrice(TextView price);
+
 }

@@ -9,6 +9,6 @@ public interface IErrorHandler {
     }
 
     static void ShowSettingsErrorMessage(String message) {
-        UserSettingActivity.errorMessage.setText(message);
+        //UserSettingActivity.errorMessage.setText(message);
     }
 }

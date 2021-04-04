@@ -1,62 +1,48 @@
 package com.comp3350_group10.bookstore.business;
 
-import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 
 public class UserDataHandler implements IUserDataHandler {
 
     public static IUser currentUser = null;
-    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());
+    private IUserDatabase userDatabase;
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
-        //userDatabase = Service.setupUserDatabase();
-        userDatabase = new FakeUserDatabase();
+        userDatabase = Service.setupUserDatabase();
+        //userDatabase = new FakeUserDatabase();
+
     }
 
+    public UserDataHandler(User currentUser) throws ClassNotFoundException {
+        UserDataHandler.currentUser = currentUser;
+    }
 
     //function to check whether the current user is a manager or employee
     public boolean isCurrentUserManager(){
         return (UserType.Manager == currentUser.getUserType());
     }
 
+    public IUser getCurrentUser() {
+        return currentUser;
+    }
+
     //function to login the current user
     public void logIn(String email, String password) throws ClassNotFoundException {
-
         IUser tempUser = userDatabase.findUser(email);
 
         try{
-            //check if the user is in the database or not
-            if(tempUser == null) {
-                throw new Exception("User doesn't exist");
-            }
-            else {
-                try{
-                    //check if the given password matches the tempUser's password
-                    if(!tempUser.getPassword().equals(password)){
-                        throw new Exception("Different passwords, couldn't confirm!!");
-                    }
-                    else {
-                        //if password matches, then update the currentUser
-                        currentUser = tempUser;
-                    }
-                }
-                catch (Exception g){
-                    System.out.println(g);
-                }
-            }
+            if(tempUser == null) throw new Exception("User not found");
+            else if(!tempUser.getPassword().equals(password)) throw new Exception("Different passwords, couldn't confirm!!");
+            else currentUser = tempUser;
         }
-        catch (Exception f){
-            System.out.println(f);
-        }
+        catch (Exception f) {System.out.println(f); }
     }
 
     //function to logout the current user
@@ -66,7 +52,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to change password for the current logged in user
-    public void changePassword(String oldPw, String newPw, String confirmNewPw){
+    public boolean changePassword(String oldPw, String newPw, String confirmNewPw){
         try {
             //check if the user is logged in or not
             if(currentUser == null){
@@ -95,26 +81,31 @@ public class UserDataHandler implements IUserDataHandler {
                                         //if everything is correct, then update the password
                                         currentUser.setPassword(newPw);
                                         userDatabase.updateUser(currentUser);
+                                        return true;
                                     }
                                 }
                                 catch (Exception g){
                                     System.out.println(g);
+                                    return false;
                                 }
                             }
                         }
                         catch (Exception f){
                             System.out.println(f);
+                            return false;
                         }
                     }
                 }
                 catch (Exception e){
                     System.out.println(e);
+                    return false;
                 }
 
             }
         }
         catch (Exception h){
             System.out.println(h);
+            return false;
         }
     }
 
@@ -158,5 +149,4 @@ public class UserDataHandler implements IUserDataHandler {
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
-
 }

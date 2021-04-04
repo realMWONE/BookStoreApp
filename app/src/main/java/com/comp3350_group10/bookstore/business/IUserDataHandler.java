@@ -16,7 +16,7 @@ public interface IUserDataHandler {
     void logIn(String email, String password) throws ClassNotFoundException;
 
     //function to changePassword for the logged in user
-    void changePassword(String oldPw, String newPw, String confirmNewPw);
+    boolean changePassword(String oldPw, String newPw, String confirmNewPw);
 
     IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
 }

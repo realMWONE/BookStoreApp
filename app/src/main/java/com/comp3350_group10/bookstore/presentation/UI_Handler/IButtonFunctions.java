@@ -15,7 +15,6 @@ public interface IButtonFunctions {
     // find a book based on ISBN/author/title
     void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException;
 
-    void SwitchToLoginActivity(MainActivity main, Context context);
 
     //function is called when user logs in with their respective accounts
     void LoginButtonPressed(String email, String password) throws ClassNotFoundException;
@@ -26,8 +25,6 @@ public interface IButtonFunctions {
     //function is called when a user hits change password button in setting page
     void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);
 
-    //function that brings the user to the user setting page
-    void SwitchToUserSettingActivity(Context context, MainActivity main);
 
     //function is called when user hits the increment stock by 1 button
     void IncrementStock(TextView text);
@@ -41,13 +38,10 @@ public interface IButtonFunctions {
 
     void SetPrice(int newPrice) throws ClassNotFoundException;
 
-    void SwitchToCreateUserActivity(Context context, UserSettingActivity activity);
+
 
     //Creates the user with given parameters
     //Show popup and return to main activity if successful
     //Show popup and return to createUser activity if failed
     IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
-
-    //return to main activity
-    void SwitchToMainActivity(Context context, Activity activity);
 }

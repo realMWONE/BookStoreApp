@@ -1,0 +1,600 @@
+Index: app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.business;\n\nimport android.os.Build;\n\nimport androidx.annotation.RequiresApi;\n\n\nimport com.comp3350_group10.bookstore.application.Main;\nimport com.comp3350_group10.bookstore.application.Service;\nimport com.comp3350_group10.bookstore.persistence.IUserDatabase;\nimport com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;\nimport com.comp3350_group10.bookstore.persistence.IBook;\nimport com.comp3350_group10.bookstore.persistence.IBookDatabase;\nimport com.comp3350_group10.bookstore.objects.User;\nimport com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;\n\n\nimport java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.Comparator;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map.Entry;\n\n\npublic class BookDataHandler implements IBookDataHandler {\n    private IBookDatabase bookDatabase;\n    public static IBook currentBook;\n\n    public BookDataHandler(){\n        bookDatabase = Service.setupBookDatabase();\n    }\n\n    //Takes the keyword and search database with it\n    //Returns result after removing duplicated results, and sorted by relevance\n    /*\n     * param keyword\n     * return list of found books\n     * */\n    @RequiresApi(api = Build.VERSION_CODES.N)\n    public List<IBook> findBooks(String keyword) throws ClassNotFoundException {\n        List<String> wordList = splitWords(keyword); //splits keywords\n\n        List<IBook> bookList = new ArrayList<>();   //stores search result\n\n        //search database with each keyword and combining the lists\n        for(String word: wordList){\n            bookList.addAll(bookDatabase.findBook(word));\n        }\n\n        //sort the booklist by relevancy (times it appeared in search result) and remove duplication\n        bookList = sortByRelevancy(bookList);\n\n        return bookList;\n    }\n\n    //function to set the target book to the given price\n    public void setPrice(IBook target, int price){\n        //make sure target is initialized\n        try\n        {\n            //price cannot be negative\n            if(price>=0){\n                target.setPrice(price);\n            }\n            else{\n                System.out.println(\"The price cannot be set to negative number\");\n            }\n            bookDatabase.updateBook(target);\n        }\n\n        catch(NullPointerException | ClassNotFoundException e)\n        {\n            System.out.println(e+\"caught in UserDataHandler.java method - setPrice()\");\n        }\n    }\n\n\n    //function to increment the price by 1\n    public void incrementPrice(IBook target) {\n        try {\n            setPrice(target, target.getPrice() + 1);\n        } catch (NullPointerException e) {\n            System.out.println(e + \"caught in UserDataHandler.java method - incrementPrice()\");\n        }\n    }\n\n    //function to decrement price by 1\n    public void decrementPrice(IBook target){\n        try{\n            setPrice(target, target.getPrice()-1);\n        }\n        catch (NullPointerException e) {\n            System.out.println(e + \"caught in UserDataHandler.java method - decrementPrice()\");\n        }\n\n    }\n\n\n    //function set the stock for the target book with the given quantity\n    public void setStock(IBook target, int quantity) throws ClassNotFoundException {\n        //make sure target is initialized\n        try{\n            //stock cannot be negative\n            if(quantity >= 0){\n                target.setStock(quantity);\n            }\n            else{\n                System.out.println(\"The stock cannot be set to negative number\");\n            }\n            bookDatabase.updateBook(target);\n        }\n        catch(NullPointerException e)\n        {\n            System.out.println(e+\"caught in UserDataHandler.java method - setStock()\");\n        }\n    }\n\n\n    //function to increment the stock by 1\n    public void incrementStock(IBook target) {\n        //make sure target is initialized\n        try {\n            setStock(target, target.getStock() + 1);\n        }\n        catch (NullPointerException | ClassNotFoundException e) {\n            System.out.println(e + \"caught in UserDataHandler.java method - incrementStock()\");\n        }\n    }\n\n\n    //function to decrement the stock by 1\n    public void decrementStock(IBook target){\n        //Make sure target is initialized and do not decrease if stock is less than 0\n        try {\n            setStock(target, target.getStock() - 1);\n        }\n        catch (NullPointerException | ClassNotFoundException e) {\n            System.out.println(e + \"caught in DataHandler.java method - decrementStock()\");\n        }\n    }\n\n\n\n    //Takes a list of books with duplication, the more duplicated the book the\n    //Sort the given list of books by how many words in its title matches with the given word list\n    //And gets rid of the duplicated elements\n    @RequiresApi(api = Build.VERSION_CODES.N)\n    private List<IBook> sortByRelevancy(List<IBook> bookList){\n        //relevancy is determined by # of times the book appeared in search result\n        //<Key : Value> = <IBook book : Integer relevancy>\n        HashMap<IBook,Integer> map = new HashMap<>();\n        for (IBook book : bookList) {\n            if (!map.containsKey(book)) {\n                map.put(book, 1);\n            }\n            else{\n                map.put(book, map.get(book)+1);\n                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'\n            }\n        }\n\n        //descending sort by relevancy\n        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());\n        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());\n\n        //copies the sorted list to list of books to return\n        List<IBook> result = new ArrayList<>();\n        for(Entry<IBook, Integer> entries: sortedBookList){\n            result.add(entries.getKey());\n        }\n\n        return result;\n    }\n\n\n    // splits the given string, ignores non-ascii words\n    private List<String> splitWords(String words){\n        //split input\n        String[] split = words.toLowerCase().split(\"[-. ,:]+\");\n\n        //initialize returning list\n        List<String> result = new ArrayList<>();\n\n        //ignore non-ascii and common words\n        for(String word:split) {\n            if(word.matches(\"\\\\A\\\\p{ASCII}*\\\\z\")){\n                result.add(word);\n            }\n        }\n\n        return result;\n    }\n\n\n    private void sortTitleAscHelper() throws ClassNotFoundException {\n\n        List<IBook> bookList = bookDatabase.getBooks();\n\n        Collections.sort(bookList, new Comparator<IBook>() {\n            @Override\n            public int compare(IBook o1, IBook o2) {\n                return o1.getBookName().compareTo(o2.getBookName());\n            }\n        });\n\n    }\n\n    private void sortTitleDescHelper() throws ClassNotFoundException {\n\n        List<IBook> bookList = bookDatabase.getBooks();\n\n        Collections.sort(bookList, new Comparator<IBook>() {\n            @Override\n            public int compare(IBook o1, IBook o2) {\n                return o2.getBookName().compareTo(o1.getBookName());\n            }\n        });\n\n    }\n\n    private void sortAuthorAscHelper() throws ClassNotFoundException {\n\n        List<IBook> bookList = bookDatabase.getBooks();\n\n        Collections.sort(bookList, new Comparator<IBook>() {\n            @Override\n            public int compare(IBook o1, IBook o2) {\n                return o1.getBookAuthor().compareTo(o2.getBookAuthor());\n            }\n        });\n\n    }\n\n    private void sortAuthorDescHelper() throws ClassNotFoundException {\n\n        List<IBook> bookList = bookDatabase.getBooks();\n\n        Collections.sort(bookList, new Comparator<IBook>() {\n            @Override\n            public int compare(IBook o1, IBook o2) {\n                return o2.getBookAuthor().compareTo(o1.getBookAuthor());\n            }\n        });\n\n    }\n\n    private void sortGenreHelper() throws ClassNotFoundException {\n\n        List<IBook> bookList = bookDatabase.getBooks();\n\n        Collections.sort(bookList, new Comparator<IBook>() {\n            @Override\n            public int compare(IBook o1, IBook o2) {\n                return o1.getGenre().compareTo(o2.getGenre());\n            }\n        });\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java	(date 1617252100000)
+@@ -8,6 +8,7 @@
+ import com.comp3350_group10.bookstore.application.Main;
+ import com.comp3350_group10.bookstore.application.Service;
+ import com.comp3350_group10.bookstore.persistence.IUserDatabase;
++import com.comp3350_group10.bookstore.persistence.fakeDB.FakeBookDatabase;
+ import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
+ import com.comp3350_group10.bookstore.persistence.IBook;
+ import com.comp3350_group10.bookstore.persistence.IBookDatabase;
+@@ -28,7 +29,8 @@
+     public static IBook currentBook;
+ 
+     public BookDataHandler(){
+-        bookDatabase = Service.setupBookDatabase();
++//        bookDatabase = Service.setupBookDatabase();
++        bookDatabase = new FakeBookDatabase();
+     }
+ 
+     //Takes the keyword and search database with it
+Index: app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/ImageReferences.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.persistence.hsqldb;\n\nimport android.graphics.drawable.Drawable;\n\nimport androidx.core.content.ContextCompat;\n\nimport com.comp3350_group10.bookstore.R;\n\nimport java.util.Dictionary;\nimport java.util.Hashtable;\nimport java.util.List;\n\npublic class ImageReferences {\n    private static Dictionary<Integer, Integer> coverImages;\n\n    public static void FillDictionary()\n    {\n        coverImages = new Hashtable<>();\n        coverImages.put(700132, R.drawable.philosophers_stone);\n        coverImages.put(700069, R.drawable.harry_potter_and_the_chamber_of_secrets);\n        coverImages.put(700104, R.drawable.the_da_vinci_code);\n        coverImages.put(700153, R.drawable.angels_demons);\n        coverImages.put(700031, R.drawable.diary_of_wimpy_kid_the_getaway);\n        coverImages.put(700003, R.drawable.diary_of_wimpy_kid_double_down);\n        coverImages.put(700160, R.drawable.prisoner_of_azkaban);\n        coverImages.put(700064, R.drawable.harry_potter_and_the_goblet_fire);\n        coverImages.put(700007, R.drawable.harry_potter_and_the_order_of_the_phoenix);\n        coverImages.put(700043, R.drawable.harry_potter_and_the_half_blood_prince);\n        coverImages.put(700105, R.drawable.harry_potter_and_the_deathly_hallows);\n        coverImages.put(700113, R.drawable.harry_potter_and_the_cursed_child);\n        coverImages.put(700141, R.drawable.twilight);\n        coverImages.put(700116, R.drawable.eclipse);\n        coverImages.put(700056, R.drawable.new_moon);\n    }\n\n    public static int Get(int key)\n    {\n        return coverImages.get(key);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/ImageReferences.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/ImageReferences.java	(date 1617252159000)
+@@ -31,10 +31,16 @@
+         coverImages.put(700141, R.drawable.twilight);
+         coverImages.put(700116, R.drawable.eclipse);
+         coverImages.put(700056, R.drawable.new_moon);
++        coverImages.put(700033,R.drawable.breaking_dawn);
++        coverImages.put(700062,R.drawable.midnightsun);
++        coverImages.put(700077,R.drawable.lotr);
++        coverImages.put(700079,R.drawable.the_two_towers);
++        coverImages.put(700130,R.drawable.the_book_of_lost_tails);
++        coverImages.put(700127,R.drawable.the_children_of_hurin);
+     }
+ 
+     public static int Get(int key)
+     {
+         return coverImages.get(key);
+     }
+-}
++}
+\ No newline at end of file
+Index: app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.presentation.UI_Handler;\n\nimport android.annotation.SuppressLint;\nimport android.content.Context;\nimport android.content.Intent;\nimport android.os.Build;\nimport android.widget.ImageView;\nimport android.widget.TableLayout;\nimport android.widget.TableRow;\nimport android.widget.TextView;\n\nimport androidx.annotation.RequiresApi;\n\nimport com.comp3350_group10.bookstore.business.BookDataHandler;\nimport com.comp3350_group10.bookstore.business.IBookDataHandler;\nimport com.comp3350_group10.bookstore.business.IUserDataHandler;\nimport com.comp3350_group10.bookstore.business.UserDataHandler;\nimport com.comp3350_group10.bookstore.objects.Book;\nimport com.comp3350_group10.bookstore.persistence.IBook;\nimport com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;\nimport com.comp3350_group10.bookstore.presentation.BookDetailsActivity;\nimport com.comp3350_group10.bookstore.presentation.CreateUserActivity;\nimport com.comp3350_group10.bookstore.presentation.MainActivity;\nimport com.comp3350_group10.bookstore.presentation.ScreenSize;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;\nimport com.comp3350_group10.bookstore.presentation.UserSettingActivity;\nimport com.comp3350_group10.bookstore.presentation.login.LoginActivity;\n\nimport java.text.DecimalFormat;\nimport java.util.Collection;\nimport java.util.Collections;\nimport java.util.Comparator;\nimport java.util.List;\n\npublic class ButtonFunctions implements IButtonFunctions\n{\n    private IBookDataHandler bookHandler;\n    private IUserDataHandler userHandler;\n    private IBookDetailsFunctions bookDetailsFunctions;\n    private final int IMAGE_HEIGHT = 120;\n\n    public ButtonFunctions()\n    {\n        bookHandler = new BookDataHandler();\n        userHandler = new UserDataHandler();\n        bookDetailsFunctions = new BookDetailsFunctions();\n\n    }\n\n    @RequiresApi(api = Build.VERSION_CODES.N)\n    @Override\n    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException {\n        ClearResults(table);\n\n        if (keyword.equals(\"\")) main.FillTrendingTable();\n        else PopulateResults(bookHandler.findBooks(keyword), table, context, main);\n    }\n\n    private void ClearResults(TableLayout table) {\n        table.removeAllViews();\n    }\n\n    @RequiresApi(api = Build.VERSION_CODES.N)\n    private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {\n        SortResults(results, main);\n\n        if (results != null) {\n            for (IBook book : results) {\n                TableRow row = CreateTableRow(context);\n\n                row.addView(CreateImageView(context, book, ScreenSize.getPixelsFromDP(context, IMAGE_HEIGHT)));\n                row.addView(CreateTextView(context, book));\n                row.setOnClickListener(v -> OpenBookDetailsActivity(context, book, main));\n\n                table.addView(row);\n            }\n        }\n\n        return results;\n    }\n\n    @RequiresApi(api = Build.VERSION_CODES.N)\n    private void SortResults(List<IBook> results, MainActivity main) {\n        String sortBy = main.getSortBy();\n        if (sortBy.contains(\"Title\"))\n            results.sort(Comparator.comparing(IBook::getBookName));\n        else if (sortBy.contains(\"Author\"))\n            results.sort(Comparator.comparing(IBook::getBookAuthor));\n        else results.sort(Comparator.comparing(IBook::getGenre));\n\n        if (main.getOrderString().toLowerCase().equals(\"desc\"))\n            Collections.reverse(results);\n    }\n\n    private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {\n        Intent intent = new Intent(context, BookDetailsActivity.class);\n        BookDataHandler.currentBook = book;\n        main.startActivity(intent);\n    }\n\n    private TableRow CreateTableRow(Context context) {\n        TableRow row = new TableRow(context);\n        row.setPadding(10,10,10,10);\n        return row;\n    }\n\n    @SuppressLint(\"SetTextI18n\")\n    private TextView CreateTextView(Context context, IBook book) {\n        TextView text = new TextView(context);\n\n        float price = book.getPrice() / 100f;\n        DecimalFormat df = new DecimalFormat();\n        df.setMaximumFractionDigits(2);\n        df.setMinimumFractionDigits(2);\n\n        text.setText(book.getBookName() + \"\\n\" + book.getBookAuthor() + \"\\n\" + book.getBookIsbn() + \"\\n\\n$\" + df.format(price));\n\n        return text;\n    }\n\n    private ImageView CreateImageView(Context context, IBook book, int height) {\n        ImageView image = new ImageView(context);\n        image.setImageResource(ImageReferences.Get(book.getImage()));\n        image.setLayoutParams(new TableRow.LayoutParams(height, height));\n        return image;\n    }\n\n    @Override\n    public void LoginButtonPressed(String email, String password) throws ClassNotFoundException {\n        userHandler.logIn(email, password);\n    }\n\n    @Override\n    public void SwitchToLoginActivity(MainActivity main, Context context)\n    {\n        Intent intent = new Intent(context, LoginActivity.class);\n        main.startActivity(intent);\n    }\n\n    @Override\n    public void LogoutButtonPressed()\n    {\n        //TODO: maybe add popup notification\n        userHandler.logOut();\n    }\n\n\n    @Override\n    public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)\n    {\n        //TODO: maybe add popup confirmation\n        userHandler.changePassword(oldPw, newPw, confirmNewPw);\n    }\n\n    @Override\n    public void UserSettingButtonPressed(Context context, MainActivity main) {\n        Intent intent = new Intent(context, UserSettingActivity.class);\n        main.startActivity(intent);\n    }\n\n    @Override\n    public void IncrementStock(TextView text)\n    {\n        bookHandler.incrementStock(BookDataHandler.currentBook);\n        bookDetailsFunctions.UpdateBookDetails(text);\n    }\n\n    @Override\n    public void DecrementStock(TextView text)\n    {\n        bookHandler.decrementStock(BookDataHandler.currentBook);\n        bookDetailsFunctions.UpdateBookDetails(text);\n    }\n\n    @Override\n    public void SetStock()\n    {\n\n    }\n\n    @Override\n    public void AddEmployeeButtonPressed(Context context, UserSettingActivity activity) {\n        Intent intent = new Intent(context, CreateUserActivity.class);\n        activity.startActivity(intent);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java	(date 1617250792000)
+@@ -155,7 +155,7 @@
+     }
+ 
+     @Override
+-    public void UserSettingButtonPressed(Context context, MainActivity main) {
++    public void SwitchToUserSettingActivity(Context context, MainActivity main) {
+         Intent intent = new Intent(context, UserSettingActivity.class);
+         main.startActivity(intent);
+     }
+@@ -181,8 +181,20 @@
+     }
+ 
+     @Override
+-    public void AddEmployeeButtonPressed(Context context, UserSettingActivity activity) {
++    public void SwitchToCreateUserActivity(Context context, UserSettingActivity activity) {
+         Intent intent = new Intent(context, CreateUserActivity.class);
+         activity.startActivity(intent);
+     }
++
++    @Override
++    //TODO: popup saying user creation successful or failed
++    public void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
++        if(userHandler.createNewUser(name, email, password, isManager)!=null) {
++            //popup saying successful
++            //prompt return homescreen or create another user
++        } else
++        {
++            //popup saying unsuccessful
++        }
++    }
+ }
+Index: app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.presentation;\n\nimport android.os.Bundle;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.widget.EditText;\nimport android.widget.TextView;\n\nimport com.comp3350_group10.bookstore.R;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;\n\npublic class UserSettingActivity extends AppCompatActivity {\n    private EditText oldPassword;\n    private EditText newPassword;\n    private EditText confirmNewPassword;\n    private IButtonFunctions uiButtonFunctions;\n    public static TextView errorMessage;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        uiButtonFunctions = new ButtonFunctions();\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.settings_activity);\n\n//        errorMessage = findViewById(R.id.settingErrorMessage);\n        oldPassword = findViewById(R.id.oldPassword);\n        newPassword = findViewById(R.id.newPassword);\n        confirmNewPassword = findViewById(R.id.confirmNewPassword);\n    }\n\n\n\n    public void changePwOnClick(View v){\n        uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString());\n        //TODO: pop up to say change was successful, then go back to main activity\n//        System.out.println(\"Change pw clicked: \"+ oldPassword.getText().toString() +\" \" + newPassword.getText().toString() +\" \" + confirmNewPassword.getText().toString());\n    }\n\n\n    public void logoutOnClick(View v){\n        uiButtonFunctions.LogoutButtonPressed();\n        //TODO: pop up saying logout successful then go back to main activity\n//        System.out.println(\"logging out now...\");\n    }\n\n    public void addEmployeeOnClick(View v)\n    {\n        uiButtonFunctions.AddEmployeeButtonPressed(getBaseContext(),this);\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java	(date 1617248896000)
+@@ -1,7 +1,6 @@
+ package com.comp3350_group10.bookstore.presentation;
+ 
+ import android.os.Bundle;
+-import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.EditText;
+ import android.widget.TextView;
+@@ -49,7 +48,7 @@
+ 
+     public void addEmployeeOnClick(View v)
+     {
+-        uiButtonFunctions.AddEmployeeButtonPressed(getBaseContext(),this);
++        uiButtonFunctions.SwitchToCreateUserActivity(getBaseContext(),this);
+     }
+ 
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.business;\n\nimport com.comp3350_group10.bookstore.application.Main;\nimport com.comp3350_group10.bookstore.application.Service;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;\nimport com.comp3350_group10.bookstore.objects.User;\nimport com.comp3350_group10.bookstore.persistence.IUser;\nimport com.comp3350_group10.bookstore.persistence.IUserDatabase;\nimport com.comp3350_group10.bookstore.persistence.UserType;\nimport com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;\n\n\npublic class UserDataHandler implements IUserDataHandler {\n\n    public static IUser currentUser = null;\n    private IUserDatabase userDatabase = new UserDatabase(Main.getDBPath());\n\n    //Default constructor that calls on Service method to connect to database\n    public UserDataHandler() {\n        userDatabase = Service.setupUserDatabase();\n    }\n\n    public UserDataHandler(User currentUser) throws ClassNotFoundException {\n        UserDataHandler.currentUser =currentUser;\n    }\n\n\n    //function to check whether the current user is a manager or employee\n    public boolean isCurrentUserManager(){\n        return (UserType.Manager == currentUser.getUserType());\n    }\n\n    //function to login the current user\n    public void logIn(String email, String password) throws ClassNotFoundException {\n\n        IUser tempUser = userDatabase.findUser(email);\n\n        try{\n            //check if the user is in the database or not\n            if(tempUser == null) {\n                throw new Exception(\"Password length too short, should be at least 8 characters\");\n            }\n            else {\n                try{\n                    //check if the given password matches the tempUser's password\n                    if(!tempUser.getPassword().equals(password)){\n                        throw new Exception(\"Different passwords, couldn't confirm!!\");\n                    }\n                    else {\n                        //if password matches, then update the currentUser\n                        currentUser = tempUser;\n                    }\n                }\n                catch (Exception g){\n                    System.out.println(g);\n                }\n            }\n        }\n        catch (Exception f){\n            System.out.println(f);\n        }\n    }\n\n    //function to logout the current user\n    public void logOut(){\n        if(currentUser!=null)\n            currentUser = null;\n    }\n\n    //function to change password for the current logged in user\n    public void changePassword(String oldPw, String newPw, String confirmNewPw){\n        try {\n            //check if the user is logged in or not\n            if(currentUser == null){\n                IErrorHandler.ShowLoginErrorMessage(\"There is no currently logged in user\");\n                throw new Exception(\"User must be logged in\");\n            }\n            else {\n                try {\n                    //check if the current password matches the old password\n                    if(!currentUser.getPassword().equals(oldPw)){\n                        throw new Exception(\"Current password doesn't match the saved password\");\n                    }\n                    else {\n                        try{\n                            //check if the new password length is at least 8 characters (validation)\n                            if(newPw.length()<8) {\n                                throw new Exception(\"Password length too short, should be at least 8 characters\");\n                            }\n                            else {\n                                try{\n                                    //check if the new password is confirmed or not\n                                    if(!newPw.equals(confirmNewPw)){\n                                        throw new Exception(\"Different passwords, couldn't confirm!!\");\n                                    }\n                                    else {\n                                        //if everything is correct, then update the password\n                                        currentUser.setPassword(newPw);\n                                        userDatabase.updateUser(currentUser);\n                                    }\n                                }\n                                catch (Exception g){\n                                    System.out.println(g);\n                                }\n                            }\n                        }\n                        catch (Exception f){\n                            System.out.println(f);\n                        }\n                    }\n                }\n                catch (Exception e){\n                    System.out.println(e);\n                }\n\n            }\n        }\n        catch (Exception h){\n            System.out.println(h);\n        }\n    }\n\n\n    // TODO: Take care of IUserDatabase bugs after it's implemented\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java	(date 1617252100000)
+@@ -2,6 +2,7 @@
+ 
+ import com.comp3350_group10.bookstore.application.Main;
+ import com.comp3350_group10.bookstore.application.Service;
++import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
+ import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
+ import com.comp3350_group10.bookstore.objects.User;
+ import com.comp3350_group10.bookstore.persistence.IUser;
+@@ -17,7 +18,8 @@
+ 
+     //Default constructor that calls on Service method to connect to database
+     public UserDataHandler() {
+-        userDatabase = Service.setupUserDatabase();
++//        userDatabase = Service.setupUserDatabase();
++        userDatabase = new FakeUserDatabase();
+     }
+ 
+     public UserDataHandler(User currentUser) throws ClassNotFoundException {
+@@ -121,5 +123,39 @@
+     }
+ 
+ 
+-    // TODO: Take care of IUserDatabase bugs after it's implemented
++    public IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
++        IUser newUser = null;
++        UserType manager;
++        String errorMessage = "";
++        if(name.isEmpty())
++            errorMessage += "Name cannot be empty\n";
++        if(email.isEmpty())
++            errorMessage += "Email cannot be empty\n";
++        if(!validEmail(email))
++            errorMessage += "Email is not valid\n";
++        if(password.isEmpty())
++            errorMessage += "Password cannot be empty\n";
++        if(password.length() < 8)
++            errorMessage += "Password cannot be shorter than 8 characters\n";
++        if(errorMessage.isEmpty())
++        {
++            if (isManager)
++                manager = UserType.Manager;
++            else
++                manager = UserType.Employee;
++            newUser = new User(name, email, password, manager);
++            userDatabase.insertUser(newUser);
++        }
++        System.out.println(errorMessage);
++        return newUser;
++        //TODO: popup displaying the message
++    }
++
++    //Email validating method copied online
++    private boolean validEmail(String email){
++        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
++        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
++        java.util.regex.Matcher m = p.matcher(email);
++        return m.matches();
++    }
+ }
+Index: app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.presentation.UI_Handler;\n\nimport android.content.Context;\nimport android.widget.TableLayout;\nimport android.widget.TextView;\n\nimport com.comp3350_group10.bookstore.presentation.MainActivity;\nimport com.comp3350_group10.bookstore.presentation.UserSettingActivity;\n\npublic interface IButtonFunctions {\n\n    //function is called when user hits search button to\n    // find a book based on ISBN/author/title\n    void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException;\n\n    void SwitchToLoginActivity(MainActivity main, Context context);\n\n    //function is called when user logs in with their respective accounts\n    void LoginButtonPressed(String email, String password) throws ClassNotFoundException;\n\n    //function is called when user wants to logout\n    void LogoutButtonPressed();\n\n    //function is called when a user hits change password button in setting page\n    void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);\n\n    //function that brings the user to the user setting page\n    void UserSettingButtonPressed(Context context, MainActivity main);\n\n    //function is called when user hits the increment stock by 1 button\n    void IncrementStock(TextView text);\n\n    //function is called when user hits the decrement stock by 1 button\n    void DecrementStock(TextView text);\n\n    //function is called when user presses the restock button\n    // to change the quantity of stock available\n    void SetStock();\n\n    void AddEmployeeButtonPressed(Context context, UserSettingActivity activity);\n\n    }\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java	(date 1617250792000)
+@@ -25,7 +25,7 @@
+     void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);
+ 
+     //function that brings the user to the user setting page
+-    void UserSettingButtonPressed(Context context, MainActivity main);
++    void SwitchToUserSettingActivity(Context context, MainActivity main);
+ 
+     //function is called when user hits the increment stock by 1 button
+     void IncrementStock(TextView text);
+@@ -37,6 +37,7 @@
+     // to change the quantity of stock available
+     void SetStock();
+ 
+-    void AddEmployeeButtonPressed(Context context, UserSettingActivity activity);
++    void SwitchToCreateUserActivity(Context context, UserSettingActivity activity);
+ 
+-    }
++    void CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
++}
+Index: app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.business;\n\nimport com.comp3350_group10.bookstore.persistence.IBook;\n\nimport java.util.List;\n\n\npublic interface IUserDataHandler {\n\n    //function to check whether the current user is a manager or employee\n    boolean isCurrentUserManager();\n\n    //function to logout the current user\n    void logOut();\n\n    void logIn(String email, String password) throws ClassNotFoundException;\n\n    //function to changePassword for the logged in user\n    void changePassword(String oldPw, String newPw, String confirmNewPw);\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java	(date 1617250792000)
+@@ -1,6 +1,7 @@
+ package com.comp3350_group10.bookstore.business;
+ 
+ import com.comp3350_group10.bookstore.persistence.IBook;
++import com.comp3350_group10.bookstore.persistence.IUser;
+ 
+ import java.util.List;
+ 
+@@ -17,4 +18,6 @@
+ 
+     //function to changePassword for the logged in user
+     void changePassword(String oldPw, String newPw, String confirmNewPw);
++
++    IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+ }
+Index: app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.presentation;\n\nimport android.content.Context;\nimport android.content.res.AssetManager;\nimport android.os.Bundle;\nimport android.text.Editable;\nimport android.text.TextWatcher;\nimport android.view.Menu;\nimport android.view.MenuItem;\nimport android.view.View;\nimport android.widget.AdapterView;\nimport android.widget.ArrayAdapter;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.LinearLayout;\nimport android.widget.Spinner;\nimport android.widget.TableLayout;\nimport com.comp3350_group10.bookstore.R;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.Toolbar;\n\nimport com.comp3350_group10.bookstore.application.Main;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;\nimport com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;\n\nimport java.io.File;\nimport java.io.FileWriter;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\n\npublic class MainActivity extends AppCompatActivity\n{\n    private IButtonFunctions uIButtonFunctions;\n    private TableLayout bookListTable;\n    private EditText searchBar;\n    private Spinner dropdown;\n    private Button sortButton;\n    private LinearLayout sortingLayout;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState)\n    {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        copyDatabaseToDevice();\n\n        uIButtonFunctions = new ButtonFunctions();\n        searchBar = findViewById(R.id.searchBar);\n        bookListTable = findViewById(R.id.bookListTable);\n        dropdown = findViewById(R.id.sortingDropdown);\n        sortButton = findViewById(R.id.sortingButton);\n        Toolbar toolbar = findViewById(R.id.toolbar);\n        sortingLayout = findViewById(R.id.sortingLayout);\n        sortingLayout.setVisibility(LinearLayout.GONE);\n        setSupportActionBar(toolbar);\n\n        //Performs search each time a character is entered\n        SetSearchListener(getBaseContext(), this);\n        SetDropdownListener(getBaseContext(), this);\n\n        try {\n            //Populate the trending table with categories\n            FillTrendingTable();\n        } catch (ClassNotFoundException e) {\n            e.printStackTrace();\n        }\n        FillDropdownList();\n    }\n\n    protected void onDestroy(){\n        super.onDestroy();\n    }\n\n    private void copyDatabaseToDevice(){\n        final String DB_PATH = \"db\";\n\n        String[] assetNames;\n        Context context = getApplicationContext();\n        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);\n        AssetManager assetManager = getAssets();\n\n        try{\n            assetNames = assetManager.list(DB_PATH);\n            for(int i = 0; i < assetNames.length; i++){\n                assetNames[i] = DB_PATH + \"/\" + assetNames[i];\n            }\n\n            copyAssetsToDirectory(assetNames, dataDirectory);\n\n            Main.setDBPath(dataDirectory.toString()+ \"/\" + Main.getDBPath());\n        }\n        catch(final IOException e){\n            Messages.warning(this, \"Unable to access application data: \"+ e.getMessage());\n        }\n    }\n\n    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {\n    AssetManager assetManager = getAssets();\n\n    for (String asset : assets) {\n        String[] components = asset.split(\"/\");\n        String copyPath = directory.toString() + \"/\" + components[components.length - 1];\n\n        char[] buffer = new char[1024];\n        int count;\n\n        File outFile = new File(copyPath);\n\n        if (!outFile.exists()) {\n            InputStreamReader in = new InputStreamReader(assetManager.open(asset));\n            FileWriter out = new FileWriter(outFile);\n\n            count = in.read(buffer);\n            while (count != -1) {\n                out.write(buffer, 0, count);\n                count = in.read(buffer);\n            }\n            out.close();\n            in.close();\n        }\n    }\n}\n\n    private void FillDropdownList() {\n        String[] items = new String[] {\"By Title\", \"By Author\", \"By Genre\"};\n        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);\n        dropdown.setAdapter(adapter);\n    }\n\n    public void FillTrendingTable() throws ClassNotFoundException {\n        TrendingPageFunctions.FillTrendingPage(bookListTable, this);\n    }\n\n    private void SetSearchListener(Context context, MainActivity main) {\n        searchBar.addTextChangedListener(new TextWatcher() {\n            public void afterTextChanged(Editable s) { }\n            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }\n            public void onTextChanged(CharSequence s, int start, int before, int count) {\n                try {\n                    uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());\n                    int visibility = s.length() == 0 ? LinearLayout.GONE : LinearLayout.VISIBLE;\n                    sortingLayout.setVisibility(visibility);\n                } catch (ClassNotFoundException e) {\n                    e.printStackTrace();\n                }\n            }\n        });\n    }\n\n    private void SetDropdownListener(Context context, MainActivity main) {\n        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\n            @Override\n            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {\n                try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem()); }\n                catch (ClassNotFoundException e) { e.printStackTrace(); }\n            }\n            @Override\n            public void onNothingSelected(AdapterView<?> parentView) {\n                // your code here\n            }\n        });\n    }\n\n    public String getSortBy() {\n        return dropdown.getSelectedItem().toString();\n    }\n\n    public String getOrderString() {\n        return sortButton.getText().toString();\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        getMenuInflater().inflate(R.menu.main, menu);\n        return true;\n    }\n\n    public void onLoginButtonClicked(MenuItem item) {\n        uIButtonFunctions.SwitchToLoginActivity(this, getBaseContext());\n    }\n\n    public void onLogoutButtonClicked(MenuItem item)\n    {\n        uIButtonFunctions.LogoutButtonPressed();\n    }\n\n    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.UserSettingButtonPressed(getBaseContext(), this); }\n\n    public void onSortButtonClicked(View v) {\n        Button b = (Button)v;\n        if (b.getText().toString().equals(\"DESC\"))\n            b.setText(\"ASC\");\n        else b.setText(\"DESC\");\n\n        try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());}\n        catch (ClassNotFoundException e) { e.printStackTrace(); }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java	(date 1617248896000)
+@@ -186,7 +186,7 @@
+         uIButtonFunctions.LogoutButtonPressed();
+     }
+ 
+-    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.UserSettingButtonPressed(getBaseContext(), this); }
++    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.SwitchToUserSettingActivity(getBaseContext(), this); }
+ 
+     public void onSortButtonClicked(View v) {
+         Button b = (Button)v;
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">BookStore</string>\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\n    <string name=\"nav_header_title\">Android Studio</string>\n    <string name=\"nav_header_subtitle\">android.studio@android.com</string>\n    <string name=\"nav_header_desc\">Navigation header</string>\n    <string name=\"login_button\">Login</string>\n    <string name=\"user_settings_button\">User Settings</string>\n    <string name=\"logout_button\">Logout</string>\n    <string name=\"menu_home\">Home</string>\n    <string name=\"menu_gallery\">Gallery</string>\n    <string name=\"menu_slideshow\">Slideshow</string>\n    <string name=\"title_activity_login\">LoginActivity</string>\n    <string name=\"sale_button\">Sale</string>\n    <string name=\"prompt_email\">Email</string>\n    <string name=\"prompt_password\">Password</string>\n    <string name=\"action_sign_in\">Sign in or register</string>\n    <string name=\"action_sign_in_short\">Sign in</string>\n    <string name=\"welcome\">\"Welcome !\"</string>\n    <string name=\"invalid_username\">Not a valid username</string>\n    <string name=\"invalid_password\">Password must be >5 characters</string>\n    <string name=\"login_failed\">\"Login failed\"</string>\n    <string name=\"title_activity_book_details\">BookDetailsActivity</string>\n    <!-- Strings used for fragments for navigation -->\n    <string name=\"first_fragment_label\">First Fragment</string>\n    <string name=\"second_fragment_label\">Second Fragment</string>\n    <string name=\"next\">Next</string>\n    <string name=\"previous\">Previous</string>\n\n    <string name=\"hello_first_fragment\">Hello first fragment</string>\n    <string name=\"hello_second_fragment\">Hello second fragment. Arg: %1$s</string>\n    <string name=\"title_activity_user_setting\">User Settings</string>\n\n    <!-- Preference Titles -->\n    <string name=\"messages_header\">Messages</string>\n    <string name=\"sync_header\">Sync</string>\n\n    <!-- Messages Preferences -->\n    <string name=\"signature_title\">Your signature</string>\n    <string name=\"reply_title\">Default reply action</string>\n\n    <!-- Sync Preferences -->\n    <string name=\"sync_title\">Sync email periodically</string>\n    <string name=\"attachment_title\">Download incoming attachments</string>\n    <string name=\"attachment_summary_on\">Automatically download attachments for incoming emails\n    </string>\n    <string name=\"attachment_summary_off\">Only download attachments when manually requested</string>\n    <string name=\"change_password\">Change password</string>\n    <string name=\"user_settings\">User Settings</string>\n    <string name=\"enter_old_password\">Enter Old Password</string>\n    <string name=\"enter_new_password\">Enter New Password</string>\n    <string name=\"confirm_new_password\">Confirm New Password</string>\n    <string name=\"logout\">Logout</string>\n    <string name=\"fatalError\">fatal</string>\n    <string name=\"warning\">warning</string>\n    <string name=\"add_employee_button\">Add employee</string>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/res/values/strings.xml	(date 1617249549000)
+@@ -55,4 +55,9 @@
+     <string name="fatalError">fatal</string>
+     <string name="warning">warning</string>
+     <string name="add_employee_button">Add employee</string>
++    <string name="new_employee_name">Enter name for new employee</string>
++    <string name="new_employee_email">Enter email for new employee</string>
++    <string name="new_employee_password">Enter password for new employee</string>
++    <string name="create_user_button">Create User</string>
++    <string name="new_employee_manager">Is new employee a manager?</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_create_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".presentation.CreateUserActivity\">\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_create_user.xml	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/res/layout/activity_create_user.xml	(date 1617249600000)
+@@ -6,4 +6,87 @@
+     android:layout_height="match_parent"
+     tools:context=".presentation.CreateUserActivity">
+ 
++    <LinearLayout
++        android:id="@+id/linearLayout3"
++        android:layout_width="328dp"
++        android:layout_height="495dp"
++        android:layout_marginStart="47dp"
++        android:layout_marginTop="70dp"
++        android:layout_marginEnd="47dp"
++        android:orientation="vertical"
++        app:layout_constraintBottom_toTopOf="@+id/create_user_button"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <Space
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1" />
++
++        <EditText
++            android:id="@+id/new_name_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:autofillHints=""
++            android:hint="@string/new_employee_name"
++            android:inputType="textPersonName" />
++
++        <Space
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1.5" />
++
++        <EditText
++            android:id="@+id/new_email_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:hint="@string/new_employee_email"
++            android:inputType="textEmailAddress"
++            android:autofillHints="" />
++
++        <Space
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1.5" />
++
++        <EditText
++            android:id="@+id/new_password_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:hint="@string/new_employee_password"
++            android:inputType="textPassword"
++            android:autofillHints="" />
++
++        <Space
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1" />
++
++        <Switch
++            android:id="@+id/new_manager_switch"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:text="@string/new_employee_manager" />
++    </LinearLayout>
++
++    <Button
++        android:id="@+id/create_user_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="130dp"
++        android:layout_marginTop="76dp"
++        android:layout_marginEnd="130dp"
++        android:layout_marginBottom="48dp"
++        android:onClick="createUserOnClick"
++        android:text="@string/create_user_button"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.comp3350_group10.bookstore.presentation;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.os.Bundle;\nimport com.comp3350_group10.bookstore.R;\n\n\npublic class CreateUserActivity extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_create_user);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java	(date 1617249227000)
+@@ -3,14 +3,38 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.os.Bundle;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.Switch;
++
+ import com.comp3350_group10.bookstore.R;
++import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
++import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+ 
+ 
+ public class CreateUserActivity extends AppCompatActivity {
+ 
+-    @Override
++    private EditText name;
++    private EditText email;
++    private EditText password;
++    private Switch isManager;
++    private IButtonFunctions uiButtonFunctions;
++
++
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_create_user);
++
++        uiButtonFunctions = new ButtonFunctions();
++
++        name = findViewById(R.id.new_name_text);
++        email = findViewById(R.id.new_email_text);
++        password = findViewById(R.id.new_password_text);
++        isManager = findViewById(R.id.new_manager_switch);
++    }
++
++    void createUserOnClick(View v) throws ClassNotFoundException {
++        uiButtonFunctions.CreateUserButtonPressed(name.getText().toString(), email.getText().toString(),password.getText().toString(), isManager.isChecked());
+     }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AndroidLayouts\">\n    <shared>\n      <config />\n    </shared>\n  </component>\n  <component name=\"AndroidLogFilters\">\n    <option name=\"TOOL_WINDOW_LOG_LEVEL\" value=\"verbose\" />\n    <option name=\"TOOL_WINDOW_CONFIGURED_FILTER\" value=\"Show only selected application\" />\n  </component>\n  <component name=\"BranchesTreeState\">\n    <expand>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n    </expand>\n    <select>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"BRANCH:master\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n    </select>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5d704228-095a-4717-add3-f6e77c52699e\" name=\"Default Changelist\" comment=\"Last commit of iteration 2\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[]\" />\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <projects_view>\n          <tree_state>\n            <expand />\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"GUI\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1qBAfnjal9NtjX4ps6FboAcBHNO\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"DeviceAndSnapshotComboBoxAction.selectedDevice\" value=\"Pixel_2_XL_API_30\" />\n    <property name=\"DeviceAndSnapshotComboBoxAction.selectionTime\" value=\"2021-03-23T23:58:17.538Z\" />\n    <property name=\"Git.Branch.Popup.ShowAllRemotes\" value=\"true\" />\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\n    <property name=\"project.structure.proportion\" value=\"0.17\" />\n    <property name=\"project.structure.side.proportion\" value=\"0.20530452\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\zorks\\AndroidStudioProjects\\winter-2021-a03-group-10\\app\\src\\main\\java\\com\\comp3350_group10\\bookstore\\persistence\\hsqldb\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration default=\"true\" type=\"AndroidJUnit\" factoryName=\"Android JUnit\">\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_DIR$\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"app\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\" activateToolWindowBeforeRun=\"false\">\n      <module name=\"BookStore.app\" />\n      <option name=\"DEPLOY\" value=\"true\" />\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\n      <option name=\"ALL_USERS\" value=\"false\" />\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\n      <option name=\"MODE\" value=\"default_activity\" />\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\n      <option name=\"SKIP_NOOP_APK_INSTALLATIONS\" value=\"true\" />\n      <option name=\"FORCE_STOP_RUNNING_APP\" value=\"true\" />\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\n      <Auto>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Auto>\n      <Hybrid>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Hybrid>\n      <Java />\n      <Native>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Native>\n      <Profilers>\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Sample Java Methods\" />\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\n      </Profilers>\n      <option name=\"DEEP_LINK\" value=\"\" />\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5d704228-095a-4717-add3-f6e77c52699e\" name=\"Default Changelist\" comment=\"Last commit of iteration 2\" />\n      <created>1616542714841</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1616542714841</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Removed unnecessary code from BookDatabase\">\n      <created>1616550014476</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1616550014476</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Worked on getting the database working\">\n      <created>1617067714686</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1617067714686</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Removed unnecessary class\">\n      <created>1617067807267</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1617067807267</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"4\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"master\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Removed unnecessary code from BookDatabase\" />\n    <MESSAGE value=\"Worked on getting the database working\" />\n    <MESSAGE value=\"Removed unnecessary class\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Removed unnecessary class\" />\n  </component>\n  <component name=\"WindowStateProjectService\">\n    <state x=\"433\" y=\"98\" width=\"1243\" height=\"896\" key=\"#PSD\" timestamp=\"1617243634191\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state x=\"433\" y=\"72\" width=\"1243\" height=\"896\" key=\"#PSD/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616547130199\" />\n    <state x=\"433\" y=\"98\" key=\"#PSD/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617243634191\" />\n    <state x=\"765\" y=\"226\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1616550733116\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"765\" y=\"226\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616550733116\" />\n    <state x=\"690\" y=\"267\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog\" timestamp=\"1616550363010\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"690\" y=\"267\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616550363010\" />\n    <state x=\"93\" y=\"50\" width=\"1147\" height=\"557\" key=\"AVDManager\" timestamp=\"1617117406783\">\n      <screen x=\"0\" y=\"0\" width=\"1280\" height=\"689\" />\n    </state>\n    <state x=\"93\" y=\"50\" width=\"1147\" height=\"557\" key=\"AVDManager/0.0.1280.689@0.0.1280.689\" timestamp=\"1617117406783\" />\n    <state x=\"140\" y=\"76\" width=\"1720\" height=\"840\" key=\"AVDManager/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616544438076\" />\n    <state x=\"541\" y=\"89\" key=\"CommitChangelistDialog2\" timestamp=\"1617067806587\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"541\" y=\"89\" key=\"CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617067806587\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1617244914015\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state width=\"1877\" height=\"273\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617132561169\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617244914015\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.center\" timestamp=\"1617244914012\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state width=\"1877\" height=\"273\" key=\"GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617132561169\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617244914012\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.left\" timestamp=\"1617244914010\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state width=\"1877\" height=\"273\" key=\"GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617132561169\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617244914010\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.right\" timestamp=\"1617244914013\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state width=\"1877\" height=\"273\" key=\"GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617132561169\" />\n    <state width=\"1828\" height=\"305\" key=\"GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617244914013\" />\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1616562852454\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616562852454\" />\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.center\" timestamp=\"1616562852453\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616562852453\" />\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.left\" timestamp=\"1616562852453\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616562852453\" />\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.right\" timestamp=\"1616562852454\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"722\" key=\"GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616562852454\" />\n    <state x=\"184\" y=\"112\" key=\"MergeDialog\" timestamp=\"1617243937805\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state x=\"184\" y=\"86\" key=\"MergeDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617065196345\" />\n    <state x=\"184\" y=\"112\" key=\"MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617243937805\" />\n    <state x=\"282\" y=\"106\" key=\"MultipleFileMergeDialog\" timestamp=\"1617236517902\">\n      <screen x=\"0\" y=\"0\" width=\"1280\" height=\"689\" />\n    </state>\n    <state x=\"282\" y=\"106\" key=\"MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689\" timestamp=\"1617236517902\" />\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1617067814658\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"552\" y=\"253\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617067814658\" />\n    <state width=\"681\" height=\"1038\" key=\"com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction\" timestamp=\"1617131153808\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"681\" height=\"1038\" key=\"com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617131153808\" />\n    <state x=\"513\" y=\"288\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1617236502905\">\n      <screen x=\"0\" y=\"0\" width=\"1280\" height=\"689\" />\n    </state>\n    <state x=\"513\" y=\"288\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689\" timestamp=\"1617236502905\" />\n    <state x=\"769\" y=\"434\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617067743903\" />\n    <state x=\"665\" y=\"261\" key=\"git4idea.branch.GitSmartOperationDialog\" timestamp=\"1617243934442\">\n      <screen x=\"0\" y=\"25\" width=\"1920\" height=\"1055\" />\n    </state>\n    <state x=\"665\" y=\"233\" key=\"git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1617065188557\" />\n    <state x=\"665\" y=\"261\" key=\"git4idea.branch.GitSmartOperationDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055\" timestamp=\"1617243934442\" />\n    <state x=\"262\" y=\"133\" key=\"git4idea.merge.GitPullDialog\" timestamp=\"1617236431877\">\n      <screen x=\"0\" y=\"0\" width=\"1280\" height=\"689\" />\n    </state>\n    <state x=\"262\" y=\"133\" key=\"git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689\" timestamp=\"1617236431877\" />\n    <state x=\"790\" y=\"373\" width=\"543\" height=\"294\" key=\"psd.add.jar.dependency.panel.dimension\" timestamp=\"1616545510528\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"790\" y=\"373\" width=\"543\" height=\"294\" key=\"psd.add.jar.dependency.panel.dimension/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1616545510528\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision b91cd33f41f5e289d738c125fb1bcb99819fcdc3)
++++ .idea/workspace.xml	(date 1617254491000)
+@@ -2,7 +2,9 @@
+ <project version="4">
+   <component name="AndroidLayouts">
+     <shared>
+-      <config />
++      <config>
++        <device id="pixel_4" />
++      </config>
+     </shared>
+   </component>
+   <component name="AndroidLogFilters">
+@@ -29,20 +31,34 @@
+       <path>
+         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="BRANCH:GUI" type="e8cecc67:BranchNodeDescriptor" />
+       </path>
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Last commit of iteration 2">
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_6_10_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_7_55_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_19_PM__Default_Changelist_1.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_29_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_8_30_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_25_PM__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_30_21_11_08_PM__Default_Changelist_.xml" afterDir="false" />
++    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="added image">
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/ImageReferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/persistence/hsqldb/ImageReferences.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_create_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_create_user.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -77,7 +93,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="GUI" />
++        <entry key="$PROJECT_DIR$" value="database" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -200,7 +216,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1617067807267</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="added image">
++      <created>1617246526805</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1617246526805</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -231,7 +254,8 @@
+     <MESSAGE value="Removed unnecessary code from BookDatabase" />
+     <MESSAGE value="Worked on getting the database working" />
+     <MESSAGE value="Removed unnecessary class" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary class" />
++    <MESSAGE value="added image" />
++    <option name="LAST_COMMIT_MESSAGE" value="added image" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="433" y="98" width="1243" height="896" key="#PSD" timestamp="1617243634191">
+@@ -239,10 +263,11 @@
+     </state>
+     <state x="433" y="72" width="1243" height="896" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1616547130199" />
+     <state x="433" y="98" key="#PSD/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617243634191" />
+-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1616550733116">
+-      <screen x="0" y="0" width="1920" height="1040" />
++    <state x="765" y="254" key="#com.intellij.ide.util.MemberChooser" timestamp="1617248415281">
++      <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1616550733116" />
++    <state x="765" y="254" key="#com.intellij.ide.util.MemberChooser/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617248415281" />
+     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616550363010">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+@@ -252,30 +277,34 @@
+     </state>
+     <state x="93" y="50" width="1147" height="557" key="AVDManager/0.0.1280.689@0.0.1280.689" timestamp="1617117406783" />
+     <state x="140" y="76" width="1720" height="840" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1616544438076" />
++    <state x="807" y="334" key="AndroidCreateXmlResourceDialog" timestamp="1617249526996">
++      <screen x="0" y="25" width="1920" height="1055" />
++    </state>
++    <state x="807" y="334" key="AndroidCreateXmlResourceDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617249526996" />
+     <state x="541" y="89" key="CommitChangelistDialog2" timestamp="1617067806587">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="541" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067806587" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.bottom" timestamp="1617244914015">
++    <state width="1828" height="335" key="GridCell.Tab.0.bottom" timestamp="1617253301256">
+       <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state width="1877" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617244914015" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.center" timestamp="1617244914012">
++    <state width="1828" height="335" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617253301256" />
++    <state width="1828" height="335" key="GridCell.Tab.0.center" timestamp="1617253301255">
+       <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state width="1877" height="273" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617244914012" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.left" timestamp="1617244914010">
++    <state width="1828" height="335" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617253301255" />
++    <state width="1828" height="335" key="GridCell.Tab.0.left" timestamp="1617253301254">
+       <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state width="1877" height="273" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617244914010" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.right" timestamp="1617244914013">
++    <state width="1828" height="335" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617253301254" />
++    <state width="1828" height="335" key="GridCell.Tab.0.right" timestamp="1617253301255">
+       <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state width="1877" height="273" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617132561169" />
+-    <state width="1828" height="305" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617244914013" />
++    <state width="1828" height="335" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617253301255" />
+     <state width="1877" height="722" key="GridCell.Tab.1.bottom" timestamp="1616562852454">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+@@ -309,11 +338,12 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction/0.0.1920.1040@0.0.1920.1040" timestamp="1617131153808" />
+-    <state x="513" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617236502905">
+-      <screen x="0" y="0" width="1280" height="689" />
++    <state x="770" y="466" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617246664178">
++      <screen x="0" y="25" width="1920" height="1055" />
+     </state>
+     <state x="513" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1617236502905" />
+     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067743903" />
++    <state x="770" y="466" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617246664178" />
+     <state x="665" y="261" key="git4idea.branch.GitSmartOperationDialog" timestamp="1617243934442">
+       <screen x="0" y="25" width="1920" height="1055" />
+     </state>

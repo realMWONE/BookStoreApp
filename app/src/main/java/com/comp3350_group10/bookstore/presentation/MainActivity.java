@@ -24,7 +24,9 @@ import com.comp3350_group10.bookstore.business.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;
+import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -194,7 +196,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onLoginButtonClicked(MenuItem item) {
-        uIButtonFunctions.SwitchToLoginActivity(this, getBaseContext());
+        SwitchActivity.SwitchTo(LoginActivity.class,this);
     }
 
     public void onLogoutButtonClicked(MenuItem item)
@@ -202,7 +204,9 @@ public class MainActivity extends AppCompatActivity
         uIButtonFunctions.LogoutButtonPressed();
     }
 
-    public void userSettingButtonClicked(MenuItem item){ uIButtonFunctions.SwitchToUserSettingActivity(getBaseContext(), this); }
+    public void userSettingButtonClicked(MenuItem item) {
+        SwitchActivity.SwitchTo(UserSettingActivity.class,this);
+    }
 
     public void onSortButtonClicked(View v) {
         Button b = (Button)v;

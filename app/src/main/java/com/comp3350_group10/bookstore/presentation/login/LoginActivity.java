@@ -19,7 +19,7 @@ import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.ISwitchActivity;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity
         email.addTextChangedListener(watcher);
     }
 
-    private  void EnableLoginButton()
+    private void EnableLoginButton()
     {
         loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals(""));
     }
@@ -69,6 +69,6 @@ public class LoginActivity extends AppCompatActivity
     public void LoginOnClick(View v) throws ClassNotFoundException
     {
         buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
-        if (UserDataHandler.currentUser != null) ISwitchActivity.SwitchTo(MainActivity.class, this);
+        if (UserDataHandler.currentUser != null) SwitchActivity.SwitchTo(MainActivity.class, this);
     }
 }

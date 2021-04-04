@@ -133,12 +133,7 @@ public class ButtonFunctions implements IButtonFunctions
         userHandler.logIn(email, password);
     }
 
-    @Override
-    public void SwitchToLoginActivity(MainActivity main, Context context)
-    {
-        Intent intent = new Intent(context, LoginActivity.class);
-        main.startActivity(intent);
-    }
+
 
     @Override
     public void LogoutButtonPressed()
@@ -155,11 +150,7 @@ public class ButtonFunctions implements IButtonFunctions
         userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
-    @Override
-    public void SwitchToUserSettingActivity(Context context, MainActivity main) {
-        Intent intent = new Intent(context, UserSettingActivity.class);
-        main.startActivity(intent);
-    }
+
 
     @Override
     public void IncrementStock(TextView text)
@@ -181,15 +172,11 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void SetPrice(int newPrice) throws ClassNotFoundException {
+    public void SetPrice(int newPrice) {
         bookHandler.setPrice(BookDataHandler.currentBook, newPrice);
     }
 
-    @Override
-    public void SwitchToCreateUserActivity(Context context, UserSettingActivity activity) {
-        Intent intent = new Intent(context, CreateUserActivity.class);
-        activity.startActivity(intent);
-    }
+
 
     @Override
     //TODO: popup saying user creation successful or failed
@@ -203,13 +190,5 @@ public class ButtonFunctions implements IButtonFunctions
             //popup saying unsuccessful
         }
         return createdUser;
-    }
-
-    @Override
-    public void SwitchToMainActivity(Context context, Activity activity) {
-        Intent rtnMain = new Intent(context,
-                MainActivity.class);
-
-        activity.startActivity(rtnMain);
     }
 }

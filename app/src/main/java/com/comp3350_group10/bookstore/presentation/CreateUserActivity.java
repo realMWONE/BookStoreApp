@@ -12,6 +12,7 @@ import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 
 
 public class CreateUserActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class CreateUserActivity extends AppCompatActivity {
             //popup saying successful
 
             //return to home page
-            uiButtonFunctions.SwitchToMainActivity(getBaseContext(),this);
+            SwitchActivity.SwitchTo(MainActivity.class, this);
         }
         else{
             //popup saying unsuccessful

@@ -14,6 +14,7 @@ import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 
 public class UserSettingActivity extends AppCompatActivity {
     private EditText oldPassword;
@@ -56,7 +57,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
     public void addEmployeeOnClick(View v)
     {
-        uiButtonFunctions.SwitchToCreateUserActivity(getBaseContext(),this);
+        SwitchActivity.SwitchTo(CreateUserActivity.class, this);
     }
 
 }

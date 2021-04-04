@@ -10,6 +10,8 @@ import com.comp3350_group10.bookstore.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.comp3350_group10.bookstore.business.UserDataHandler;
+import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 
@@ -18,7 +20,7 @@ public class UserSettingActivity extends AppCompatActivity {
     private EditText newPassword;
     private EditText confirmNewPassword;
     private IButtonFunctions uiButtonFunctions;
-    public static TextView errorMessage;
+//    public static TextView errorMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,10 @@ public class UserSettingActivity extends AppCompatActivity {
         oldPassword = findViewById(R.id.oldPassword);
         newPassword = findViewById(R.id.newPassword);
         confirmNewPassword = findViewById(R.id.confirmNewPassword);
+
+        //if not manager, don't show create user button
+        if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager)
+            findViewById(R.id.create_user).setVisibility(View.GONE);
     }
 
 

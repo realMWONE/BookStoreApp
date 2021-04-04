@@ -18,8 +18,8 @@ public class UserDataHandler implements IUserDataHandler {
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
-//        userDatabase = Service.setupUserDatabase();
-        userDatabase = new FakeUserDatabase();
+        userDatabase = Service.setupUserDatabase();
+//        userDatabase = new FakeUserDatabase();
 
     }
 

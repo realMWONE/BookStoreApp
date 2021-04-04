@@ -15,6 +15,7 @@ import com.comp3350_group10.bookstore.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.service.autofill.UserData;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +33,6 @@ public class BookDetailsActivity extends AppCompatActivity {
     private TextView changePrice;
     private TextView changeStock;
 
-    private LinearLayout managementLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +52,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         //bookDetailsFunctions.DrawScreen(this, 120, bookDetailsLayout);
         bookDetailsFunctions.LoadBookInfo(bookTitle, bookImage, details);
 
-        if(UserDataHandler.currentUser != null)
-            System.out.println(UserDataHandler.currentUser.getRealName() + ","+UserDataHandler.currentUser.getUserType());
-        else
-            System.out.println("Null");
-
-        managementLayout = findViewById(R.id.management_layout);
-        if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType()!=UserType.Manager)
-            managementLayout.setVisibility(View.GONE);
+        setVisibleLayout();
     }
 
     public void OnSaleClick(View v) {
@@ -100,5 +93,18 @@ public class BookDetailsActivity extends AppCompatActivity {
         if(input.matches("\\d+"))   //check if only digits. Could also be text.matches("[0-9]+")
             n = Integer.parseInt(input);
         return n;
+    }
+
+    private void setVisibleLayout()
+    {
+        //make sure user is logged in
+        if(UserDataHandler.currentUser != null){
+            //only management will have privilege to change price and restock
+            if(UserDataHandler.currentUser.getUserType() == UserType.Manager)
+                findViewById(R.id.management_layout).setVisibility(View.VISIBLE);
+
+            //employees and manager will have privilege to adjust stock according to real time sales
+            findViewById(R.id.stock_changebyone_layout).setVisibility(View.VISIBLE);
+        }
     }
 }

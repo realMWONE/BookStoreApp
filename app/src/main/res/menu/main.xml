@@ -10,7 +10,7 @@
         android:onClick="userSettingButtonClicked"
         android:title="@string/user_settings_button" />
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/login_button"
         android:onClick="onLoginButtonClicked"
         android:orderInCategory="100"
         android:title="@string/login_button"

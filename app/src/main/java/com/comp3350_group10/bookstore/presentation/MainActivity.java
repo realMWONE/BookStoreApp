@@ -175,15 +175,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        //Hide all items
+        for (int i = 0; i < menu.size(); i++)
+            menu.getItem(i).setVisible(false);
+
         //Hide Logout if the user is not logged in
-        menu.getItem(0).setVisible(userDataHandler.getCurrentUser() != null);
+        menu.findItem(R.id.logout_button).setVisible(userDataHandler.getCurrentUser() != null);
         //Hide User Settings if the user is not logged in
-        menu.getItem(1).setVisible(userDataHandler.getCurrentUser() != null);
+        menu.findItem(R.id.user_settings_button).setVisible(userDataHandler.getCurrentUser() != null);
         //Hide Login if the users is logged in
-        menu.getItem(2).setVisible(userDataHandler.getCurrentUser() == null);
+        menu.findItem(R.id.login_button).setVisible(userDataHandler.getCurrentUser() == null);
 
         return true;
     }

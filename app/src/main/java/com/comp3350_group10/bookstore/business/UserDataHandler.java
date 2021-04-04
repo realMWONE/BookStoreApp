@@ -46,6 +46,8 @@ public class UserDataHandler implements IUserDataHandler {
             else currentUser = tempUser;
         }
         catch (Exception f) {System.out.println(f); }
+
+        System.out.println(currentUser.getRealName());
     }
 
     //function to logout the current user

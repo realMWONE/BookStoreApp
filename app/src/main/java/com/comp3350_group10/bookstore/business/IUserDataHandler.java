@@ -1,5 +1,7 @@
 package com.comp3350_group10.bookstore.business;
 
+import android.content.Context;
+
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IUser;
 
@@ -14,7 +16,7 @@ public interface IUserDataHandler {
     //function to logout the current user
     void logOut();
 
-    void logIn(String email, String password) throws ClassNotFoundException;
+    List<String> logIn(String email, String password) throws ClassNotFoundException;
 
     //function to changePassword for the logged in user
     void changePassword(String oldPw, String newPw, String confirmNewPw);

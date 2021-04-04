@@ -1,5 +1,10 @@
 package com.comp3350_group10.bookstore.business;
 
+import android.content.Context;
+import android.view.Gravity;
+
+import android.widget.Toast;
+
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
@@ -9,6 +14,9 @@ import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserDataHandler implements IUserDataHandler {
@@ -37,17 +45,27 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password) throws ClassNotFoundException {
+    public List<String> logIn(String email, String password) throws ClassNotFoundException {
         IUser tempUser = userDatabase.findUser(email);
-
+        List<String> message=new ArrayList<>();
         try{
             if(tempUser == null) throw new Exception("User not found");
             else if(!tempUser.getPassword().equals(password)) throw new Exception("Different passwords, couldn't confirm!!");
-            else currentUser = tempUser;
+            else {
+                currentUser = tempUser;
+                System.out.println(currentUser.getRealName());
+                message.add("Login Successful");
+                return message;
+            }
         }
-        catch (Exception f) {System.out.println(f); }
+        catch (Exception f) {
+            String error=f.toString();
+            String result=error.substring(error.lastIndexOf(":")+1);
+            System.out.println(f);
+            message.add(result);
+            return message;
+        }
 
-        System.out.println(currentUser.getRealName());
     }
 
     //function to logout the current user

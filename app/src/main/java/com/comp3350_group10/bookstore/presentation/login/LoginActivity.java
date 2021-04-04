@@ -2,6 +2,7 @@ package com.comp3350_group10.bookstore.presentation.login;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity
 
     public void LoginOnClick(View v) throws ClassNotFoundException
     {
-        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
+        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString(), LoginActivity.this);
         if (UserDataHandler.currentUser != null) SwitchActivity.SwitchTo(MainActivity.class, this);
     }
 }

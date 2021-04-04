@@ -37,7 +37,7 @@ public class UserDatabase implements IUserDatabase {
         final String userId = rs.getString("userId");
         final String password = rs.getString("password");
         final String position = rs.getString("position");
-        return new User(name,userId,password,position.equals("MANAGER")? UserType.Manager:UserType.Employee);
+        return new User(name,userId,password, position.equals(MANAGER) ? UserType.Manager:UserType.Employee);
     }
 
 

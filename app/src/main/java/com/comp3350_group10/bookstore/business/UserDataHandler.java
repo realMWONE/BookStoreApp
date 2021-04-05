@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
@@ -18,11 +19,14 @@ import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.widget.Toast.*;
+
 
 public class UserDataHandler implements IUserDataHandler {
 
     public static IUser currentUser = null;
     private IUserDatabase userDatabase;
+    private ErrorHandler errorHandler=new ErrorHandler();
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
@@ -45,28 +49,25 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public List<String> logIn(String email, String password) throws ClassNotFoundException {
+    public void logIn(String email, String password,Context context) throws ClassNotFoundException {
         IUser tempUser = userDatabase.findUser(email);
-        List<String> message=new ArrayList<>();
         try{
-            if(tempUser == null) throw new Exception("User not found");
-            else if(!tempUser.getPassword().equals(password)) throw new Exception("Different passwords, couldn't confirm!!");
+            if(tempUser == null) throw new Exception(errorHandler.userNotFound());
+            else if(!tempUser.getPassword().equals(password)) throw new Exception(errorHandler.differentPasswords());
             else {
                 currentUser = tempUser;
                 System.out.println(currentUser.getRealName());
-                message.add("Login Successful");
-                return message;
+                viewPopUp("Login successful",context);
             }
         }
         catch (Exception f) {
-            String error=f.toString();
-            String result=error.substring(error.lastIndexOf(":")+1);
+            String result=exceptionToString(f);
             System.out.println(f);
-            message.add(result);
-            return message;
+            viewPopUp(result,context);
         }
 
     }
+
 
     //function to logout the current user
     public void logOut(){
@@ -79,7 +80,7 @@ public class UserDataHandler implements IUserDataHandler {
         try {
             //check if the user is logged in or not
             if(currentUser == null){
-                IErrorHandler.ShowLoginErrorMessage("There is no currently logged in user");
+                //IErrorHandler.ShowLoginErrorMessage("There is no currently logged in user");
                 throw new Exception("User must be logged in");
             }
             else {
@@ -166,5 +167,17 @@ public class UserDataHandler implements IUserDataHandler {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    private String exceptionToString(Exception e){
+        String exception=e.toString();
+        return exception.substring(exception.lastIndexOf(":")+1);
+    }
+
+    private void viewPopUp(String message,Context context){
+        Toast toast= new Toast(context);
+        toast.setText(message);
+        toast.setDuration(LENGTH_LONG);
+        toast.show();
     }
 }

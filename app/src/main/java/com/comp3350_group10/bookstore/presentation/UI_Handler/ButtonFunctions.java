@@ -136,11 +136,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @Override
     public void LoginButtonPressed(String email, String password, Context context) throws ClassNotFoundException {
-        List<String> success = userHandler.logIn(email, password);
-        Toast toast= new Toast(context);
-        toast.setText(success.get(0));
-        toast.setDuration(LENGTH_LONG);
-        toast.show();
+        userHandler.logIn(email, password,context);
     }
 
 
@@ -201,4 +197,5 @@ public class ButtonFunctions implements IButtonFunctions
         }
         return createdUser;
     }
+
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Debug;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity
     public void LoginOnClick(View v) throws ClassNotFoundException
     {
         buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString(), LoginActivity.this);
-        if (UserDataHandler.currentUser != null) SwitchActivity.SwitchTo(MainActivity.class, this);
+
+        if (UserDataHandler.currentUser != null)
+            SwitchActivity.SwitchTo(MainActivity.class, this);
     }
 }

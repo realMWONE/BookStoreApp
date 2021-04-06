@@ -32,7 +32,6 @@ public class UserDataHandler implements IUserDataHandler {
     public UserDataHandler() {
         userDatabase = Service.setupUserDatabase();
 //        userDatabase = new FakeUserDatabase();
-
     }
 
     public UserDataHandler(User currentUser) throws ClassNotFoundException {
@@ -56,7 +55,6 @@ public class UserDataHandler implements IUserDataHandler {
             else if(!tempUser.getPassword().equals(password)) throw new Exception(errorHandler.differentPasswords());
             else {
                 currentUser = tempUser;
-                System.out.println(currentUser.getRealName());
                 viewPopUp("Login successful",context);
             }
         }
@@ -65,7 +63,6 @@ public class UserDataHandler implements IUserDataHandler {
             System.out.println(f);
             viewPopUp(result,context);
         }
-
     }
 
 
@@ -175,9 +172,11 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     private void viewPopUp(String message,Context context){
-        Toast toast= new Toast(context);
-        toast.setText(message);
-        toast.setDuration(LENGTH_LONG);
-        toast.show();
+//        Toast toast= new Toast(context);
+//        toast.setText(message);
+//        toast.setDuration(LENGTH_LONG);
+//        Toast.show();
+
+        Toast.makeText(context, message, LENGTH_LONG).show();
     }
 }

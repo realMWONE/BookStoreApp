@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity
     private IUserDataHandler userDataHandler;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
@@ -74,6 +73,11 @@ public class MainActivity extends AppCompatActivity
         FillDropdownList();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
     protected void onDestroy(){
         super.onDestroy();
     }

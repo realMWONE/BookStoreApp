@@ -74,7 +74,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/stock_changebyone_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +103,7 @@
                 android:ems="10"
                 android:hint="@string/change_book_price"
                 android:inputType="number"
+                android:textSize="18sp"
                 tools:visibility="visible" />
 
             <Space
@@ -184,7 +185,7 @@
         android:layout_marginBottom="20dp"
         android:layout_weight="10"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

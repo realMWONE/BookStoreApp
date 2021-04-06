@@ -62,48 +62,46 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     public void OnSaleClick(View v) {
         buttonFunctions.DecrementStock(details);
-        //only called/notified when stock is low
+
+        //Notify user when stock is low
         if(BookDataHandler.currentBook.getStock()<10)
             notify.lowStockNotification(BookDetailsActivity.this);
     }
 
     public void OnReturnClick(View v) {
         buttonFunctions.IncrementStock(details);
-        //only call/remove from list when stock is high
+
+        //remove from the "notified" list when stock is back high
         if(BookDataHandler.currentBook.getStock()>10)
             notify.removeFromLowStockList(BookDataHandler.currentBook);
     }
 
     public void SetStockOnClick(View v) {
-        int value = validateNumber(changeStock.getText().toString());
-        if(value > 0) {
-            buttonFunctions.SetStock(value);
-            System.out.println("Stock was changed");
-            bookDetailsFunctions.UpdateBookDetails(details);
-        }
-        else {
-            System.out.println("not a valid number");   //change to alert
-        }
+        int value = Integer.valueOf(changeStock.getText().toString());
+
+        //Set the stock and notify user
+        buttonFunctions.SetStock(value);
+        System.out.println("Stock was changed");    //TODO: popup
+
+        //Update to show updated stock
+        bookDetailsFunctions.UpdateBookDetails(details);
+
+        //Notify user when stock is low
+        if(BookDataHandler.currentBook.getStock()<10)
+            notify.lowStockNotification(BookDetailsActivity.this);
     }
 
     public void SetPriceOnClick(View v) {
-        int value = validateNumber(changePrice.getText().toString());
-        if(value > 0) {
-            buttonFunctions.SetPrice(value);
-            System.out.println("price was changed");
-            bookDetailsFunctions.UpdateBookDetails(details);
+        float value = Float.valueOf(changePrice.getText().toString());
+        //convert value into cents to fit database number format
+        value *= 100;
 
-        }
-        else {
-            System.out.println("not a valid number");   //change to alert
-        }
-    }
+        //Set the price and notify user
+        buttonFunctions.SetPrice((int)value);
+        System.out.println("price was changed");    //TODO: popup
 
-    private int validateNumber(String input) {
-        int n = -1;                        //inititalize to invalid data as input should not be -'ve
-        if(input.matches("\\d+"))   //check if only digits. Could also be text.matches("[0-9]+")
-            n = Integer.parseInt(input);
-        return n;
+        //Update to show updated price
+        bookDetailsFunctions.UpdateBookDetails(details);
     }
 
     private void setVisibleLayout()
@@ -118,4 +116,6 @@ public class BookDetailsActivity extends AppCompatActivity {
             findViewById(R.id.stock_changebyone_layout).setVisibility(View.VISIBLE);
         }
     }
+
+
 }

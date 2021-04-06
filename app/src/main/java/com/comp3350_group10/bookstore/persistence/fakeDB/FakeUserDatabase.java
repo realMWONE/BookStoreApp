@@ -21,7 +21,7 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser findUser(String userId) throws ClassNotFoundException {
+    public IUser findUser(String userId) {
         IUser user = null;
 
         if(userList.size()>0){
@@ -35,13 +35,13 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
-    public IUser insertUser(IUser user) throws ClassNotFoundException {
+    public IUser insertUser(IUser user) {
         userList.add(user);
         return user;
     }
 
     @Override
-    public IUser updateUser(IUser user) throws ClassNotFoundException {
+    public IUser updateUser(IUser user) {
         for(IUser u:userList){
             if(u.getUserID().equals(user.getUserID())) {
                 u = user;
@@ -52,7 +52,7 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
-    public void deleteUser(IUser user) throws ClassNotFoundException {
+    public void deleteUser(IUser user) {
         for(IUser u:userList){
             if(u.getUserID().equals(user.getUserID()))
                 userList.remove(u);

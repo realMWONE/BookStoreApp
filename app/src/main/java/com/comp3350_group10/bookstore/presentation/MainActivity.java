@@ -63,12 +63,9 @@ public class MainActivity extends AppCompatActivity
         SetSearchListener(getBaseContext(), this);
         SetDropdownListener(getBaseContext(), this);
 
-        try {
-            //Populate the trending table with categories
-            FillTrendingTable();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        //Populate the trending table with categories
+        FillTrendingTable();
+
         FillDropdownList();
     }
 
@@ -137,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         dropdown.setAdapter(adapter);
     }
 
-    public void FillTrendingTable() throws ClassNotFoundException {
+    public void FillTrendingTable() {
         TrendingPageFunctions.FillTrendingPage(bookListTable, this);
     }
 
@@ -146,13 +143,9 @@ public class MainActivity extends AppCompatActivity
             public void afterTextChanged(Editable s) { }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
-                    int visibility = s.length() == 0 ? LinearLayout.GONE : LinearLayout.VISIBLE;
-                    sortingLayout.setVisibility(visibility);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                uIButtonFunctions.SearchButtonPressed(s.toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
+                int visibility = s.length() == 0 ? LinearLayout.GONE : LinearLayout.VISIBLE;
+                sortingLayout.setVisibility(visibility);
             }
         });
     }
@@ -161,8 +154,7 @@ public class MainActivity extends AppCompatActivity
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem()); }
-                catch (ClassNotFoundException e) { e.printStackTrace(); }
+                uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -217,8 +209,7 @@ public class MainActivity extends AppCompatActivity
             b.setText("ASC");
         else b.setText("DESC");
 
-        try { uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());}
-        catch (ClassNotFoundException e) { e.printStackTrace(); }
+        uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
     }
 
 }

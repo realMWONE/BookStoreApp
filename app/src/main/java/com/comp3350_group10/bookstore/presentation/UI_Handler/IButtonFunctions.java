@@ -13,11 +13,11 @@ public interface IButtonFunctions {
 
     //function is called when user hits search button to
     // find a book based on ISBN/author/title
-    void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException;
+    void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy);
 
 
     //function is called when user logs in with their respective accounts
-    void LoginButtonPressed(String email, String password, Context context) throws ClassNotFoundException;
+    void LoginButtonPressed(String email, String password, Context context);
 
     //function is called when user wants to logout
     void LogoutButtonPressed();
@@ -34,14 +34,14 @@ public interface IButtonFunctions {
 
     //function is called when user presses the restock button
     // to change the quantity of stock available
-    void SetStock(int newStock) throws ClassNotFoundException;
+    void SetStock(int newStock);
 
-    void SetPrice(int newPrice) throws ClassNotFoundException;
+    void SetPrice(int newPrice);
 
 
 
     //Creates the user with given parameters
     //Show popup and return to main activity if successful
     //Show popup and return to createUser activity if failed
-    IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+    IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager);
 }

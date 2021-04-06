@@ -33,7 +33,7 @@ public class UserDataHandler implements IUserDataHandler {
 //        userDatabase = new FakeUserDatabase();
     }
 
-    public UserDataHandler(User currentUser) throws ClassNotFoundException {
+    public UserDataHandler(User currentUser) {
         UserDataHandler.currentUser = currentUser;
     }
 
@@ -47,7 +47,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password,Context context) throws ClassNotFoundException {
+    public void logIn(String email, String password,Context context) {
         IUser tempUser = userDatabase.findUser(email);
         try{
             if(tempUser == null) throw new Exception(errorHandler.userNotFound());
@@ -130,7 +130,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //creates a user and insert it into the database
-    public IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
+    public IUser createNewUser(String name, String email, String password, boolean isManager) {
         IUser newUser = null;
         UserType userType;
 
@@ -176,11 +176,6 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     private void viewPopUp(String message,Context context){
-//        Toast toast= new Toast(context);
-//        toast.setText(message);
-//        toast.setDuration(LENGTH_LONG);
-//        Toast.show();
-
         Toast.makeText(context, message, LENGTH_LONG).show();
     }
 }

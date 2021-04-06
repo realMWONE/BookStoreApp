@@ -31,7 +31,7 @@ public class BookDataHandler implements IBookDataHandler {
      * return list of found books
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<IBook> findBooks(String keyword) throws ClassNotFoundException {
+    public List<IBook> findBooks(String keyword) {
         List<String> wordList = splitWords(keyword); //splits keywords
 
         List<IBook> bookList = new ArrayList<>();   //stores search result
@@ -62,7 +62,7 @@ public class BookDataHandler implements IBookDataHandler {
             bookDatabase.updateBook(target);
         }
 
-        catch(NullPointerException | ClassNotFoundException e)
+        catch(NullPointerException e)
         {
             System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
         }
@@ -91,7 +91,7 @@ public class BookDataHandler implements IBookDataHandler {
 
 
     //function set the stock for the target book with the given quantity
-    public void setStock(IBook target, int quantity) throws ClassNotFoundException {
+    public void setStock(IBook target, int quantity) {
         //make sure target is initialized
         try{
             //stock cannot be negative
@@ -117,7 +117,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() + 1);
         }
-        catch (NullPointerException | ClassNotFoundException e) {
+        catch (NullPointerException e) {
             System.out.println(e + "caught in UserDataHandler.java method - incrementStock()");
         }
     }
@@ -129,7 +129,7 @@ public class BookDataHandler implements IBookDataHandler {
         try {
             setStock(target, target.getStock() - 1);
         }
-        catch (NullPointerException | ClassNotFoundException e) {
+        catch (NullPointerException e) {
             System.out.println(e + "caught in DataHandler.java method - decrementStock()");
         }
     }
@@ -187,7 +187,7 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-    private void sortTitleAscHelper() throws ClassNotFoundException {
+    private void sortTitleAscHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 
@@ -200,7 +200,7 @@ public class BookDataHandler implements IBookDataHandler {
 
     }
 
-    private void sortTitleDescHelper() throws ClassNotFoundException {
+    private void sortTitleDescHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 
@@ -213,7 +213,7 @@ public class BookDataHandler implements IBookDataHandler {
 
     }
 
-    private void sortAuthorAscHelper() throws ClassNotFoundException {
+    private void sortAuthorAscHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 
@@ -226,7 +226,7 @@ public class BookDataHandler implements IBookDataHandler {
 
     }
 
-    private void sortAuthorDescHelper() throws ClassNotFoundException {
+    private void sortAuthorDescHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 
@@ -239,7 +239,7 @@ public class BookDataHandler implements IBookDataHandler {
 
     }
 
-    private void sortGenreHelper() throws ClassNotFoundException {
+    private void sortGenreHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 

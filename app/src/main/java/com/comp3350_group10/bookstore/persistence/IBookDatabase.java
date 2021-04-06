@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IBookDatabase
 {
-    List<IBook> findBook(String searchTerm) throws ClassNotFoundException;
-    List<IBook> getBooks() throws ClassNotFoundException;
-    IBook insertBook(IBook book) throws ClassNotFoundException;
-    IBook updateBook(IBook book) throws ClassNotFoundException;
-    void deleteBook(IBook book) throws ClassNotFoundException;
+    List<IBook> findBook(String searchTerm);
+    List<IBook> getBooks();
+    IBook insertBook(IBook book);
+    IBook updateBook(IBook book);
+    void deleteBook(IBook book);
 }

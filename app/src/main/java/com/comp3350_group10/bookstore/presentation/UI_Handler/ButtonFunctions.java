@@ -43,7 +43,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) throws ClassNotFoundException {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();
@@ -120,7 +120,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void LoginButtonPressed(String email, String password, Context context) throws ClassNotFoundException {
+    public void LoginButtonPressed(String email, String password, Context context) {
         userHandler.logIn(email, password,context);
     }
 
@@ -158,7 +158,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void SetStock(int newStock) throws ClassNotFoundException {
+    public void SetStock(int newStock) {
         bookHandler.setStock(BookDataHandler.currentBook, newStock);
     }
 
@@ -171,7 +171,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @Override
     //TODO: popup saying user creation successful or failed
-    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws ClassNotFoundException {
+    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) {
         IUser createdUser = userHandler.createNewUser(name, email, password, isManager);
         if(createdUser!=null) {
             //popup saying successful
@@ -182,5 +182,4 @@ public class ButtonFunctions implements IButtonFunctions
         }
         return createdUser;
     }
-
 }

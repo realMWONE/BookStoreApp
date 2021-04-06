@@ -74,7 +74,7 @@ public class BookDetailsActivity extends AppCompatActivity {
             notify.removeFromLowStockList(BookDataHandler.currentBook);
     }
 
-    public void SetStockOnClick(View v) throws ClassNotFoundException {
+    public void SetStockOnClick(View v) {
         int value = validateNumber(changeStock.getText().toString());
         if(value > 0) {
             buttonFunctions.SetStock(value);
@@ -86,7 +86,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void SetPriceOnClick(View v) throws ClassNotFoundException {
+    public void SetPriceOnClick(View v) {
         int value = validateNumber(changePrice.getText().toString());
         if(value > 0) {
             buttonFunctions.SetPrice(value);

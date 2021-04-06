@@ -9,7 +9,7 @@ public interface IBookDataHandler {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)
-    List<IBook> findBooks(String keyword) throws ClassNotFoundException;
+    List<IBook> findBooks(String keyword);
 
     //function to change the price of a particular book
     void setPrice(IBook target, int price);
@@ -28,6 +28,6 @@ public interface IBookDataHandler {
 
     //function to change the quantity of stock available for
     // a particular book
-    void setStock(IBook target, int quantity) throws ClassNotFoundException;
+    void setStock(IBook target, int quantity);
 
 }

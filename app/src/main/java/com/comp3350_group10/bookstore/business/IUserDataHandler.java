@@ -15,12 +15,12 @@ public interface IUserDataHandler {
     //function to logout the current user
     void logOut();
 
-    void logIn(String email, String password, Context context) throws ClassNotFoundException;
+    void logIn(String email, String password, Context context);
 
     //function to changePassword for the logged in user
     boolean changePassword(String oldPw, String newPw, String confirmNewPw);
 
-    IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
+    IUser createNewUser(String name, String email, String password, boolean isManager);
 
     IUser getCurrentUser();
 }

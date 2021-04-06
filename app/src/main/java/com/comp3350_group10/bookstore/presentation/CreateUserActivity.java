@@ -37,7 +37,7 @@ public class CreateUserActivity extends AppCompatActivity {
     }
 
     //Onclick method for the create user button
-    public void createUserOnClick(View v) throws ClassNotFoundException {
+    public void createUserOnClick(View v) {
         IUser createdUser = uiButtonFunctions.CreateUserButtonPressed(name.getText().toString(), email.getText().toString(),password.getText().toString(), isManager.isChecked());
         if(createdUser!=null)   //success
         {

@@ -39,8 +39,6 @@ public class UserSettingActivity extends AppCompatActivity {
             findViewById(R.id.create_user).setVisibility(View.GONE);
     }
 
-
-
     public void changePwOnClick(View v){
         if(uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString())) {
             //TODO: pop up to say change was successful, then go back to main activity
@@ -51,8 +49,6 @@ public class UserSettingActivity extends AppCompatActivity {
             finish();
             startActivity(getIntent());
         }
-
-//        System.out.println("Change pw clicked: "+ oldPassword.getText().toString() +" " + newPassword.getText().toString() +" " + confirmNewPassword.getText().toString());
     }
 
 
@@ -60,7 +56,6 @@ public class UserSettingActivity extends AppCompatActivity {
         uiButtonFunctions.LogoutButtonPressed();
         //TODO: pop up saying logout successful then go back to main activity
         finish();
-//        System.out.println("logging out now...");
     }
 
     public void addEmployeeOnClick(View v)

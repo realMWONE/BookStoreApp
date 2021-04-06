@@ -28,7 +28,7 @@ public class TrendingPageFunctions {
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
 
-    public static void FillTrendingPage(TableLayout table, Context context) throws ClassNotFoundException {
+    public static void FillTrendingPage(TableLayout table, Context context) {
         setHeights(context);
         AddSpacer(context, table);
         AddTrendingRow(table, context, "By Stephanie Meyer", "Stephenie Meyer");
@@ -44,7 +44,7 @@ public class TrendingPageFunctions {
         dividerHeight = ScreenSize.getPixelsFromDP(context, 3);
     }
 
-    private static void AddTrendingRow(TableLayout table, Context context, String categoryName, String searchTerm) throws ClassNotFoundException {
+    private static void AddTrendingRow(TableLayout table, Context context, String categoryName, String searchTerm) {
         AddCategoryName(table, context, categoryName);
         AddSpacer(context, table);
         AddRowContent(table, context, searchTerm);
@@ -76,7 +76,7 @@ public class TrendingPageFunctions {
         table.addView(row);
     }
 
-    private static void AddRowContent(TableLayout table, Context context, String searchTerm) throws ClassNotFoundException {
+    private static void AddRowContent(TableLayout table, Context context, String searchTerm) {
         TableRow row = new TableRow(context);
         HorizontalScrollView scrollView = new HorizontalScrollView(context);
         LinearLayout layout = new LinearLayout(context);
@@ -91,7 +91,7 @@ public class TrendingPageFunctions {
     }
 
     @SuppressLint("ResourceType")
-    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) throws ClassNotFoundException {
+    private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
         IBookDataHandler bookHandler = new BookDataHandler();
         List<IBook> books = bookHandler.findBooks(searchTerm);
 

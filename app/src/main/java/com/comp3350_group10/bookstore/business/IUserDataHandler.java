@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IUser;
-
 import java.util.List;
 
 
@@ -19,7 +18,7 @@ public interface IUserDataHandler {
     void logIn(String email, String password, Context context) throws ClassNotFoundException;
 
     //function to changePassword for the logged in user
-    void changePassword(String oldPw, String newPw, String confirmNewPw);
+    boolean changePassword(String oldPw, String newPw, String confirmNewPw);
 
     IUser createNewUser(String name, String email, String password, boolean isManager) throws ClassNotFoundException;
 

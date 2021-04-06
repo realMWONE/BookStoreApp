@@ -1,13 +1,9 @@
-package com.comp3350_group10.bookstore.presentation.login;
+package com.comp3350_group10.bookstore.presentation;
 
-import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Debug;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,7 +14,6 @@ import android.widget.TextView;
 import com.comp3350_group10.bookstore.R;
 
 import com.comp3350_group10.bookstore.business.UserDataHandler;
-import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
@@ -27,7 +22,6 @@ public class LoginActivity extends AppCompatActivity
 {
     IButtonFunctions buttonFunctions;
 
-    private LoginViewModel loginViewModel;
     private EditText password;
     private EditText email;
     private Button loginButton;
@@ -38,8 +32,7 @@ public class LoginActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
+
 
         buttonFunctions = new ButtonFunctions();
         errorMessage = findViewById(R.id.loginErrorMessage);

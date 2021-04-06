@@ -1,17 +1,13 @@
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -23,24 +19,13 @@ import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
-import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
-import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
-import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import static androidx.core.content.ContextCompat.startActivity;
-
-import static android.widget.Toast.*;
 
 public class ButtonFunctions implements IButtonFunctions
 {
@@ -150,10 +135,10 @@ public class ButtonFunctions implements IButtonFunctions
 
 
     @Override
-    public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
         //TODO: maybe add popup confirmation
-        userHandler.changePassword(oldPw, newPw, confirmNewPw);
+        return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
 

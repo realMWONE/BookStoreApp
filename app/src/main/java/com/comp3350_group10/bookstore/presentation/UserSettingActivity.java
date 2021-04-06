@@ -42,9 +42,16 @@ public class UserSettingActivity extends AppCompatActivity {
 
 
     public void changePwOnClick(View v){
-        uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString());
-        //TODO: pop up to say change was successful, then go back to main activity
-        finish();
+        if(uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString())) {
+            //TODO: pop up to say change was successful, then go back to main activity
+            finish();
+        }
+        else {
+            //TODO: pop up to say change failed
+            finish();
+            startActivity(getIntent());
+        }
+
 //        System.out.println("Change pw clicked: "+ oldPassword.getText().toString() +" " + newPassword.getText().toString() +" " + confirmNewPassword.getText().toString());
     }
 
@@ -52,6 +59,7 @@ public class UserSettingActivity extends AppCompatActivity {
     public void logoutOnClick(View v){
         uiButtonFunctions.LogoutButtonPressed();
         //TODO: pop up saying logout successful then go back to main activity
+        finish();
 //        System.out.println("logging out now...");
     }
 

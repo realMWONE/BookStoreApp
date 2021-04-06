@@ -14,7 +14,6 @@ import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +72,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to change password for the current logged in user
-    public void changePassword(String oldPw, String newPw, String confirmNewPw){
+    public boolean changePassword(String oldPw, String newPw, String confirmNewPw){
         try {
             //check if the user is logged in or not
             if(currentUser == null){
@@ -102,26 +101,31 @@ public class UserDataHandler implements IUserDataHandler {
                                         //if everything is correct, then update the password
                                         currentUser.setPassword(newPw);
                                         userDatabase.updateUser(currentUser);
+                                        return true;
                                     }
                                 }
                                 catch (Exception g){
                                     System.out.println(g);
+                                    return false;
                                 }
                             }
                         }
                         catch (Exception f){
                             System.out.println(f);
+                            return false;
                         }
                     }
                 }
                 catch (Exception e){
                     System.out.println(e);
+                    return false;
                 }
 
             }
         }
         catch (Exception h){
             System.out.println(h);
+            return false;
         }
     }
 

@@ -44,168 +44,27 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="changed usage of ButtonFunctions switchto methods to using SwitchActivity method">
-      <change afterPath="$PROJECT_DIR$/.gradle/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_00_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_02_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_10_05_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_53_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_31_21_9_53_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM_[Default_Changelist]/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_08_AM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM_[Default_Changelist]/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_10_15_AM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_14_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_14_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_22_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_8_58_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM_[Default_Changelist]/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_1_21_9_02_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM_[Default_Changelist]/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_01_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_03_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_10_05_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM_[Default_Changelist]/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_31_21_9_55_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.settings/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/.gitignore" afterDir="false" />
+    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="get activities to navigate to appropriate activities after operations">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BookStore.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/winter-2021-a03-group-10.BookStore.app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/hsqldb/BookStore.hsqldb.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml~Daniel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ISwitchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/SwitchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IErrorHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoggedInUserView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginFormState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/login/LoginViewModelFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -432,7 +291,28 @@
       <option name="project" value="LOCAL" />
       <updated>1617490787866</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="attempting merge">
+      <created>1617501093756</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1617501093756</updated>
+    </task>
+    <task id="LOCAL-00013" summary="merged with logic newest changes">
+      <created>1617501507321</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1617501507321</updated>
+    </task>
+    <task id="LOCAL-00014" summary="get activities to navigate to appropriate activities after operations">
+      <created>1617672559271</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1617672559271</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +352,10 @@
     <MESSAGE value="cleaned up" />
     <MESSAGE value="now hides manager options in book detail activity" />
     <MESSAGE value="changed usage of ButtonFunctions switchto methods to using SwitchActivity method" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed usage of ButtonFunctions switchto methods to using SwitchActivity method" />
+    <MESSAGE value="attempting merge" />
+    <MESSAGE value="merged with logic newest changes" />
+    <MESSAGE value="get activities to navigate to appropriate activities after operations" />
+    <option name="LAST_COMMIT_MESSAGE" value="get activities to navigate to appropriate activities after operations" />
   </component>
   <component name="WindowStateProjectService">
     <state x="433" y="98" width="1243" height="896" key="#PSD" timestamp="1617243634191">
@@ -493,10 +376,15 @@
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="577" y="331" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1617489352217" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616550363010">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="571" y="411" width="931" height="262" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1617673133347">
+      <screen x="0" y="25" width="1920" height="1055" />
+    </state>
+    <state x="571" y="411" width="931" height="262" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673133347" />
+    <state x="690" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1617672896741">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616550363010" />
+    <state x="690" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672896741" />
     <state x="490" y="377" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617498848049">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -523,30 +411,30 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="103" y="102" key="DiffContextDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290407621" />
-    <state width="1638" height="264" key="GridCell.Tab.0.bottom" timestamp="1617500356583">
+    <state width="1638" height="2" key="GridCell.Tab.0.bottom" timestamp="1617673184791">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1638" height="264" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356583" />
-    <state width="1638" height="264" key="GridCell.Tab.0.center" timestamp="1617500356582">
+    <state width="1638" height="2" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673184791" />
+    <state width="1638" height="2" key="GridCell.Tab.0.center" timestamp="1617673184790">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1638" height="264" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356582" />
-    <state width="1638" height="264" key="GridCell.Tab.0.left" timestamp="1617500356582">
+    <state width="1638" height="2" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673184790" />
+    <state width="1638" height="2" key="GridCell.Tab.0.left" timestamp="1617673184789">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1638" height="264" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356582" />
-    <state width="1638" height="264" key="GridCell.Tab.0.right" timestamp="1617500356583">
+    <state width="1638" height="2" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673184789" />
+    <state width="1638" height="2" key="GridCell.Tab.0.right" timestamp="1617673184790">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1638" height="264" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356583" />
+    <state width="1638" height="2" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673184790" />
     <state width="1638" height="315" key="GridCell.Tab.1.bottom" timestamp="1617293576705">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -567,15 +455,16 @@
     </state>
     <state width="1877" height="722" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616562852454" />
     <state width="1638" height="315" key="GridCell.Tab.1.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617293576705" />
-    <state x="184" y="112" key="MergeDialog" timestamp="1617290139714">
+    <state x="184" y="112" key="MergeDialog" timestamp="1617672763606">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065196345" />
-    <state x="184" y="112" key="MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290139714" />
-    <state x="282" y="106" key="MultipleFileMergeDialog" timestamp="1617236517902">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state x="184" y="112" key="MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672763606" />
+    <state x="423" y="187" key="MultipleFileMergeDialog" timestamp="1617672763668">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="282" y="106" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236517902" />
+    <state x="423" y="187" key="MultipleFileMergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672763668" />
     <state x="541" y="216" key="RollbackChangesDialog" timestamp="1617327685413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -610,11 +499,12 @@
     </state>
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065188557" />
     <state x="665" y="261" key="git4idea.branch.GitSmartOperationDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290121670" />
-    <state x="344" y="223" key="git4idea.merge.GitPullDialog" timestamp="1617490108883">
-      <screen x="0" y="25" width="1680" height="1025" />
+    <state x="393" y="229" key="git4idea.merge.GitPullDialog" timestamp="1617672565916">
+      <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="262" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236431877" />
     <state x="344" y="223" key="git4idea.merge.GitPullDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1617490108883" />
+    <state x="393" y="229" key="git4idea.merge.GitPullDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672565916" />
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension" timestamp="1616545510528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

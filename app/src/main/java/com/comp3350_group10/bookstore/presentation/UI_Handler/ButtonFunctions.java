@@ -121,8 +121,8 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void LoginButtonPressed(String email, String password, Context context) {
-        userHandler.logIn(email, password,context);
+    public void LoginButtonPressed(String email, String password) throws Exception{
+        userHandler.logIn(email, password);
     }
 
 

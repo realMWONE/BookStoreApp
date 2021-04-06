@@ -63,9 +63,14 @@ public class LoginActivity extends AppCompatActivity
 
     public void LoginOnClick(View v)
     {
-        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString(), LoginActivity.this);
-
+        try{
+        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
         if (UserDataHandler.currentUser != null)
+            Messages.viewPopUp("Login successful",this);
             SwitchActivity.SwitchTo(MainActivity.class, this);
+        }
+        catch (Exception e){
+            Messages.viewPopUp(e.getMessage(),this);
+        }
     }
 }

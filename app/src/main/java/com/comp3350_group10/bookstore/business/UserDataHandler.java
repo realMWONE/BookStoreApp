@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
+import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
+import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
@@ -49,21 +51,13 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password,Context context) {
+    public void logIn(String email, String password){
         IUser tempUser = userDatabase.findUser(email);
-        try{
-            if(tempUser == null) throw new Exception(errorHandler.userNotFound());
-            else if(!tempUser.getPassword().equals(password)) throw new Exception(errorHandler.differentPasswords());
+            if(tempUser == null) throw new UserNotFoundException("User Not Found");
+            else if(!tempUser.getPassword().equals(password)) throw new DifferentPasswordException("Different passwords, couldn't confirm!!");
             else {
                 currentUser = tempUser;
-                Messages.viewPopUp("Login successful",context);
             }
-        }
-        catch (Exception f) {
-            String result=exceptionToString(f);
-            System.out.println(f);
-            Messages.viewPopUp(result,context);
-        }
     }
 
 

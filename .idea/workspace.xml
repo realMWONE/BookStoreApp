@@ -44,7 +44,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="changed usage of ButtonFunctions switchto methods to using SwitchActivity method">
+    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="merged with logic newest changes">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -52,13 +52,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/IButtonFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Nexus_10_API_30]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -285,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617501093756</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="merged with logic newest changes">
+      <created>1617501507321</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1617501507321</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -326,7 +337,8 @@
     <MESSAGE value="now hides manager options in book detail activity" />
     <MESSAGE value="changed usage of ButtonFunctions switchto methods to using SwitchActivity method" />
     <MESSAGE value="attempting merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="attempting merge" />
+    <MESSAGE value="merged with logic newest changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged with logic newest changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="433" y="98" width="1243" height="896" key="#PSD" timestamp="1617243634191">
@@ -377,30 +389,30 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="103" y="102" key="DiffContextDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290407621" />
-    <state width="1638" height="264" key="GridCell.Tab.0.bottom" timestamp="1617500356583">
+    <state width="1638" height="27" key="GridCell.Tab.0.bottom" timestamp="1617502441268">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1638" height="264" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356583" />
-    <state width="1638" height="264" key="GridCell.Tab.0.center" timestamp="1617500356582">
+    <state width="1638" height="27" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617502441268" />
+    <state width="1638" height="27" key="GridCell.Tab.0.center" timestamp="1617502441268">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1638" height="264" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356582" />
-    <state width="1638" height="264" key="GridCell.Tab.0.left" timestamp="1617500356582">
+    <state width="1638" height="27" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617502441268" />
+    <state width="1638" height="27" key="GridCell.Tab.0.left" timestamp="1617502441267">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1638" height="264" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356582" />
-    <state width="1638" height="264" key="GridCell.Tab.0.right" timestamp="1617500356583">
+    <state width="1638" height="27" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617502441267" />
+    <state width="1638" height="27" key="GridCell.Tab.0.right" timestamp="1617502441268">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1638" height="264" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617500356583" />
+    <state width="1638" height="27" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617502441268" />
     <state width="1638" height="315" key="GridCell.Tab.1.bottom" timestamp="1617293576705">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>

@@ -144,10 +144,10 @@ public class ButtonFunctions implements IButtonFunctions
 
 
     @Override
-    public void ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
         //TODO: maybe add popup confirmation
-        userHandler.changePassword(oldPw, newPw, confirmNewPw);
+        return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
 

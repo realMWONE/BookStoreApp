@@ -44,10 +44,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Added Exception folder along with some Exceptions, and made BookDetailsActivity changePrice textview take decimal input as dollar.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/CreateUserErrorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/NotLoggedInException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/PasswordLengthException.java" afterDir="false" />
+    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Minor adjustment after merge  &#10;  &#10;- Made BookDetailActivity change_price_text take decimal again">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -56,15 +53,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/BookDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/BookDetailsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/CreateUserErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/CreateUserErrorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Nexus_10_API_30]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -322,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617726047190</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added Exception folder along with some Exceptions, and made BookDetailsActivity changePrice textview take decimal input as dollar.">
+      <created>1617732467497</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1617732467497</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Minor adjustment after merge  &#10;  &#10;- Made BookDetailActivity change_price_text take decimal again">
+      <created>1617732743808</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1617732743808</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,7 +382,8 @@
     <MESSAGE value="removed default template residual for login, have logout button return to homescreen" />
     <MESSAGE value="got rid of unused ClassNotFoundExceptions" />
     <MESSAGE value="Added Exception folder along with some Exceptions, and made BookDetailsActivity changePrice textview take decimal input as dollar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Exception folder along with some Exceptions, and made BookDetailsActivity changePrice textview take decimal input as dollar." />
+    <MESSAGE value="Minor adjustment after merge  &#10;  &#10;- Made BookDetailActivity change_price_text take decimal again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor adjustment after merge  &#10;  &#10;- Made BookDetailActivity change_price_text take decimal again" />
   </component>
   <component name="WindowStateProjectService">
     <state x="433" y="98" width="1243" height="896" key="#PSD" timestamp="1617243634191">
@@ -424,30 +439,30 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="103" y="102" key="DiffContextDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290407621" />
-    <state width="1878" height="59" key="GridCell.Tab.0.bottom" timestamp="1617731825403">
+    <state width="1878" height="59" key="GridCell.Tab.0.bottom" timestamp="1617732600797">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1878" height="59" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617731825403" />
-    <state width="1878" height="59" key="GridCell.Tab.0.center" timestamp="1617731825403">
+    <state width="1878" height="59" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732600797" />
+    <state width="1878" height="59" key="GridCell.Tab.0.center" timestamp="1617732600797">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1878" height="59" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617731825403" />
-    <state width="1878" height="59" key="GridCell.Tab.0.left" timestamp="1617731825402">
+    <state width="1878" height="59" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732600797" />
+    <state width="1878" height="59" key="GridCell.Tab.0.left" timestamp="1617732600796">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874655" />
-    <state width="1878" height="59" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617731825402" />
-    <state width="1878" height="59" key="GridCell.Tab.0.right" timestamp="1617731825403">
+    <state width="1878" height="59" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732600796" />
+    <state width="1878" height="59" key="GridCell.Tab.0.right" timestamp="1617732600797">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
     <state width="1638" height="147" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1617491874656" />
-    <state width="1878" height="59" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617731825403" />
+    <state width="1878" height="59" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732600797" />
     <state width="1638" height="315" key="GridCell.Tab.1.bottom" timestamp="1617293576705">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -468,27 +483,27 @@
     </state>
     <state width="1877" height="722" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616562852454" />
     <state width="1638" height="315" key="GridCell.Tab.1.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617293576705" />
-    <state x="184" y="112" key="MergeDialog" timestamp="1617672763606">
+    <state x="184" y="112" key="MergeDialog" timestamp="1617732553186">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065196345" />
-    <state x="184" y="112" key="MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672763606" />
-    <state x="423" y="187" key="MultipleFileMergeDialog" timestamp="1617672763668">
+    <state x="184" y="112" key="MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732553186" />
+    <state x="423" y="187" key="MultipleFileMergeDialog" timestamp="1617732558723">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="282" y="106" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236517902" />
-    <state x="423" y="187" key="MultipleFileMergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672763668" />
+    <state x="423" y="187" key="MultipleFileMergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732558723" />
     <state x="541" y="244" key="RollbackChangesDialog" timestamp="1617680033876">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="541" y="216" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617327685413" />
     <state x="541" y="244" key="RollbackChangesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617680033876" />
-    <state x="552" y="282" key="Vcs.Push.Dialog.v2" timestamp="1617673311430">
+    <state x="552" y="282" key="Vcs.Push.Dialog.v2" timestamp="1617732749026">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617330503493" />
     <state x="483" y="275" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1617490793362" />
-    <state x="552" y="282" key="Vcs.Push.Dialog.v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617673311430" />
+    <state x="552" y="282" key="Vcs.Push.Dialog.v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732749026" />
     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction" timestamp="1617131153808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -512,12 +527,12 @@
     </state>
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065188557" />
     <state x="665" y="261" key="git4idea.branch.GitSmartOperationDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290121670" />
-    <state x="393" y="229" key="git4idea.merge.GitPullDialog" timestamp="1617672565916">
+    <state x="393" y="229" key="git4idea.merge.GitPullDialog" timestamp="1617732481997">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="262" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236431877" />
     <state x="344" y="223" key="git4idea.merge.GitPullDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1617490108883" />
-    <state x="393" y="229" key="git4idea.merge.GitPullDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672565916" />
+    <state x="393" y="229" key="git4idea.merge.GitPullDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732481997" />
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension" timestamp="1616545510528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

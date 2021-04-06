@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
@@ -171,15 +172,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @Override
     //TODO: popup saying user creation successful or failed
-    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) {
-        IUser createdUser = userHandler.createNewUser(name, email, password, isManager);
-        if(createdUser!=null) {
-            //popup saying successful
-            //prompt return homescreen or create another user
-        } else
-        {
-            //popup saying unsuccessful
-        }
-        return createdUser;
+    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
+        return userHandler.createNewUser(name, email, password, isManager);
     }
 }

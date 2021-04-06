@@ -3,7 +3,12 @@ package com.comp3350_group10.bookstore.presentation;
 import android.app.Activity;
 import android.app.AlertDialog;
 import com.comp3350_group10.bookstore.R;
+
+import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class Messages {
     public static void fatalError(final Activity owner, String message) {
@@ -29,4 +34,7 @@ public class Messages {
         alertDialog.show();
     }
 
+    public static void viewPopUp(String message, Context context){
+        Toast.makeText(context, message, LENGTH_LONG).show();
+    }
 }

@@ -5,9 +5,11 @@ import android.view.Gravity;
 
 import android.widget.Toast;
 
+import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
+import com.comp3350_group10.bookstore.presentation.Messages;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
@@ -54,13 +56,13 @@ public class UserDataHandler implements IUserDataHandler {
             else if(!tempUser.getPassword().equals(password)) throw new Exception(errorHandler.differentPasswords());
             else {
                 currentUser = tempUser;
-                viewPopUp("Login successful",context);
+                Messages.viewPopUp("Login successful",context);
             }
         }
         catch (Exception f) {
             String result=exceptionToString(f);
             System.out.println(f);
-            viewPopUp(result,context);
+            Messages.viewPopUp(result,context);
         }
     }
 
@@ -130,7 +132,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //creates a user and insert it into the database
-    public IUser createNewUser(String name, String email, String password, boolean isManager) {
+    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
         IUser newUser = null;
         UserType userType;
 
@@ -156,8 +158,7 @@ public class UserDataHandler implements IUserDataHandler {
             newUser = new User(name, email, password, userType);
             userDatabase.insertUser(newUser);
         }
-
-        //TODO: popup displaying the message
+        else{ throw new CreateUserErrorException(errorMessage); }
 
         return newUser;
     }
@@ -175,7 +176,5 @@ public class UserDataHandler implements IUserDataHandler {
         return exception.substring(exception.lastIndexOf(":")+1);
     }
 
-    private void viewPopUp(String message,Context context){
-        Toast.makeText(context, message, LENGTH_LONG).show();
-    }
+
 }

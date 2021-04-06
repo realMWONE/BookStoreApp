@@ -86,7 +86,7 @@
                         android:autofillHints=""
                         android:ems="10"
                         android:hint="@string/change_book_price"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textSize="18sp"
                         tools:visibility="visible" />
 

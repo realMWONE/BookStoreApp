@@ -29,7 +29,7 @@
             android:label="@string/title_activity_book_details"
             android:theme="@style/Theme.BookStore.NoActionBar" />
         <activity
-            android:name=".presentation.login.LoginActivity"
+            android:name=".presentation.LoginActivity"
             android:label="@string/title_activity_login" />
     </application>
 

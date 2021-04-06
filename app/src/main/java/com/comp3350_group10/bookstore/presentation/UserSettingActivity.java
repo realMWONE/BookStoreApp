@@ -59,6 +59,7 @@ public class UserSettingActivity extends AppCompatActivity {
     public void logoutOnClick(View v){
         uiButtonFunctions.LogoutButtonPressed();
         //TODO: pop up saying logout successful then go back to main activity
+        finish();
 //        System.out.println("logging out now...");
     }
 

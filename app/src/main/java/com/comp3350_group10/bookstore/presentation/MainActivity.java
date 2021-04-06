@@ -26,7 +26,6 @@ import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.TrendingPageFunctions;
-import com.comp3350_group10.bookstore.presentation.login.LoginActivity;
 
 import java.io.File;
 import java.io.FileWriter;

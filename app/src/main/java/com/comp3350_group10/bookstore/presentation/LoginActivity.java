@@ -56,17 +56,18 @@ public class LoginActivity extends AppCompatActivity
         email.addTextChangedListener(watcher);
     }
 
-    private void EnableLoginButton()
-    {
-        loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals(""));
-    }
+    private void EnableLoginButton(){ loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals("")); }
 
     public void LoginOnClick(View v)
     {
         try{
-        buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
-        if (UserDataHandler.currentUser != null)
-            Messages.viewPopUp("Login successful",this);
+            //login
+            buttonFunctions.LoginButtonPressed(this.email.getText().toString(), this.password.getText().toString());
+
+            //Shows welcome back message
+            if (UserDataHandler.currentUser != null)
+                Messages.viewPopUp("Welcome back, "+UserDataHandler.currentUser.getUserType()+" "+UserDataHandler.currentUser.getRealName()+"!",this);
+
             SwitchActivity.SwitchTo(MainActivity.class, this);
         }
         catch (Exception e){

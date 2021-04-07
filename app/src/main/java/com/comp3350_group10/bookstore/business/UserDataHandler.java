@@ -1,12 +1,7 @@
 package com.comp3350_group10.bookstore.business;
 
-import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
-import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
-import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
-import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
+import com.comp3350_group10.bookstore.Exceptions.*;
 import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.persistence.fakeDB.FakeUserDatabase;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.ErrorHandler;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
@@ -38,7 +33,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to login the current user
-    public void logIn(String email, String password){
+    public void logIn(String email, String password) throws UserNotFoundException, DifferentPasswordException{
         IUser tempUser = userDatabase.findUser(email);
             if(tempUser == null) throw new UserNotFoundException("User Not Found");
             else if(!tempUser.getPassword().equals(password)) throw new DifferentPasswordException("Different passwords, couldn't confirm!!");
@@ -55,16 +50,20 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //function to change password for the current logged in user
-    public boolean changePassword(String oldPw, String newPw, String confirmNewPw){
+    public boolean changePassword(String oldPw, String newPw, String confirmNewPw) throws ChangePasswordException{
         //check if the user is logged in or not
         IUser temp;
         if(currentUser == null) throw new ChangePasswordException("User must be logged in");
-            //check if the current password matches the old password
+
+        //check if the current password matches the old password
         else if (!currentUser.getPassword().equals(oldPw)) throw new ChangePasswordException("Current password doesn't match the saved password");
-            //check if the new password length is at least 8 characters (validation)
+
+        //check if the new password length is at least 8 characters (validation)
         else if (newPw.length() < 8) throw new ChangePasswordException("Password length too short, should be at least 8 characters");
-            //check if the new password is confirmed or not
+
+        //check if the new password is confirmed or not
         else if (!newPw.equals(confirmNewPw)) throw new ChangePasswordException("Different new passwords, couldn't confirm!!");
+
         else {
             //if everything is correct, then update the password
             currentUser.setPassword(newPw);

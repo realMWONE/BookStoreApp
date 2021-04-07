@@ -86,20 +86,13 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-<<<<<<< HEAD
     public List<IBook> getBooks()  {
-=======
-    public List<IBook> getBooks(){
->>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
+
         return bookList;
     }
 
     @Override
-<<<<<<< HEAD
     public IBook insertBook(IBook book)  {
-=======
-    public IBook insertBook(IBook book){
->>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         if(!bookList.contains(book))
         {
             bookList.add(book);
@@ -108,11 +101,7 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-<<<<<<< HEAD
     public IBook updateBook(IBook book)  {
-=======
-    public IBook updateBook(IBook book){
->>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         if (bookList.contains(book)) {
             bookList.add(bookList.indexOf(book), book);
         }
@@ -120,11 +109,7 @@ public class FakeBookDatabase implements IBookDatabase {
     }
 
     @Override
-<<<<<<< HEAD
     public void deleteBook(IBook book)  {
-=======
-    public void deleteBook(IBook book){
->>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         bookList.remove(book);
     }
 

@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_gravity="end|center_horizontal"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@string/textview"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"

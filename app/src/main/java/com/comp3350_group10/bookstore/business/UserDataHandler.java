@@ -23,11 +23,6 @@ public class UserDataHandler implements IUserDataHandler {
         UserDataHandler.currentUser = currentUser;
     }
 
-    //function to check whether the current user is a manager or employee
-    public boolean isCurrentUserManager(){
-        return (UserType.Manager == currentUser.getUserType());
-    }
-
     public IUser getCurrentUser() {
         return currentUser;
     }
@@ -80,21 +75,25 @@ public class UserDataHandler implements IUserDataHandler {
         //Check if input were valid
         //Add corresponding error message to print at the end
         String errorMessage = "";
+
+        //name check
         if(name.isEmpty())
             errorMessage += "Name cannot be empty";
 
         //formatting: newline if errorMessage is not empty
         if(!errorMessage.isEmpty())
             errorMessage += "\n";
+
         //email check, only one should show
         if (email.isEmpty())
             errorMessage += "Email cannot be empty";
         else if (!validEmail(email))
             errorMessage += "Email is not valid";
 
-        //newline if errorMessage isn't empty
+        //formatting: newline if errorMessage isn't empty
         if(!errorMessage.isEmpty())
             errorMessage += "\n";
+
         //password checks, only one should show
         if(password.isEmpty())
             errorMessage += "Password cannot be empty";

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
@@ -136,10 +137,9 @@ public class ButtonFunctions implements IButtonFunctions
 
 
     @Override
-    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw) throws ChangePasswordException
     {
-        //TODO: maybe add popup confirmation
-        return userHandler.changePassword(oldPw, newPw, confirmNewPw);
+         return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
 

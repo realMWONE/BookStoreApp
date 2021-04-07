@@ -103,6 +103,7 @@ public class UserDatabase implements IUserDatabase {
             pstmt.setString(2, user.getPassword());
             String position = user.getUserType()==UserType.Employee?EMPLOYEE:MANAGER;
             pstmt.setString(3, position);
+            pstmt.setString(4,user.getUserID());
             pstmt.executeUpdate();
             return user;
         }

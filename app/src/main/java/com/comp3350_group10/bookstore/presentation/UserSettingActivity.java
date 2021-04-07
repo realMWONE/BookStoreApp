@@ -40,12 +40,14 @@ public class UserSettingActivity extends AppCompatActivity {
     }
 
     public void changePwOnClick(View v){
-        if(uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString())) {
-            //TODO: pop up to say change was successful, then go back to main activity
-            finish();
+        try{
+            if(uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString())) {
+                Messages.viewPopUp("Password successfully changed",this);
+                finish();
+            }
         }
-        else {
-            //TODO: pop up to say change failed
+        catch (Exception e){
+            Messages.viewPopUp(e.getMessage(),this);
             finish();
             startActivity(getIntent());
         }

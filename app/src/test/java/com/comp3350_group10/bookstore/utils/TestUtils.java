@@ -20,5 +20,4 @@ public class TestUtils {
         Main.setDBPath(target.getAbsolutePath().replace(".script", ""));
         return target;
     }
-
 }

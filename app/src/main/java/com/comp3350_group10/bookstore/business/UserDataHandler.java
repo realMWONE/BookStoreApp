@@ -27,7 +27,7 @@ public class UserDataHandler implements IUserDataHandler {
 
     public static IUser currentUser = null;
     private IUserDatabase userDatabase;
-    private ErrorHandler errorHandler=new ErrorHandler();
+    private ErrorHandler errorHandler = new ErrorHandler();
 
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {

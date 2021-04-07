@@ -1,5 +1,6 @@
 package com.comp3350_group10.bookstore.business;
 
+import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.persistence.IBook;
 
 import java.util.List;
@@ -14,17 +15,11 @@ public interface IBookDataHandler {
     //function to change the price of a particular book
     void setPrice(IBook target, int price);
 
-    //function to increment the price of a particular book by 1
-    void incrementPrice(IBook target);
-
-    //function to decrement the price of a particular book by 1
-    void decrementPrice(IBook target);
-
     //function to increment the stock of a particular book by 1
     void incrementStock(IBook target);
 
     //function to decrement the stock of a particular book by 1
-    void decrementStock(IBook target);
+    void decrementStock(IBook target) throws NegativeStockException;
 
     //function to change the quantity of stock available for
     // a particular book

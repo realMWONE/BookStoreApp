@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
@@ -48,90 +49,39 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
     //function to set the target book to the given price
-    public void setPrice(IBook target, int price){
-        //make sure target is initialized
-        try
-        {
-            //price cannot be negative
-            if(price>=0){
-                target.setPrice(price);
-            }
-            else{
-                System.out.println("The price cannot be set to negative number");
-            }
+    public void setPrice(IBook target, int price) {
+        //only change price if price is positive
+        if(price>=0) {
+            target.setPrice(price);
             bookDatabase.updateBook(target);
         }
-
-        catch(NullPointerException e)
-        {
-            System.out.println(e+"caught in UserDataHandler.java method - setPrice()");
-        }
     }
-
-
-    //function to increment the price by 1
-    public void incrementPrice(IBook target) {
-        try {
-            setPrice(target, target.getPrice() + 1);
-        } catch (NullPointerException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - incrementPrice()");
-        }
-    }
-
-    //function to decrement price by 1
-    public void decrementPrice(IBook target){
-        try{
-            setPrice(target, target.getPrice()-1);
-        }
-        catch (NullPointerException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - decrementPrice()");
-        }
-
-    }
-
 
     //function set the stock for the target book with the given quantity
     public void setStock(IBook target, int quantity) {
-        //make sure target is initialized
-        try{
-            //stock cannot be negative
-            if(quantity >= 0){
-                target.setStock(quantity);
-            }
-            else{
-                System.out.println("The stock cannot be set to negative number");
-            }
-            bookDatabase.updateBook(target);
+        //stock cannot be negative
+        if(quantity >= 0) {
+            target.setStock(quantity);
         }
-        catch(NullPointerException e)
-        {
-            System.out.println(e+"caught in UserDataHandler.java method - setStock()");
-        }
-
+        bookDatabase.updateBook(target);
     }
 
 
     //function to increment the stock by 1
     public void incrementStock(IBook target) {
-        //make sure target is initialized
-        try {
-            setStock(target, target.getStock() + 1);
-        }
-        catch (NullPointerException e) {
-            System.out.println(e + "caught in UserDataHandler.java method - incrementStock()");
-        }
+        setStock(target, target.getStock() + 1);
     }
 
 
     //function to decrement the stock by 1
-    public void decrementStock(IBook target){
-        //Make sure target is initialized and do not decrease if stock is less than 0
-        try {
+    public void decrementStock(IBook target) throws NegativeStockException {
+        //only decrease if stock does not go below 0
+        if(target.getStock()>0)
             setStock(target, target.getStock() - 1);
-        }
-        catch (NullPointerException e) {
-            System.out.println(e + "caught in DataHandler.java method - decrementStock()");
-        }
+
+        //throw exception and show popup if it goes below
+        else
+            throw new NegativeStockException("Stock cannot be less than 0.");
     }
 
 
@@ -150,7 +100,6 @@ public class BookDataHandler implements IBookDataHandler {
             }
             else{
                 map.put(book, map.get(book)+1);
-                //TODO: Warning:(195, 31) Unboxing of 'map.get(book)' may produce 'NullPointerException'
             }
         }
 

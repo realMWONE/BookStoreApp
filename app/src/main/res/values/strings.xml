@@ -62,7 +62,7 @@
     <string name="new_employee_manager">Is new employee a manager?</string>
     <string name="textview">TextView</string>
     <string name="book_cover_image">Book Cover Image</string>
-    <string name="change_book_price">Change book price (cents)</string>
+    <string name="change_book_price">Change book price</string>
     <string name="change_stock_amount">Change stock amount</string>
     <string name="set">Set</string>
     <string name="plus_sign">+</string>

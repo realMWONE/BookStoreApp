@@ -64,7 +64,7 @@ public class Notify extends AppCompatActivity {
     //remove from the low stock books list,
     // once the available stock is more than 10
     public void removeFromLowStockList(IBook book){
-        if(lowStockNotified.contains(book) && book.getStock()>10){
+        if(lowStockNotified.contains(book) && book.getStock()>=10){
             lowStockNotified.remove(book);
         }
     }

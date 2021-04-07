@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
+import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
@@ -130,7 +131,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public void LogoutButtonPressed()
     {
-        //TODO: maybe add popup notification
         userHandler.logOut();
     }
 
@@ -138,7 +138,6 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
     {
-        //TODO: maybe add popup confirmation
         return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
@@ -148,14 +147,12 @@ public class ButtonFunctions implements IButtonFunctions
     public void IncrementStock(TextView text)
     {
         bookHandler.incrementStock(BookDataHandler.currentBook);
-        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override
     public void DecrementStock(TextView text)
     {
         bookHandler.decrementStock(BookDataHandler.currentBook);
-        bookDetailsFunctions.UpdateBookDetails(text);
     }
 
     @Override
@@ -171,7 +168,6 @@ public class ButtonFunctions implements IButtonFunctions
 
 
     @Override
-    //TODO: popup saying user creation successful or failed
     public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
         return userHandler.createNewUser(name, email, password, isManager);
     }

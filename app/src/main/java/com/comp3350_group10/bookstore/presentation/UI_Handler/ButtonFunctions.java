@@ -46,11 +46,15 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, boolean asc, String searchBy) {
+        //Prevent previous searches from persisting
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();
-        else PopulateResults(bookHandler.findBooks(keyword), table, context, main);
+        else {
+            List<IBook> results = bookHandler.findBooks(keyword, asc, searchBy);
+            PopulateResults(results, table, context, main);
+        }
     }
 
     private void ClearResults(TableLayout table) {
@@ -59,7 +63,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
-        SortResults(results, main);
+        //SortResults(results, main);
 
         if (results != null) {
             for (IBook book : results) {

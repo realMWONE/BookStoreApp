@@ -93,7 +93,7 @@ public class TrendingPageFunctions {
     @SuppressLint("ResourceType")
     private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
         IBookDataHandler bookHandler = new BookDataHandler();
-        List<IBook> books = bookHandler.findBooks(searchTerm);
+        List<IBook> books = bookHandler.findBooks(searchTerm, true, "Title");
 
         for (IBook book : books) {
             ImageView image = new ImageView(context);

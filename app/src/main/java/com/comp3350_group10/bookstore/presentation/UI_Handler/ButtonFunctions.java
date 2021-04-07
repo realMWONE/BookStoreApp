@@ -32,14 +32,12 @@ public class ButtonFunctions implements IButtonFunctions
 {
     private IBookDataHandler bookHandler;
     private IUserDataHandler userHandler;
-    private IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()
     {
         bookHandler = new BookDataHandler();
         userHandler = new UserDataHandler();
-        bookDetailsFunctions = new BookDetailsFunctions();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -149,7 +147,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void DecrementStock(TextView text)
+    public void DecrementStock(TextView text) throws NegativeStockException
     {
         bookHandler.decrementStock(BookDataHandler.currentBook);
     }

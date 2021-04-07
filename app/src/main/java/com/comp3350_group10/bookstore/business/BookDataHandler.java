@@ -25,6 +25,11 @@ public class BookDataHandler implements IBookDataHandler {
         bookDatabase = Service.setupBookDatabase();
     }
 
+    //Added by DUY for testing this class
+    public BookDataHandler(IBookDatabase bookDatabase){
+        this.bookDatabase = bookDatabase;
+    }
+
     //Takes the keyword and search database with it
     //Returns result after removing duplicated results, and sorted by relevance
     /*
@@ -33,6 +38,7 @@ public class BookDataHandler implements IBookDataHandler {
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<IBook> findBooks(String keyword) {
+
         List<String> wordList = splitWords(keyword); //splits keywords
 
         List<IBook> bookList = new ArrayList<>();   //stores search result

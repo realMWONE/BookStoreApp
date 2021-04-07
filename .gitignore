@@ -143,9 +143,4 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-<<<<<<< HEAD
-./workspace.xml
-workspace.xml~Daniel
-=======
->>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio

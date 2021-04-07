@@ -42,4 +42,14 @@ public class User implements IUser, Serializable
     //set the password of this user with the given input
     public void setPassword(String newPassword) { this.password = newPassword; }
 
+    @Override
+    public void setPosition(UserType type) {
+        this.position = type;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.realName=name;
+    }
+
 }

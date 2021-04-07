@@ -21,7 +21,11 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
+<<<<<<< HEAD
     public IUser findUser(String userId) {
+=======
+    public IUser findUser(String userId){
+>>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         IUser user = null;
 
         if(userList.size()>0){
@@ -35,13 +39,21 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
+<<<<<<< HEAD
     public IUser insertUser(IUser user) {
+=======
+    public IUser insertUser(IUser user){
+>>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         userList.add(user);
         return user;
     }
 
     @Override
+<<<<<<< HEAD
     public IUser updateUser(IUser user) {
+=======
+    public IUser updateUser(IUser user){
+>>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         for(IUser u:userList){
             if(u.getUserID().equals(user.getUserID())) {
                 u = user;
@@ -52,7 +64,11 @@ public class FakeUserDatabase implements IUserDatabase {
     }
 
     @Override
+<<<<<<< HEAD
     public void deleteUser(IUser user) {
+=======
+    public void deleteUser(IUser user){
+>>>>>>> 7935627b83d2efb2d33cec8cf8570a4a8b27dc70
         for(IUser u:userList){
             if(u.getUserID().equals(user.getUserID()))
                 userList.remove(u);

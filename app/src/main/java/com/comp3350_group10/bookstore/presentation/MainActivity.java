@@ -197,6 +197,10 @@ public class MainActivity extends AppCompatActivity
     public void onLogoutButtonClicked(MenuItem item)
     {
         uIButtonFunctions.LogoutButtonPressed();
+        Messages.viewPopUp("Logout successful", this);
+
+        finish();
+        startActivity(getIntent());
     }
 
     public void userSettingButtonClicked(MenuItem item) {
@@ -211,5 +215,4 @@ public class MainActivity extends AppCompatActivity
 
         uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, getBaseContext(), this, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
     }
-
 }

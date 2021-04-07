@@ -15,7 +15,7 @@ public interface IUserDataHandler {
     //function to logout the current user
     void logOut();
 
-    void logIn(String email, String password, Context context);
+    void logIn(String email, String password) throws Exception;
 
     //function to changePassword for the logged in user
     boolean changePassword(String oldPw, String newPw, String confirmNewPw);

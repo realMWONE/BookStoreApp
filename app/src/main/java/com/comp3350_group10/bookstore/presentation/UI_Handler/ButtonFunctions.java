@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
+import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
@@ -122,8 +123,8 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void LoginButtonPressed(String email, String password, Context context) {
-        userHandler.logIn(email, password,context);
+    public void LoginButtonPressed(String email, String password) throws Exception{
+        userHandler.logIn(email, password);
     }
 
 
@@ -136,9 +137,9 @@ public class ButtonFunctions implements IButtonFunctions
 
 
     @Override
-    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw)
+    public boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw) throws ChangePasswordException
     {
-        return userHandler.changePassword(oldPw, newPw, confirmNewPw);
+         return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
 

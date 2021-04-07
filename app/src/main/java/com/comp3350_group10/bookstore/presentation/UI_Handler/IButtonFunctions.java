@@ -17,7 +17,7 @@ public interface IButtonFunctions {
 
 
     //function is called when user logs in with their respective accounts
-    void LoginButtonPressed(String email, String password, Context context);
+    void LoginButtonPressed(String email, String password) throws Exception;
 
     //function is called when user wants to logout
     void LogoutButtonPressed();

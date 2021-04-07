@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
-import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
-import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
+import com.comp3350_group10.bookstore.Exceptions.*;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
@@ -123,7 +121,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void LoginButtonPressed(String email, String password) throws Exception{
+    public void LoginButtonPressed(String email, String password) throws UserNotFoundException, DifferentPasswordException {
         userHandler.logIn(email, password);
     }
 

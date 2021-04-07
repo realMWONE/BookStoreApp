@@ -45,33 +45,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Made popup for BookDetailsActivity  &#10;  &#10;- changeStock, changePrice now have popup window notifying user that the change was successful.&#10;- decrementStock now have popup alert when user try to decrement a book with empty stock&#10;- Created new exception class NegativeStockException&#10;- Commented BookDetailsActivity">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/Exceptions/NegativeStockException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IBookDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IBookDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/Notify.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/Notify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IUserDataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/UserDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/BookDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/BookDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/CreateUserActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_book_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Nexus_10_API_30]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -429,10 +423,10 @@
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1616550363010" />
     <state x="690" y="296" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617672896741" />
-    <state x="490" y="377" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617725824305">
+    <state x="490" y="377" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617757051232">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state x="490" y="377" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617725824305" />
+    <state x="490" y="377" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617757051232" />
     <state x="123" y="100" width="1505" height="828" key="AVDManager" timestamp="1617492078265">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
@@ -509,17 +503,17 @@
     </state>
     <state x="282" y="106" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236517902" />
     <state x="423" y="187" key="MultipleFileMergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732558723" />
-    <state x="541" y="244" key="RollbackChangesDialog" timestamp="1617680033876">
+    <state x="541" y="244" key="RollbackChangesDialog" timestamp="1617755975203">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="541" y="216" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617327685413" />
-    <state x="541" y="244" key="RollbackChangesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617680033876" />
-    <state x="552" y="282" key="Vcs.Push.Dialog.v2" timestamp="1617734040279">
+    <state x="541" y="244" key="RollbackChangesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617755975203" />
+    <state x="552" y="282" key="Vcs.Push.Dialog.v2" timestamp="1617755985512">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617330503493" />
     <state x="483" y="275" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1617490793362" />
-    <state x="552" y="282" key="Vcs.Push.Dialog.v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617734040279" />
+    <state x="552" y="282" key="Vcs.Push.Dialog.v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617755985512" />
     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction" timestamp="1617131153808">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -534,10 +528,10 @@
     <state x="513" y="288" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1617236502905" />
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617067743903" />
     <state x="770" y="466" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617246664178" />
-    <state x="563" y="292" width="742" height="490" key="find.popup" timestamp="1617725818724">
+    <state x="563" y="292" width="742" height="490" key="find.popup" timestamp="1617757387873">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state x="563" y="292" width="742" height="490" key="find.popup/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617725818724" />
+    <state x="563" y="292" width="742" height="490" key="find.popup/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617757387873" />
     <state x="665" y="261" key="git4idea.branch.GitSmartOperationDialog" timestamp="1617290121670">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -553,9 +547,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension/0.0.1920.1040@0.0.1920.1040" timestamp="1616545510528" />
-    <state x="542" y="253" key="search.everywhere.popup" timestamp="1617498504036">
+    <state x="542" y="253" width="670" height="676" key="search.everywhere.popup" timestamp="1617756189746">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state x="542" y="253" key="search.everywhere.popup/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617498504036" />
+    <state x="542" y="253" width="670" height="676" key="search.everywhere.popup/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617756189746" />
   </component>
 </project>

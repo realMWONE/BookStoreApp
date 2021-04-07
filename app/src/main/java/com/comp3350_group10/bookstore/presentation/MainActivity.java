@@ -157,9 +157,7 @@ public class MainActivity extends AppCompatActivity
                 uIButtonFunctions.SearchButtonPressed(searchBar.getText().toString(), bookListTable, context, main, sortButton.getText().toString(), (String)dropdown.getSelectedItem());
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
+            public void onNothingSelected(AdapterView<?> parentView) {}
         });
     }
 

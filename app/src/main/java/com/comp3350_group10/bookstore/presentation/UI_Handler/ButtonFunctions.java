@@ -149,7 +149,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void DecrementStock(TextView text)
+    public void DecrementStock(TextView text) throws NegativeStockException
     {
         bookHandler.decrementStock(BookDataHandler.currentBook);
     }

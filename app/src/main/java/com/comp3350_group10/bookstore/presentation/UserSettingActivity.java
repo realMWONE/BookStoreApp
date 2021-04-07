@@ -1,8 +1,11 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,8 +24,8 @@ public class UserSettingActivity extends AppCompatActivity {
     private EditText oldPassword;
     private EditText newPassword;
     private EditText confirmNewPassword;
+    private Button changePwButton;
     private IButtonFunctions uiButtonFunctions;
-//    public static TextView errorMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +33,15 @@ public class UserSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-//        errorMessage = findViewById(R.id.settingErrorMessage);
         oldPassword = findViewById(R.id.oldPassword);
         newPassword = findViewById(R.id.newPassword);
         confirmNewPassword = findViewById(R.id.confirmNewPassword);
-
+        changePwButton = findViewById(R.id.user_change_password);
         //if not manager, don't show create user button
         if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager)
             findViewById(R.id.create_user).setVisibility(View.GONE);
+
+        AddTextChangedListeners();
     }
 
     public void changePwOnClick(View v){
@@ -66,6 +70,22 @@ public class UserSettingActivity extends AppCompatActivity {
     public void addEmployeeOnClick(View v)
     {
         SwitchActivity.SwitchTo(CreateUserActivity.class, this);
+    }
+    private void EnableChangePwButton(){ changePwButton.setEnabled(!oldPassword.getText().toString().equals("") &&
+            !newPassword.getText().toString().equals("") && !confirmNewPassword.getText().toString().equals("")); }
+
+    private void AddTextChangedListeners() {
+        TextWatcher watcher = new TextWatcher() {
+            public void afterTextChanged(Editable s) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                EnableChangePwButton();
+            }
+        };
+
+        oldPassword.addTextChangedListener(watcher);
+        newPassword.addTextChangedListener(watcher);
+        confirmNewPassword.addTextChangedListener(watcher);
     }
 
 }

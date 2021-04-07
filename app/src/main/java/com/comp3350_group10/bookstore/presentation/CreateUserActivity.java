@@ -43,17 +43,21 @@ public class CreateUserActivity extends AppCompatActivity {
     public void createUserOnClick(View v) {
         IUser createdUser;
         try {
+            //try creating the user
             createdUser = uiButtonFunctions.CreateUserButtonPressed(name.getText().toString(), email.getText().toString(), password.getText().toString(), isManager.isChecked());
-            //default behaviour of going back to main
-            if(createdUser!=null)
+
+            //successful, proceed default behaviour
+            if(createdUser!=null) {
+                //sends heartwarming welcome message to new employee so they don't complain about low wage
+                Messages.viewPopUp("Welcome to the team, " + createdUser.getRealName() + "!", this);
                 SwitchActivity.SwitchTo(MainActivity.class, this);
+            }
         }
+
+        //failed, exception is thrown with error message
         catch(CreateUserErrorException e){
             //popup saying unsuccessful
             Messages.viewPopUp(e.getMessage(), CreateUserActivity.this);
-            //reload
-            finish();
-            startActivity(getIntent());
         }
     }
 }

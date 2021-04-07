@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,15 +42,17 @@ public class UserSettingActivity extends AppCompatActivity {
 
     public void changePwOnClick(View v){
         try{
+            //normal behaviour
+            //Shows confirmation message and return to previous activity
             if(uiButtonFunctions.ChangePasswordPressed(oldPassword.getText().toString(), newPassword.getText().toString(), confirmNewPassword.getText().toString())) {
                 Messages.viewPopUp("Password successfully changed",this);
                 finish();
             }
         }
-        catch (Exception e){
+
+        //Change pw failed, show error message
+        catch (ChangePasswordException e){
             Messages.viewPopUp(e.getMessage(),this);
-            finish();
-            startActivity(getIntent());
         }
     }
 

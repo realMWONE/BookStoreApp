@@ -62,6 +62,8 @@ public class BookDatabaseIT {
         System.out.println(book.getStock());
     }
 
+    //increment() / decrement() needs to be tested
+
     @After
     public void tearDown(){
         this.tempDB.delete();//resets DB

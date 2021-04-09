@@ -18,6 +18,13 @@ public class UserDataHandler implements IUserDataHandler {
         userDatabase = Service.setupUserDatabase();
 //        userDatabase = new FakeUserDatabase();
     }
+    //added by DUY for
+    public UserDataHandler(IUserDatabase userDatabase){
+        this.userDatabase=userDatabase;
+    }
+
+    //////////////////////////
+
 
     public UserDataHandler(User currentUser) {
         UserDataHandler.currentUser = currentUser;

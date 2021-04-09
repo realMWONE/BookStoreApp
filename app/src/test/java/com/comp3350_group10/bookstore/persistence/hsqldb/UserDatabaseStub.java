@@ -16,12 +16,12 @@ public class UserDatabaseStub implements IUserDatabase {
     public UserDatabaseStub(){
         this.userList = new ArrayList<>();
 
-        userList.add(new User("Daniel","duy.than@gihot.com","111", UserType.Employee));
-        userList.add(new User("Keven","Kevin@gmail.com","222", UserType.Manager));
-        userList.add(new User("Harshal","Harshal@myumanitoba.ca","333", UserType.Manager));
-        userList.add(new User("Matt","Matt@yahoo.com","444", UserType.Employee));
-        userList.add(new User("Animesh","Animesh@outlook.com","555", UserType.Employee));
-        userList.add(new User("Darwait","Darwait@gmail.com","666", UserType.Employee));
+        userList.add(new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee));
+        userList.add(new User("Keven","Kevin@gmail.com","987654321", UserType.Manager));
+        userList.add(new User("Harshal","Harshal@myumanitoba.ca","111111111", UserType.Manager));
+        userList.add(new User("Matt","Matt@yahoo.com","222222222", UserType.Employee));
+        userList.add(new User("Animesh","Animesh@outlook.com","333333333", UserType.Employee));
+        userList.add(new User("Darwait","Darwait@gmail.com","444444444", UserType.Employee));
     }
 
     @Override

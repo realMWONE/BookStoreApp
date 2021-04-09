@@ -15,6 +15,10 @@ import com.comp3350_group10.bookstore.utils.TestUtils;
 
 import junit.framework.TestCase;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.File;
 
 public class UserDataHandlerTestIT extends TestCase {
@@ -22,17 +26,18 @@ public class UserDataHandlerTestIT extends TestCase {
     private UserDataHandler userDataHandler;
     private File tempDB;
 
+    @Before
     public void setUp() throws Exception {
         super.setUp();
         this.tempDB = TestUtils.copyDB();
         final IUserDatabase persistence = new UserDatabase(this.tempDB.getAbsolutePath().replace(".script",""));
         this.userDataHandler = new UserDataHandler(persistence);
     }
-
+    @After
     public void tearDown() throws Exception {
         this.tempDB.delete();
     }
-
+    @Test
     public void testGetCurrentUser() {
         userDataHandler.currentUser = new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee);
         IUser user = userDataHandler.getCurrentUser();
@@ -43,6 +48,7 @@ public class UserDataHandlerTestIT extends TestCase {
         assertEquals("usertype should be Employee",UserType.Employee,user.getUserType());
     }
     //without throwing exception
+    @Test
     public void testLogIn() {
         try{
             userDataHandler.logIn("duy.than@gihot.com","123456789");
@@ -56,6 +62,7 @@ public class UserDataHandlerTestIT extends TestCase {
 
     }
     //throw exception for id not found
+    @Test
     public void testLogInThrowUserNotFoundException(){
         try{
             userDataHandler.logIn("mybad@outlook.com","123456789");
@@ -66,6 +73,7 @@ public class UserDataHandlerTestIT extends TestCase {
         }
     }
     //throw exception for password not correct
+    @Test
     public void testLogInThrowDifferentPasswordException(){
         try{
             userDataHandler.logIn("duy.than@gihot.com","111111111");
@@ -75,10 +83,12 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Different passwords, couldn't confirm!!",exception.getMessage());
         }
     }
+    @Test
     public void testLogOut() {
         userDataHandler.logOut();
         assertNull("the current User should be null",userDataHandler.getCurrentUser());
     }
+    @Test
     public void testChangePasswordUserNullException() {
         //ChangePasswordException
         try{
@@ -89,6 +99,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("User must be logged in",exception.getMessage());
         }
     }
+    @Test
     public void testChangePasswordWrongOldPasswordException(){
         IUser user = new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee);
         userDataHandler.currentUser = user;
@@ -100,6 +111,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("The password input doesn't match the saved password",exception.getMessage());
         }
     }
+    @Test
     public void testChangePasswordShortPasswordException(){
         IUser user = new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee);
         userDataHandler.currentUser = user;
@@ -111,6 +123,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Password length too short, should be at least 8 characters",exception.getMessage());
         }
     }
+    @Test
     public void testChangePasswordNotMatchNewException(){
         IUser user = new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee);
         userDataHandler.currentUser = user;
@@ -122,6 +135,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Different new passwords, couldn't confirm!!",exception.getMessage());
         }
     }
+    @Test
     public void testChangePassword(){
         try{
             IUser user = new User("Daniel","duy.than@gihot.com","123456789", UserType.Employee);
@@ -135,7 +149,7 @@ public class UserDataHandlerTestIT extends TestCase {
         }
 
     }
-
+    @Test
     public void testCreateNewUserNameException() {
         try{
             IUser user = userDataHandler.createNewUser("","zigs@gmail.com","123456789",false);
@@ -145,6 +159,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Name cannot be empty",exception.getMessage().trim());
         }
     }
+    @Test
     public void testCreateNewUserEmail_1_Exception() {
         try{
             IUser user = userDataHandler.createNewUser("Duy","","123456789",false);
@@ -154,6 +169,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Email cannot be empty",exception.getMessage().trim());
         }
     }
+    @Test
     public void testCreateNewUserEmail_2_Exception() {
         try{
             IUser user = userDataHandler.createNewUser("Duy","zigszigs","123456789",false);
@@ -163,6 +179,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Email is not valid",exception.getMessage().trim());
         }
     }
+    @Test
     public void testCreateNewUserPassword_1_Exception() {
         try{
             IUser user = userDataHandler.createNewUser("Duy","zigs123321@gmail.com","",false);
@@ -172,6 +189,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Password cannot be empty",exception.getMessage().trim());
         }
     }
+    @Test
     public void testCreateNewUserPassword_2_Exception() {
         try{
             IUser user = userDataHandler.createNewUser("Duy","zigs123321@gmail.com","1234567",false);
@@ -181,7 +199,7 @@ public class UserDataHandlerTestIT extends TestCase {
             assertEquals("Password cannot be shorter than 8 characters",exception.getMessage().trim());
         }
     }
-
+    @Test
     public void testCreateNewUser() {
         try{
             IUser user = userDataHandler.createNewUser("Duy","zigs123321@gmail.com","123456789",false);

@@ -1,5 +1,6 @@
 package com.comp3350_group10.bookstore.business;
 
+import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.IntBinaryOperator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -49,6 +51,14 @@ public class BookDatabaseIT {
         assertNotNull("The book entered should not be null", bookList);
         assertEquals(3000, book.getPrice());
         System.out.println(book.getPrice());
+
+        //if price < 0, ADDED BY DANIEL
+        final IBook book_1;
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        book_1 = bookList_1.get(0);
+        dataHandler.setPrice(book_1, -1);
+        assertNotNull("The book entered should not be null", bookList_1);
+        assertEquals(2780, book_1.getPrice());
     }
 
     @Test
@@ -60,9 +70,58 @@ public class BookDatabaseIT {
         assertNotNull("The book entered should not be null", bookList);
         assertEquals(2, book.getStock());
         System.out.println(book.getStock());
+        //if stock < 0, ADDED BY DANIEL
+        final IBook book_1;
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        book_1 = bookList_1.get(0);
+        dataHandler.setStock(book_1, -1);
+        assertNotNull("The book entered should not be null", bookList_1);
+        assertEquals(10, book_1.getStock());
+    }
+    //increment() / decrement() needs to be tested
+    @Test
+    public void testIncrementStock(){
+        final IBook book;
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        book = bookList_1.get(0);
+        dataHandler.incrementStock(book);
+        assertNotNull("The book entered should not be null", bookList_1);
+        assertEquals("The new stock should be 11",11, book.getStock());
     }
 
-    //increment() / decrement() needs to be tested
+    //without throwing error
+    @Test
+    public void testDecrementStock(){
+        try{
+            final IBook book;
+            final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+            book = bookList_1.get(0);
+            dataHandler.decrementStock(book);
+            assertNotNull("The book entered should not be null", bookList_1);
+            assertEquals("The new stock should be 9",9, book.getStock());
+        }
+        catch (NegativeStockException exception){
+            assertEquals("It should never reach catch statement",exception.getMessage());
+        }
+
+    }
+    @Test
+    public void testDecrementStockException(){
+        try{
+            //Eclipse
+            final IBook book;
+            final List<IBook> bookList_1 = dataHandler.findBooks("Eclipse");
+            book = bookList_1.get(0);
+            //current stock is 2
+            dataHandler.decrementStock(book); // =1
+            dataHandler.decrementStock(book); // =0
+            dataHandler.decrementStock(book); // = -1, throw exception here
+            //System.out.println("yes");
+        }
+        catch (NegativeStockException exception){
+            assertEquals("Stock cannot be less than 0.",exception.getMessage());
+        }
+    }
 
     @After
     public void tearDown(){

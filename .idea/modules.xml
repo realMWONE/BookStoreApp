@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BookStore.iml" filepath="$PROJECT_DIR$/.idea/modules/BookStore.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BookStore.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/winter-2021-a03-group-10-i3.BookStore.iml" filepath="$PROJECT_DIR$/.idea/modules/winter-2021-a03-group-10-i3.BookStore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hsqldb/winter-2021-a03-group-10-i3.BookStore.hsqldb.iml" filepath="$PROJECT_DIR$/.idea/modules/hsqldb/winter-2021-a03-group-10-i3.BookStore.hsqldb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hsqldb/BookStore.hsqldb.iml" filepath="$PROJECT_DIR$/.idea/modules/hsqldb/BookStore.hsqldb.iml" />
     </modules>
   </component>
 </project>

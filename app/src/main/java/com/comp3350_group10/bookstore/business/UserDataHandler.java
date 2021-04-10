@@ -18,6 +18,10 @@ public class UserDataHandler implements IUserDataHandler {
         userDatabase = Service.setupUserDatabase();
 //        userDatabase = new FakeUserDatabase();
     }
+    public UserDataHandler(IUserDatabase userDatabase){
+        this.userDatabase=userDatabase;
+    }
+
 
     public UserDataHandler(User currentUser) {
         UserDataHandler.currentUser = currentUser;

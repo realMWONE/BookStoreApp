@@ -96,7 +96,7 @@ public class BookDataHandler implements IBookDataHandler {
     //Sort the given list of books by how many words in its title matches with the given word list
     //And gets rid of the duplicated elements
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private List<IBook> sortByRelevancy(List<IBook> bookList){
+    public List<IBook> sortByRelevancy(List<IBook> bookList){
         //relevancy is determined by # of times the book appeared in search result
         //<Key : Value> = <IBook book : Integer relevancy>
         HashMap<IBook,Integer> map = new HashMap<>();

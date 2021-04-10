@@ -75,7 +75,9 @@ public class ButtonFunctions implements IButtonFunctions
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void SortResults(List<IBook> results, MainActivity main) {
         String sortBy = main.getSortBy();
-        if (sortBy.contains("Title"))
+        if (sortBy.contains("Relevancy")){}
+
+        else if (sortBy.contains("Title"))
             results.sort(Comparator.comparing(IBook::getBookName));
         else if (sortBy.contains("Author"))
             results.sort(Comparator.comparing(IBook::getBookAuthor));

@@ -25,4 +25,6 @@ public interface IBookDataHandler {
     // a particular book
     void setStock(IBook target, int quantity);
 
+    List<IBook> sortByRelevancy(List<IBook> bookList);
+
 }

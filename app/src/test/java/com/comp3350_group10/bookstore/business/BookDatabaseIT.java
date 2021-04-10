@@ -1,17 +1,22 @@
 package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
+import com.comp3350_group10.bookstore.application.Main;
+import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.utils.TestUtils;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.function.IntBinaryOperator;
 
@@ -31,6 +36,13 @@ public class BookDatabaseIT {
     }
 
     @Test
+    public void checkDbPath(){
+        String MainPath = Main.getDBPath();
+        String dbPath = this.tempDB.getAbsolutePath().replace(".script","");
+        assertEquals("DB is not set properly",dbPath,MainPath);
+    }
+
+    @Test
     public void testFindBooks(){
         final List<IBook> bookList;
         final IBook book;
@@ -44,6 +56,7 @@ public class BookDatabaseIT {
 
     @Test
     public void testSetBookPrice(){
+        //price >0, without exception throw
         final IBook book;
         final List<IBook> bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets");
         book = bookList.get(0);
@@ -51,7 +64,7 @@ public class BookDatabaseIT {
         assertNotNull("The book entered should not be null", bookList);
         assertEquals(3000, book.getPrice());
         System.out.println(book.getPrice());
-
+        
         //if price < 0, ADDED BY DANIEL
         final IBook book_1;
         final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");

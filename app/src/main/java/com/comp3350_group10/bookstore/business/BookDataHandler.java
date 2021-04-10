@@ -142,7 +142,7 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-    private void sortTitleAscHelper() {
+    /*private void sortTitleAscHelper() {
 
         List<IBook> bookList = bookDatabase.getBooks();
 
@@ -205,5 +205,5 @@ public class BookDataHandler implements IBookDataHandler {
             }
         });
 
-    }
+    }*/
 }

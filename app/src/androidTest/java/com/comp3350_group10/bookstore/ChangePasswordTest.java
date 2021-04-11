@@ -10,9 +10,10 @@ import androidx.test.filters.LargeTest;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.objects.User;
+import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
+import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class CreateUserTest {
+public class ChangePasswordTest {
     UserDataHandler uHandler;
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -37,33 +38,27 @@ public class CreateUserTest {
     public void setup()
     {
         uHandler = new UserDataHandler();
-        UserDataHandler.currentUser = new User("Manage Chan","manager@manager.com","ILoveManagement", UserType.Manager);
         //Have to manually disable Window animation scale, Transition scale, Animator duration scale from emulator Dev options setting
-        try {
-            uHandler.deleteUser("newuser@mail.com");
-        }
-        catch(PersistenceException e){
-
-        }
+        UserDataHandler.currentUser = uHandler.createNewUser("Manage Chan","manager@manager.com","ILoveManagement", true);
     }
 
     @Test
-    public void createUser() {
+    public void changePassword() {
         Activity a = GetActivity.getActivity(activityTestRule);
-        a.startActivity(new Intent(a.getBaseContext(), CreateUserActivity.class));
+        a.startActivity(new Intent(a.getBaseContext(), UserSettingActivity.class));
 
-        onView(withId(R.id.new_name_text)).perform(typeText("New User"));
-        onView(withId(R.id.new_email_text)).perform(typeText("newuser@mail.com"));
-        onView(withId(R.id.new_password_text)).perform(typeText("12345678"));
+        onView(withId(R.id.oldPassword)).perform(typeText("ILoveManagement"));
+        onView(withId(R.id.newPassword)).perform(typeText("12345678"));
+        onView(withId(R.id.confirmNewPassword)).perform(typeText("12345678"));
 
         closeSoftKeyboard();
-        onView(withId(R.id.create_user_button)).perform(click());
+        onView(withId(R.id.user_change_password)).perform(click());
 //        a.startActivity(new Intent(a.getBaseContext(), MainActivity.class));
 
         //Test
-        uHandler.logIn("newuser@mail.com","12345678");
-        assertEquals("Failed: Not able to log in as the new created user.",UserDataHandler.currentUser.getRealName(), "New User");
+        uHandler.logIn("manager@manager.com","12345678");
+        assertEquals("Failed: Not able to log in as the new created user.",UserDataHandler.currentUser.getRealName(), "Manage Chan");
 
-        uHandler.deleteUser("newuser@mail.com");
+//        uHandler.deleteUser("manager@manager.com");
     }
 }

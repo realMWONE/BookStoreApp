@@ -50,7 +50,8 @@ public class BookDataHandler implements IBookDataHandler {
         }
 
         //sort the booklist by the appropriate term
-        if (searchBy.contains("Title")) sortTitleHelper(bookList);
+        if (searchBy.contains("Relevancy")) sortByRelevancy(bookList);
+        else if (searchBy.contains("Title")) sortTitleHelper(bookList);
         else if (searchBy.contains("Author")) sortAuthorHelper(bookList);
         if (searchBy.contains("Genre")) sortGenreHelper(bookList);
         //reverse order if asc=false

@@ -76,19 +76,6 @@ public class ButtonFunctions implements IButtonFunctions
         return results;
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-//    private void SortResults(List<IBook> results, MainActivity main) {
-//        String sortBy = main.getSortBy();
-//        if (sortBy.contains("Title"))
-//            results.sort(Comparator.comparing(IBook::getBookName));
-//        else if (sortBy.contains("Author"))
-//            results.sort(Comparator.comparing(IBook::getBookAuthor));
-//        else results.sort(Comparator.comparing(IBook::getGenre));
-//
-//        if (main.getOrderString().toLowerCase().equals("desc"))
-//            Collections.reverse(results);
-//    }
-
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
         Intent intent = new Intent(context, BookDetailsActivity.class);
         BookDataHandler.currentBook = book;

@@ -154,7 +154,6 @@ public class BookDatabase implements IBookDatabase {
 
     @Override
     public List<IBook> getBooks() {
-
         List<IBook> books = new ArrayList<>();
         try(Connection c = connection()) {
             Statement stmt = c.createStatement();
@@ -169,7 +168,7 @@ public class BookDatabase implements IBookDatabase {
             return books;
 
         } catch (final SQLException e) {
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't get the books");
         }
     }
 
@@ -192,7 +191,7 @@ public class BookDatabase implements IBookDatabase {
             this.bookList =getBooks();
             return book;
         } catch (SQLException e) {
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't insert the book.");
         }
     }
 
@@ -211,7 +210,7 @@ public class BookDatabase implements IBookDatabase {
             return book;
         }
         catch(SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't update the book");
         }
     }
 
@@ -225,7 +224,7 @@ public class BookDatabase implements IBookDatabase {
             pstmt.executeUpdate();
         }
         catch(SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't delete the book");
         }
     }
 }

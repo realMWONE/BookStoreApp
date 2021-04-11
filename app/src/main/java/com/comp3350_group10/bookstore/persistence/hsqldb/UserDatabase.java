@@ -79,7 +79,7 @@ public class UserDatabase implements IUserDatabase {
             stmt.close();
         }
         catch(final SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't get the users.");
         }
         return usersInfo;
     }
@@ -97,7 +97,7 @@ public class UserDatabase implements IUserDatabase {
             return user;
         }
         catch(final SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't insert the user.");
         }
     }
 
@@ -115,7 +115,7 @@ public class UserDatabase implements IUserDatabase {
             return user;
         }
         catch(final SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't update the user.");
         }
     }
 
@@ -128,7 +128,7 @@ public class UserDatabase implements IUserDatabase {
             pstmt.executeUpdate();
         }
         catch(final SQLException e){
-            throw new PersistenceException(e);
+            throw new PersistenceException("can't delete the user");
         }
     }
 }

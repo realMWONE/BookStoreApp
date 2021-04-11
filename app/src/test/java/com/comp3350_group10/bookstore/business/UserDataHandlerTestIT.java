@@ -4,6 +4,7 @@ import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
+import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.IUser;
@@ -21,6 +22,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static org.junit.Assert.assertEquals;
+
 public class UserDataHandlerTestIT extends TestCase {
 
     private UserDataHandler userDataHandler;
@@ -36,6 +39,12 @@ public class UserDataHandlerTestIT extends TestCase {
     @After
     public void tearDown() throws Exception {
         this.tempDB.delete();
+    }
+    @Test
+    public void checkDbPath(){
+        String MainPath = Main.getDBPath();
+        String dbPath = this.tempDB.getAbsolutePath().replace(".script","");
+        assertEquals("DB is not set properly",dbPath,MainPath);
     }
     @Test
     public void testGetCurrentUser() {

@@ -32,14 +32,12 @@ public class ButtonFunctions implements IButtonFunctions
 {
     private IBookDataHandler bookHandler;
     private IUserDataHandler userHandler;
-    private IBookDetailsFunctions bookDetailsFunctions;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()
     {
         bookHandler = new BookDataHandler();
         userHandler = new UserDataHandler();
-        bookDetailsFunctions = new BookDetailsFunctions();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -77,19 +75,6 @@ public class ButtonFunctions implements IButtonFunctions
 
         return results;
     }
-
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-//    private void SortResults(List<IBook> results, MainActivity main) {
-//        String sortBy = main.getSortBy();
-//        if (sortBy.contains("Title"))
-//            results.sort(Comparator.comparing(IBook::getBookName));
-//        else if (sortBy.contains("Author"))
-//            results.sort(Comparator.comparing(IBook::getBookAuthor));
-//        else results.sort(Comparator.comparing(IBook::getGenre));
-//
-//        if (main.getOrderString().toLowerCase().equals("desc"))
-//            Collections.reverse(results);
-//    }
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
         Intent intent = new Intent(context, BookDetailsActivity.class);
@@ -149,7 +134,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public void DecrementStock(TextView text)
+    public void DecrementStock(TextView text) throws NegativeStockException
     {
         bookHandler.decrementStock(BookDataHandler.currentBook);
     }

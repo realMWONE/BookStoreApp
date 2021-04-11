@@ -1,144 +1,94 @@
 package com.comp3350_group10.bookstore.business;
 
+import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
-import com.comp3350_group10.bookstore.utils.TestUtils;
+import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseStub;
+
+import junit.framework.TestCase;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.util.List;
 
+public class BookDataHandlerTest extends TestCase {
 
-public class BookDataHandlerTest{
-    private File tempDB;
-    private BookDataHandler handler;
-
+    //we will use a stub
+    private BookDataHandler dataHandler;
     @Before
     public void setUp() throws Exception {
-        this.tempDB = TestUtils.copyDB();
-        final IBookDatabase bookDatabase = new BookDatabase(this.tempDB.getAbsolutePath().replace(".script", ""));
-        this.handler = new BookDataHandler(bookDatabase);
+        super.setUp();
+        IBookDatabase databaseStub = new BookDatabaseStub();
+        this.dataHandler = new BookDataHandler(databaseStub);
     }
-
     @After
     public void tearDown() throws Exception {
-        this.tempDB.delete();
+        dataHandler=null;
     }
-
     @Test
-    //didn't test for the throw error
     public void testFindBooks() {
-        final List<IBook> book;
-        try {
-            book = handler.findBooks("The Da Vinci Code");
-            Assert.assertNotNull("Book should not be null", book);
-            Assert.assertEquals("The Da Vinci Code",book.get(0).getBookName());
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
+        List<IBook> result_1 = dataHandler.findBooks("The");
+        assertEquals("there should be 1 results",1,result_1.size());
+        List<IBook> result_2 = dataHandler.findBooks("Harry");
+        assertEquals("there should be 2 results",2,result_2.size());
+        List<IBook> result_3 = dataHandler.findBooks("Diary of Wimpy Kid");
+        assertEquals("there should be 2 results",2,result_3.size());
     }
-
     @Test
     public void testSetPrice() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        handler.setPrice(book,3000);
-        List<IBook> result;
-
-        try {
-            result = handler.findBooks("2551819816185");
-            Assert.assertEquals(1,result.size());
-            Assert.assertEquals(3000,result.get(0).getPrice());
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
+        dataHandler.setPrice(book_1,1000);
+        assertEquals("The new price should be 1000",1000,book_1.getPrice());
+        IBook book_2 = new Book("Twilight","2510323255565",3,2730,"22 March 2005","Stephenie Meyer","Romance",4,700141);
+        dataHandler.setPrice(book_2,2000);
+        assertEquals("The new price should be 2000",2000,book_2.getPrice());
+        IBook book_3 = new Book("Eclipse","2551819816185",2,2780,"07 April 2008","Stephenie Meyer","Romance",3,700116);
+        dataHandler.setPrice(book_3,-5);
+        assertEquals("The price shouldn't be negative",2780,book_3.getPrice());
     }
-
-    @Test
-    public void testIncrementPrice() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        this.handler.incrementPrice(book);
-        //TO DO: test the exception to be thrown
-        List<IBook> result=null;
-        try {
-            result = this.handler.findBooks("2551819816185");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(2781,result.get(0).getPrice());
-    }
-
-    @Test
-    public void testDecrementPrice() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        this.handler.decrementPrice(book);
-        //TO DO: test the exception to be thrown
-        List<IBook> result=null;
-        try {
-            result = this.handler.findBooks("2551819816185");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(2779,result.get(0).getPrice());
-    }
-
     @Test
     public void testSetStock() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        //TO DO: test the exception to be thrown
-        try {
-            handler.setStock(book,50);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        //TO DO: test the exception to be thrown
-        List<IBook> result=null;
-        try {
-            result = handler.findBooks("2551819816185");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(50,result.get(0).getStock());
+        IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
+        dataHandler.setStock(book_1,50);
+        assertEquals("The new stock should be 50",50,book_1.getStock());
+        IBook book_2 = new Book("Twilight","2510323255565",3,2730,"22 March 2005","Stephenie Meyer","Romance",4,700141);
+        dataHandler.setStock(book_2,-1);
+        assertEquals("The new quantity should not be negative",3,book_2.getStock());
     }
 
+    //Have to remind me of how should we carry out these test because they look.. awkward
     @Test
     public void testIncrementStock() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        handler.incrementStock(book);
-        //TO DO: test the exception to be thrown
-        List<IBook> result=null;
-        try {
-            result = handler.findBooks("2551819816185");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(3,result.get(0).getStock());
+        IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
+        assertNotNull("The book should not be null",book_1);
+        dataHandler.incrementStock(book_1);
+        assertEquals("The new stock should be 13",13,book_1.getStock());
     }
-
+    @Test
+    public void testDecrementStockException(){
+        try{
+            IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",0,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
+            dataHandler.decrementStock(book_1);
+            System.out.println("yes");
+        }
+        catch (NegativeStockException exception){
+            assertEquals("Stock cannot be less than 0.",exception.getMessage());
+        }
+    }
     @Test
     public void testDecrementStock() {
-        IBook book = new Book("Eclipse","2551819816185",2,2780,"07 April 2008"
-                ,"Stephenie Meyer","Romance",3,700116);
-        handler.decrementStock(book);
-        //TO DO: test the exception to be thrown
-        List<IBook> result=null;
-        try {
-            result = handler.findBooks("2551819816185");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        try{
+            IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
+            assertNotNull("The book should not be null",book_1);
+            dataHandler.decrementStock(book_1);
+            assertEquals("The new stock should be 11",11,book_1.getStock());
         }
-        Assert.assertEquals(1,result.get(0).getStock());
+        catch (NegativeStockException exception){
+            assertEquals("It should never reach the catch statement",exception.getMessage());
+        }
+
     }
 }

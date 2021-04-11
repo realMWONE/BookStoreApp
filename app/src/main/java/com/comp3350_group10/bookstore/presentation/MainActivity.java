@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
 }
 
     private void FillDropdownList() {
-        String[] items = new String[] {"By Title", "By Author", "By Genre"};
+        String[] items = new String[] {"By Relevancy", "By Title", "By Author", "By Genre"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
     }
@@ -164,9 +164,7 @@ public class MainActivity extends AppCompatActivity
                         (String)dropdown.getSelectedItem());
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
+            public void onNothingSelected(AdapterView<?> parentView) {}
         });
     }
 

@@ -84,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#009688"
+        android:enabled="false"
         android:onClick="changePwOnClick"
         android:text="@string/change_password"
         app:layout_constraintBottom_toTopOf="@+id/logout"

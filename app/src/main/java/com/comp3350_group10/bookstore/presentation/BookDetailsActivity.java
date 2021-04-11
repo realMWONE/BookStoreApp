@@ -7,7 +7,7 @@ import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.persistence.UserType;
 
 import com.comp3350_group10.bookstore.business.BookDataHandler;
-import com.comp3350_group10.bookstore.business.Notify;
+import com.comp3350_group10.bookstore.presentation.UI_Handler.Notify;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.BookDetailsFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;

@@ -15,6 +15,7 @@ import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

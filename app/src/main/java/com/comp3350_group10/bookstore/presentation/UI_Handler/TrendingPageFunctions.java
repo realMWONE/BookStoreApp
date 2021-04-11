@@ -27,6 +27,7 @@ public class TrendingPageFunctions {
     private static int imageHeight = 0;
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
+    private static IBookDataHandler bookHandler = new BookDataHandler();
 
     public static void FillTrendingPage(TableLayout table, Context context) {
         setHeights(context);
@@ -86,13 +87,12 @@ public class TrendingPageFunctions {
         table.addView(row);
 
         AddImagesToRow(context, layout, searchTerm);
-
         scrollView.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
     }
 
     @SuppressLint("ResourceType")
     private static void AddImagesToRow(Context context, LinearLayout layout, String searchTerm) {
-        IBookDataHandler bookHandler = new BookDataHandler();
+
         List<IBook> books = bookHandler.findBooks(searchTerm, true, "Title");
 
         for (IBook book : books) {

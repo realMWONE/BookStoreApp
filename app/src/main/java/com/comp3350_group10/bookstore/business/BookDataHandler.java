@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class BookDataHandler implements IBookDataHandler {
     private IBookDatabase bookDatabase;
     public static IBook currentBook;
+    private List<IBook> allBooks = null;
 
     public BookDataHandler(){
         bookDatabase = Service.setupBookDatabase();
@@ -42,23 +43,38 @@ public class BookDataHandler implements IBookDataHandler {
     public List<IBook> findBooks(String keyword, boolean asc, String searchBy) {
         List<String> wordList = splitWords(keyword); //splits keywords
 
-        List<IBook> bookList = new ArrayList<>();   //stores search result
+        //bookDatabase.getBooks() is slow, so only do it the first time.
+        if (allBooks == null) allBooks = bookDatabase.getBooks();
+        List<IBook> bookList = new ArrayList<>(); //stores search result
 
         //search database with each keyword and combining the lists
-        for(String word: wordList){
-            bookList.addAll(bookDatabase.findBook(word));
+        for (IBook book : allBooks) {
+            boolean matches = true;
+            String title = book.getBookName().toLowerCase();
+            String author = book.getBookAuthor().toLowerCase();
+            String genre = book.getGenre().toLowerCase();
+
+            for (String word : wordList) {
+                word = word.toLowerCase();
+
+                if (!title.contains(word) && !author.contains(word) && !genre.contains(word)) {
+                    matches = false;
+                    break;
+                }
+            }
+
+            if (matches) bookList.add(book);
         }
 
         //sort the booklist by the appropriate term
-        if (searchBy.contains("Relevancy")) sortByRelevancy(bookList);
-        else if (searchBy.contains("Title")) sortTitleHelper(bookList);
+        if (searchBy.contains("Title")) sortTitleHelper(bookList);
         else if (searchBy.contains("Author")) sortAuthorHelper(bookList);
         if (searchBy.contains("Genre")) sortGenreHelper(bookList);
+
         //reverse order if asc=false
         if (!asc) Collections.reverse(bookList);
-        List<IBook> listWithoutDuplicates = bookList.stream().distinct().collect(Collectors.toList());
 
-        return listWithoutDuplicates;
+        return bookList;
     }
 
     //function to set the target book to the given price
@@ -102,32 +118,32 @@ public class BookDataHandler implements IBookDataHandler {
     //Takes a list of books with duplication, the more duplicated the book the
     //Sort the given list of books by how many words in its title matches with the given word list
     //And gets rid of the duplicated elements
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private List<IBook> sortByRelevancy(List<IBook> bookList){
-        //relevancy is determined by # of times the book appeared in search result
-        //<Key : Value> = <IBook book : Integer relevancy>
-        HashMap<IBook,Integer> map = new HashMap<>();
-        for (IBook book : bookList) {
-            if (!map.containsKey(book)) {
-                map.put(book, 1);
-            }
-            else{
-                map.put(book, map.get(book)+1);
-            }
-        }
-
-        //descending sort by relevancy
-        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
-        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
-
-        //copies the sorted list to list of books to return
-        List<IBook> result = new ArrayList<>();
-        for(Entry<IBook, Integer> entries: sortedBookList){
-            result.add(entries.getKey());
-        }
-
-        return result;
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private List<IBook> sortByRelevancy(List<IBook> bookList){
+//        //relevancy is determined by # of times the book appeared in search result
+//        //<Key : Value> = <IBook book : Integer relevancy>
+//        HashMap<IBook,Integer> map = new HashMap<>();
+//        for (IBook book : bookList) {
+//            if (!map.containsKey(book)) {
+//                map.put(book, 1);
+//            }
+//            else{
+//                map.put(book, map.get(book)+1);
+//            }
+//        }
+//
+//        //descending sort by relevancy
+//        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
+//        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
+//
+//        //copies the sorted list to list of books to return
+//        List<IBook> result = new ArrayList<>();
+//        for(Entry<IBook, Integer> entries: sortedBookList){
+//            result.add(entries.getKey());
+//        }
+//
+//        return result;
+//    }
 
 
     // splits the given string, ignores non-ascii words

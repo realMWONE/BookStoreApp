@@ -67,4 +67,5 @@
     <string name="set">Set</string>
     <string name="plus_sign">+</string>
     <string name="stock_amount">Stock Amount</string>
+    <string name="user_message">User message</string>
 </resources>

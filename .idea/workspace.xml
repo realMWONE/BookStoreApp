@@ -38,7 +38,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Removed special characters in BS.script">
+    <list default="true" id="5d704228-095a-4717-add3-f6e77c52699e" name="Default Changelist" comment="Merged GUI and dev and fixed merge conflict.">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -49,13 +49,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/BookDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IBookDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/business/IBookDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UI_Handler/ButtonFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/comp3350_group10/bookstore/presentation/UserSettingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/settings_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/settings_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -404,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618106048000</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Merged GUI and dev and fixed merge conflict.">
+      <created>1618107892332</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1618107892332</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +460,8 @@
     <MESSAGE value="Made viewPopup a static method, made create user show error messages  &#10;  &#10;- Refactored viewPopup() to Messages class as a static method  &#10;- Modified UserDataHandler, ButtonFunctions and CreateUserActivity to catch the exception and show the error message." />
     <MESSAGE value="Made popup for BookDetailsActivity  &#10;  &#10;- changeStock, changePrice now have popup window notifying user that the change was successful.&#10;- decrementStock now have popup alert when user try to decrement a book with empty stock&#10;- Created new exception class NegativeStockException&#10;- Commented BookDetailsActivity" />
     <MESSAGE value="Removed special characters in BS.script" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed special characters in BS.script" />
+    <MESSAGE value="Merged GUI and dev and fixed merge conflict." />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged GUI and dev and fixed merge conflict." />
   </component>
   <component name="WindowStateProjectService">
     <state x="433" y="98" width="1243" height="896" key="#PSD" timestamp="1617243634191">
@@ -494,10 +501,10 @@
     <state x="93" y="50" width="1147" height="557" key="AVDManager/0.0.1280.689@0.0.1280.689" timestamp="1617117406783" />
     <state x="140" y="76" width="1720" height="840" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1617331378835" />
     <state x="123" y="100" width="1505" height="828" key="AVDManager/0.25.1680.1025@0.25.1680.1025" timestamp="1617492078265" />
-    <state x="807" y="334" key="AndroidCreateXmlResourceDialog" timestamp="1617249526996">
+    <state x="807" y="334" key="AndroidCreateXmlResourceDialog" timestamp="1618117048555">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
-    <state x="807" y="334" key="AndroidCreateXmlResourceDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617249526996" />
+    <state x="807" y="334" key="AndroidCreateXmlResourceDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1618117048555" />
     <state x="640" y="288" key="AndroidProcessChooserDialog" timestamp="1617291750654">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
@@ -510,29 +517,29 @@
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="103" y="102" key="DiffContextDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290407621" />
-    <state width="1638" height="126" key="GridCell.Tab.0.bottom" timestamp="1618107340898">
+    <state width="1638" height="126" key="GridCell.Tab.0.bottom" timestamp="1618108312254">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
-    <state width="1638" height="126" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618107340898" />
+    <state width="1638" height="126" key="GridCell.Tab.0.bottom/0.25.1680.1025@0.25.1680.1025" timestamp="1618108312254" />
     <state width="1878" height="59" key="GridCell.Tab.0.bottom/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617913305086" />
-    <state width="1638" height="126" key="GridCell.Tab.0.center" timestamp="1618107340897">
+    <state width="1638" height="126" key="GridCell.Tab.0.center" timestamp="1618108312254">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
-    <state width="1638" height="126" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618107340897" />
+    <state width="1638" height="126" key="GridCell.Tab.0.center/0.25.1680.1025@0.25.1680.1025" timestamp="1618108312254" />
     <state width="1878" height="59" key="GridCell.Tab.0.center/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617913305085" />
-    <state width="1638" height="126" key="GridCell.Tab.0.left" timestamp="1618107340897">
+    <state width="1638" height="126" key="GridCell.Tab.0.left" timestamp="1618108312254">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
-    <state width="1638" height="126" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618107340897" />
+    <state width="1638" height="126" key="GridCell.Tab.0.left/0.25.1680.1025@0.25.1680.1025" timestamp="1618108312254" />
     <state width="1878" height="59" key="GridCell.Tab.0.left/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617913305084" />
-    <state width="1638" height="126" key="GridCell.Tab.0.right" timestamp="1618107340897">
+    <state width="1638" height="126" key="GridCell.Tab.0.right" timestamp="1618108312254">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state width="1877" height="225" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617496046273" />
-    <state width="1638" height="126" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618107340897" />
+    <state width="1638" height="126" key="GridCell.Tab.0.right/0.25.1680.1025@0.25.1680.1025" timestamp="1618108312254" />
     <state width="1878" height="59" key="GridCell.Tab.0.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617913305085" />
     <state width="1638" height="315" key="GridCell.Tab.1.bottom" timestamp="1617293576705">
       <screen x="0" y="25" width="1920" height="1055" />
@@ -554,28 +561,28 @@
     </state>
     <state width="1877" height="722" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1616562852454" />
     <state width="1638" height="315" key="GridCell.Tab.1.right/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617293576705" />
-    <state x="41" y="110" width="1464" height="848" key="MergeDialog" timestamp="1618106445365">
+    <state x="41" y="110" width="1464" height="848" key="MergeDialog" timestamp="1618107968556">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065196345" />
-    <state x="41" y="110" width="1464" height="848" key="MergeDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618106445365" />
+    <state x="41" y="110" width="1464" height="848" key="MergeDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618107968556" />
     <state x="184" y="112" key="MergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732553186" />
-    <state x="370" y="182" key="MultipleFileMergeDialog" timestamp="1618106445407">
+    <state x="370" y="182" key="MultipleFileMergeDialog" timestamp="1618107973580">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="282" y="106" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236517902" />
-    <state x="370" y="182" key="MultipleFileMergeDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618106445407" />
+    <state x="370" y="182" key="MultipleFileMergeDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618107973580" />
     <state x="423" y="187" key="MultipleFileMergeDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732558723" />
     <state x="541" y="244" key="RollbackChangesDialog" timestamp="1617755975203">
       <screen x="0" y="25" width="1920" height="1055" />
     </state>
     <state x="541" y="216" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617327685413" />
     <state x="541" y="244" key="RollbackChangesDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617755975203" />
-    <state x="483" y="275" key="Vcs.Push.Dialog.v2" timestamp="1618107220137">
+    <state x="483" y="275" key="Vcs.Push.Dialog.v2" timestamp="1618108054496">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1617330503493" />
-    <state x="483" y="275" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618107220137" />
+    <state x="483" y="275" key="Vcs.Push.Dialog.v2/0.25.1680.1025@0.25.1680.1025" timestamp="1618108054496" />
     <state x="552" y="282" key="Vcs.Push.Dialog.v2/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617755985512" />
     <state width="681" height="1038" key="com.android.tools.idea.apk.viewer.dex.ShowDisassemblyAction" timestamp="1617131153808">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -601,19 +608,20 @@
     <state x="665" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1617065188557" />
     <state x="582" y="254" key="git4idea.branch.GitSmartOperationDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618018143254" />
     <state x="665" y="261" key="git4idea.branch.GitSmartOperationDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617290121670" />
-    <state x="344" y="223" key="git4idea.merge.GitPullDialog" timestamp="1618106058643">
+    <state x="344" y="223" key="git4idea.merge.GitPullDialog" timestamp="1618111855869">
       <screen x="0" y="25" width="1680" height="1025" />
     </state>
     <state x="262" y="133" key="git4idea.merge.GitPullDialog/0.0.1280.689@0.0.1280.689" timestamp="1617236431877" />
-    <state x="344" y="223" key="git4idea.merge.GitPullDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618106058643" />
+    <state x="344" y="223" key="git4idea.merge.GitPullDialog/0.25.1680.1025@0.25.1680.1025" timestamp="1618111855869" />
     <state x="393" y="229" key="git4idea.merge.GitPullDialog/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617732481997" />
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension" timestamp="1616545510528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="790" y="373" width="543" height="294" key="psd.add.jar.dependency.panel.dimension/0.0.1920.1040@0.0.1920.1040" timestamp="1616545510528" />
-    <state x="542" y="253" width="670" height="676" key="search.everywhere.popup" timestamp="1617756189746">
-      <screen x="0" y="25" width="1920" height="1055" />
+    <state x="474" y="247" width="670" height="657" key="search.everywhere.popup" timestamp="1618108288029">
+      <screen x="0" y="25" width="1680" height="1025" />
     </state>
+    <state x="474" y="247" width="670" height="657" key="search.everywhere.popup/0.25.1680.1025@0.25.1680.1025" timestamp="1618108288029" />
     <state x="542" y="253" width="670" height="676" key="search.everywhere.popup/0.25.1920.1055/1920.25.1680.1025@0.25.1920.1055" timestamp="1617756189746" />
   </component>
 </project>

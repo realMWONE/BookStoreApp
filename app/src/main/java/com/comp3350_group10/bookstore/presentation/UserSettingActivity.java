@@ -24,24 +24,37 @@ public class UserSettingActivity extends AppCompatActivity {
     private EditText oldPassword;
     private EditText newPassword;
     private EditText confirmNewPassword;
+    private TextView userMessage;
     private Button changePwButton;
     private IButtonFunctions uiButtonFunctions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        uiButtonFunctions = new ButtonFunctions();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
+        //make sure user is logged in
+        if(UserDataHandler.currentUser != null) {
+            uiButtonFunctions = new ButtonFunctions();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.settings_activity);
 
-        oldPassword = findViewById(R.id.oldPassword);
-        newPassword = findViewById(R.id.newPassword);
-        confirmNewPassword = findViewById(R.id.confirmNewPassword);
-        changePwButton = findViewById(R.id.user_change_password);
-        //if not manager, don't show create user button
-        if(UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager)
-            findViewById(R.id.create_user).setVisibility(View.GONE);
+            oldPassword = findViewById(R.id.oldPassword);
+            newPassword = findViewById(R.id.newPassword);
+            confirmNewPassword = findViewById(R.id.confirmNewPassword);
+            changePwButton = findViewById(R.id.user_change_password);
+            userMessage = findViewById(R.id.user_message);
 
-        AddTextChangedListeners();
+            userMessage.setText("You are logged in as:\n" + UserDataHandler.currentUser.getRealName() + ", " + UserDataHandler.currentUser.getUserType());
+            //if not manager, don't show create user button
+            if (UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager)
+                findViewById(R.id.create_user).setVisibility(View.GONE);
+
+            AddTextChangedListeners();
+        }
+
+        //just in case... show error message and return to home
+        else{
+            finish();
+            Messages.viewPopUp("Thou shall not be here", this);
+        }
     }
 
     public void changePwOnClick(View v){
@@ -63,7 +76,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
     public void logoutOnClick(View v){
         uiButtonFunctions.LogoutButtonPressed();
-        //TODO: pop up saying logout successful then go back to main activity
+        Messages.viewPopUp("Logout successful", this);
         finish();
     }
 
@@ -71,6 +84,7 @@ public class UserSettingActivity extends AppCompatActivity {
     {
         SwitchActivity.SwitchTo(CreateUserActivity.class, this);
     }
+
     private void EnableChangePwButton(){ changePwButton.setEnabled(!oldPassword.getText().toString().equals("") &&
             !newPassword.getText().toString().equals("") && !confirmNewPassword.getText().toString().equals("")); }
 

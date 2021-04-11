@@ -29,7 +29,7 @@ INSERT INTO BOOKS VALUES('Midnight Sun','2510018982862',3,2230,'02 May 2014','St
 INSERT INTO BOOKS VALUES('The Lord of The Rings: The Fellowship of the Ring','2500186257772',5,2030,'10 March 2011','J.R.R.Tolkien','Novel',8,700077)
 INSERT INTO BOOKS VALUES('The Lord of The Rings: The Two Towers','2500114562233',12,2030,'15 September 2005','J.R.R.Tolkien','Novel',10,700079)
 INSERT INTO BOOKS VALUES('The Book of Lost Tales','2500885265433',13, 2030,'19 October 2006','J.R.R.Tolkien','Novel',4,700130)
-INSERT INTO BOOKS VALUES('The Children of Húrin','2369852102742',2,2030,'25 July 2012','J.R.R.Tolkien','Novel',69,700127)
+INSERT INTO BOOKS VALUES('The Children of Hurin','2369852102742',2,2030,'25 July 2012','J.R.R.Tolkien','Novel',69,700127)
 INSERT INTO USERS VALUES('Daniel','duy.than@gihot.com','123456789','EMPLOYEE')
 INSERT INTO USERS VALUES('Harshal','Harshal@gmail.com','111111111','MANAGER')
 INSERT INTO USERS VALUES('Matt','Matt@myumanitoba.ca','222222222','EMPLOYEE')

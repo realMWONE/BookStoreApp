@@ -31,7 +31,7 @@
             android:layout_height="45dp"
             android:layout_weight="0"
             android:onClick="onSortButtonClicked"
-            android:text="Asc"
+            android:text="ASC"
             tools:visibility="visible" />
 
     </LinearLayout>

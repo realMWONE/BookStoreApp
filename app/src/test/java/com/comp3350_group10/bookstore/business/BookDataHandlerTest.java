@@ -23,8 +23,6 @@ public class BookDataHandlerTest extends TestCase {
         super.setUp();
         IBookDatabase databaseStub = new BookDatabaseStub();
         this.dataHandler = new BookDataHandler(databaseStub);
-
-        //we will use all the functions available in the BookDatabaseStub() to test
     }
     @After
     public void tearDown() throws Exception {

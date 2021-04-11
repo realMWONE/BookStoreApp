@@ -65,15 +65,14 @@ public class MainActivity extends AppCompatActivity
 
         //Populate the trending table with categories
         FillTrendingTable();
-
         FillDropdownList();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
+
     protected void onDestroy(){
         super.onDestroy();
     }
@@ -199,8 +198,7 @@ public class MainActivity extends AppCompatActivity
         SwitchActivity.SwitchTo(LoginActivity.class,this);
     }
 
-    public void onLogoutButtonClicked(MenuItem item)
-    {
+    public void onLogoutButtonClicked(MenuItem item) {
         uIButtonFunctions.LogoutButtonPressed();
         Messages.viewPopUp("Logout successful", this);
 

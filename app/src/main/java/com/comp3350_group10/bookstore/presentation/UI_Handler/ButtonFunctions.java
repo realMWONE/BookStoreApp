@@ -59,8 +59,6 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
-        //SortResults(results, main);
-
         if (results != null) {
             for (IBook book : results) {
                 TableRow row = CreateTableRow(context);

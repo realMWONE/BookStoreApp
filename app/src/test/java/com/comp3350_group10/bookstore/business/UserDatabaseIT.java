@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 public class UserDatabaseIT extends TestCase {
 
@@ -25,7 +26,7 @@ public class UserDatabaseIT extends TestCase {
     private File tempDB;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
         final IUserDatabase persistence = new UserDatabase(this.tempDB.getAbsolutePath().replace(".script",""));
         this.userDataHandler = new UserDataHandler(persistence);
@@ -56,8 +57,8 @@ public class UserDatabaseIT extends TestCase {
         catch (DifferentPasswordException exception){
             assertEquals("it shouldn't reach the catch statement",exception.getMessage());
         }
-
     }
+
     //throw exception for id not found
     @Test
     public void testLogInThrowUserNotFoundException(){

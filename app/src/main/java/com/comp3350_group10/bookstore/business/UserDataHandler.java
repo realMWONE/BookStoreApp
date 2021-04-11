@@ -16,14 +16,13 @@ public class UserDataHandler implements IUserDataHandler {
     //Default constructor that calls on Service method to connect to database
     public UserDataHandler() {
         userDatabase = Service.setupUserDatabase();
-//        userDatabase = new FakeUserDatabase();
     }
     public UserDataHandler(IUserDatabase userDatabase){
         this.userDatabase=userDatabase;
     }
 
 
-    public UserDataHandler(User currentUser) {
+    public UserDataHandler(IUser currentUser) {
         UserDataHandler.currentUser = currentUser;
     }
 

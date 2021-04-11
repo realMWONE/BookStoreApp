@@ -113,10 +113,9 @@ public class BookDatabaseIT {
             final List<IBook> bookList_1 = dataHandler.findBooks("Eclipse");
             book = bookList_1.get(0);
             //current stock is 2
-            dataHandler.decrementStock(book); // =1
-            dataHandler.decrementStock(book); // =0
-            dataHandler.decrementStock(book); // = -1, throw exception here
-            //System.out.println("yes");
+            dataHandler.decrementStock(book);
+            dataHandler.decrementStock(book);
+            dataHandler.decrementStock(book);
         }
         catch (NegativeStockException exception){
             assertEquals("Stock cannot be less than 0.",exception.getMessage());

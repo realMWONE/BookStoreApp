@@ -22,6 +22,4 @@ public class Service {
         }
         return userPersistence;
     }
-
-
 }

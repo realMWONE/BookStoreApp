@@ -46,7 +46,7 @@ public class BookDatabaseIT {
     public void testFindBooks(){
         final List<IBook> bookList;
         final IBook book;
-        bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets");
+        bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets", true, "Title");
         book = bookList.get(0);
         assertNotNull("The book entered should not be null", bookList);
         assertTrue(book.getBookName().equals(bookList.get(0).getBookName()));
@@ -58,7 +58,7 @@ public class BookDatabaseIT {
     public void testSetBookPrice(){
         //price >0, without exception throw
         final IBook book;
-        final List<IBook> bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets");
+        final List<IBook> bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets", true, "Title");
         book = bookList.get(0);
         dataHandler.setPrice(book, 3000);
         assertNotNull("The book entered should not be null", bookList);
@@ -67,7 +67,7 @@ public class BookDatabaseIT {
         
         //if price < 0, ADDED BY DANIEL
         final IBook book_1;
-        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code", true, "Title");
         book_1 = bookList_1.get(0);
         dataHandler.setPrice(book_1, -1);
         assertNotNull("The book entered should not be null", bookList_1);
@@ -77,7 +77,7 @@ public class BookDatabaseIT {
     @Test
     public void testSetBookStock(){
         final IBook book;
-        final List<IBook> bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets");
+        final List<IBook> bookList = dataHandler.findBooks("Harry Potter and the Chamber of Secrets", true, "Title");
         book  = bookList.get(0);
         dataHandler.setStock(book, 2);
         assertNotNull("The book entered should not be null", bookList);
@@ -85,7 +85,7 @@ public class BookDatabaseIT {
         System.out.println(book.getStock());
         //if stock < 0, ADDED BY DANIEL
         final IBook book_1;
-        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code", true, "Title");
         book_1 = bookList_1.get(0);
         dataHandler.setStock(book_1, -1);
         assertNotNull("The book entered should not be null", bookList_1);
@@ -95,7 +95,7 @@ public class BookDatabaseIT {
     @Test
     public void testIncrementStock(){
         final IBook book;
-        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+        final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code", true, "Title");
         book = bookList_1.get(0);
         dataHandler.incrementStock(book);
         assertNotNull("The book entered should not be null", bookList_1);
@@ -107,7 +107,7 @@ public class BookDatabaseIT {
     public void testDecrementStock(){
         try{
             final IBook book;
-            final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code");
+            final List<IBook> bookList_1 = dataHandler.findBooks("The Da Vinci Code", true, "Title");
             book = bookList_1.get(0);
             dataHandler.decrementStock(book);
             assertNotNull("The book entered should not be null", bookList_1);
@@ -123,7 +123,7 @@ public class BookDatabaseIT {
         try{
             //Eclipse
             final IBook book;
-            final List<IBook> bookList_1 = dataHandler.findBooks("Eclipse");
+            final List<IBook> bookList_1 = dataHandler.findBooks("Eclipse", true, "Title");
             book = bookList_1.get(0);
             //current stock is 2
             dataHandler.decrementStock(book);

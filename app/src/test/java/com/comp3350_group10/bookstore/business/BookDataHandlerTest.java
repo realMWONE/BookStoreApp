@@ -30,11 +30,11 @@ public class BookDataHandlerTest extends TestCase {
     }
     @Test
     public void testFindBooks() {
-        List<IBook> result_1 = dataHandler.findBooks("The");
+        List<IBook> result_1 = dataHandler.findBooks("The", true, "Title");
         assertEquals("there should be 1 results",1,result_1.size());
-        List<IBook> result_2 = dataHandler.findBooks("Harry");
+        List<IBook> result_2 = dataHandler.findBooks("Harry", true, "Title");
         assertEquals("there should be 2 results",2,result_2.size());
-        List<IBook> result_3 = dataHandler.findBooks("Diary of Wimpy Kid");
+        List<IBook> result_3 = dataHandler.findBooks("Diary of Wimpy Kid", true, "Title");
         assertEquals("there should be 2 results",2,result_3.size());
     }
     @Test

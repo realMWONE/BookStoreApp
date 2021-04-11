@@ -69,7 +69,7 @@ public class StockChangeTest
 
         int newStockAmount = book.getStock();
 
-        assert(newStockAmount == stockAmount-1);
+        assertTrue("Reducing the stock with the Sale button has failed.",newStockAmount == stockAmount-1);
     }
 
     @Test
@@ -89,6 +89,6 @@ public class StockChangeTest
         IBookDataHandler bookHandler = new BookDataHandler();
         IBook book = bookHandler.findBooks("Harry Potter and the Chamber of Secrets", true, "Title").get(0);
 
-        assert(book.getStock() == 100);
+        assertTrue("Setting the stock with the manager controls has failed.", book.getStock() == 100);
     }
 }

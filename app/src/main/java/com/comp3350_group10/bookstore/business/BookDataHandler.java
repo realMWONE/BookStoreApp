@@ -28,7 +28,7 @@ public class BookDataHandler implements IBookDataHandler {
         bookDatabase = Service.setupBookDatabase();
     }
 
-    //Added by DUY for testing this class
+    //Dependency injection for testing
     public BookDataHandler(IBookDatabase bookDatabase){
         this.bookDatabase = bookDatabase;
     }
@@ -57,6 +57,7 @@ public class BookDataHandler implements IBookDataHandler {
             for (String word : wordList) {
                 word = word.toLowerCase();
 
+                //rejects books that are not exact match
                 if (!title.contains(word) && !author.contains(word) && !genre.contains(word)) {
                     matches = false;
                     break;
@@ -167,31 +168,16 @@ public class BookDataHandler implements IBookDataHandler {
 
     private void sortTitleHelper(List<IBook> bookList) {
 
-        Collections.sort(bookList, new Comparator<IBook>() {
-            @Override
-            public int compare(IBook o1, IBook o2) {
-                return o1.getBookName().compareTo(o2.getBookName());
-            }
-        });
+        Collections.sort(bookList, (o1, o2) -> o1.getBookName().compareTo(o2.getBookName()));
     }
 
     private void sortAuthorHelper(List<IBook> bookList) {
 
-        Collections.sort(bookList, new Comparator<IBook>() {
-            @Override
-            public int compare(IBook o1, IBook o2) {
-                return o1.getBookAuthor().compareTo(o2.getBookAuthor());
-            }
-        });
+        Collections.sort(bookList, (o1, o2) -> o1.getBookAuthor().compareTo(o2.getBookAuthor()));
     }
 
     private void sortGenreHelper(List<IBook> bookList) {
 
-        Collections.sort(bookList, new Comparator<IBook>() {
-            @Override
-            public int compare(IBook o1, IBook o2) {
-                return o1.getGenre().compareTo(o2.getGenre());
-            }
-        });
+        Collections.sort(bookList, (o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
     }
 }

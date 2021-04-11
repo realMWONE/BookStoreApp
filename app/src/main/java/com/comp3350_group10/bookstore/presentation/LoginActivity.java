@@ -1,9 +1,6 @@
 package com.comp3350_group10.bookstore.presentation;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -11,8 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.comp3350_group10.bookstore.R;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;

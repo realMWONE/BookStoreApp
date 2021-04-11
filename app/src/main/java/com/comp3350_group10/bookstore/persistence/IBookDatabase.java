@@ -4,6 +4,8 @@
 
 package com.comp3350_group10.bookstore.persistence;
 
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
+
 import java.util.List;
 
 public interface IBookDatabase

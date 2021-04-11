@@ -153,7 +153,7 @@ public class BookDatabase implements IBookDatabase {
 
 
     @Override
-    public List<IBook> getBooks() {
+    public List<IBook> getBooks() throws PersistenceException{
         List<IBook> books = new ArrayList<>();
         try(Connection c = connection()) {
             Statement stmt = c.createStatement();

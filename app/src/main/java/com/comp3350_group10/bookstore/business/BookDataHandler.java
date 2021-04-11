@@ -10,11 +10,13 @@ import com.comp3350_group10.bookstore.persistence.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 
 public class BookDataHandler implements IBookDataHandler {
@@ -37,8 +39,7 @@ public class BookDataHandler implements IBookDataHandler {
      * return list of found books
      * */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<IBook> findBooks(String keyword) {
-
+    public List<IBook> findBooks(String keyword, boolean asc, String searchBy) {
         List<String> wordList = splitWords(keyword); //splits keywords
 
         List<IBook> bookList = new ArrayList<>();   //stores search result
@@ -48,10 +49,15 @@ public class BookDataHandler implements IBookDataHandler {
             bookList.addAll(bookDatabase.findBook(word));
         }
 
-        //sort the booklist by relevancy (times it appeared in search result) and remove duplication
-        bookList = sortByRelevancy(bookList);
+        //sort the booklist by the appropriate term
+        if (searchBy.contains("Title")) sortTitleHelper(bookList);
+        else if (searchBy.contains("Author")) sortAuthorHelper(bookList);
+        if (searchBy.contains("Genre")) sortGenreHelper(bookList);
+        //reverse order if asc=false
+        if (!asc) Collections.reverse(bookList);
+        List<IBook> listWithoutDuplicates = bookList.stream().distinct().collect(Collectors.toList());
 
-        return bookList;
+        return listWithoutDuplicates;
     }
 
     //function to set the target book to the given price
@@ -82,7 +88,7 @@ public class BookDataHandler implements IBookDataHandler {
     //function to decrement the stock by 1
     public void decrementStock(IBook target) throws NegativeStockException {
         //only decrease if stock does not go below 0
-        if(target.getStock()>0)
+        if(target.getStock() > 0)
             setStock(target, target.getStock() - 1);
 
         //throw exception and show popup if it goes below
@@ -96,7 +102,7 @@ public class BookDataHandler implements IBookDataHandler {
     //Sort the given list of books by how many words in its title matches with the given word list
     //And gets rid of the duplicated elements
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<IBook> sortByRelevancy(List<IBook> bookList){
+    private List<IBook> sortByRelevancy(List<IBook> bookList){
         //relevancy is determined by # of times the book appeared in search result
         //<Key : Value> = <IBook book : Integer relevancy>
         HashMap<IBook,Integer> map = new HashMap<>();
@@ -142,9 +148,7 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-    private void sortTitleAscHelper() {
-
-        List<IBook> bookList = bookDatabase.getBooks();
+    private void sortTitleHelper(List<IBook> bookList) {
 
         Collections.sort(bookList, new Comparator<IBook>() {
             @Override
@@ -152,25 +156,9 @@ public class BookDataHandler implements IBookDataHandler {
                 return o1.getBookName().compareTo(o2.getBookName());
             }
         });
-
     }
 
-    private void sortTitleDescHelper() {
-
-        List<IBook> bookList = bookDatabase.getBooks();
-
-        Collections.sort(bookList, new Comparator<IBook>() {
-            @Override
-            public int compare(IBook o1, IBook o2) {
-                return o2.getBookName().compareTo(o1.getBookName());
-            }
-        });
-
-    }
-
-    private void sortAuthorAscHelper() {
-
-        List<IBook> bookList = bookDatabase.getBooks();
+    private void sortAuthorHelper(List<IBook> bookList) {
 
         Collections.sort(bookList, new Comparator<IBook>() {
             @Override
@@ -178,25 +166,9 @@ public class BookDataHandler implements IBookDataHandler {
                 return o1.getBookAuthor().compareTo(o2.getBookAuthor());
             }
         });
-
     }
 
-    private void sortAuthorDescHelper() {
-
-        List<IBook> bookList = bookDatabase.getBooks();
-
-        Collections.sort(bookList, new Comparator<IBook>() {
-            @Override
-            public int compare(IBook o1, IBook o2) {
-                return o2.getBookAuthor().compareTo(o1.getBookAuthor());
-            }
-        });
-
-    }
-
-    private void sortGenreHelper() {
-
-        List<IBook> bookList = bookDatabase.getBooks();
+    private void sortGenreHelper(List<IBook> bookList) {
 
         Collections.sort(bookList, new Comparator<IBook>() {
             @Override
@@ -204,6 +176,5 @@ public class BookDataHandler implements IBookDataHandler {
                 return o1.getGenre().compareTo(o2.getGenre());
             }
         });
-
     }
 }

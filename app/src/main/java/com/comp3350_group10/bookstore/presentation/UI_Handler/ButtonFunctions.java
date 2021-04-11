@@ -42,11 +42,15 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, String order, String searchBy) {
+    public void SearchButtonPressed(String keyword, TableLayout table, Context context, MainActivity main, boolean asc, String searchBy) {
+        //Prevent previous searches from persisting
         ClearResults(table);
 
         if (keyword.equals("")) main.FillTrendingTable();
-        else PopulateResults(bookHandler.findBooks(keyword), table, context, main);
+        else {
+            List<IBook> results = bookHandler.findBooks(keyword, asc, searchBy);
+            PopulateResults(results, table, context, main);
+        }
     }
 
     private void ClearResults(TableLayout table) {
@@ -55,7 +59,7 @@ public class ButtonFunctions implements IButtonFunctions
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<IBook> PopulateResults(List<IBook> results, TableLayout table, Context context, MainActivity main) {
-        SortResults(results, main);
+        //SortResults(results, main);
 
         if (results != null) {
             for (IBook book : results) {
@@ -72,20 +76,18 @@ public class ButtonFunctions implements IButtonFunctions
         return results;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void SortResults(List<IBook> results, MainActivity main) {
-        String sortBy = main.getSortBy();
-        if (sortBy.contains("Relevancy")){}
-
-        else if (sortBy.contains("Title"))
-            results.sort(Comparator.comparing(IBook::getBookName));
-        else if (sortBy.contains("Author"))
-            results.sort(Comparator.comparing(IBook::getBookAuthor));
-        else results.sort(Comparator.comparing(IBook::getGenre));
-
-        if (main.getOrderString().toLowerCase().equals("desc"))
-            Collections.reverse(results);
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void SortResults(List<IBook> results, MainActivity main) {
+//        String sortBy = main.getSortBy();
+//        if (sortBy.contains("Title"))
+//            results.sort(Comparator.comparing(IBook::getBookName));
+//        else if (sortBy.contains("Author"))
+//            results.sort(Comparator.comparing(IBook::getBookAuthor));
+//        else results.sort(Comparator.comparing(IBook::getGenre));
+//
+//        if (main.getOrderString().toLowerCase().equals("desc"))
+//            Collections.reverse(results);
+//    }
 
     private void OpenBookDetailsActivity(Context context, IBook book, MainActivity main) {
         Intent intent = new Intent(context, BookDetailsActivity.class);
@@ -108,7 +110,7 @@ public class ButtonFunctions implements IButtonFunctions
         df.setMaximumFractionDigits(2);
         df.setMinimumFractionDigits(2);
 
-        text.setText(book.getBookName() + "\n" + book.getBookAuthor() + "\n" + book.getBookIsbn() + "\n\n$" + df.format(price));
+        text.setText(book.getBookName() + "\n" + book.getBookAuthor() + "\n" + book.getGenre() + "\n" + book.getBookIsbn() + "\n\n$" + df.format(price));
 
         return text;
     }
@@ -125,8 +127,6 @@ public class ButtonFunctions implements IButtonFunctions
         userHandler.logIn(email, password);
     }
 
-
-
     @Override
     public void LogoutButtonPressed()
     {
@@ -139,8 +139,6 @@ public class ButtonFunctions implements IButtonFunctions
     {
          return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
-
-
 
     @Override
     public void IncrementStock(TextView text)
@@ -163,8 +161,6 @@ public class ButtonFunctions implements IButtonFunctions
     public void SetPrice(int newPrice) {
         bookHandler.setPrice(BookDataHandler.currentBook, newPrice);
     }
-
-
 
     @Override
     public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException{

@@ -10,7 +10,7 @@ public interface IBookDataHandler {
 
     //function that will find and return a list of books
     // based on what user searched(title/author/ISBN)
-    List<IBook> findBooks(String keyword);
+    List<IBook> findBooks(String keyword, boolean asc, String sortBy);
 
     //function to change the price of a particular book
     void setPrice(IBook target, int price);

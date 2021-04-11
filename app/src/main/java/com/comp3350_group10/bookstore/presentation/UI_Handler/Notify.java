@@ -1,4 +1,4 @@
-package com.comp3350_group10.bookstore.business;
+package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.comp3350_group10.bookstore.R;
+import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.persistence.IBook;
 import java.util.ArrayList;
 import java.util.List;

@@ -27,7 +27,7 @@ public class TrendingPageFunctions {
     private static int imageHeight = 0;
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
-    private static IBookDataHandler bookHandler = new BookDataHandler();
+    private static final IBookDataHandler bookHandler = new BookDataHandler();
 
     public static void FillTrendingPage(TableLayout table, Context context) {
         setHeights(context);

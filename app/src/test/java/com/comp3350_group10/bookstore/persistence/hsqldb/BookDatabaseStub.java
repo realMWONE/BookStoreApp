@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BookDatabaseStub implements IBookDatabase {
-    private List<IBook> bookList;
+    private final List<IBook> bookList;
 
     public BookDatabaseStub(){
         this.bookList = new ArrayList<>();

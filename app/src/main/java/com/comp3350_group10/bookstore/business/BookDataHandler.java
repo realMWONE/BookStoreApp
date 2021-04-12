@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 
 public class BookDataHandler implements IBookDataHandler {
-    private IBookDatabase bookDatabase;
+    private final IBookDatabase bookDatabase;
     public static IBook currentBook;
     private List<IBook> allBooks = null;
 

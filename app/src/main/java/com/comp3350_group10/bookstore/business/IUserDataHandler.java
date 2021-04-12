@@ -3,6 +3,7 @@ package com.comp3350_group10.bookstore.business;
 import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.persistence.IUser;
 
@@ -19,4 +20,6 @@ public interface IUserDataHandler {
     IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException;
 
     IUser getCurrentUser();
+
+    void deleteUser(String deleteID) throws PersistenceException;
 }

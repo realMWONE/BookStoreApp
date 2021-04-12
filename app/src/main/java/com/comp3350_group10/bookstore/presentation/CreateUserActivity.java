@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
@@ -58,6 +59,10 @@ public class CreateUserActivity extends AppCompatActivity {
         catch(CreateUserErrorException e){
             //popup saying unsuccessful
             Messages.viewPopUp(e.getMessage(), CreateUserActivity.this);
+        }
+        //creation failed, possibly because email already used
+        catch(PersistenceException e){
+            Messages.viewPopUp("Creation failed. Perhaps the email is already used?", this);
         }
     }
 }

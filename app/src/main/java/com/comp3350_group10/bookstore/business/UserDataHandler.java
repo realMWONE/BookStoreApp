@@ -6,6 +6,7 @@ import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
+import com.comp3350_group10.bookstore.presentation.Messages;
 
 
 public class UserDataHandler implements IUserDataHandler {
@@ -71,7 +72,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //creates a user and insert it into the database
-    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
+    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException, PersistenceException{
         IUser newUser;
         UserType userType;
 
@@ -110,6 +111,7 @@ public class UserDataHandler implements IUserDataHandler {
 
             newUser = new User(name, email, password, userType);
             userDatabase.insertUser(newUser);
+
         }
         else{ throw new CreateUserErrorException(errorMessage); }
 
@@ -125,7 +127,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //Delete the user with the given ID from database
-    public void deleteUser(String deleteID){
+    public void deleteUser(String deleteID) throws PersistenceException{
         userDatabase.deleteUser(userDatabase.findUser(deleteID));
     }
 }

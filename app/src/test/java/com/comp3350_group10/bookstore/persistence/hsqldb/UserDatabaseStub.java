@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDatabaseStub implements IUserDatabase {
 
-    private List<IUser> userList;
+    private final List<IUser> userList;
 
     public UserDatabaseStub(){
         this.userList = new ArrayList<>();

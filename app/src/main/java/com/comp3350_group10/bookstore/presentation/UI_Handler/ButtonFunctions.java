@@ -30,8 +30,8 @@ import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
 {
-    private IBookDataHandler bookHandler;
-    private IUserDataHandler userHandler;
+    private final IBookDataHandler bookHandler;
+    private final IUserDataHandler userHandler;
     private final int IMAGE_HEIGHT = 120;
 
     public ButtonFunctions()
@@ -148,7 +148,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     @Override
-    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
+    public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException, PersistenceException{
         return userHandler.createNewUser(name, email, password, isManager);
     }
 }

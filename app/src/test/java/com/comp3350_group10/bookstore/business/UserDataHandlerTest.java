@@ -37,7 +37,7 @@ public class UserDataHandlerTest extends TestCase {
     }
     @Test
     public void testGetCurrentUser(){
-        dataHandler.currentUser = new User("Duy","duy.than@gihot.com","123456789", UserType.Employee);
+        UserDataHandler.currentUser = new User("Duy","duy.than@gihot.com","123456789", UserType.Employee);
         IUser curUser = dataHandler.getCurrentUser();
         assertEquals("name should be Duy","Duy",curUser.getRealName());
         assertEquals("email should be duy.than@gihot.com","duy.than@gihot.com",curUser.getUserID());
@@ -98,7 +98,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testChangePasswordWrongOldPasswordException(){
         IUser user = new User("Daniel","duy.than@gihot.com","111", UserType.Employee);
-        dataHandler.currentUser = user;
+        UserDataHandler.currentUser = user;
         try{
             dataHandler.changePassword("222","111111","111111");
         }
@@ -109,7 +109,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testChangePasswordShortPasswordException(){
         IUser user = new User("Daniel","duy.than@gihot.com","111", UserType.Employee);
-        dataHandler.currentUser = user;
+        UserDataHandler.currentUser = user;
         try{
             dataHandler.changePassword("111","1234567","1234567");
         }
@@ -120,7 +120,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testChangePasswordNotMatchNewException(){
         IUser user = new User("Daniel","duy.than@gihot.com","111", UserType.Employee);
-        dataHandler.currentUser = user;
+        UserDataHandler.currentUser = user;
         try{
             dataHandler.changePassword("111","123456789","1234567");
         }
@@ -132,7 +132,7 @@ public class UserDataHandlerTest extends TestCase {
     public void testChangePassword(){
         try{
             IUser user = new User("Daniel","duy.than@gihot.com","111", UserType.Employee);
-            dataHandler.currentUser = user;
+            UserDataHandler.currentUser = user;
             boolean success = dataHandler.changePassword("111","123456789","123456789");
             assertEquals("It should change password successfully",true,success);
         }

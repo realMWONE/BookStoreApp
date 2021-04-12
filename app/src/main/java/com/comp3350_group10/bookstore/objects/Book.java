@@ -10,14 +10,14 @@ import java.io.Serializable;
 public class Book implements IBook, Serializable {
 
     //private variables for Book
-    private String isbn;
-    private String bookName;
-    private String author;
+    private final String isbn;
+    private final String bookName;
+    private final String author;
     private int price;
     private int stockAmount;
-    private int imageReference;
-    private String date;
-    private String genre;
+    private final int imageReference;
+    private final String date;
+    private final String genre;
     private int reserve;
 
     /**

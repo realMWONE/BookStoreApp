@@ -44,6 +44,12 @@ public class ChangePasswordTest {
         UserDataHandler.currentUser = uHandler.createNewUser("Manage Chan","manager@manager.com","ILoveManagement", true);
     }
 
+    @After
+    public void tearDown()
+    {
+        uHandler.deleteUser("manager@manager.com");
+    }
+
     @Test
     public void changePassword() {
         Activity a = GetActivity.getActivity(activityTestRule);
@@ -57,12 +63,8 @@ public class ChangePasswordTest {
 
         closeSoftKeyboard();
         onView(withId(R.id.user_change_password)).perform(click());
-//        a.startActivity(new Intent(a.getBaseContext(), MainActivity.class));
 
-        //Test
         uHandler.logIn("manager@manager.com","12345678");
-        assertEquals("Failed: Not able to log in as the new created user.",UserDataHandler.currentUser.getRealName(), "Manage Chan");
-
-//        uHandler.deleteUser("manager@manager.com");
+        assertEquals("Failed: Not able to log in as the new created user.", UserDataHandler.currentUser.getRealName(), "Manage Chan");
     }
 }

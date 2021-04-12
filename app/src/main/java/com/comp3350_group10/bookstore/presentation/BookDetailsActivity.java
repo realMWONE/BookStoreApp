@@ -143,18 +143,15 @@ public class BookDetailsActivity extends AppCompatActivity {
         }
     }
 
-
     //Notify user when stock is low
-    private void checkLowStock(){
+    private void checkLowStock() {
         if(BookDataHandler.currentBook.getStock()<10)
             notify.lowStockNotification(this);
     }
 
     //Remove currentBook from the notified list
-    private void removeNotified(){
+    private void removeNotified() {
         if(BookDataHandler.currentBook.getStock()>=10)
             notify.removeFromLowStockList(BookDataHandler.currentBook);
     }
-
-
 }

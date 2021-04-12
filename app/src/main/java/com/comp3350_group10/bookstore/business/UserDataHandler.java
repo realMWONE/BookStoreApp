@@ -41,6 +41,14 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
+    public void ForgotPassword(String email) throws UserNotFoundException{
+        IUser tempUser = userDatabase.findUser(email);
+        if (tempUser == null) throw new UserNotFoundException("User Not Found");
+        else {
+            tempUser.setPassword("12345678");
+            userDatabase.updateUser(tempUser);
+        }
+    }
 
     //function to logout the current user
     public void logOut(){

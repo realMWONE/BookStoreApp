@@ -125,6 +125,10 @@ public class ButtonFunctions implements IButtonFunctions
          return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
+    public void ForgotPasswordPressed(String email) throws UserNotFoundException{
+        userHandler.ForgotPassword(email);
+    }
+
     @Override
     public void IncrementStock(TextView text)
     {

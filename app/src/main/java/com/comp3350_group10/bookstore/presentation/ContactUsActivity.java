@@ -20,7 +20,8 @@ public class ContactUsActivity extends AppCompatActivity {
 
         info.setText(
                 "Email: reserve@bookstore.com\n" +
-                "Phone: (204)-123-1234"
+                "Phone: (204)-123-1234\n" +
+                "Address: 66 Chancellors Cir, Winnipeg, MB R3T 2N2"
         );
     }
 

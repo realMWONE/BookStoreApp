@@ -72,7 +72,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //creates a user and insert it into the database
-    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException, PersistenceException{
+    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
         IUser newUser;
         UserType userType;
 
@@ -110,7 +110,13 @@ public class UserDataHandler implements IUserDataHandler {
             userType = isManager ? UserType.Manager:UserType.Employee;
 
             newUser = new User(name, email, password, userType);
-            userDatabase.insertUser(newUser);
+
+            try {
+                userDatabase.insertUser(newUser);
+            }
+            catch(PersistenceException e){
+                throw new CreateUserErrorException("Creation failed. Perhaps the email is already used?");
+            }
 
         }
         else{ throw new CreateUserErrorException(errorMessage); }

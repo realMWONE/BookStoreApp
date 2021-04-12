@@ -20,7 +20,7 @@ public class BookDetailsFunctions implements IBookDetailsFunctions{
 
     private String FormatBookDetails() {
         IBook b = BookDataHandler.currentBook;
-        String text = b.getBookAuthor() + '\n' + (b.getBookIsbn() + '\n') + (b.getStock() + " copies remaining\n");
+        String text = b.getBookAuthor() + '\n' + b.getGenre() +'\n' + (b.getBookIsbn() + '\n') + (b.getStock() + " copies remaining\n");
 
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);

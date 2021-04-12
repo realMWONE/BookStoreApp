@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity
     private EditText password;
     private EditText email;
     private Button loginButton;
-    public static TextView errorMessage;
+    private Button forgotPwButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -31,13 +31,11 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         buttonFunctions = new ButtonFunctions();
-        errorMessage = findViewById(R.id.loginErrorMessage);
         password = findViewById(R.id.password);
         email = findViewById(R.id.username);
         loginButton = findViewById(R.id.loginButton);
-
+        forgotPwButton = findViewById(R.id.forgot_pw_button);
         AddTextChangedListeners();
     }
 
@@ -47,6 +45,7 @@ public class LoginActivity extends AppCompatActivity
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 EnableLoginButton();
+                EnableForgetPasswordButton();
             }
         };
 
@@ -55,6 +54,8 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void EnableLoginButton(){ loginButton.setEnabled(!password.getText().toString().equals("") && !email.getText().toString().equals("")); }
+
+    private void EnableForgetPasswordButton(){ forgotPwButton.setEnabled(!email.getText().toString().equals("")); }
 
     public void LoginOnClick(View v)
     {
@@ -72,4 +73,6 @@ public class LoginActivity extends AppCompatActivity
             Messages.viewPopUp(e.getMessage(),this);
         }
     }
+
+    public void forgotPwOnClick(View v){}
 }

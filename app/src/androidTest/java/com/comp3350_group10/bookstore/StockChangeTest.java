@@ -1,32 +1,21 @@
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
-import com.comp3350_group10.bookstore.objects.Book;
 import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
-import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -36,7 +25,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

@@ -3,6 +3,7 @@ package com.comp3350_group10.bookstore.business;
 import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.User;
@@ -40,6 +41,7 @@ public class UserDataHandlerTestIT extends TestCase {
     public void tearDown() throws Exception {
         this.tempDB.delete();
     }
+
     @Test
     public void checkDbPath(){
         String MainPath = Main.getDBPath();
@@ -215,6 +217,23 @@ public class UserDataHandlerTestIT extends TestCase {
         }
         catch (CreateUserErrorException exception){
             assertEquals("It shouldn't reach the catch statement",exception.getMessage().trim());
+        }
+    }
+
+    public void testDeleteUser() {
+        try{
+            IUser user = userDataHandler.createNewUser("Duy","zigs123321@gmail.com","123456789",false);
+            userDataHandler.deleteUser("zigs123321@gmail.com");
+            try {
+                userDataHandler.logIn("zigs123321@gmail.com", "123456789");
+                fail("UserNotFoundException should be thrown");
+            }
+            catch(UserNotFoundException e){
+                assertTrue("User was successfully deleted", true);
+            }
+        }
+        catch(PersistenceException e){
+            fail("DeleteUser does not work correctly");
         }
     }
 }

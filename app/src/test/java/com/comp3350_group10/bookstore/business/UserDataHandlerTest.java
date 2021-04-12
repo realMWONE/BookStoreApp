@@ -1,6 +1,6 @@
 package com.comp3350_group10.bookstore.business;
 
-import android.service.autofill.UserData;
+import static org.junit.Assert.*;
 
 import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
@@ -14,6 +14,7 @@ import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseStub;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabaseStub;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.After;
@@ -197,4 +198,18 @@ public class UserDataHandlerTest extends TestCase {
         }
     }
 
+    public void testDeleteUser() {
+        try{
+            IUser user = dataHandler.createNewUser("Duy","zigs123321@gmail.com","123456789",false);
+            dataHandler.deleteUser("zigs123321@gmail.com");
+            try {
+                dataHandler.logIn("zigs123321@gmail.com", "123456789");
+                fail("UserNotFoundException should be thrown");
+            }
+            catch(UserNotFoundException e){
+                assertTrue("User was successfully deleted", true);
+            }
+        }
+        catch(Exception e){}
+    }
 }

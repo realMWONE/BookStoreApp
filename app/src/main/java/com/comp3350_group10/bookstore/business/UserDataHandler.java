@@ -123,4 +123,9 @@ public class UserDataHandler implements IUserDataHandler {
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
     }
+
+    //Delete the user with the given ID from database
+    public void deleteUser(String deleteID){
+        userDatabase.deleteUser(userDatabase.findUser(deleteID));
+    }
 }

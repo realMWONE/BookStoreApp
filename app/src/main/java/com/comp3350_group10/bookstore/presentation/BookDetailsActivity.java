@@ -13,7 +13,7 @@ import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IBookDetailsFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.R;
-
+import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -122,6 +122,9 @@ public class BookDetailsActivity extends AppCompatActivity {
         bookDetailsFunctions.UpdateBookDetails(details);
     }
 
+    public void reserveOnClick(View v){
+        SwitchActivity.SwitchTo(ContactUsActivity.class, this);
+    }
     //Give user access of certain button according to their position privilege
     //Assuming that management layout and changeByOne layout are all set to GONE by default
     private void setVisibleLayout()
@@ -134,6 +137,9 @@ public class BookDetailsActivity extends AppCompatActivity {
 
             //employees and manager will have privilege to adjust stock according to real time sales
             findViewById(R.id.stock_changeByOne_layout).setVisibility(View.VISIBLE);
+
+            //hide reserve button for non-customer interface
+            findViewById(R.id.detail_reserve_button).setVisibility(View.GONE);
         }
     }
 
@@ -149,4 +155,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         if(BookDataHandler.currentBook.getStock()>=10)
             notify.removeFromLowStockList(BookDataHandler.currentBook);
     }
+
+
 }

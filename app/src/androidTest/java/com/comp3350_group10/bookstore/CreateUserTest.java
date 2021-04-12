@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -39,12 +40,6 @@ public class CreateUserTest {
         uHandler = new UserDataHandler();
         UserDataHandler.currentUser = new User("Manage Chan","manager@manager.com","ILoveManagement", UserType.Manager);
         //Have to manually disable Window animation scale, Transition scale, Animator duration scale from emulator Dev options setting
-        try {
-            uHandler.deleteUser("newuser@mail.com");
-        }
-        catch(PersistenceException e){
-
-        }
     }
 
     @Test
@@ -53,7 +48,9 @@ public class CreateUserTest {
         a.startActivity(new Intent(a.getBaseContext(), CreateUserActivity.class));
 
         onView(withId(R.id.new_name_text)).perform(typeText("New User"));
+        pressBack();
         onView(withId(R.id.new_email_text)).perform(typeText("newuser@mail.com"));
+        pressBack();
         onView(withId(R.id.new_password_text)).perform(typeText("12345678"));
 
         closeSoftKeyboard();

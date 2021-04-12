@@ -123,7 +123,7 @@ public class UserDatabase implements IUserDatabase {
     public void deleteUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
-                    conn.prepareStatement("DELETE FROM USER WHERE userId=?");
+                    conn.prepareStatement("DELETE FROM USERS WHERE userId=?");
             pstmt.setString(1, user.getUserID());
             pstmt.executeUpdate();
         }

@@ -14,13 +14,11 @@ import org.junit.runners.Suite;
                 CreateUserTest.class,
                 SortTest.class,
                 StockChangeTest.class,
+                PriceChangeTest.class,
                 RemoveUserTest.class,
                 ForgotPasswordTest.class,
                 ContactUsTest.class
         }
 
 )
-public class AllSystemTests {
-    //For the class LoggedInUserTest
-
-}
+public class AllSystemTests {}

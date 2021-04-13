@@ -11,8 +11,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
-
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
@@ -24,13 +22,12 @@ import com.comp3350_group10.bookstore.presentation.ScreenSize;
 import java.util.List;
 
 public class TrendingPageFunctions {
+    private static final IBookDataHandler bookHandler = new BookDataHandler();
     private static int imageHeight = 0;
     private static int spacerHeight = 0;
     private static int dividerHeight = 0;
-    private static final IBookDataHandler bookHandler = new BookDataHandler();
 
     public static void FillTrendingPage(TableLayout table, Context context) {
-        System.out.println("Trending page showing");
         setHeights(context);
         AddSpacer(context, table);
         AddTrendingRow(table, context, "By Stephanie Meyer", "Stephenie Meyer");
@@ -56,7 +53,6 @@ public class TrendingPageFunctions {
     private static void AddSpacer(Context context, TableLayout table) {
         Space space = new Space(context);
         space.setLayoutParams(new LinearLayout.LayoutParams(spacerHeight, spacerHeight));
-        //TODO: Warning:(50, 61) 'spacerHeight' should probably not be passed as parameter 'width'
         table.addView(space);
     }
 
@@ -73,7 +69,7 @@ public class TrendingPageFunctions {
         TableRow row = new TableRow(context);
         TextView categoryText = new TextView(context);
         categoryText.setText(categoryName);
-        categoryText.setPadding(30,0,0,0);
+        categoryText.setPadding(30, 0, 0, 0);
         row.addView(categoryText);
         table.addView(row);
     }
@@ -102,7 +98,6 @@ public class TrendingPageFunctions {
             image.setLayoutParams(new TableRow.LayoutParams(imageHeight, imageHeight));
 
             ImageReferences.FillDictionary();
-            System.out.println(book.getImage());
             image.setImageResource(ImageReferences.Get(book.getImage()));
 
             layout.addView(image);
@@ -111,12 +106,6 @@ public class TrendingPageFunctions {
                 SwitchToBookDetailsActivity(context);
             });
         }
-    }
-
-    @DrawableRes
-    private static int GetID(IBook book)
-    {
-        return book.getImage();
     }
 
     private static void SwitchToBookDetailsActivity(Context context) {

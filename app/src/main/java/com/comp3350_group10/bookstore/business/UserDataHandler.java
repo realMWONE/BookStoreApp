@@ -141,13 +141,17 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //Delete the user with the given ID from database
-    public void deleteUser(String deleteID) throws PersistenceException, UserNotFoundException{
-        IUser u = userDatabase.findUser(deleteID);
-        if(u!=null) {
-            userDatabase.deleteUser(u);
+    public void deleteUser(String deleteID) throws PersistenceException, UserNotFoundException, DeleteLoggedInUserException{
+        if(deleteID.toLowerCase().equals(currentUser.getUserID().toLowerCase())){
+            throw new DeleteLoggedInUserException("You cannot delete your own account.");
         }
-        else{
-            throw new UserNotFoundException("User does not exist");
+        else {
+            IUser u = userDatabase.findUser(deleteID);
+            if (u != null) {
+                userDatabase.deleteUser(u);
+            } else {
+                throw new UserNotFoundException("User does not exist");
+            }
         }
     }
 }

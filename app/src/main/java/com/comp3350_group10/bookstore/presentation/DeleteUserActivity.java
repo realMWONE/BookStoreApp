@@ -2,6 +2,7 @@ package com.comp3350_group10.bookstore.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.comp3350_group10.bookstore.Exceptions.DeleteLoggedInUserException;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.R;
@@ -52,7 +53,7 @@ public class DeleteUserActivity extends AppCompatActivity {
             Messages.viewPopUp("User was successfully removed",this);
             SwitchActivity.SwitchTo(MainActivity.class, this);
         }
-        catch(UserNotFoundException|PersistenceException e){  //failed
+        catch(UserNotFoundException | PersistenceException| DeleteLoggedInUserException e){  //failed
             Messages.viewPopUp(e.getMessage(),this);
         }
     }

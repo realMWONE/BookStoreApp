@@ -14,6 +14,7 @@ import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.CreateUserActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -42,6 +43,10 @@ public class CreateUserTest {
         //Have to manually disable Window animation scale, Transition scale, Animator duration scale from emulator Dev options setting
     }
 
+    @After
+    public void tearDown(){
+        uHandler.deleteUser("newuser@mail.com");
+    }
     @Test
     public void createUser() {
         Activity a = GetActivity.getActivity(activityTestRule);
@@ -55,12 +60,9 @@ public class CreateUserTest {
 
         closeSoftKeyboard();
         onView(withId(R.id.create_user_button)).perform(click());
-//        a.startActivity(new Intent(a.getBaseContext(), MainActivity.class));
 
         //Test
         uHandler.logIn("newuser@mail.com","12345678");
         assertEquals("Failed: Not able to log in as the new created user.",UserDataHandler.currentUser.getRealName(), "New User");
-
-        uHandler.deleteUser("newuser@mail.com");
     }
 }

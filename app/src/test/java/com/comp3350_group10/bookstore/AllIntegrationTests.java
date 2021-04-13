@@ -12,7 +12,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         {
                 BookDataHandlerIT.class,
-                UserDataHandlerIT.class,
                 UserDataHandlerIT.class
         }
 

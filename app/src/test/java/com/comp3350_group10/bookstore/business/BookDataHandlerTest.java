@@ -12,31 +12,54 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDataHandlerTest extends TestCase {
 
-    //we will use a stub
     private BookDataHandler dataHandler;
+    private IBookDatabase bookDatabase;
+    private BookDataHandler mockDataHandler;
+
     @Before
     public void setUp() throws Exception {
         super.setUp();
         IBookDatabase databaseStub = new BookDatabaseStub();
         this.dataHandler = new BookDataHandler(databaseStub);
+        bookDatabase = mock(IBookDatabase.class);
+        mockDataHandler = new BookDataHandler(bookDatabase);
     }
+
     @After
     public void tearDown() throws Exception {
-        dataHandler=null;
+        dataHandler = null;
+        mockDataHandler = null;
     }
+
     @Test
     public void testFindBooks() {
-        List<IBook> result_1 = dataHandler.findBooks("The", true, "Title");
-        assertEquals("there should be 1 results",1,result_1.size());
-        List<IBook> result_2 = dataHandler.findBooks("Harry", true, "Title");
-        assertEquals("there should be 2 results",2,result_2.size());
-        List<IBook> result_3 = dataHandler.findBooks("Diary of Wimpy Kid", true, "Title");
-        assertEquals("there should be 2 results",2,result_3.size());
+        final List<IBook> result;
+        List<IBook> list = new ArrayList<>();
+        list.add(new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132));
+        list.add(new Book("The Da Vinci Code","0218574629654",10,2780,"21 October 2007","Dan Brown","Mystery",3,700104));
+        list.add(new Book("Angels and Demons","2865926595295",11,2780,"15 June 2009","Dan Brown","Mystery",5,700153));
+        list.add(new Book("Diary of Wimpy Kid: The Getaway","5987450215825",13,1250,"16 January 2005","Jeff Kinney","Comedy",4, 700031));
+        list.add(new Book("Diary of Wimpy Kid: Double Down","4578932145250",12,1280,"21 February 2006","Jeff Kinney","Comedy",3,700003));
+        list.add(new Book("Twilight","2510323255565",3,2730,"22 March 2005","Stephenie Meyer","Romance",4,700141));
+        list.add(new Book("Eclipse","2551819816185",2,2780,"07 April 2008","Stephenie Meyer","Romance",3,700116));
+        list.add(new Book("New Moon","2516511685000",4,2780,"23 February 2010","Stephenie Meyer","Romance",3,700056));
+
+        when(bookDatabase.getBooks()).thenReturn(list);
+        result = mockDataHandler.findBooks(list.get(0).getBookName(),false,"Title");
+        assertNotNull("The list should not return NUll",result);
+        assertTrue("Harry Potter and the Philosopher Stone".equals(result.get(0).getBookName()));
+        verify(bookDatabase).getBooks();
     }
+
     @Test
     public void testSetPrice() {
         IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",12,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);

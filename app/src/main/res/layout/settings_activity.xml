@@ -132,12 +132,14 @@
         android:id="@+id/switchto_remove_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="16dp"
         android:onClick="removeEmployeeOnClick"
         android:text="Remove employee"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/switchto_create_user_button" />
+        app:layout_constraintEnd_toStartOf="@+id/switchto_create_user_button"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

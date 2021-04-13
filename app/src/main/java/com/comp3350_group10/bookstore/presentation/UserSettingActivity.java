@@ -3,7 +3,6 @@ package com.comp3350_group10.bookstore.presentation;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,8 +43,10 @@ public class UserSettingActivity extends AppCompatActivity {
 
             userMessage.setText("You are logged in as:\n" + UserDataHandler.currentUser.getRealName() + ", " + UserDataHandler.currentUser.getUserType());
             //if not manager, don't show create user button
-            if (UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager)
-                findViewById(R.id.create_user).setVisibility(View.GONE);
+            if (UserDataHandler.currentUser == null || UserDataHandler.currentUser.getUserType() != UserType.Manager) {
+                findViewById(R.id.switchto_create_user_button).setVisibility(View.GONE);
+                findViewById(R.id.switchto_remove_user_button).setVisibility(View.GONE);
+            }
 
             AddTextChangedListeners();
         }
@@ -85,6 +86,10 @@ public class UserSettingActivity extends AppCompatActivity {
         SwitchActivity.SwitchTo(CreateUserActivity.class, this);
     }
 
+    public void removeEmployeeOnClick(View v)
+    {
+        SwitchActivity.SwitchTo(DeleteUserActivity.class, this);
+    }
     private void EnableChangePwButton(){ changePwButton.setEnabled(!oldPassword.getText().toString().equals("") &&
             !newPassword.getText().toString().equals("") && !confirmNewPassword.getText().toString().equals("")); }
 

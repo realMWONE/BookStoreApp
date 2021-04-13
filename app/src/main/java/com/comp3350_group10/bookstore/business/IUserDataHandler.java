@@ -22,4 +22,6 @@ public interface IUserDataHandler {
     IUser getCurrentUser();
 
     void deleteUser(String deleteID) throws PersistenceException;
+
+    void ForgotPassword(String email) throws UserNotFoundException;
 }

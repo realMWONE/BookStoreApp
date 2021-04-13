@@ -125,6 +125,10 @@ public class ButtonFunctions implements IButtonFunctions
          return userHandler.changePassword(oldPw, newPw, confirmNewPw);
     }
 
+    public void ForgotPasswordPressed(String email) throws UserNotFoundException{
+        userHandler.ForgotPassword(email);
+    }
+
     @Override
     public void IncrementStock(TextView text)
     {
@@ -150,5 +154,9 @@ public class ButtonFunctions implements IButtonFunctions
     @Override
     public IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager) throws CreateUserErrorException, PersistenceException{
         return userHandler.createNewUser(name, email, password, isManager);
+    }
+
+    public void RemoveUserButtonPressed(String userID) throws PersistenceException, UserNotFoundException{
+        userHandler.deleteUser(userID);
     }
 }

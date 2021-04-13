@@ -41,6 +41,14 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
+    public void ForgotPassword(String email) throws UserNotFoundException{
+        IUser tempUser = userDatabase.findUser(email);
+        if (tempUser == null) throw new UserNotFoundException("User Not Found");
+        else {
+            tempUser.setPassword("12345678");
+            userDatabase.updateUser(tempUser);
+        }
+    }
 
     //function to logout the current user
     public void logOut(){
@@ -72,7 +80,7 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //creates a user and insert it into the database
-    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException, PersistenceException{
+    public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
         IUser newUser;
         UserType userType;
 
@@ -110,7 +118,13 @@ public class UserDataHandler implements IUserDataHandler {
             userType = isManager ? UserType.Manager:UserType.Employee;
 
             newUser = new User(name, email, password, userType);
-            userDatabase.insertUser(newUser);
+
+            try {
+                userDatabase.insertUser(newUser);
+            }
+            catch(PersistenceException e){
+                throw new CreateUserErrorException("Creation failed. Perhaps the email is already used?");
+            }
 
         }
         else{ throw new CreateUserErrorException(errorMessage); }
@@ -127,7 +141,13 @@ public class UserDataHandler implements IUserDataHandler {
     }
 
     //Delete the user with the given ID from database
-    public void deleteUser(String deleteID) throws PersistenceException{
-        userDatabase.deleteUser(userDatabase.findUser(deleteID));
+    public void deleteUser(String deleteID) throws PersistenceException, UserNotFoundException{
+        IUser u = userDatabase.findUser(deleteID);
+        if(u!=null) {
+            userDatabase.deleteUser(u);
+        }
+        else{
+            throw new UserNotFoundException("User does not exist");
+        }
     }
 }

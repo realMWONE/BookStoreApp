@@ -5,6 +5,7 @@ import android.content.Context;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
@@ -25,6 +26,7 @@ public interface IButtonFunctions {
     //function is called when a user hits change password button in setting page
     boolean ChangePasswordPressed(String oldPw, String newPw, String confirmNewPw);
 
+    void ForgotPasswordPressed(String email);
 
     //function is called when user hits the increment stock by 1 button
     void IncrementStock(TextView text);
@@ -44,4 +46,8 @@ public interface IButtonFunctions {
     //Show popup and return to main activity if successful
     //Show popup and return to createUser activity if failed
     IUser CreateUserButtonPressed(String name, String email, String password, boolean isManager);
+
+
+    void RemoveUserButtonPressed(String userID) throws PersistenceException;
+
 }

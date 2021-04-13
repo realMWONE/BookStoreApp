@@ -4,7 +4,7 @@ import com.comp3350_group10.bookstore.application.ServiceTest;
 import com.comp3350_group10.bookstore.business.BookDataHandlerTest;
 import com.comp3350_group10.bookstore.business.BookDataHandlerIT;
 import com.comp3350_group10.bookstore.business.UserDataHandlerTest;
-import com.comp3350_group10.bookstore.business.UserDataHandlerTestIT;
+import com.comp3350_group10.bookstore.business.UserDataHandlerIT;
 import com.comp3350_group10.bookstore.objects.BookTest;
 import com.comp3350_group10.bookstore.objects.UserTest;
 import com.comp3350_group10.bookstore.persistence.fakeDB.LoggedInUserTest;
@@ -23,7 +23,7 @@ import org.junit.runners.Suite;
                 BookDataHandlerIT.class,
                 BookDataHandlerTest.class,
                 UserDataHandlerTest.class,
-                UserDataHandlerTestIT.class,
+                UserDataHandlerIT.class,
                 BookTest.class,
                 UserTest.class,
                 LoggedInUserTest.class,

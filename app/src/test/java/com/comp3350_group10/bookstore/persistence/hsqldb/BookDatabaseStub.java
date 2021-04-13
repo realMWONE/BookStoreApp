@@ -24,31 +24,6 @@ public class BookDatabaseStub implements IBookDatabase {
         bookList.add(new Book("Eclipse","2551819816185",2,2780,"07 April 2008","Stephenie Meyer","Romance",3,700116));
         bookList.add(new Book("New Moon","2516511685000",4,2780,"23 February 2010","Stephenie Meyer","Romance",3,700056));
     }
-    @Override
-    public List<IBook> findBook(String searchTerm) {
-        List<IBook> result = new ArrayList<>();
-        IBook currentBook = null;
-        for(int i=0;i<bookList.size();i++){
-            currentBook = bookList.get(i);
-            if(currentBook.getBookName().toLowerCase().startsWith(searchTerm.toLowerCase())
-                    || currentBook.getBookName().toLowerCase().equals(searchTerm.toLowerCase())){
-                result.add(currentBook);
-            }
-            else if(currentBook.getBookIsbn().startsWith(searchTerm)
-                    || currentBook.getBookIsbn().equals(searchTerm)) {
-                result.add(currentBook);
-            }
-            else if(currentBook.getBookAuthor().toLowerCase().startsWith(searchTerm.toLowerCase())
-                    || currentBook.getBookAuthor().toLowerCase().equals(searchTerm.toLowerCase())) {
-                result.add(currentBook);
-            }
-            else if(currentBook.getGenre().toLowerCase().startsWith(searchTerm.toLowerCase())
-                    || currentBook.getGenre().toLowerCase().equals(searchTerm.toLowerCase())) {
-                result.add(currentBook);
-            }
-        }
-        return result;
-    }
 
     @Override
     public List<IBook> getBooks() {

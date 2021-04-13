@@ -23,7 +23,7 @@ import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserDataHandlerTestIT extends TestCase {
+public class UserDataHandlerIT extends TestCase {
 
     private UserDataHandler userDataHandler;
     private File tempDB;

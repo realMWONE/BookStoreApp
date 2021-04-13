@@ -30,6 +30,7 @@ public class TrendingPageFunctions {
     private static final IBookDataHandler bookHandler = new BookDataHandler();
 
     public static void FillTrendingPage(TableLayout table, Context context) {
+        System.out.println("Trending page showing");
         setHeights(context);
         AddSpacer(context, table);
         AddTrendingRow(table, context, "By Stephanie Meyer", "Stephenie Meyer");

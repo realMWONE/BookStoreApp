@@ -8,6 +8,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.TestUtil.TestHelper;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
@@ -24,10 +25,12 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class CreateUserTest {
+public class RemoveUserTest {
     UserDataHandler uHandler;
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -36,35 +39,44 @@ public class CreateUserTest {
     public void setup() {
         uHandler = new UserDataHandler();
         TestHelper.setupHelper();
+        uHandler.createNewUser("new","new@new.com","12345678",false);
     }
 
     @After
     public void tearDown() {
         TestHelper.tearDownHelper();
-        uHandler.deleteUser("newuser@mail.com");
+        try {
+            uHandler.deleteUser("new@new.com");
+        }
+        catch(Exception e){
+            System.out.println("Failed to delete user in RemoveUserTest teardown.");
+        }
     }
 
     @Test
-    public void createUser() {
+    public void removeUser() {
         TestHelper.loginTestUser(activityTestRule);
 
         Activity a = TestHelper.getActivity(activityTestRule);
         Menu menu = new MenuBuilder(a);
         a.getMenuInflater().inflate(R.menu.main, menu);
         menu.performIdentifierAction(R.id.switchTo_user_settings_button, 0);
-        onView(withId(R.id.switchto_create_user_button)).perform(click());
 
-        onView(withId(R.id.new_name_text)).perform(typeText("New User"));
-        pressBack();
-        onView(withId(R.id.new_email_text)).perform(typeText("newuser@mail.com"));
-        pressBack();
-        onView(withId(R.id.new_password_text)).perform(typeText("12345678"));
+        onView(withId(R.id.switchto_remove_user_button)).perform(click());
+
+        onView(withId(R.id.delete_user_id_text)).perform(typeText("new@new.com"));
         pressBack();
 
-        onView(withId(R.id.create_user_button)).perform(click());
+        onView(withId(R.id.remove_user_button)).perform(click());
 
         //Test
-        uHandler.logIn("newuser@mail.com","12345678");
-        assertEquals("Failed: Not able to log in as the new created user.",UserDataHandler.currentUser.getRealName(), "New User");
+        try {
+            uHandler.logIn("new@new.com", "12345678");
+            fail();
+        }
+        catch(UserNotFoundException e){
+            //passed if not able to log in with the removed user
+            assertTrue(true);
+        }
     }
 }

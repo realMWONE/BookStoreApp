@@ -1,9 +1,9 @@
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;
-import android.view.Menu;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
-import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -17,43 +17,38 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static com.comp3350_group10.bookstore.business.UserDataHandler.currentUser;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class LogInTest {
-
+public class ContactUsTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
-    public void setup(){ TestHelper.setupHelper(); }
+    public void setup() {
+        TestHelper.setupHelper();
+    }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         TestHelper.tearDownHelper();
     }
 
     @Test
-    public void login() {
-        TestHelper.loginTestUser(activityTestRule);
-
-        assertEquals(TestHelper.adminID.toLowerCase(), currentUser.getUserID().toLowerCase());
-    }
-
-    @Test
-    public void logout(){
+    public void contactUs() {
         Activity a = TestHelper.getActivity(activityTestRule);
-        TestHelper.loginTestUser(activityTestRule);
 
-        Menu menu = new MenuBuilder(a);
-        a.getMenuInflater().inflate(R.menu.main, menu);
-        menu.performIdentifierAction(R.id.main_logout_button, 0);
+        onView(withId(R.id.searchBar)).perform(click());
+        onView(withId(R.id.searchBar)).perform(typeText("Harry Potter and the Chamber of Secrets"));
 
-        assertTrue("Logout failed", currentUser == null);
+        TableLayout table = a.findViewById(R.id.bookListTable);
+        TableRow row = (TableRow) table.getChildAt(0);
+        row.callOnClick();
+
+        onView(withId(R.id.detail_reserve_button)).perform(click());
     }
 }

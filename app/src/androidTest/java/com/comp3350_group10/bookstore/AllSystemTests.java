@@ -8,13 +8,15 @@ import org.junit.runners.Suite;
 )
 @Suite.SuiteClasses(
         {
+                LogInTest.class,
                 BookSearchTest.class,
                 ChangePasswordTest.class,
                 CreateUserTest.class,
-                LogInTest.class,
                 SortTest.class,
                 StockChangeTest.class,
-                LogoutTest.class
+                RemoveUserTest.class,
+                ForgotPasswordTest.class,
+                ContactUsTest.class
         }
 
 )

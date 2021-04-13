@@ -179,11 +179,11 @@ public class MainActivity extends AppCompatActivity
             menu.getItem(i).setVisible(false);
 
         //Hide Logout if the user is not logged in
-        menu.findItem(R.id.logout_button).setVisible(userDataHandler.getCurrentUser() != null);
+        menu.findItem(R.id.main_logout_button).setVisible(userDataHandler.getCurrentUser() != null);
         //Hide User Settings if the user is not logged in
-        menu.findItem(R.id.user_settings_button).setVisible(userDataHandler.getCurrentUser() != null);
+        menu.findItem(R.id.switchTo_user_settings_button).setVisible(userDataHandler.getCurrentUser() != null);
         //Hide Login if the users is logged in
-        menu.findItem(R.id.login_button).setVisible(userDataHandler.getCurrentUser() == null);
+        menu.findItem(R.id.switchTo_login_button).setVisible(userDataHandler.getCurrentUser() == null);
 
         return true;
     }

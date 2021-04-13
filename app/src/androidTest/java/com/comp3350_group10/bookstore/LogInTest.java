@@ -7,7 +7,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.comp3350_group10.bookstore.TestHelper.GetActivity;
+import com.comp3350_group10.bookstore.TestUtil.GetActivity;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.LoginActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;

@@ -18,7 +18,7 @@ import org.junit.runners.Suite;
         }
 
 )
-public class AllTests {
+public class AllSystemTests {
     //For the class LoggedInUserTest
 
 }

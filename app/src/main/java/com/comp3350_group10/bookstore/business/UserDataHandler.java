@@ -3,10 +3,9 @@ package com.comp3350_group10.bookstore.business;
 import com.comp3350_group10.bookstore.Exceptions.*;
 import com.comp3350_group10.bookstore.application.Service;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.presentation.Messages;
 
 
 public class UserDataHandler implements IUserDataHandler {
@@ -41,7 +40,7 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
-    public void ForgotPassword(String email) throws UserNotFoundException{
+    public void forgotPassword(String email) throws UserNotFoundException{
         IUser tempUser = userDatabase.findUser(email);
         if (tempUser == null) throw new UserNotFoundException("User Not Found");
         else {
@@ -60,16 +59,16 @@ public class UserDataHandler implements IUserDataHandler {
     public boolean changePassword(String oldPw, String newPw, String confirmNewPw) throws ChangePasswordException{
         //check if the user is logged in or not
         IUser temp;
-        if(currentUser == null) throw new ChangePasswordException("User must be logged in");
+        if(currentUser == null) throw new ChangePasswordException("You are not logged in");
 
         //check if the current password matches the old password
-        else if (!currentUser.getPassword().equals(oldPw)) throw new ChangePasswordException("The password input doesn't match the saved password");
+        else if (!currentUser.getPassword().equals(oldPw)) throw new ChangePasswordException("Old password does not match");
 
         //check if the new password length is at least 8 characters (validation)
-        else if (newPw.length() < 8) throw new ChangePasswordException("Password length too short, should be at least 8 characters");
+        else if (newPw.length() < 8) throw new ChangePasswordException("Password length must be at least 8 characters");
 
         //check if the new password is confirmed or not
-        else if (!newPw.equals(confirmNewPw)) throw new ChangePasswordException("Different new passwords, couldn't confirm!!");
+        else if (!newPw.equals(confirmNewPw)) throw new ChangePasswordException("New password does not match with confirmation");
 
         else {
             //if everything is correct, then update the password
@@ -142,7 +141,7 @@ public class UserDataHandler implements IUserDataHandler {
 
     //Delete the user with the given ID from database
     public void deleteUser(String deleteID) throws PersistenceException, UserNotFoundException, DeleteLoggedInUserException{
-        if(deleteID.toLowerCase().equals(currentUser.getUserID().toLowerCase())){
+        if(currentUser != null && deleteID.toLowerCase().equals(currentUser.getUserID().toLowerCase())){
             throw new DeleteLoggedInUserException("You cannot delete your own account.");
         }
         else {

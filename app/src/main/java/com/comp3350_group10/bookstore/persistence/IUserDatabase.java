@@ -1,6 +1,6 @@
 package com.comp3350_group10.bookstore.persistence;
 
-import java.util.List;
+import com.comp3350_group10.bookstore.objects.IUser;
 
 public interface IUserDatabase {
     IUser findUser(String userId);

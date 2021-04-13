@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.R;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.ButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.IButtonFunctions;
 import com.comp3350_group10.bookstore.presentation.UI_Handler.SwitchActivity;
@@ -47,19 +46,15 @@ public class CreateUserActivity extends AppCompatActivity {
             //successful, proceed default behaviour
             if(createdUser!=null) {
                 //sends heartwarming welcome message to new employee so they don't complain about low wage
-                Messages.viewPopUp("Welcome to the team, " + createdUser.getRealName() + "!", this);
+                Messages.viewPopUp("Account for " + createdUser.getRealName() + " has been created.\nWelcome to the team.", this);
                 SwitchActivity.SwitchTo(MainActivity.class, this);
             }
         }
 
         //failed, exception is thrown with error message
-        catch(CreateUserErrorException e){
-            //popup saying unsuccessful
-            Messages.viewPopUp(e.getMessage(), CreateUserActivity.this);
-        }
-        //creation failed, possibly because email already used
-        catch(PersistenceException e){
-            Messages.viewPopUp("Creation failed. Perhaps the email is already used?", this);
+        catch(CreateUserErrorException | PersistenceException e){
+            //popup showing error
+            Messages.viewPopUp(e.getMessage(), this);
         }
     }
 }

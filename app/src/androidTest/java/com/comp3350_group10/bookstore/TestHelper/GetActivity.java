@@ -2,7 +2,7 @@
 * This static class provide method to extract Activity from ActivityScenarioRule
 */
 
-package com.comp3350_group10.bookstore;
+package com.comp3350_group10.bookstore.TestHelper;
 
 import android.app.Activity;
 

@@ -1,20 +1,15 @@
 package com.comp3350_group10.bookstore.business;
 
-import static org.junit.Assert.*;
-
 import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseStub;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabaseStub;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.After;

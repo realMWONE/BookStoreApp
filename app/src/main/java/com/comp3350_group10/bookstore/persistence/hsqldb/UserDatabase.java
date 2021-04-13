@@ -1,7 +1,7 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 
@@ -25,20 +25,18 @@ public class UserDatabase implements IUserDatabase {
     /**
      * UserDatabase: constructor that takes dbPath as parameter
      */
-
     public UserDatabase(final String dbPath){
         this.dbPath = dbPath;
     }
 
     /**
-     * conenction method: Establish connection with the database
-     * @return
+     * Connection method: Establish connection with the database
+     * @return Connection
      * @throws SQLException
      */
     private Connection connection() throws SQLException {
         return DriverManager.getConnection("jdbc:hsqldb:file:"+ dbPath+ ";shutdown=true", "SA", "");
     }
-
 
     private User createUser(final ResultSet rs) throws SQLException{
         final String name = rs.getString("name");
@@ -48,9 +46,11 @@ public class UserDatabase implements IUserDatabase {
         return new User(name,userId,password, position.equals(MANAGER) ? UserType.Manager:UserType.Employee);
     }
 
-
+    /**
+     * Searches user from the database with the given ID
+     * @param userId
+     */
     @Override
-    //searches user from the database with the given ID
     public IUser findUser(String userId) {
         //retrieve getUsers first
         userList = getUsers();
@@ -64,7 +64,9 @@ public class UserDatabase implements IUserDatabase {
         return null;
     }
 
-    //return every user in the database
+    /**
+     * Return every user in the database
+     */
     public List<IUser> getUsers() {
         final List<IUser> usersInfo = new ArrayList<>();
 
@@ -85,6 +87,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
+    /**
+     * Insert the input user to the database
+     */
     public IUser insertUser(IUser user) {
         try(final Connection conn = connection()) {
             final PreparedStatement pstmt = conn.prepareStatement("INSERT INTO USERS VALUES(?,?,?,?)");
@@ -102,6 +107,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
+    /**
+     * Updates the database with the updated user as input
+     */
     public IUser updateUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =
@@ -120,6 +128,9 @@ public class UserDatabase implements IUserDatabase {
     }
 
     @Override
+    /**
+     * Deletes the input user
+     */
     public void deleteUser(IUser user){
         try (final Connection conn = connection()){
             final PreparedStatement pstmt =

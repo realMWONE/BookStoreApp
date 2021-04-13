@@ -1,4 +1,6 @@
-package com.comp3350_group10.bookstore.persistence;
+package com.comp3350_group10.bookstore.objects;
+
+import com.comp3350_group10.bookstore.persistence.UserType;
 
 public interface IUser {
     String getRealName();

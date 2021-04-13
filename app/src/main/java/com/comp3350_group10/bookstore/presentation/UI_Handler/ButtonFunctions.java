@@ -1,3 +1,8 @@
+/**
+ * This class acts as a bridge between Logic and GUI
+ * All onClick methods will be calling methods from this class
+ */
+
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.annotation.SuppressLint;
@@ -16,16 +21,14 @@ import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
 import com.comp3350_group10.bookstore.business.IUserDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IBook;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;
 
 import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ButtonFunctions implements IButtonFunctions
@@ -107,6 +110,7 @@ public class ButtonFunctions implements IButtonFunctions
         return image;
     }
 
+    //********************* The following methods calls the corresponding logic method ********************* //
     @Override
     public void LoginButtonPressed(String email, String password) throws UserNotFoundException, DifferentPasswordException {
         userHandler.logIn(email, password);
@@ -126,7 +130,7 @@ public class ButtonFunctions implements IButtonFunctions
     }
 
     public void ForgotPasswordPressed(String email) throws UserNotFoundException{
-        userHandler.ForgotPassword(email);
+        userHandler.forgotPassword(email);
     }
 
     @Override
@@ -156,6 +160,7 @@ public class ButtonFunctions implements IButtonFunctions
         return userHandler.createNewUser(name, email, password, isManager);
     }
 
+    @Override
     public void RemoveUserButtonPressed(String userID) throws PersistenceException, UserNotFoundException{
         userHandler.deleteUser(userID);
     }

@@ -1,14 +1,12 @@
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
-import com.comp3350_group10.bookstore.presentation.UserSettingActivity;
 
 public interface IButtonFunctions {
 

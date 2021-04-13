@@ -4,7 +4,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.comp3350_group10.bookstore.business.BookDataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 
 import java.text.DecimalFormat;

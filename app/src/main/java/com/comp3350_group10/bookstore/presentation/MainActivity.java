@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         copyDatabaseToDevice();
 
+        //link references
         uIButtonFunctions = new ButtonFunctions();
         searchBar = findViewById(R.id.searchBar);
         bookListTable = findViewById(R.id.bookListTable);
@@ -165,14 +166,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {}
         });
-    }
-
-    public String getSortBy() {
-        return dropdown.getSelectedItem().toString();
-    }
-
-    public String getOrderString() {
-        return sortButton.getText().toString();
     }
 
     @Override

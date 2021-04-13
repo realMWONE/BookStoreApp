@@ -18,6 +18,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
         TextView info = findViewById(R.id.contact_info_text);
 
+        //Show the contact info
         info.setText(
                 "Email: reserve@bookstore.com\n" +
                 "Phone: (204)-123-1234\n" +
@@ -25,10 +26,12 @@ public class ContactUsActivity extends AppCompatActivity {
         );
     }
 
+    //returns to home
     public void returnHomeOnClick(View v){
         SwitchActivity.SwitchTo(MainActivity.class,this);
     }
 
+    //returns to book
     public void returnToBookOnClick(View v){
         finish();
     }

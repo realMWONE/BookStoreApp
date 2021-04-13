@@ -5,7 +5,7 @@ import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 
 
 public interface IUserDataHandler {
@@ -23,5 +23,5 @@ public interface IUserDataHandler {
 
     void deleteUser(String deleteID) throws PersistenceException;
 
-    void ForgotPassword(String email) throws UserNotFoundException;
+    void forgotPassword(String email) throws UserNotFoundException;
 }

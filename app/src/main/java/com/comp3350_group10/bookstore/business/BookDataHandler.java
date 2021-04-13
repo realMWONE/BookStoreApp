@@ -6,17 +6,12 @@ import androidx.annotation.RequiresApi;
 
 import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 
 public class BookDataHandler implements IBookDataHandler {
@@ -114,39 +109,6 @@ public class BookDataHandler implements IBookDataHandler {
             throw new NegativeStockException("Stock cannot be less than 0.");
     }
 
-
-
-    //Takes a list of books with duplication, the more duplicated the book the
-    //Sort the given list of books by how many words in its title matches with the given word list
-    //And gets rid of the duplicated elements
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-//    private List<IBook> sortByRelevancy(List<IBook> bookList){
-//        //relevancy is determined by # of times the book appeared in search result
-//        //<Key : Value> = <IBook book : Integer relevancy>
-//        HashMap<IBook,Integer> map = new HashMap<>();
-//        for (IBook book : bookList) {
-//            if (!map.containsKey(book)) {
-//                map.put(book, 1);
-//            }
-//            else{
-//                map.put(book, map.get(book)+1);
-//            }
-//        }
-//
-//        //descending sort by relevancy
-//        List<Entry<IBook, Integer>> sortedBookList = new ArrayList<>(map.entrySet());
-//        sortedBookList.sort(Entry.<IBook, Integer>comparingByValue().reversed());
-//
-//        //copies the sorted list to list of books to return
-//        List<IBook> result = new ArrayList<>();
-//        for(Entry<IBook, Integer> entries: sortedBookList){
-//            result.add(entries.getKey());
-//        }
-//
-//        return result;
-//    }
-
-
     // splits the given string, ignores non-ascii words
     private List<String> splitWords(String words){
         //split input
@@ -166,18 +128,16 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
+    //************************** Sorting Helpers************************************************//
     private void sortTitleHelper(List<IBook> bookList) {
-
         Collections.sort(bookList, (o1, o2) -> o1.getBookName().compareTo(o2.getBookName()));
     }
 
     private void sortAuthorHelper(List<IBook> bookList) {
-
         Collections.sort(bookList, (o1, o2) -> o1.getBookAuthor().compareTo(o2.getBookAuthor()));
     }
 
     private void sortGenreHelper(List<IBook> bookList) {
-
         Collections.sort(bookList, (o1, o2) -> o1.getGenre().compareTo(o2.getGenre()));
     }
 }

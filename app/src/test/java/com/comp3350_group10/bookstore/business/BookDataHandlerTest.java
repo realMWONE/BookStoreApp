@@ -2,7 +2,7 @@ package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
 import com.comp3350_group10.bookstore.objects.Book;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabaseStub;
 

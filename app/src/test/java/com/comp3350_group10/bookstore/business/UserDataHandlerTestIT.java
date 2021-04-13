@@ -7,11 +7,9 @@ import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.application.Main;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IBookDatabase;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
-import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
 import com.comp3350_group10.bookstore.utils.TestUtils;
 

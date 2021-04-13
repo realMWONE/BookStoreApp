@@ -9,7 +9,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import java.util.ArrayList;
 import java.util.List;
 

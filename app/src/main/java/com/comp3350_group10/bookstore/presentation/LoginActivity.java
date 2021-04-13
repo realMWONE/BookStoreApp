@@ -74,11 +74,14 @@ public class LoginActivity extends AppCompatActivity
         }
     }
 
-    public void forgotPwOnClick(View v){
+    public void ForgotPwOnClick(View v){
         try{
             buttonFunctions.ForgotPasswordPressed(this.email.getText().toString());
 
+            //Shows the user the password has been reset
             Messages.viewPopUp("Password has been changed to 12345678",this);
+
+            //return home
             SwitchActivity.SwitchTo(MainActivity.class,this);
         }
         catch (Exception e){

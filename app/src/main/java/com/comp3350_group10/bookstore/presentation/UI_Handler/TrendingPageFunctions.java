@@ -16,7 +16,7 @@ import androidx.annotation.DrawableRes;
 import com.comp3350_group10.bookstore.R;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.IBookDataHandler;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.hsqldb.ImageReferences;
 import com.comp3350_group10.bookstore.presentation.BookDetailsActivity;
 import com.comp3350_group10.bookstore.presentation.ScreenSize;

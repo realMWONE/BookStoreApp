@@ -9,13 +9,12 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.comp3350_group10.bookstore.TestHelper.GetActivity;
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IUser;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.presentation.LoginActivity;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class TestLogout {
+public class LogoutTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
@@ -35,8 +34,7 @@ public class TestLogout {
         MainActivity a = GetActivity.getActivity(activityTestRule);
         a.startActivity(new Intent(a.getBaseContext(), LoginActivity.class));
 
-        IUser user = new User("Mr. Test","testUser@gmail.com", "password", UserType.Employee);
-        currentUser = user;
+        currentUser = new User("Mr. Test","testUser@gmail.com", "password", UserType.Employee);;
 
         Menu menu = new MenuBuilder(a);
         a.getMenuInflater().inflate(R.menu.main, menu);

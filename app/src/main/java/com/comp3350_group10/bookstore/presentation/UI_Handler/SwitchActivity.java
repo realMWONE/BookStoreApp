@@ -1,9 +1,11 @@
+/**
+ * This class provides method to switch activity
+ */
+
 package com.comp3350_group10.bookstore.presentation.UI_Handler;
 
 import android.app.Activity;
 import android.content.Intent;
-
-import com.comp3350_group10.bookstore.presentation.MainActivity;
 
 public class SwitchActivity
 {

@@ -28,10 +28,6 @@ public class BookSearchTest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Before
-    public void setupDatabase(){
-    }
-
     @Test
     public void searchBooks(){
         onView(withId(R.id.searchBar)).perform(click());

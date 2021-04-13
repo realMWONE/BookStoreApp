@@ -1,7 +1,7 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 
 import com.comp3350_group10.bookstore.objects.User;
-import com.comp3350_group10.bookstore.persistence.IUser;
+import com.comp3350_group10.bookstore.objects.IUser;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 

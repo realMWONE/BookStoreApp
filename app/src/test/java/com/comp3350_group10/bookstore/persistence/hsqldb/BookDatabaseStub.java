@@ -1,7 +1,7 @@
 package com.comp3350_group10.bookstore.persistence.hsqldb;
 
 import com.comp3350_group10.bookstore.objects.Book;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 
 import java.util.ArrayList;

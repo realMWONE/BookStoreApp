@@ -1,7 +1,5 @@
 package com.comp3350_group10.bookstore.objects;
 
-import com.comp3350_group10.bookstore.persistence.IBook;
-
 import junit.framework.TestCase;
 
 public class BookTest extends TestCase {

@@ -1,24 +1,19 @@
 package com.comp3350_group10.bookstore.business;
 
 import com.comp3350_group10.bookstore.Exceptions.NegativeStockException;
-import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.objects.Book;
-import com.comp3350_group10.bookstore.persistence.IBook;
+import com.comp3350_group10.bookstore.objects.IBook;
 import com.comp3350_group10.bookstore.persistence.IBookDatabase;
 import com.comp3350_group10.bookstore.persistence.hsqldb.BookDatabase;
 import com.comp3350_group10.bookstore.utils.TestUtils;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.function.IntBinaryOperator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

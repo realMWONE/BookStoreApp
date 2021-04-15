@@ -1,9 +1,14 @@
 package com.comp3350_group10.bookstore.business;
 
-import com.comp3350_group10.bookstore.Exceptions.*;
+import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
+import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
+import com.comp3350_group10.bookstore.Exceptions.DeleteLoggedInUserException;
+import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
+import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
+import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.application.Service;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.objects.IUser;
+import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 
@@ -100,6 +105,8 @@ public class UserDataHandler implements IUserDataHandler {
             errorMessage += "Email cannot be empty";
         else if (!validEmail(email))
             errorMessage += "Email is not valid";
+        else if(email.split("@")[0].length()>=10)
+            errorMessage += "Email cannot be more than 10 characters";
 
         //formatting: newline if errorMessage isn't empty
         if(!errorMessage.isEmpty())

@@ -35,7 +35,13 @@ public class UserDataHandler implements IUserDataHandler {
         return currentUser;
     }
 
-    //function to login the current user
+    /**
+     * Function to login the current user
+     * @param email
+     * @param password
+     * @throws UserNotFoundException
+     * @throws DifferentPasswordException
+     */
     public void logIn(String email, String password) throws UserNotFoundException, DifferentPasswordException{
         IUser tempUser = userDatabase.findUser(email);
         if(tempUser == null) throw new UserNotFoundException("User Not Found");
@@ -45,6 +51,11 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
+    /**
+     * Resets the password to default 1234678
+     * @param email
+     * @throws UserNotFoundException
+     */
     public void forgotPassword(String email) throws UserNotFoundException{
         IUser tempUser = userDatabase.findUser(email);
         if (tempUser == null) throw new UserNotFoundException("User Not Found");
@@ -54,13 +65,22 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
-    //function to logout the current user
+    /**
+     *  Function to logout the current user
+     */
     public void logOut(){
         if(currentUser!=null)
             currentUser = null;
     }
 
-    //function to change password for the current logged in user
+    /**
+     *  Function to change password for the current logged in user
+     * @param oldPw
+     * @param newPw
+     * @param confirmNewPw
+     * @return
+     * @throws ChangePasswordException
+     */
     public boolean changePassword(String oldPw, String newPw, String confirmNewPw) throws ChangePasswordException{
         //check if the user is logged in or not
         IUser temp;
@@ -83,7 +103,15 @@ public class UserDataHandler implements IUserDataHandler {
         }
     }
 
-    //creates a user and insert it into the database
+    /**
+     * Creates a user and insert it into the database
+     * @param name
+     * @param email
+     * @param password
+     * @param isManager
+     * @return
+     * @throws CreateUserErrorException
+     */
     public IUser createNewUser(String name, String email, String password, boolean isManager) throws CreateUserErrorException{
         IUser newUser;
         UserType userType;
@@ -138,15 +166,14 @@ public class UserDataHandler implements IUserDataHandler {
         return newUser;
     }
 
-    //Email validating method copied online
-    private boolean validEmail(String email){
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-    }
 
-    //Delete the user with the given ID from database
+    /**
+     * Delete the user with the given ID from database
+     * @param deleteID
+     * @throws PersistenceException
+     * @throws UserNotFoundException
+     * @throws DeleteLoggedInUserException
+     */
     public void deleteUser(String deleteID) throws PersistenceException, UserNotFoundException, DeleteLoggedInUserException{
         if(currentUser != null && deleteID.toLowerCase().equals(currentUser.getUserID().toLowerCase())){
             throw new DeleteLoggedInUserException("You cannot delete your own account.");
@@ -160,4 +187,13 @@ public class UserDataHandler implements IUserDataHandler {
             }
         }
     }
+
+    //Email validating method
+    private boolean validEmail(String email){
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
 }

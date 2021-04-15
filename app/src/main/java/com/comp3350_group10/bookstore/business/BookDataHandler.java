@@ -28,12 +28,14 @@ public class BookDataHandler implements IBookDataHandler {
         this.bookDatabase = bookDatabase;
     }
 
-    //Takes the keyword and search database with it
-    //Returns result after removing duplicated results, and sorted by relevance
-    /*
-     * param keyword
-     * return list of found books
-     * */
+    /**
+     * Takes the keyword and search database with it
+     *  Returns result after removing duplicated results, and sorted by relevance
+     * @param keyword
+     * @param asc
+     * @param searchBy
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<IBook> findBooks(String keyword, boolean asc, String searchBy) {
         List<String> wordList = splitWords(keyword); //splits keywords
@@ -73,7 +75,11 @@ public class BookDataHandler implements IBookDataHandler {
         return bookList;
     }
 
-    //function to set the target book to the given price
+    /**
+     * Function to set the target book to the given price
+     * @param target
+     * @param price
+     */
     public void setPrice(IBook target, int price) {
         //only change price if price is positive
         if(price>=0) {
@@ -82,7 +88,11 @@ public class BookDataHandler implements IBookDataHandler {
         }
     }
 
-    //function set the stock for the target book with the given quantity
+    /**
+     * Function set the stock for the target book with the given quantity
+     * @param target
+     * @param quantity
+     */
     public void setStock(IBook target, int quantity) {
         //stock cannot be negative
         if(quantity >= 0) {
@@ -92,13 +102,20 @@ public class BookDataHandler implements IBookDataHandler {
     }
 
 
-    //function to increment the stock by 1
+    /**
+     * Function to increment the stock by 1
+     * @param target
+     */
     public void incrementStock(IBook target) {
         setStock(target, target.getStock() + 1);
     }
 
 
-    //function to decrement the stock by 1
+    /**
+     * Function to decrement the stock by 1
+     * @param target
+     * @throws NegativeStockException
+     */
     public void decrementStock(IBook target) throws NegativeStockException {
         //only decrease if stock does not go below 0
         if(target.getStock() > 0)

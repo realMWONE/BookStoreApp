@@ -4,8 +4,8 @@ import com.comp3350_group10.bookstore.Exceptions.ChangePasswordException;
 import com.comp3350_group10.bookstore.Exceptions.CreateUserErrorException;
 import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.objects.IUser;
+import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabaseStub;
@@ -87,7 +87,7 @@ public class UserDataHandlerTest extends TestCase {
             dataHandler.changePassword("123456789","11111111","11111111");
         }
         catch (ChangePasswordException exception){
-            assertEquals("User must be logged in",exception.getMessage());
+            assertEquals("You are not logged in",exception.getMessage());
         }
     }
     @Test
@@ -98,7 +98,7 @@ public class UserDataHandlerTest extends TestCase {
             dataHandler.changePassword("222","111111","111111");
         }
         catch (ChangePasswordException exception){
-            assertEquals("The password input doesn't match the saved password",exception.getMessage());
+            assertEquals("Old password does not match",exception.getMessage());
         }
     }
     @Test
@@ -109,7 +109,7 @@ public class UserDataHandlerTest extends TestCase {
             dataHandler.changePassword("111","1234567","1234567");
         }
         catch (ChangePasswordException exception){
-            assertEquals("Password length too short, should be at least 8 characters",exception.getMessage());
+            assertEquals("Password length must be at least 8 characters",exception.getMessage());
         }
     }
     @Test
@@ -120,7 +120,7 @@ public class UserDataHandlerTest extends TestCase {
             dataHandler.changePassword("111","123456789","1234567");
         }
         catch (ChangePasswordException exception){
-            assertEquals("Different new passwords, couldn't confirm!!",exception.getMessage());
+            assertEquals("New password does not match with confirmation",exception.getMessage());
         }
     }
     @Test

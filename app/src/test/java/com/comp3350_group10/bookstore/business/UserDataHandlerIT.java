@@ -6,8 +6,8 @@ import com.comp3350_group10.bookstore.Exceptions.DifferentPasswordException;
 import com.comp3350_group10.bookstore.Exceptions.PersistenceException;
 import com.comp3350_group10.bookstore.Exceptions.UserNotFoundException;
 import com.comp3350_group10.bookstore.application.Main;
-import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.objects.IUser;
+import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabase;
@@ -20,8 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-
-import static org.junit.Assert.assertEquals;
 
 public class UserDataHandlerIT extends TestCase {
 
@@ -117,7 +115,7 @@ public class UserDataHandlerIT extends TestCase {
             //System.out.println("yes");
         }
         catch (ChangePasswordException exception){
-            assertEquals("The password input doesn't match the saved password",exception.getMessage());
+            assertEquals("Old password does not match",exception.getMessage());
         }
     }
     @Test
@@ -129,7 +127,7 @@ public class UserDataHandlerIT extends TestCase {
             //System.out.println("yes");
         }
         catch (ChangePasswordException exception){
-            assertEquals("Password length too short, should be at least 8 characters",exception.getMessage());
+            assertEquals("Password length must be at least 8 characters",exception.getMessage());
         }
     }
     @Test
@@ -141,7 +139,7 @@ public class UserDataHandlerIT extends TestCase {
             //System.out.println("yes");
         }
         catch (ChangePasswordException exception){
-            assertEquals("Different new passwords, couldn't confirm!!",exception.getMessage());
+            assertEquals("New password does not match with confirmation",exception.getMessage());
         }
     }
     @Test

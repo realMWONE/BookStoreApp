@@ -1,5 +1,8 @@
 # Winter-2021-A03 Group 10
 
+## Purpose
+- The Bookstore App is meant to ease the pain that current librarians have to face with operating those computer systems from 90s. Keeping this in mind we designed an app which can be used on a portable device like mobile with a simple and easy to use interface.
+
 ## Members
 - All [team members](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Members.md) working on this project
 

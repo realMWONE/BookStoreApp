@@ -14,6 +14,7 @@ database to meet a strict deadline.
 
 - What technical debt did you leave?
  
+
 Currently, the findBooks method retrieves all books from the database. The 
 sorting is done on the returned list, in logic. This was deliberate and prudent
 technical debt. This technique works for us because our database is small. In 
@@ -55,6 +56,9 @@ iteration, we were able to estimate 5 features and achieve all our estimated
 features plus a couple more features.
 
 Links: 
+
 [Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/milestones)
+
 [Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/graphs/master/charts)
+
 [Link 3](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/value_stream_analytics)

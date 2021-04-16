@@ -1,3 +1,7 @@
+/**
+ * As a user, I want to find all the genre specific novels.
+ */
+
 package com.comp3350_group10.bookstore;
 
 import android.widget.TableLayout;
@@ -10,7 +14,6 @@ import androidx.test.filters.LargeTest;
 
 import com.comp3350_group10.bookstore.presentation.MainActivity;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

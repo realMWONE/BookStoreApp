@@ -1,3 +1,7 @@
+/**
+ * As a manager, I want to create account for new employees
+ */
+
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;

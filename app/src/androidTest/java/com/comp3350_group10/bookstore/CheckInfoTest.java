@@ -13,7 +13,6 @@ import com.comp3350_group10.bookstore.TestUtil.TestHelper;
 import com.comp3350_group10.bookstore.business.BookDataHandler;
 import com.comp3350_group10.bookstore.business.UserDataHandler;
 import com.comp3350_group10.bookstore.presentation.MainActivity;
-import com.comp3350_group10.bookstore.presentation.Messages;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,7 +24,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static com.comp3350_group10.bookstore.business.UserDataHandler.currentUser;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
@@ -61,11 +59,6 @@ public class CheckInfoTest {
 
     @Test
     public void checkInfo() {
-        //TODO: not showing employee interface
-        uHandler.logIn(empID, empPw);
-
-        Messages.viewPopUp("You're logged in as employee " + currentUser.getRealName(), TestHelper.getActivity(activityTestRule));
-
         Activity a = TestHelper.getActivity(activityTestRule);
 
         onView(withId(R.id.searchBar)).perform(click());

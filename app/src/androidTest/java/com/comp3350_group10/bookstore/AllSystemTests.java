@@ -17,7 +17,9 @@ import org.junit.runners.Suite;
                 PriceChangeTest.class,
                 RemoveUserTest.class,
                 ForgotPasswordTest.class,
-                ContactUsTest.class
+                ContactUsTest.class,
+                CheckInfoTest.class,
+                AlertTest.class
         }
 
 )

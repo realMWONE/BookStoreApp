@@ -1,3 +1,7 @@
+/**
+ * As employee, I want to be able to log in to my account and use extra functions for staffs
+ */
+
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;
@@ -17,8 +21,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static com.comp3350_group10.bookstore.business.UserDataHandler.currentUser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

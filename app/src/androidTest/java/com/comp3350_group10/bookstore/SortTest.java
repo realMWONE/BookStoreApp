@@ -1,3 +1,7 @@
+/**
+ * As a user, I want to find all the genre specific novels.
+ */
+
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;

@@ -1,3 +1,7 @@
+/**
+ * As a manager, I want to be able to adjust book prices.
+ */
+
 package com.comp3350_group10.bookstore;
 
 import android.app.Activity;

@@ -9,6 +9,9 @@ import com.comp3350_group10.bookstore.objects.User;
 import com.comp3350_group10.bookstore.persistence.IUserDatabase;
 import com.comp3350_group10.bookstore.persistence.UserType;
 import com.comp3350_group10.bookstore.persistence.hsqldb.UserDatabaseStub;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import junit.framework.TestCase;
 
@@ -17,6 +20,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UserDataHandlerTest extends TestCase {
+    private IUserDatabase userDatabase;
+    private UserDataHandler mockDataHandler;
 
     //we will use a stub
     private UserDataHandler dataHandler;
@@ -25,6 +30,8 @@ public class UserDataHandlerTest extends TestCase {
         super.setUp();
         IUserDatabase databaseStub = new UserDatabaseStub();
         this.dataHandler = new UserDataHandler(databaseStub);
+        userDatabase = mock(IUserDatabase.class);
+        mockDataHandler = new UserDataHandler(userDatabase);
     }
     @After
     public void tearDown() throws Exception {
@@ -43,17 +50,14 @@ public class UserDataHandlerTest extends TestCase {
     //without throwing exception
     @Test
     public void testLogIn() {
-        try{
-            dataHandler.logIn("duy.than@gihot.com","123456789");
-        }
-        catch (UserNotFoundException exception){
-            assertEquals("it shouldn't reach the catch statement",exception.getMessage());
-        }
-        catch (DifferentPasswordException exception){
-            assertEquals("it shouldn't reach the catch statement",exception.getMessage());
-        }
-
+        IUser mockResult = new User("Keven","Kevin@gmail.com","987654321", UserType.Manager);
+        when(userDatabase.findUser("Kevin@gmail.com")).thenReturn(mockResult);
+        mockDataHandler.logIn("Kevin@gmail.com","987654321");
+        IUser curUser = dataHandler.getCurrentUser();
+        assertEquals("login username should be Kevin@gmail.com","Kevin@gmail.com",curUser.getUserID());
+        assertEquals("password should be 987654321","987654321",curUser.getPassword());
     }
+
     //throw exception for id not found
     @Test
     public void testLogInThrowUserNotFoundException(){

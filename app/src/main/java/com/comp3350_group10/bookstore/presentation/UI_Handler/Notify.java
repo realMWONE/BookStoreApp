@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Notify extends AppCompatActivity {
-    private final List<IBook> lowStockNotified = new ArrayList<>();
+    private static final List<IBook> lowStockNotified = new ArrayList<>();
 
-    public List<IBook> getLowStockNotified() {
+    public static List<IBook> getLowStockNotified() {
         return lowStockNotified;
     }
 
@@ -32,7 +32,6 @@ public class Notify extends AppCompatActivity {
 
     //create a low stock notification
     public void lowStockNotification(Context context){
-
         IBook currentBook = BookDataHandler.currentBook;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"Notification");
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);

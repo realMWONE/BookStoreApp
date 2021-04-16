@@ -1,3 +1,4 @@
+# Architecture
 ![](architecture.png)
 
 **Activities** handle the GUI for the app. It includes:

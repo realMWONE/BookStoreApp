@@ -9,7 +9,7 @@ we were aware that failure to implement the database could lose us a lot of mark
 However, we had no other choice but to deliver a working product with a fake 
 database to meet a strict deadline.
 
-    - [Link for question 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/b1dee02c8500d1346e2f24e4055976bcc56aa7b1)
+    - [Link for Question 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/b1dee02c8500d1346e2f24e4055976bcc56aa7b1)
 
 
 - What technical debt did you leave?

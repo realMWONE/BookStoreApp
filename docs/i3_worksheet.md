@@ -9,7 +9,7 @@ we were aware that failure to implement the database could lose us a lot of mark
 However, we had no other choice but to deliver a working product with a fake 
 database to meet a strict deadline.
 
-[Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/b1dee02c8500d1346e2f24e4055976bcc56aa7b1)
+    - [Link](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/commit/b1dee02c8500d1346e2f24e4055976bcc56aa7b1)
 
 
 - What technical debt did you leave?
@@ -18,7 +18,7 @@ database to meet a strict deadline.
     Currently, the findBooks method retrieves all books from the database. The 
 sorting is done on the returned list, in logic. This was deliberate and prudent
 technical debt. This technique works for us because our database is small. In 
-the future, this would need to be changed to use sql queries to return only the
+the future, this would need to be changed to use SQL queries to return only the
 required books.
 
 - Discuss a Feature or User Story that was cut/re-prioritized
@@ -44,9 +44,9 @@ transitions in the Android emulator.
 because there is no suitable condition to assert. We decided to just navigate to
 the desired activity and pass the test if nothing crashed, just as how we would 
 write the acceptance test. We also encountered technical difficulty when 
-attempting to switch activities via dropdown menu button. As the dropdown 
-menu isn’t exactly a component in the activity, but a component in the appbar 
-layout, so the regular way of “onView perform click” didn’t work.
+attempting to switch activities via dropdown menu button. The dropdown 
+menu isn’t exactly a component in the activity, but it is a component in the appbar 
+layout, that's why the regular way of “onView perform click” didn’t work.
 
 - Velocity/teamwork
 

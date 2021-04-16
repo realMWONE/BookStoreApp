@@ -1,6 +1,7 @@
 ## Iteration 3
 
-- What technical debt has been cleaned up
+- What technical debt has been cleaned up?
+
 In iteration 2, we were unable to use the hsqldb as listed in the marking 
 rubrics. We had a lot of problems when it came to setting up a proper environment 
 for this kind of database. It is classified as a prudent deliberate debt because 
@@ -12,8 +13,22 @@ database to meet a strict deadline.
 
 
 - What technical debt did you leave?
+ 
+Currently, the findBooks method retrieves all books from the database. The 
+sorting is done on the returned list, in logic. This was deliberate and prudent
+technical debt. This technique works for us because our database is small. In 
+the future, this would need to be changed to use sql queries to return only the
+required books.
 
 - Discuss a Feature or User Story that was cut/re-prioritized
+
+The user story where a customer would be able to navigate to the “contact us” 
+page was initially set to a low priority feature. It was implemented in iteration
+3 and ended up being a high priority feature as it was in our vision statement 
+and one of the main features of our app that would help make it more user 
+friendly. Also, it gave our app more functionality to the customer of the bookstore.  
+
+
 
 - Acceptance test/end-to-end
 

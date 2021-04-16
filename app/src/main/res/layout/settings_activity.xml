@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="336dp"
-        android:layout_height="318dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/user_change_password"
@@ -27,14 +27,12 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/enter_old_password"
-            android:inputType="textPassword"
-            tools:visibility="gone" />
+            android:inputType="textPassword" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            tools:visibility="gone" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/newPassword"
@@ -45,14 +43,12 @@
             android:ems="10"
             android:hint="@string/enter_new_password"
             android:inputType="textPassword"
-            android:singleLine="false"
-            tools:visibility="gone" />
+            android:singleLine="false" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            tools:visibility="gone" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/confirmNewPassword"
@@ -62,8 +58,7 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/confirm_new_password"
-            android:inputType="textPassword"
-            tools:visibility="gone" />
+            android:inputType="textPassword" />
 
     </LinearLayout>
 

@@ -23,4 +23,4 @@ import org.junit.runners.Suite;
         }
 
 )
-public class AllSystemTests {}
+public class AllAcceptanceTests {}

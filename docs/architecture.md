@@ -1,26 +1,29 @@
-## Architecture
-## Iteration 1 Diagram
+# Architecture
+![](architecture.png)
 
-![architecture](architecture.png)
+**Activities** handle the GUI for the app. It includes:
+ - MainActivity
+ - LoginActivity
+ - BookDetailsActivity
+ - ContactUsActivity
+ - CreateUserActivity
+ - DeleteUserActivity
+ - UserSettingsActivity
 
-## Presentation Layer
-[Main Activity](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/MainActivity.java)
-- The starting page for the bookstore app, allows user to perform book search.
+**Messages** is a single class that handles error messaged displayed to the user.
 
-[Book Details Page](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/BookDetailsActivity.java)
-- The page that will display information detail for books. 
+**ButtonFunctions** is a single class that handle the onClick logic for all the activities
 
+**ActivityFunctions** are a collection of class that handle functions specific to certain activities. It indludes:
+ - BookDetailsFunctions
+ - TrendingPageFunctions
 
-## Logic Layer
-[UI Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/tree/master/app/src/main/java/com/comp3350_group10/bookstore/logic/UI_Handler)
-- The class that contains functions corresponding to each of the buttons in UI, and passes the input from presentation layer to DataHandler.
+**Notify** is a single class that handle system notifications
 
-[Data Handler](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/logic/Data_Handler/DataHandler.java)
-- The class that the passes the input from presentation layer to data layer to call for operations.
+**BookDataHandler** is a class that acts as an adapter between the presentation layer and the persistance layer. It handles interactions with the book database.
 
-## Database Layer
-[Book Database](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/data/BookDatabase.java)
-- The class that contains a fake database of books.
+**UserDataHandler** is a class that acts as an adapter between the presentation layer and the persistance layer. It handles interactions with the book database.
 
-[User Database](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/app/src/main/java/com/comp3350_group10/bookstore/UserDatabase.java)
-- The class that contains a fake database of users.
+**BookDatabase** contains the connection to the book SQL database.
+
+**UserDatabase** contains the connection to the user SQL database.

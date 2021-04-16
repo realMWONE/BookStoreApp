@@ -1,4 +1,4 @@
-## Iteration 3
+## Iteration 3 Worksheet
 
 - What technical debt has been cleaned up?
 
@@ -55,10 +55,8 @@ iteration, we estimated 3 features and achieved only 1. However, in this
 iteration, we were able to estimate 5 features and achieve all our estimated 
 features plus a couple more features.
 
-Links: 
+    - Links: 
 
-[Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/milestones)
+        - [Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/milestones)
 
-[Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/graphs/master/charts)
-
-[Link 3](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/value_stream_analytics)
+        - [Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/graphs/master/charts)

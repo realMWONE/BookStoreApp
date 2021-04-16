@@ -1,3 +1,5 @@
+# Retrospective
+
 When talking about the development process, one of the positives that we can definitely take is the planning that we did throughout the course. There were a few times when we couldn't execute our plans properly but we never worked on anything without a plan. But, by the end of the course, we did learn how to implement a plan properly. From the beginning, we distributed the work among ourselves in such a way that everyone could work independently. We had meetings regularly, everyone communicated well, and gave updates and talked about issues on regular basis. Members with more technical experience were always there to help other group members that helped to maintain a positive work environment which eventually helped everyone learn something new. 
 
 

@@ -32,6 +32,29 @@ friendly. Also, it gave our app more functionality to the customer of the bookst
 
 - Acceptance test/end-to-end
 
+We have one system test that tests adding a new user to the database. We had 
+some flakiness due to the Android window animations complicating the process. 
+This caused the test to fail sometimes. We fixed this by disabling window 
+transitions in the Android emulator. 
+
 - Acceptance test, untestable
 
+It was difficult testing user stories that simply “shows information”. That is 
+because there is no suitable condition to assert. We decided to just navigate to
+the desired activity and pass the test if nothing crashed, just as how we would 
+write the acceptance test. We also encountered technical difficulty when 
+attempting to switch activities via dropdown menu button. As the dropdown 
+menu isn’t exactly a component in the activity, but a component in the appbar 
+layout, so the regular way of “onView perform click” didn’t work.
+
 - Velocity/teamwork
+
+Through the course, our estimates gradually became better. In our first 
+iteration, we estimated 3 features and achieved only 1. However, in this 
+iteration, we were able to estimate 5 features and achieve all our estimated 
+features plus a couple more features.
+
+Links: 
+[Link 1](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/milestones)
+[Link 2](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/graphs/master/charts)
+[Link 3](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/value_stream_analytics)

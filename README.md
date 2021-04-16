@@ -8,6 +8,7 @@
 - Its really simple to run our app
     - Just [clone](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10.git) it from our repository 
     - Build it and run it.
+
 **Important Note**
 - Some of the system tests can be flaky due to Android window transitions. To fix this, disable window transition in the system settings. On the Nexus 7, this you can enable "Remove animations" in the accessibility settings. On other devices, you may need to enable developer options and disable "Window animation scale" and "Transition animation scale".
 

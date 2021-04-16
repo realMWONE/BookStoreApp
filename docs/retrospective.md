@@ -9,4 +9,4 @@ As far as the evaluation of its success is concerned, it will be based on whethe
 
 Despite the problems from the last iteration, our velocity was improved over iteration 1. As you can see from the chart, we were over ambitious in our expectations for the first iteration. In iteration 2, we were still able to implement features that were not database related. 
 
-![](velocityImage.png)
+![](velocityImage.PNG)

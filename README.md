@@ -9,6 +9,9 @@
     - Just [clone](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10.git) it from our repository 
     - Build it and run it.
 
+Some of the system tests can be flaky due to Android window transitions. To fix this, disable window transition in the system settings. On the Nexus 7, this you can enable "Remove
+animations" in the accessibility settings. On other devices, you may need to enable developer options and disable some settings in that section.
+
 ## Members
 - All [team members](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10/-/blob/master/docs/Members.md) working on this project
 

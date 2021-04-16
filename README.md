@@ -6,7 +6,7 @@
 ## How to run it?
 - We have created this app on Android Studio Version 4.1.1 and Gradle version 6.5.
 - Its really simple to run our app
-    - Just clone it from our repository 
+    - Just [clone](https://code.cs.umanitoba.ca/3350-winter-2021-a03/winter-2021-a03-group-10.git) it from our repository 
     - Build it and run it.
 
 ## Members

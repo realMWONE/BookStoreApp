@@ -95,7 +95,6 @@ public class BookDataHandlerTest extends TestCase {
         try{
             IBook book_1 = new Book("Harry Potter and the Philosopher Stone","5648304756357",0,2630,"26 June 1997","J.K.Rowling","Novel",2,700132);
             dataHandler.decrementStock(book_1);
-            System.out.println("yes");
         }
         catch (NegativeStockException exception){
             assertEquals("Stock cannot be less than 0.",exception.getMessage());

@@ -17,14 +17,8 @@ import org.junit.runners.Suite;
 )
 @Suite.SuiteClasses(
         {
-                ServiceTest.class,
-                BookDataHandlerIT.class,
-                BookDataHandlerTest.class,
-                UserDataHandlerTest.class,
-                UserDataHandlerIT.class,
-                BookTest.class,
-                UserTest.class,
-                ImageReferencesTest.class
+                AllIntegrationTests.class,
+                AllUnitTests.class
         }
 
 )

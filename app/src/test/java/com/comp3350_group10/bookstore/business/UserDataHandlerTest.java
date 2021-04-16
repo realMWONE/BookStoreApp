@@ -170,8 +170,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testCreateNewUserPassword_1_Exception() {
         try{
-            IUser user = dataHandler.createNewUser("Duy","zigs123321@gmail.com","",false);
-            System.out.println("uyes");
+            IUser user = dataHandler.createNewUser("Duy","zig123321@gmail.com","",false);
         }
         catch (CreateUserErrorException exception){
             assertEquals("Password cannot be empty",exception.getMessage().trim());
@@ -180,8 +179,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testCreateNewUserPassword_2_Exception() {
         try{
-            IUser user = dataHandler.createNewUser("Duy","zigs123321@gmail.com","1234567",false);
-            System.out.println("uyes");
+            dataHandler.createNewUser("Duy","zig123321@gmail.com","1234567",false);
         }
         catch (CreateUserErrorException exception){
             assertEquals("Password cannot be shorter than 8 characters",exception.getMessage().trim());
@@ -190,7 +188,7 @@ public class UserDataHandlerTest extends TestCase {
     @Test
     public void testCreateNewUser() {
         try{
-            IUser user = dataHandler.createNewUser("Duy","zigs123321@gmail.com","123456789",false);
+            IUser user = dataHandler.createNewUser("Duy","zig123321@gmail.com","123456789",false);
         }
         catch (CreateUserErrorException exception){
             assertEquals("It shouldn't reach the catch statement",exception.getMessage().trim());
@@ -199,10 +197,10 @@ public class UserDataHandlerTest extends TestCase {
 
     public void testDeleteUser() {
         try{
-            IUser user = dataHandler.createNewUser("Duy","zigs123321@gmail.com","123456789",false);
-            dataHandler.deleteUser("zigs123321@gmail.com");
+            IUser user = dataHandler.createNewUser("Duy","zig123321@gmail.com","123456789",false);
+            dataHandler.deleteUser("zig123321@gmail.com");
             try {
-                dataHandler.logIn("zigs123321@gmail.com", "123456789");
+                dataHandler.logIn("zig123321@gmail.com", "123456789");
                 fail("UserNotFoundException should be thrown");
             }
             catch(UserNotFoundException e){
